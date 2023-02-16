@@ -16,6 +16,7 @@
 </script>
 
 <template>
+  <p>halloen!</p>
   <ol>
     <li :key="city.id" v-for="city in cities">{{ city.name }}</li>
   </ol>
