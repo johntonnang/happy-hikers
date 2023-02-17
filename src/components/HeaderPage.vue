@@ -31,13 +31,16 @@
 </template>
 
 <style>
+  body {
+    margin: 0;
+  }
   .video-container {
     display: flex;
     align-items: center;
     justify-content: center;
   }
   #hiker-background {
-    max-width: 80%;
+    max-width: 100%;
     filter: brightness(75%);
   }
 </style>
