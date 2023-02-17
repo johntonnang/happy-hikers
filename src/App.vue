@@ -1,11 +1,13 @@
 <script>
   import NavBar from './components/NavBar.vue'
   import HeaderPage from './components/HeaderPage.vue'
+  import CategorySection from './components/CategorySection.vue'
 
   export default {
     components: {
       NavBar,
-      HeaderPage
+      HeaderPage,
+      CategorySection
     }
   }
 </script>
@@ -16,4 +18,5 @@
   <main>
     <RouterView />
   </main>
+  <CategorySection />
 </template>
