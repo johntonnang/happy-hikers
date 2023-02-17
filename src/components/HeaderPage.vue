@@ -26,14 +26,12 @@
       type="video/mp4"
     />
   </video>
-  <p>{{ msg }}</p>
 </template>
 
 <style>
-  p {
-    font-weight: bold;
-  }
   #hiker-background {
-    max-width: 70%;
+    max-width: 80%;
+    filter: brightness(75%);
+    margin-left: 150px;
   }
 </style>
