@@ -4,7 +4,7 @@
 
 <template>
   <div class="navbar-container">
-    <input type="text" />
+    <button><font-awesome-icon icon="fa-solid fa-magnifying-glass" /></button>
     <div class="logo-container">
       <img id="logo" src="/assets/happy-hikers-logo.png" />
     </div>
