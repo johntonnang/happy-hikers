@@ -9,13 +9,13 @@
       <img id="logo" src="/assets/happy-hikers-logo.png" />
     </div>
     <div class="nav-links-container">
-      <router-link to="/"
+      <router-link to="/Favourite"
         ><font-awesome-icon icon="fa-regular fa-heart"
       /></router-link>
-      <router-link to="/contact"
+      <router-link to="/Profile"
         ><font-awesome-icon icon="fa-regular fa-user"
       /></router-link>
-      <router-link to="/about"
+      <router-link to="/Cart"
         ><font-awesome-icon icon="fa-solid fa-cart-shopping"
       /></router-link>
     </div>
