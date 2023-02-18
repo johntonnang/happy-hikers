@@ -1,23 +1,33 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 
-import AboutView from './views/AboutView.vue'
-import ContactView from './views/ContactView.vue'
 import HomeView from './views/HomeView.vue'
+import FavouriteView from './views/FavouriteView.vue'
+import ProfileView from './views/ProfileView.vue'
+import CartView from './views/CartView.vue'
+import ProductCatalogView from './views/ProductCatalogView.vue'
 
 export default createRouter({
   history: createWebHashHistory(),
   routes: [
     {
-      component: AboutView,
-      path: '/about'
-    },
-    {
-      component: ContactView,
-      path: '/contact'
-    },
-    {
       component: HomeView,
       path: '/'
+    },
+    {
+      component: FavouriteView,
+      path: '/Favourite'
+    },
+    {
+      component: ProfileView,
+      path: '/Profile'
+    },
+    {
+      component: CartView,
+      path: '/Cart'
+    },
+    {
+      component: ProductCatalogView,
+      path: '/ProductCatalogView'
     }
   ]
 })
