@@ -1,5 +1,4 @@
 <script>
-  import { computed } from 'vue'
   import HeaderPage from '../components/HeaderPage.vue'
   import CategorySection from '../components/CategorySection.vue'
   import CaruselBig from '../components/CaruselBig.vue'
