@@ -64,23 +64,6 @@
             <h2>{{ product.price }}:-</h2>
           </div>
         </div>
-        <div class="product-box">
-          <img id="bg-image" alt="" src="/assets/product-case.jpg" />
-          <div class="align-content-mobile">
-            <div class="product-title-rating">
-              <div style="display: flex">
-                <span class="color-circle-one" />
-                <span class="color-circle-two" />
-                <span class="color-circle-three" />
-                <span class="color-circle-four" />
-              </div>
-              <img alt="" src="/assets/rating-image.png" /> (32)
-            </div>
-            <h3 style="margin: 0px">En produkt</h3>
-            <p style="margin-top: 2px">Plånbok för mobil</p>
-            <h2 style="font-size: 2.2rem">499:-</h2>
-          </div>
-        </div>
       </div>
     </div>
     <div id="popular-products-container">
@@ -254,10 +237,18 @@
     #main-products-container {
       display: block;
     }
+
+    #product-intro-image {
+      padding-top: 5px;
+      padding-left: 5px;
+      font-size: 2rem;
+    }
+
     #product-selection-container {
       width: 100%;
       display: flex;
       justify-content: space-around;
+      position: static;
     }
     .filter-container h3 {
       margin-top: 0px;
@@ -265,7 +256,6 @@
     .product-container {
       margin-top: 20px;
     }
-
     .align-content-mobile h2 {
       font-size: 1.5rem;
     }
