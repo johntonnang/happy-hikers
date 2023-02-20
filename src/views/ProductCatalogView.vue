@@ -1,7 +1,17 @@
 <script>
   export default {
     data() {
-      return {}
+      return {
+        products: null
+      }
+    },
+    created() {
+      fetch('/assets/api.JSON')
+        .then((response) => response.json())
+        .then((result) => {
+          this.products = result
+          console.log(result)
+        })
     }
   }
 </script>
@@ -29,6 +39,23 @@
         <h4 class="filter-selection">Grön</h4>
       </div>
       <div class="product-container">
+        <div :key="product.id" v-for="product in products" class="product-box">
+          <img id="bg-image" alt="" :src="product.image" />
+          <div class="align-content-mobile">
+            <div class="product-title-rating">
+              <div style="display: flex">
+                <span class="color-circle-one" />
+                <span class="color-circle-two" />
+                <span class="color-circle-three" />
+                <span class="color-circle-four" />
+              </div>
+              <img alt="" src="/assets/rating-image.png" /> (32)
+            </div>
+            <h3 style="margin: 0px">{{ product.name }}</h3>
+            <p style="margin-top: 2px">{{ product.category }}</p>
+            <h2 style="font-size: 2.2rem">{{ product.price }}:-</h2>
+          </div>
+        </div>
         <div class="product-box">
           <img id="bg-image" alt="" src="/assets/product-case.jpg" />
           <div class="align-content-mobile">
@@ -295,6 +322,10 @@
   .product-box img {
     max-width: 300px;
     max-height: 350px;
+    padding-left: 15px;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
   }
   .product-title-rating {
     display: flex;
@@ -380,6 +411,9 @@
     .product-box img {
       max-height: 175px;
       width: 30%;
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
     }
 
     .product-title-rating img {
