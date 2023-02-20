@@ -285,7 +285,8 @@
   }
 
   #product-intro-image {
-    background-color: #f73f3f;
+    /* background-color: #f73f3f; */
+    background-color: #579d5d;
     padding-top: 50px;
     padding-left: 45px;
     font-size: 2.5rem;
@@ -372,7 +373,8 @@
     justify-content: center;
     width: 100%;
     height: 400px;
-    background-color: #f73f3f;
+    /* background-color: #f73f3f; */
+    background-color: #579d5d;
   }
 
   #test {

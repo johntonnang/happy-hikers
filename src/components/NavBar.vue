@@ -8,6 +8,9 @@
     methods: {
       toggleMenu() {
         this.isActive = !this.isActive
+      },
+      searchProducts() {
+        this.$router.push('/ProductCatalog')
       }
     }
   }
@@ -22,7 +25,7 @@
           class="navbar-search-field"
           placeholder="Search..."
         />
-        <button class="navbar-search-button">
+        <button class="navbar-search-button" @click="searchProducts">
           <font-awesome-icon icon="fa-solid fa-magnifying-glass" />
         </button>
       </div>
