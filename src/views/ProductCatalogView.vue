@@ -323,9 +323,8 @@
   .product-box img {
     max-width: 300px;
     max-height: 350px;
-    padding-left: 15px;
-    width: 200px;
-    height: 200px;
+    width: 250px;
+    height: 250px;
     object-fit: cover;
   }
   .product-title-rating {
