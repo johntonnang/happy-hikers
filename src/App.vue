@@ -1,9 +1,11 @@
 <script>
   import NavBar from './components/NavBar.vue'
+  import FooterSection from './components/FooterSection.vue'
 
   export default {
     components: {
-      NavBar
+      NavBar,
+      FooterSection
     }
   }
 </script>
@@ -13,4 +15,5 @@
   <main>
     <RouterView />
   </main>
+  <FooterSection />
 </template>
