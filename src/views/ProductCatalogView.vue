@@ -25,18 +25,24 @@
     </div>
     <div id="main-products-container">
       <div id="product-selection-container">
-        <h3 style="margin-top: 0px">Storlek</h3>
-        <h4 class="filter-selection">S</h4>
-        <h4 class="filter-selection">M</h4>
-        <h4 class="filter-selection">L</h4>
-        <h3>Pris</h3>
-        <h4 class="filter-selection">0-499</h4>
-        <h4 class="filter-selection">500-999</h4>
-        <h4 class="filter-selection">1000-1499</h4>
-        <h3>Färg</h3>
-        <h4 class="filter-selection">Blå</h4>
-        <h4 class="filter-selection">Röd</h4>
-        <h4 class="filter-selection">Grön</h4>
+        <div class="filter-container">
+          <h3 style="margin-top: 0px">Storlek</h3>
+          <h4 class="filter-selection">Small</h4>
+          <h4 class="filter-selection">Medium</h4>
+          <h4 class="filter-selection">Large</h4>
+        </div>
+        <div class="filter-container">
+          <h3>Pris</h3>
+          <h4 class="filter-selection">0-499</h4>
+          <h4 class="filter-selection">500-999</h4>
+          <h4 class="filter-selection">1000-1499</h4>
+        </div>
+        <div class="filter-container">
+          <h3>Färg</h3>
+          <h4 class="filter-selection">Blå</h4>
+          <h4 class="filter-selection">Röd</h4>
+          <h4 class="filter-selection">Grön</h4>
+        </div>
       </div>
       <div class="product-container">
         <div :key="product.id" v-for="product in products" class="product-box">
@@ -44,203 +50,18 @@
           <div class="align-content-mobile">
             <div class="product-title-rating">
               <div style="display: flex">
-                <span class="color-circle-one" />
-                <span class="color-circle-two" />
-                <span class="color-circle-three" />
-                <span class="color-circle-four" />
+                <span
+                  v-for="color in product.colors"
+                  :key="color"
+                  class="color-circle-one"
+                  :style="{ backgroundColor: color }"
+                />
               </div>
               <img alt="" src="/assets/rating-image.png" /> (32)
             </div>
             <h3 style="margin: 0px">{{ product.name }}</h3>
             <p style="margin-top: 2px">{{ product.category }}</p>
-            <h2 style="font-size: 2.2rem">{{ product.price }}:-</h2>
-          </div>
-        </div>
-        <div class="product-box">
-          <img id="bg-image" alt="" src="/assets/product-case.jpg" />
-          <div class="align-content-mobile">
-            <div class="product-title-rating">
-              <div style="display: flex">
-                <span class="color-circle-one" />
-                <span class="color-circle-two" />
-                <span class="color-circle-three" />
-                <span class="color-circle-four" />
-              </div>
-              <img alt="" src="/assets/rating-image.png" /> (32)
-            </div>
-            <h3 style="margin: 0px">En produkt</h3>
-            <p style="margin-top: 2px">Plånbok för mobil</p>
-            <h2 style="font-size: 2.2rem">499:-</h2>
-          </div>
-        </div>
-        <div class="product-box">
-          <img id="bg-image" alt="" src="/assets/product-case.jpg" />
-          <div class="align-content-mobile">
-            <div class="product-title-rating">
-              <div style="display: flex">
-                <span class="color-circle-one" />
-                <span class="color-circle-two" />
-                <span class="color-circle-three" />
-                <span class="color-circle-four" />
-              </div>
-              <img alt="" src="/assets/rating-image.png" /> (32)
-            </div>
-            <h3 style="margin: 0px">En produkt</h3>
-            <p style="margin-top: 2px">Plånbok för mobil</p>
-            <h2 style="font-size: 2.2rem">499:-</h2>
-          </div>
-        </div>
-        <div class="product-box">
-          <img id="bg-image" alt="" src="/assets/product-case.jpg" />
-          <div class="align-content-mobile">
-            <div class="product-title-rating">
-              <div style="display: flex">
-                <span class="color-circle-one" />
-                <span class="color-circle-two" />
-                <span class="color-circle-three" />
-                <span class="color-circle-four" />
-              </div>
-              <img alt="" src="/assets/rating-image.png" /> (32)
-            </div>
-            <h3 style="margin: 0px">En produkt</h3>
-            <p style="margin-top: 2px">Plånbok för mobil</p>
-            <h2 style="font-size: 2.2rem">499:-</h2>
-          </div>
-        </div>
-        <div class="product-box">
-          <img id="bg-image" alt="" src="/assets/product-case.jpg" />
-          <div class="align-content-mobile">
-            <div class="product-title-rating">
-              <div style="display: flex">
-                <span class="color-circle-one" />
-                <span class="color-circle-two" />
-                <span class="color-circle-three" />
-                <span class="color-circle-four" />
-              </div>
-              <img alt="" src="/assets/rating-image.png" /> (32)
-            </div>
-            <h3 style="margin: 0px">En produkt</h3>
-            <p style="margin-top: 2px">Plånbok för mobil</p>
-            <h2 style="font-size: 2.2rem">499:-</h2>
-          </div>
-        </div>
-        <div class="product-box">
-          <img id="bg-image" alt="" src="/assets/product-case.jpg" />
-          <div class="align-content-mobile">
-            <div class="product-title-rating">
-              <div style="display: flex">
-                <span class="color-circle-one" />
-                <span class="color-circle-two" />
-                <span class="color-circle-three" />
-                <span class="color-circle-four" />
-              </div>
-              <img alt="" src="/assets/rating-image.png" /> (32)
-            </div>
-            <h3 style="margin: 0px">En produkt</h3>
-            <p style="margin-top: 2px">Plånbok för mobil</p>
-            <h2 style="font-size: 2.2rem">499:-</h2>
-          </div>
-        </div>
-        <div class="product-box">
-          <img id="bg-image" alt="" src="/assets/product-case.jpg" />
-          <div class="align-content-mobile">
-            <div class="product-title-rating">
-              <div style="display: flex">
-                <span class="color-circle-one" />
-                <span class="color-circle-two" />
-                <span class="color-circle-three" />
-                <span class="color-circle-four" />
-              </div>
-              <img alt="" src="/assets/rating-image.png" /> (32)
-            </div>
-            <h3 style="margin: 0px">En produkt</h3>
-            <p style="margin-top: 2px">Plånbok för mobil</p>
-            <h2 style="font-size: 2.2rem">499:-</h2>
-          </div>
-        </div>
-        <div class="product-box">
-          <img id="bg-image" alt="" src="/assets/product-case.jpg" />
-          <div class="align-content-mobile">
-            <div class="product-title-rating">
-              <div style="display: flex">
-                <span class="color-circle-one" />
-                <span class="color-circle-two" />
-                <span class="color-circle-three" />
-                <span class="color-circle-four" />
-              </div>
-              <img alt="" src="/assets/rating-image.png" /> (32)
-            </div>
-            <h3 style="margin: 0px">En produkt</h3>
-            <p style="margin-top: 2px">Plånbok för mobil</p>
-            <h2 style="font-size: 2.2rem">499:-</h2>
-          </div>
-        </div>
-        <div class="product-box">
-          <img id="bg-image" alt="" src="/assets/product-case.jpg" />
-          <div class="align-content-mobile">
-            <div class="product-title-rating">
-              <div style="display: flex">
-                <span class="color-circle-one" />
-                <span class="color-circle-two" />
-                <span class="color-circle-three" />
-                <span class="color-circle-four" />
-              </div>
-              <img alt="" src="/assets/rating-image.png" /> (32)
-            </div>
-            <h3 style="margin: 0px">En produkt</h3>
-            <p style="margin-top: 2px">Plånbok för mobil</p>
-            <h2 style="font-size: 2.2rem">499:-</h2>
-          </div>
-        </div>
-        <div class="product-box">
-          <img id="bg-image" alt="" src="/assets/product-case.jpg" />
-          <div class="align-content-mobile">
-            <div class="product-title-rating">
-              <div style="display: flex">
-                <span class="color-circle-one" />
-                <span class="color-circle-two" />
-                <span class="color-circle-three" />
-                <span class="color-circle-four" />
-              </div>
-              <img alt="" src="/assets/rating-image.png" /> (32)
-            </div>
-            <h3 style="margin: 0px">En produkt</h3>
-            <p style="margin-top: 2px">Plånbok för mobil</p>
-            <h2 style="font-size: 2.2rem">499:-</h2>
-          </div>
-        </div>
-        <div class="product-box">
-          <img id="bg-image" alt="" src="/assets/product-case.jpg" />
-          <div class="align-content-mobile">
-            <div class="product-title-rating">
-              <div style="display: flex">
-                <span class="color-circle-one" />
-                <span class="color-circle-two" />
-                <span class="color-circle-three" />
-                <span class="color-circle-four" />
-              </div>
-              <img alt="" src="/assets/rating-image.png" /> (32)
-            </div>
-            <h3 style="margin: 0px">En produkt</h3>
-            <p style="margin-top: 2px">Plånbok för mobil</p>
-            <h2 style="font-size: 2.2rem">499:-</h2>
-          </div>
-        </div>
-        <div class="product-box">
-          <img id="bg-image" alt="" src="/assets/product-case.jpg" />
-          <div class="align-content-mobile">
-            <div class="product-title-rating">
-              <div style="display: flex">
-                <span class="color-circle-one" />
-                <span class="color-circle-two" />
-                <span class="color-circle-three" />
-                <span class="color-circle-four" />
-              </div>
-              <img alt="" src="/assets/rating-image.png" /> (32)
-            </div>
-            <h3 style="margin: 0px">En produkt</h3>
-            <p style="margin-top: 2px">Plånbok för mobil</p>
-            <h2 style="font-size: 2.2rem">499:-</h2>
+            <h2>{{ product.price }}:-</h2>
           </div>
         </div>
         <div class="product-box">
@@ -355,10 +176,9 @@
     background-color: rgb(13, 17, 248);
   }
   .product-title-rating img {
-    margin-left: auto;
-    margin-top: 4px;
-    width: 100px;
-    height: 35px;
+    margin: 4px 0px 0px auto;
+    width: 80px;
+    height: 20px;
   }
 
   .product-box h2 {
@@ -374,9 +194,6 @@
     height: 400px;
     /* background-color: #f73f3f; */
     background-color: #579d5d;
-  }
-
-  #test {
   }
 
   @media (max-width: 1600px) {
@@ -402,8 +219,6 @@
   }
 
   @media (max-width: 960px) {
-    .product-container {
-    }
     .product-box {
       width: 100%;
       display: flex;
@@ -417,17 +232,17 @@
       object-fit: cover;
     }
 
-    .product-title-rating img {
-      width: 75px;
-      height: 30px;
-      margin-top: 6px;
-    }
-
     .product-title-rating {
       align-items: start;
       justify-content: center;
       align-items: center;
-      margin-bottom: 10px;
+    }
+
+    .product-title-rating img {
+      width: 85px;
+      height: 30px;
+      margin-top: 2px;
+      margin-right: 8px;
     }
     .align-content-mobile {
       width: 100%;
@@ -441,7 +256,18 @@
     }
     #product-selection-container {
       width: 100%;
-      position: none;
+      display: flex;
+      justify-content: space-around;
+    }
+    .filter-container h3 {
+      margin-top: 0px;
+    }
+    .product-container {
+      margin-top: 20px;
+    }
+
+    .align-content-mobile h2 {
+      font-size: 1.5rem;
     }
   }
 </style>

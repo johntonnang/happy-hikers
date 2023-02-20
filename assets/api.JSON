@@ -4,6 +4,7 @@
     "name": "PeakQuest",
     "price": 1599.95,
     "description": "A high-performance alpine shoe with integrated crampons and powerful grip, making it ideal for technical climbing and icy mountain terrain.",
+    "colors": ["red", "blue", "yellow"],
     "category": "Shoes",
     "image": "/assets/apiImg/PeakQuest.png",
     "rating": {
@@ -16,6 +17,7 @@
     "name": "TrailTrekker",
     "price": 915,
     "description": "A versatile hiking shoe with a durable and breathable mesh upper, flexible sole, and responsive cushioning for comfort and support on a variety of terrains.",
+    "colors": ["red", "blue"],
     "category": "Shoes",
     "image": "/assets/apiImg/TrailTrekker.png",
     "rating": {
