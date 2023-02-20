@@ -4,7 +4,7 @@ import HomeView from './views/HomeView.vue'
 import FavouriteView from './views/FavouriteView.vue'
 import ProfileView from './views/ProfileView.vue'
 import CartView from './views/CartView.vue'
-import ProductCatalogView from './views/ProductCatalogView.vue'
+import ProductCatalog from './views/ProductCatalogView.vue'
 
 export default createRouter({
   history: createWebHashHistory(),
@@ -26,8 +26,8 @@ export default createRouter({
       path: '/Cart'
     },
     {
-      component: ProductCatalogView,
-      path: '/ProductCatalogView'
+      component: ProductCatalog,
+      path: '/ProductCatalog'
     }
   ]
 })
