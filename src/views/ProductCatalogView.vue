@@ -1,9 +1,15 @@
 <script>
   import ChildComponent from '../components/SliderDoubleThumbs.vue'
+  import 'vue3-carousel/dist/carousel.css'
+  import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
 
   export default {
     components: {
-      ChildComponent
+      ChildComponent,
+      Carousel,
+      Slide,
+      Pagination,
+      Navigation
     },
     data() {
       return {
@@ -24,10 +30,11 @@
 <template>
   <main>
     <p id="page-direction">Hem / Produkter</p>
-    <div id="product-intro-image">
-      <h2>Produkter för män</h2>
-      <h3>25% på utvalda produkter</h3>
-    </div>
+    <img
+      id="product-intro-image"
+      src="/assets/roland-losslein-X7Res52lR3c-unsplash.jpg"
+      alt=""
+    />
     <div id="main-products-container">
       <div id="product-selection-container">
         <div class="filter-container">
@@ -114,9 +121,38 @@
         </div>
       </div>
     </div>
-    <div id="popular-products-container">
-      <h2>POPULAR PRODUCTS YO</h2>
-    </div>
+
+    <carousel class="carousel-container" :items-to-show="3" :wrap-around="true">
+      <slide :key="101">
+        <img src="/assets/hiking-jacket-man-1.png" alt="" />
+        <button class="explore-btn">Explore</button>
+      </slide>
+      <slide :key="102">
+        <img src="/assets/hiking-jacket-man-2.png" alt="" />
+        <button class="explore-btn">Explore</button>
+      </slide>
+      <slide :key="103">
+        <img src="/assets/hiking-pants-man-1.png" alt="" />
+        <button class="explore-btn">Explore</button>
+      </slide>
+      <slide :key="104">
+        <img src="/assets/hiking-pants-man-2.png" alt="" />
+        <button class="explore-btn">Explore</button>
+      </slide>
+      <slide :key="105">
+        <img src="/assets/hiking-boots-man-1.png" alt="" />
+        <button class="explore-btn">Explore</button>
+      </slide>
+      <slide :key="106">
+        <img src="/assets/hiking-boots-man-2.png" alt="" />
+        <button class="explore-btn">Explore</button>
+      </slide>
+
+      <template #addons>
+        <navigation />
+        <pagination />
+      </template>
+    </carousel>
   </main>
 </template>
 
@@ -139,12 +175,11 @@
   }
 
   #product-intro-image {
-    /* background-color: #f73f3f; */
-    background-color: #579d5d;
-    padding-top: 50px;
-    padding-left: 45px;
     font-size: 2.5rem;
-    height: 350px;
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 5px;
   }
 
   #main-products-container {
@@ -244,14 +279,46 @@
     font-size: 2.2rem;
     margin-bottom: 0px;
   }
+  .carousel-container {
+    margin: 20px auto 170px auto;
+    width: 90%;
+  }
 
-  #popular-products-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 400px;
-    background-color: #579d5d;
+  .carousel-container img {
+    max-width: 70%;
+    object-fit: cover;
+    position: relative;
+    top: 0;
+    left: 0;
+    transition: box-shadow 0.2s ease-in-out;
+  }
+  .carousel-container img:hover {
+    box-shadow: 0px 0px 42px rgba(0, 0, 0, 1);
+    cursor: pointer;
+  }
+  .explore-btn {
+    position: absolute;
+    top: 1;
+    left: 1;
+    background-color: rgb(255, 255, 255);
+    color: black;
+    border: none;
+    padding: 8px 25px;
+    font-weight: 600;
+    font-size: 15px;
+    border-radius: 2px;
+  }
+  .explore-btn:hover {
+    cursor: pointer;
+  }
+
+  .carousel__pagination {
+    padding: 0;
+    margin-top: 25px;
+  }
+
+  .carousel__slide {
+    padding: 55px 0px;
   }
 
   @media (max-width: 1600px) {
