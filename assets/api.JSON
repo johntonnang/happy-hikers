@@ -57,7 +57,7 @@
     "price": 1500,
     "description": "The Wildfire Roamer Trail Shoe is a durable hiking shoe with a breathable mesh upper, rubber outsole for traction, EVA midsole for support and comfort, and reinforced toe cap for protection. Ideal for off-road adventures.",
     "category": "Shoes",
-    "image": "/assets/apiImg/FlowTraverse.png",
+    "image": "/assets/apiImg/Roamer.png",
     "rating": {
       "rate": 2.1,
       "count": 430
@@ -83,7 +83,7 @@
     "price": 955,
     "description": "A large, mountaineering backpack with an adjustable frame, padded hip belt, and ample storage space for gear and supplies needed for extended outdoor adventures.",
     "colors": ["red", "blue", "yellow"],
-    "category": "electronics",
+    "category": "backpack",
     "image": "/assets/apiImg/SummitStrider.png",
     "rating": {
       "rate": 3.3,
@@ -179,12 +179,48 @@
     }
   },
   {
-    "id": 14,
-    "name": "Pathfinder",
+    "id": 15,
+    "name": "NordicExplorer",
     "price": 109,
-    "description": "A lightweight and breathable hiking jacket with moisture-wicking fabric, ventilated panels, and adjustable features for optimal comfort and protection.",
-    "category": "men's jacket",
-    "image": "/assets/apiImg/Pathfinder.png",
+    "description": "A lightweight and packable shell jacket that's perfect for alpine climbing and mountaineering. Made with a waterproof and breathable membrane, this jacket features pit zips for ventilation and a removable hood.",
+    "category": "women's jacket",
+    "image": "/assets/apiImg/NordicExplorer.png",
+    "rating": {
+      "rate": 2.9,
+      "count": 470
+    }
+  },
+  {
+    "id": 15,
+    "name": "DesertExplorer",
+    "price": 109,
+    "description": "A lightweight and breathable jacket that's perfect for warm weather adventures. Made with moisture-wicking materials, this jacket features mesh ventilation and a zippered chest pocket.",
+    "category": "women's jacket",
+    "image": "/assets/apiImg/NordicExplorer.png",
+    "rating": {
+      "rate": 2.9,
+      "count": 470
+    }
+  },
+  {
+    "id": 16,
+    "name": "MountainMajesty",
+    "price": 109,
+    "description": "A warm and stylish parka that's perfect for winter adventures. Made with wind-resistant and water-repellent materials, this jacket features a faux-fur trimmed hood and multiple pockets for storage.",
+    "category": "women's jacket",
+    "image": "/assets/apiImg/MountainMajesty.png",
+    "rating": {
+      "rate": 2.9,
+      "count": 470
+    }
+  },
+  {
+    "id": 16,
+    "name": "ForestRanger",
+    "price": 109,
+    "description": "A waterproof and breathable jacket that's perfect for rainy days on the trail. Made with sealed seams and adjustable cuffs, this jacket features a hood and a zippered chest pocket.",
+    "category": "women's jacket",
+    "image": "/assets/apiImg/ForestRanger.png",
     "rating": {
       "rate": 2.9,
       "count": 470

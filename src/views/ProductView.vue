@@ -1,6 +1,42 @@
-<script></script>
+<script>
+  export default {
+    data() {
+      return { product: '', products: '', CartText: '+  Add to cart   ' }
+    },
+    created() {
+      fetch('/assets/api.JSON')
+        .then((response) => response.json())
+        .then((result) => {
+          this.products = result
+          for (let i = 0; i < this.products.length; i++) {
+            if (this.products[i].id === Number(this.$route.params.id)) {
+              this.product = this.products[i]
+              console.log(this.product)
+            }
+          }
+        })
+    },
+    methods: {
+      addToCart() {
+        if (localStorage.getItem('Cart') !== null) {
+          let cart = JSON.parse(localStorage.getItem('Cart'))
+          cart.push(this.product.id)
+          localStorage.setItem('Cart', JSON.stringify(cart))
+          console.log(localStorage.getItem('Cart') + '1')
+        } else {
+          let cart = [this.product.id]
+          localStorage.setItem('Cart', JSON.stringify(cart))
+          console.log(localStorage.getItem('Cart') + '2')
+        }
+        setTimeout(() => (this.CartText = 'Remove from Cart'), 2000)
+      }
+    }
+  }
+</script>
 <style scoped>
   main {
+    position: relative;
+    top: 100px;
     width: 95%;
     margin-left: auto;
     margin-right: auto;
@@ -96,18 +132,12 @@
   <main>
     <p>Hem / Produkter / Jackor</p>
     <section>
-      <img
-        src="/assets/apiImg/TrailBlazer.png"
-        alt="Img of the product"
-        class="product-img"
-      />
+      <img :src="product.image" alt="Img of the product" class="product-img" />
       <div class="product-information">
-        <h2 class="product-name">TrainBlazer</h2>
-        <h2 class="product-price">900:-</h2>
+        <h2 class="product-name">{{ product.name }}</h2>
+        <h2 class="product-price">{{ product.price }}:-</h2>
         <p class="product-description">
-          A lightweight and breathable hiking jacket with moisture-wicking
-          fabric, ventilated panels, and adjustable features for optimal comfort
-          and protection.
+          {{ product.description }}
         </p>
         <select class="product-size" type="option">
           <option value="" disabled selected hidden>Choose a size</option>
@@ -119,7 +149,12 @@
           <option value="XXl">XXL</option>
         </select>
         <div class="product-btns">
-          <input class="product-btn" type="button" value="+  Add to cart  " />
+          <input
+            @click="addToCart"
+            class="product-btn"
+            type="button"
+            :value="CartText"
+          />
           <input
             class="product-btn product-wishlist"
             type="button"
