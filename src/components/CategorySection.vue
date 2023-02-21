@@ -1,3 +1,6 @@
+<!-- //
+https://stackoverflow.com/questions/19414856/how-can-i-make-all-images-of-different-height-and-width-the-same-via-css -->
+
 <script>
   export default {
     data() {
@@ -11,6 +14,12 @@
         categoryShoes:
           'https://images.unsplash.com/photo-1509866899599-a1144f7e54ca?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80'
       }
+    },
+    methods: {
+      navigateToCategory() {
+        this.$router.push('/ProductCatalog')
+        // this.$router.push('/' + e.target.value)
+      }
     }
   }
 </script>
@@ -21,9 +30,15 @@
   <div class="container">
     <div class="columns">
       <div class="row">
+        <!-- <div id="p-men"> -->
         <div id="p-men">
-          <img :src="categoryMen" alt="Picture of a man" />
+          <img
+            @click="navigateToCategory($event)"
+            :src="categoryMen"
+            alt="Picture of a man"
+          />
           <p>Men</p>
+
           <!-- <div class="button-div"> -->
           <Routerlink>
             <!-- <button class="btn">Button</button> />  -->
@@ -67,9 +82,42 @@
           </div>
         </div>
         <!-- </div> -->
+        <!-- <div> -->
+        <div id="p-women">
+          <p>Women</p>
+          <img
+            @click="navigateToCategory($event)"
+            :src="categoryWomen"
+            alt="Picture of a woman"
+          />
+        </div>
+      </div>
+    </div>
+    <div id="space-img" class="row">
+      <div>
+        <div id="p-equipment">
+          <p>Equipment</p>
+          <img
+            @click="navigateToCategory($event)"
+            :src="categoryEquipment"
+            alt="Picture of equipment"
+          />
+        </div>
+      </div>
+
+      <div id="p-shoes">
+        <p>Shoes</p>
+        <img
+          @click="navigateToCategory($event)"
+          :src="categoryShoes"
+          alt="Picture of shoes"
+        />
       </div>
     </div>
   </div>
+  <!-- </div>
+    </div>
+  </div> -->
 </template>
 
 <style lang="scss" scoped>
@@ -82,258 +130,138 @@
   }
 
   img {
+    width: 100%;
+  }
+
+  // padding-left: 3px;
+  p {
+    position: absolute;
+    color: rgb(76, 75, 75);
+    background-color: white;
+    margin-top: 110px;
+    opacity: 0.7;
+    padding-right: 3px;
+  }
+
+  #p-women {
+    display: flex;
+    justify-content: center;
+  }
+
+  #p-equipment {
+    display: flex;
+    justify-content: center;
+  }
+
+  #p-shoes {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 20px;
+  }
+
+  #p-men {
+    display: flex;
+    justify-content: center;
+  }
+
+  .row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .columns {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  #space-img {
+    padding-top: 15px;
+  }
+
+  img {
+    float: left;
     max-width: 100%;
+    max-height: 100%;
+    // width: 300px;
+    // height: 150px;
+    object-fit: cover;
+    // padding-left: 5px;
+    // margin-left: 10px;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  // IpadOS
+  @media (min-width: 801px) and (max-width: 1080px) {
+    // img {
+    //   float: left;
+    //   width: 330px;
+    //   height: 150px;
+    //   object-fit: cover;
+    // }
+  }
+
+  @media (min-width: 661px) and (max-width: 667px) {
+    // img {
+    //   float: left;
+    //   width: 300px;
+    //   height: 150px;
+    //   object-fit: cover;
+    //   padding-left: 5px;
+    // }
   }
 
   @media (min-width: 599px) and (max-width: 980px) {
+    // img {
+    //   float: left;
+    //   width: 300px;
+    //   height: 150px;
+    //   object-fit: cover;
+    // }
+  }
+
+  // @media (min-width: 501px) and (max-width: 598px) {
+  //   img {
+  //     float: left;
+  //     width: 250px;
+  //     height: 150px;
+  //     object-fit: cover;
+  //   }
+  // }
+
+  @media (min-width: 447px) and (max-width: 667px) {
     img {
-      float: left;
-      width: 400px;
-      height: 150px;
-      object-fit: cover;
-      padding-left: 5px;
-    }
-
-    .row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-    }
-
-    p {
-      position: absolute;
-      color: rgb(76, 75, 75);
-      background-color: white;
-      margin-top: 110px;
-      opacity: 0.7;
-      padding-left: 3px;
-      padding-right: 3px;
-      font-size: 20px;
-    }
-
-    #p-women {
-      display: flex;
-      justify-content: center;
-    }
-
-    #p-equipment {
-      display: flex;
-      justify-content: center;
-    }
-
-    #p-shoes {
-      display: flex;
-      justify-content: center;
-      padding-bottom: 20px;
-    }
-
-    #p-men {
-      display: flex;
-      justify-content: center;
+      margin-left: 30px;
+      //     float: left;
+      // width: 180px;
+      //     height: 150px;
+      //     object-fit: cover;
     }
   }
 
-  @media (min-width: 501px) and (max-width: 598px) {
+  @media (min-width: 412px) and (max-width: 667px) {
     img {
-      float: left;
-      width: 250px;
-      height: 150px;
-      object-fit: cover;
-      padding-left: 30px;
-    }
-    .row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+      // padding-left: 10px;
+      // float: left;
+      // width: 300px;
+      // height: 170px;
+      // object-fit: cover;
+      margin-left: 10px;
     }
   }
 
-  @media (min-width: 447px) and (max-width: 598px) {
-    #space-img {
-      padding-top: 15px;
-    }
-    .container {
-      max-width: 100%;
-      position: relative;
-      color: white;
-    }
-
-    p {
-      position: absolute;
-      color: rgb(76, 75, 75);
-      background-color: white;
-      margin-top: 110px;
-      opacity: 0.7;
-      padding-left: 3px;
-      padding-right: 3px;
-    }
-
-    #p-women {
-      display: flex;
-      justify-content: center;
-    }
-
-    #p-equipment {
-      display: flex;
-      justify-content: center;
-    }
-
-    #p-shoes {
-      display: flex;
-      justify-content: center;
-      padding-bottom: 20px;
-    }
-
-    #p-men {
-      display: flex;
-      justify-content: center;
-    }
-
-    .columns {
-      display: flex;
-      flex-wrap: wrap;
-    }
-
-    #space-img {
-      padding-top: 15px;
-    }
-    .row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-    }
-
+  // Iphone SE och Iphone 12/13
+  @media (min-width: 375px) and (max-width: 667px) {
     img {
-      padding-left: 25px;
       float: left;
-      width: 200px;
+      // width: 170px;
       height: 150px;
       object-fit: cover;
-    }
-  }
-
-  @media (min-width: 401px) and (max-width: 500px) {
-    #space-img {
-      padding-top: 15px;
-    }
-    .container {
-      max-width: 100%;
-      position: relative;
-      color: white;
-    }
-
-    p {
-      position: absolute;
-      color: rgb(76, 75, 75);
-      background-color: white;
-      margin-top: 110px;
-      opacity: 0.7;
-      padding-left: 3px;
-      padding-right: 3px;
-    }
-
-    #p-women {
-      display: flex;
-      justify-content: center;
-    }
-
-    #p-equipment {
-      display: flex;
-      justify-content: center;
-    }
-
-    #p-shoes {
-      display: flex;
-      justify-content: center;
-      padding-bottom: 20px;
-    }
-
-    #p-men {
-      display: flex;
-      justify-content: center;
-    }
-
-    .columns {
-      display: flex;
-      flex-wrap: wrap;
-    }
-
-    #space-img {
-      padding-top: 15px;
-    }
-    .row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-    }
-
-    img {
-      padding-left: 25px;
-      float: left;
-      width: 160px;
-      height: 150px;
-      object-fit: cover;
-    }
-  }
-
-  @media (min-width: 375px) and (max-width: 400px) {
-    #space-img {
-      padding-top: 15px;
-    }
-    .container {
-      max-width: 100%;
-      position: relative;
-      color: white;
-    }
-
-    p {
-      position: absolute;
-      color: rgb(76, 75, 75);
-      background-color: white;
-      margin-top: 110px;
-      opacity: 0.7;
-      padding-left: 3px;
-      padding-right: 3px;
-    }
-
-    #p-women {
-      display: flex;
-      justify-content: center;
-    }
-
-    #p-equipment {
-      display: flex;
-      justify-content: center;
-    }
-
-    #p-shoes {
-      display: flex;
-      justify-content: center;
-      padding-bottom: 20px;
-    }
-
-    #p-men {
-      display: flex;
-      justify-content: center;
-    }
-
-    .columns {
-      display: flex;
-      flex-wrap: wrap;
-    }
-
-    #space-img {
-      padding-top: 15px;
-    }
-    .row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-    }
-
-    //  https://stackoverflow.com/questions/19414856/how-can-i-make-all-images-of-different-height-and-width-the-same-via-css
-
-    img {
-      padding-left: 25px;
-      float: left;
-      width: 150px;
-      height: 150px;
-      object-fit: cover;
+      // margin-left: 80px;
     }
   }
 </style>

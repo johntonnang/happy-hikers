@@ -5,6 +5,7 @@ import FavouriteView from './views/FavouriteView.vue'
 import ProfileView from './views/ProfileView.vue'
 import CartView from './views/CartView.vue'
 import ProductCatalog from './views/ProductCatalogView.vue'
+import ProductView from './views/ProductView.vue'
 
 export default createRouter({
   history: createWebHashHistory(),
@@ -28,6 +29,10 @@ export default createRouter({
     {
       component: ProductCatalog,
       path: '/ProductCatalog'
+    },
+    {
+      component: ProductView,
+      path: '/ProductView'
     }
   ]
 })

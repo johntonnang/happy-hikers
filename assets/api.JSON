@@ -177,5 +177,17 @@
       "rate": 2.9,
       "count": 470
     }
+  },
+  {
+    "id": 14,
+    "name": "Pathfinder",
+    "price": 109,
+    "description": "A lightweight and breathable hiking jacket with moisture-wicking fabric, ventilated panels, and adjustable features for optimal comfort and protection.",
+    "category": "men's jacket",
+    "image": "/assets/apiImg/Pathfinder.png",
+    "rating": {
+      "rate": 2.9,
+      "count": 470
+    }
   }
 ]
