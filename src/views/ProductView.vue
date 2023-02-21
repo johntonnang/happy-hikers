@@ -1,5 +1,5 @@
 <script></script>
-<style>
+<style scoped>
   main {
     width: 95%;
     margin-left: auto;
