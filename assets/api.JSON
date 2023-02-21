@@ -31,7 +31,7 @@
     "price": 1200,
     "description": "great outerwear jackets for Spring/Autumn/Winter, suitable for many occasions, such as working, hiking, camping, mountain/rock climbing, cycling, traveling or other outdoors. Good gift choice for you or your family member. A warm hearted love to Father, husband or son in this thanksgiving or Christmas Day.",
     "category": "Shoes",
-    "image": "/assets/apiImg/TrailTrekker.png",
+    "image": "/assets/apiImg/PeakPacer.png",
     "rating": {
       "rate": 4.7,
       "count": 500
@@ -51,6 +51,19 @@
   },
   {
     "id": 5,
+    "name": "Roamer",
+    "price": 1500,
+    "description": "The Wildfire Roamer Trail Shoe is a durable hiking shoe with a breathable mesh upper, rubber outsole for traction, EVA midsole for support and comfort, and reinforced toe cap for protection. Ideal for off-road adventures.",
+    "category": "Shoes",
+    "image": "/assets/apiImg/FlowTraverse.png",
+    "rating": {
+      "rate": 2.1,
+      "count": 430
+    }
+  },
+
+  {
+    "id": 6,
     "name": "TrekTote",
     "price": 495,
     "description": "A compact backpack with a waterproof main compartment and a roll-top closure, perfect for water sports and outdoor activities in wet environments.",
@@ -62,7 +75,7 @@
     }
   },
   {
-    "id": 6,
+    "id": 7,
     "name": "SummitStrider",
     "price": 955,
     "description": "A large, mountaineering backpack with an adjustable frame, padded hip belt, and ample storage space for gear and supplies needed for extended outdoor adventures.",
@@ -74,7 +87,7 @@
     }
   },
   {
-    "id": 7,
+    "id": 8,
     "name": "TrailSeeker",
     "price": 1100,
     "description": "A compact backpack with a waterproof main compartment and a roll-top closure, perfect for water sports and outdoor activities in wet environments.",
@@ -86,7 +99,7 @@
     }
   },
   {
-    "id": 8,
+    "id": 9,
     "name": "TrailBlazer",
     "price": 1130,
     "description": "A lightweight backpack with multiple pockets and attachment points for gear and hydration, designed for day hikes and trail running.",
@@ -98,7 +111,7 @@
     }
   },
   {
-    "id": 9,
+    "id": 10,
     "name": "SummitShield",
     "price": 64,
     "description": "A high-performance mountaineering jacket with a waterproof and breathable Gore-Tex shell, adjustable hood and cuffs, and multiple pockets for gear.",
@@ -110,12 +123,48 @@
     }
   },
   {
-    "id": 10,
+    "id": 11,
     "name": "TrailBlaze",
     "price": 109,
     "description": "A lightweight and breathable hiking jacket with moisture-wicking fabric, ventilated panels, and adjustable features for optimal comfort and protection.",
     "category": "men's jacket",
     "image": "/assets/apiImg/TrailBlaze.png",
+    "rating": {
+      "rate": 2.9,
+      "count": 470
+    }
+  },
+  {
+    "id": 12,
+    "name": "Ridgeback",
+    "price": 64,
+    "description": "A high-performance mountaineering jacket with a waterproof and breathable Gore-Tex shell, adjustable hood and cuffs, and multiple pockets for gear.",
+    "category": "men's jacket",
+    "image": "/assets/apiImg/Ridgeback.png",
+    "rating": {
+      "rate": 3.3,
+      "count": 203
+    }
+  },
+  {
+    "id": 13,
+    "name": "Mountaineer",
+    "price": 109,
+    "description": "A lightweight and breathable hiking jacket with moisture-wicking fabric, ventilated panels, and adjustable features for optimal comfort and protection.",
+    "category": "men's jacket",
+    "image": "/assets/apiImg/Mountaineer.png",
+    "rating": {
+      "rate": 2.9,
+      "count": 470
+    }
+  },
+  {
+    "id": 14,
+    "name": "Pathfinder",
+    "price": 109,
+    "description": "A lightweight and breathable hiking jacket with moisture-wicking fabric, ventilated panels, and adjustable features for optimal comfort and protection.",
+    "category": "men's jacket",
+    "image": "/assets/apiImg/Pathfinder.png",
     "rating": {
       "rate": 2.9,
       "count": 470

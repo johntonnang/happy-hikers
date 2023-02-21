@@ -140,6 +140,14 @@
   .product-box {
     margin: 0px 25px 25px 25px;
     font-size: 1.1rem;
+    /* padding: 5px; */
+    transition: all 0.2s;
+  }
+  .product-box:hover {
+    /* background-color: #579d5d7b; */
+    /* scale: 1.02; */
+    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.202);
+    border-radius: 5px;
   }
   .product-box img {
     max-width: 300px;
@@ -147,6 +155,15 @@
     width: 250px;
     height: 250px;
     object-fit: cover;
+    transition: all 0.4;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+  }
+  .product-box img:hover {
+  }
+
+  .align-content-mobile {
+    padding: 5px;
   }
   .product-title-rating {
     display: flex;
