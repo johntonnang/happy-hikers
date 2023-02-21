@@ -20,6 +20,7 @@
 
 <template>
   <div class="video-container">
+    <h1 class="header-text">Hello, World!</h1>
     <video ref="videoBackground" autoplay muted loop id="hiker-background">
       <source
         id="video-source"
@@ -31,14 +32,18 @@
 </template>
 
 <style>
-  body {
-    margin: 0;
+  .header-text {
+    position: absolute;
+    z-index: 1;
+    color: #fff;
   }
+
   .video-container {
     display: flex;
     align-items: center;
     justify-content: center;
   }
+
   #hiker-background {
     max-width: 100%;
     filter: brightness(75%);

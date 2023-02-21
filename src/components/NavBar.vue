@@ -30,7 +30,10 @@
         </button>
       </div>
       <router-link to="/">
-        <img id="navbar-logo" src="/assets/happy-hikers-logo.png" />
+        <img
+          id="navbar-logo"
+          src="/assets/happy-hikers-logo-removebg-preview.png"
+        />
       </router-link>
       <div class="navbar-toggle" id="mobile-menu" @click="toggleMenu">
         <span class="bar" :class="{ 'is-active': isActive }" />
@@ -67,7 +70,6 @@
     align-items: center;
     justify-content: center;
     font-size: 1.2rem;
-    top: 0;
     z-index: 10;
   }
 
@@ -124,7 +126,7 @@
 
   .navbar-links {
     display: flex;
-    color: #111;
+    color: #000;
     align-items: center;
     justify-content: center;
     text-decoration: none;
@@ -164,7 +166,7 @@
     }
 
     .navbar-menu.active {
-      top: -100%;
+      top: -1000%;
       opacity: 1;
       /* transition: all 0.5s ease; */
       z-index: 5;
