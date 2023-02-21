@@ -27,21 +27,60 @@
       <div id="product-selection-container">
         <div class="filter-container">
           <h3 style="margin-top: 0px">Storlek</h3>
-          <h4 class="filter-selection">Small</h4>
-          <h4 class="filter-selection">Medium</h4>
-          <h4 class="filter-selection">Large</h4>
+          <div class="checkbox-container">
+            <input type="checkbox" value="XS" name="size" />
+            <label for="sizeXSmall" /> XS
+          </div>
+          <div class="checkbox-container">
+            <input type="checkbox" value="S" name="size" checked />
+            <label for="sizeSmall" /> S
+          </div>
+          <div class="checkbox-container">
+            <input type="checkbox" value="M" name="size" />
+            <label for="sizeMedium" /> M
+          </div>
+          <div class="checkbox-container">
+            <input type="checkbox" value="L" name="size" />
+            <label for="sizeLarge" /> L
+          </div>
+          <div class="checkbox-container">
+            <input type="checkbox" value="XL" name="size" />
+            <label for="sizeXLarge" /> XL
+          </div>
+          <div class="checkbox-container">
+            <input type="checkbox" value="XXL" name="size" />
+            <label for="sizeXXLarge" /> XXL
+          </div>
         </div>
         <div class="filter-container">
           <h3>Pris</h3>
-          <h4 class="filter-selection">0-499</h4>
-          <h4 class="filter-selection">500-999</h4>
-          <h4 class="filter-selection">1000-1499</h4>
         </div>
         <div class="filter-container">
           <h3>Färg</h3>
-          <h4 class="filter-selection">Blå</h4>
-          <h4 class="filter-selection">Röd</h4>
-          <h4 class="filter-selection">Grön</h4>
+          <div class="checkbox-container">
+            <input type="checkbox" value="blue" name="color" />
+            <label for="sizeXSmall" /> Blue
+          </div>
+          <div class="checkbox-container">
+            <input type="checkbox" value="red" name="color" checked />
+            <label for="sizeSmall" /> Red
+          </div>
+          <div class="checkbox-container">
+            <input type="checkbox" value="green" name="color" />
+            <label for="sizeMedium" /> Green
+          </div>
+          <div class="checkbox-container">
+            <input type="checkbox" value="yellow" name="color" />
+            <label for="sizeLarge" /> Yellow
+          </div>
+          <div class="checkbox-container">
+            <input type="checkbox" value="black" name="color" />
+            <label for="sizeXLarge" /> Black
+          </div>
+          <div class="checkbox-container">
+            <input type="checkbox" value="white" name="color" />
+            <label for="sizeXXLarge" /> White
+          </div>
         </div>
       </div>
       <div class="product-container">
@@ -110,9 +149,20 @@
     left: 0;
   }
 
-  .filter-selection {
+  .checkbox-container {
     color: #424242;
-    font-weight: 400;
+    font-weight: 600;
+    margin-bottom: 5px;
+  }
+
+  .filter-container {
+    margin-bottom: 30px;
+  }
+
+  .filter-container h3 {
+    border-bottom: 1px solid black;
+    padding-bottom: 5px;
+    font-weight: 600;
   }
   .product-container {
     display: flex;
@@ -141,8 +191,6 @@
     transition: all 0.4;
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
-  }
-  .product-box img:hover {
   }
 
   .align-content-mobile {
@@ -192,7 +240,6 @@
     justify-content: center;
     width: 100%;
     height: 400px;
-    /* background-color: #f73f3f; */
     background-color: #579d5d;
   }
 

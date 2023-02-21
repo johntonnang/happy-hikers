@@ -24,7 +24,6 @@
         <div id="p-men">
           <img :src="categoryMen" alt="Picture of a man" />
           <p>Men</p>
-
           <!-- <div class="button-div"> -->
           <Routerlink>
             <!-- <button class="btn">Button</button> />  -->
