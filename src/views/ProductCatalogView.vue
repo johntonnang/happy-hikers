@@ -12,6 +12,14 @@
           this.products = result
           console.log(result)
         })
+    },
+    methods: {
+      openProduct(id) {
+        this.$router.push({
+          path: '/ProductView/' + id,
+          replace: true
+        })
+      }
     }
   }
 </script>
@@ -27,64 +35,30 @@
       <div id="product-selection-container">
         <div class="filter-container">
           <h3 style="margin-top: 0px">Storlek</h3>
-          <div class="checkbox-container">
-            <input type="checkbox" value="XS" name="size" />
-            <label for="sizeXSmall" /> XS
-          </div>
-          <div class="checkbox-container">
-            <input type="checkbox" value="S" name="size" checked />
-            <label for="sizeSmall" /> S
-          </div>
-          <div class="checkbox-container">
-            <input type="checkbox" value="M" name="size" />
-            <label for="sizeMedium" /> M
-          </div>
-          <div class="checkbox-container">
-            <input type="checkbox" value="L" name="size" />
-            <label for="sizeLarge" /> L
-          </div>
-          <div class="checkbox-container">
-            <input type="checkbox" value="XL" name="size" />
-            <label for="sizeXLarge" /> XL
-          </div>
-          <div class="checkbox-container">
-            <input type="checkbox" value="XXL" name="size" />
-            <label for="sizeXXLarge" /> XXL
-          </div>
+          <h4 class="filter-selection">Small</h4>
+          <h4 class="filter-selection">Medium</h4>
+          <h4 class="filter-selection">Large</h4>
         </div>
         <div class="filter-container">
           <h3>Pris</h3>
+          <h4 class="filter-selection">0-499</h4>
+          <h4 class="filter-selection">500-999</h4>
+          <h4 class="filter-selection">1000-1499</h4>
         </div>
         <div class="filter-container">
           <h3>Färg</h3>
-          <div class="checkbox-container">
-            <input type="checkbox" value="blue" name="color" />
-            <label for="sizeXSmall" /> Blue
-          </div>
-          <div class="checkbox-container">
-            <input type="checkbox" value="red" name="color" checked />
-            <label for="sizeSmall" /> Red
-          </div>
-          <div class="checkbox-container">
-            <input type="checkbox" value="green" name="color" />
-            <label for="sizeMedium" /> Green
-          </div>
-          <div class="checkbox-container">
-            <input type="checkbox" value="yellow" name="color" />
-            <label for="sizeLarge" /> Yellow
-          </div>
-          <div class="checkbox-container">
-            <input type="checkbox" value="black" name="color" />
-            <label for="sizeXLarge" /> Black
-          </div>
-          <div class="checkbox-container">
-            <input type="checkbox" value="white" name="color" />
-            <label for="sizeXXLarge" /> White
-          </div>
+          <h4 class="filter-selection">Blå</h4>
+          <h4 class="filter-selection">Röd</h4>
+          <h4 class="filter-selection">Grön</h4>
         </div>
       </div>
       <div class="product-container">
-        <div :key="product.id" v-for="product in products" class="product-box">
+        <div
+          :key="product.id"
+          v-for="product in products"
+          class="product-box"
+          @click="openProduct(product.id)"
+        >
           <img id="bg-image" alt="" :src="product.image" />
           <div class="align-content-mobile">
             <div class="product-title-rating">
@@ -113,8 +87,6 @@
 
 <style scoped>
   main {
-    position: relative;
-    top: 100px;
     box-sizing: border-box;
     margin: 0 auto;
     padding: 0;
@@ -151,20 +123,9 @@
     left: 0;
   }
 
-  .checkbox-container {
+  .filter-selection {
     color: #424242;
-    font-weight: 600;
-    margin-bottom: 5px;
-  }
-
-  .filter-container {
-    margin-bottom: 30px;
-  }
-
-  .filter-container h3 {
-    border-bottom: 1px solid black;
-    padding-bottom: 5px;
-    font-weight: 600;
+    font-weight: 400;
   }
   .product-container {
     display: flex;
@@ -175,12 +136,9 @@
   .product-box {
     margin: 0px 25px 25px 25px;
     font-size: 1.1rem;
-    /* padding: 5px; */
     transition: all 0.2s;
   }
   .product-box:hover {
-    /* background-color: #579d5d7b; */
-    /* scale: 1.02; */
     box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.202);
     border-radius: 5px;
   }
@@ -242,6 +200,7 @@
     justify-content: center;
     width: 100%;
     height: 400px;
+    /* background-color: #f73f3f; */
     background-color: #579d5d;
   }
 

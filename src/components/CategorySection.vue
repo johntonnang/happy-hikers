@@ -61,7 +61,6 @@ https://stackoverflow.com/questions/19414856/how-can-i-make-all-images-of-differ
             />
           </div>
         </div>
-
         <div id="p-shoes">
           <p>Shoes</p>
           <img
@@ -72,9 +71,6 @@ https://stackoverflow.com/questions/19414856/how-can-i-make-all-images-of-differ
         </div>
       </div>
     </div>
-    <!-- </div>
-    </div>
-  </div> -->
   </div>
 </template>
 
@@ -90,8 +86,6 @@ https://stackoverflow.com/questions/19414856/how-can-i-make-all-images-of-differ
   img {
     width: 100%;
   }
-
-  // padding-left: 3px;
   p {
     position: absolute;
     color: rgb(76, 75, 75);
@@ -140,11 +134,7 @@ https://stackoverflow.com/questions/19414856/how-can-i-make-all-images-of-differ
     float: left;
     max-width: 100%;
     max-height: 100%;
-    // width: 300px;
-    // height: 150px;
     object-fit: cover;
-    // padding-left: 5px;
-    // margin-left: 10px;
   }
 
   .container {
@@ -170,8 +160,8 @@ https://stackoverflow.com/questions/19414856/how-can-i-make-all-images-of-differ
   }
 
   @media (min-width: 412px) and (max-width: 667px) {
-    img {
-    }
+    // img {
+    // }
   }
 
   // Iphone SE och Iphone 12/13

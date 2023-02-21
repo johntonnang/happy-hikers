@@ -29,6 +29,8 @@
 
 <style scoped>
   .footer {
+    position: relative;
+    top: 50px;
     display: grid;
     justify-content: space-between;
     bottom: 0;

@@ -32,7 +32,7 @@ export default createRouter({
     },
     {
       component: ProductView,
-      path: '/ProductView'
+      path: '/ProductView/:id'
     }
   ]
 })
