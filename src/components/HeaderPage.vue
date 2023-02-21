@@ -38,10 +38,18 @@
         type="video/mp4"
       />
     </video>
+    <div class="scroll-container">
+      <div class="scroll-down" />
+    </div>
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
   .main-text-container {
     display: flex;
     align-items: flex-end;
@@ -66,5 +74,57 @@
   #hiker-background {
     max-width: 100%;
     filter: brightness(75%);
+  }
+
+  .scroll-container {
+    position: absolute;
+    top: 92%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+  }
+
+  .scroll-down {
+    width: 60px;
+    height: 60px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    animation: down 1.5s infinite;
+    -webkit-animation: down 1.5s infinite;
+    &::before {
+      content: '';
+      position: absolute;
+      top: 15px;
+      left: 18px;
+      width: 18px;
+      height: 18px;
+      border-left: 2px solid #fff;
+      border-bottom: 2px solid #fff;
+      transform: rotate(-45deg);
+    }
+  }
+
+  @keyframes down {
+    0% {
+      transform: translate(0);
+    }
+    20% {
+      transform: translateY(15px);
+    }
+    40% {
+      transform: translate(0);
+    }
+  }
+
+  @-webkit-keyframes down {
+    0% {
+      transform: translate(0);
+    }
+    20% {
+      transform: translateY(15px);
+    }
+    40% {
+      transform: translate(0);
+    }
   }
 </style>
