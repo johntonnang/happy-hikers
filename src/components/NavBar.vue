@@ -29,12 +29,14 @@
           <font-awesome-icon icon="fa-solid fa-magnifying-glass" />
         </button>
       </div>
-      <router-link to="/">
-        <img
-          id="navbar-logo"
-          src="/assets/happy-hikers-logo-removebg-preview.png"
-        />
-      </router-link>
+      <div class="img-container">
+        <router-link to="/">
+          <img
+            id="navbar-logo"
+            src="/assets/happy-hikers-logo-removebg-preview.png"
+          />
+        </router-link>
+      </div>
       <div class="navbar-toggle" id="mobile-menu" @click="toggleMenu">
         <span class="bar" :class="{ 'is-active': isActive }" />
         <span class="bar" :class="{ 'is-active': isActive }" />
@@ -73,12 +75,14 @@
     justify-content: center;
     font-size: 1.2rem;
     z-index: 10;
+    margin: 0;
   }
 
   .navbar-search {
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 10%;
   }
 
   .navbar-search-field {
@@ -109,21 +113,21 @@
   }
 
   .navbar-container {
+    width: 100%;
+    justify-content: space-around;
     display: flex;
-    justify-content: space-between;
     z-index: 1;
-    margin: 0 auto;
-    padding-right: 50px;
   }
 
   #navbar-logo {
-    margin-left: 300px;
-    margin-right: 300px;
-    display: flex;
     text-decoration: none;
     cursor: pointer;
   }
-
+  .img-container {
+    justify-content: center;
+    display: flex;
+    width: 60%;
+  }
   .navbar-menu {
     display: flex;
     align-items: center;
@@ -146,6 +150,14 @@
 
   .navbar-links:hover {
     opacity: 0.7;
+  }
+
+  #mobile-menu {
+    display: none;
+  }
+
+  .navbar-toggle {
+    width: 20%;
   }
 
   @media screen and (max-width: 960px) {
@@ -181,6 +193,7 @@
 
     #navbar-logo {
       max-width: 100%;
+      padding-right: 250px;
     }
 
     .navbar-toggle .bar {
@@ -201,7 +214,7 @@
 
     #mobile-menu {
       position: absolute;
-      top: 45px;
+      top: 30px;
       right: 5%;
       transform: translate(5%, 20%);
     }

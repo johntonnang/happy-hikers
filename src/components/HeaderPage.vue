@@ -20,7 +20,7 @@
 
 <template>
   <div class="video-container">
-    <div class="main-text-container">
+    <!-- <div class="main-text-container">
       <div class="header-text">
         <h1 class="header-title">Experience nature</h1>
         <p>
@@ -30,7 +30,7 @@
           are off the beaten path.
         </p>
       </div>
-    </div>
+    </div> -->
     <video ref="videoBackground" autoplay muted loop id="hiker-background">
       <source
         id="video-source"
