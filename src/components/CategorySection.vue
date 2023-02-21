@@ -30,7 +30,6 @@ https://stackoverflow.com/questions/19414856/how-can-i-make-all-images-of-differ
   <div class="container">
     <div class="columns">
       <div class="row">
-        <!-- <div id="p-men"> -->
         <div id="p-men">
           <img
             @click="navigateToCategory($event)"
@@ -38,86 +37,45 @@ https://stackoverflow.com/questions/19414856/how-can-i-make-all-images-of-differ
             alt="Picture of a man"
           />
           <p>Men</p>
-
-          <!-- <div class="button-div"> -->
-          <Routerlink>
-            <!-- <button class="btn">Button</button> />  -->
-          </Routerlink>
-          <!-- </div> -->
         </div>
         <div>
           <div id="p-women">
             <p>Women</p>
-            <img :src="categoryWomen" alt="Picture of a woman" />
-            <div class="button-div">
-              <Routerlink>
-                <!-- <button class="btn">Button</button> -->
-              </Routerlink>
-              <!-- </div> -->
-            </div>
+            <img
+              @click="navigateToCategory($event)"
+              :src="categoryWomen"
+              alt="Picture of a woman"
+            />
           </div>
         </div>
       </div>
       <div id="space-img" class="row">
-        <!-- <div id="space-img"> -->
         <div>
           <div id="p-equipment">
             <p>Equipment</p>
-            <img :src="categoryEquipment" alt="Picture of equipment" />
-            <div class="button-div">
-              <Routerlink>
-                <!-- <button class="btn">Button</button> -->
-              </Routerlink>
-            </div>
+            <img
+              id="image-e"
+              @click="navigateToCategory($event)"
+              :src="categoryEquipment"
+              alt="Picture of equipment"
+            />
           </div>
         </div>
 
         <div id="p-shoes">
           <p>Shoes</p>
-          <img :src="categoryShoes" alt="Picture of shoes" />
-          <div class="button-div">
-            <Routerlink>
-              <!-- <button class="btn">Button</button> -->
-            </Routerlink>
-          </div>
-        </div>
-        <!-- </div> -->
-        <!-- <div> -->
-        <div id="p-women">
-          <p>Women</p>
           <img
             @click="navigateToCategory($event)"
-            :src="categoryWomen"
-            alt="Picture of a woman"
+            :src="categoryShoes"
+            alt="Picture of shoes"
           />
         </div>
       </div>
     </div>
-    <div id="space-img" class="row">
-      <div>
-        <div id="p-equipment">
-          <p>Equipment</p>
-          <img
-            @click="navigateToCategory($event)"
-            :src="categoryEquipment"
-            alt="Picture of equipment"
-          />
-        </div>
-      </div>
-
-      <div id="p-shoes">
-        <p>Shoes</p>
-        <img
-          @click="navigateToCategory($event)"
-          :src="categoryShoes"
-          alt="Picture of shoes"
-        />
-      </div>
-    </div>
-  </div>
-  <!-- </div>
+    <!-- </div>
     </div>
   </div> -->
+  </div>
 </template>
 
 <style lang="scss" scoped>
@@ -197,60 +155,22 @@ https://stackoverflow.com/questions/19414856/how-can-i-make-all-images-of-differ
 
   // IpadOS
   @media (min-width: 801px) and (max-width: 1080px) {
-    // img {
-    //   float: left;
-    //   width: 330px;
-    //   height: 150px;
-    //   object-fit: cover;
-    // }
   }
 
   @media (min-width: 661px) and (max-width: 667px) {
-    // img {
-    //   float: left;
-    //   width: 300px;
-    //   height: 150px;
-    //   object-fit: cover;
-    //   padding-left: 5px;
-    // }
   }
 
   @media (min-width: 599px) and (max-width: 980px) {
-    // img {
-    //   float: left;
-    //   width: 300px;
-    //   height: 150px;
-    //   object-fit: cover;
-    // }
   }
-
-  // @media (min-width: 501px) and (max-width: 598px) {
-  //   img {
-  //     float: left;
-  //     width: 250px;
-  //     height: 150px;
-  //     object-fit: cover;
-  //   }
-  // }
 
   @media (min-width: 447px) and (max-width: 667px) {
     img {
       margin-left: 30px;
-      //     float: left;
-      // width: 180px;
-      //     height: 150px;
-      //     object-fit: cover;
     }
   }
 
   @media (min-width: 412px) and (max-width: 667px) {
     img {
-      // padding-left: 10px;
-      // float: left;
-      // width: 300px;
-      // height: 170px;
-      // object-fit: cover;
-      margin-left: 10px;
     }
   }
 
@@ -258,7 +178,7 @@ https://stackoverflow.com/questions/19414856/how-can-i-make-all-images-of-differ
   @media (min-width: 375px) and (max-width: 667px) {
     img {
       float: left;
-      // width: 170px;
+      width: 160px;
       height: 150px;
       object-fit: cover;
       // margin-left: 80px;
