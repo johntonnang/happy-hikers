@@ -17,7 +17,7 @@
     "name": "TrailTrekker",
     "price": 915,
     "description": "A versatile hiking shoe with a durable and breathable mesh upper, flexible sole, and responsive cushioning for comfort and support on a variety of terrains.",
-    "colors": ["red", "blue"],
+    "colors": ["pink", "green"],
     "category": "Shoes",
     "image": "/assets/apiImg/TrailTrekker.png",
     "rating": {
@@ -30,6 +30,7 @@
     "name": "PeakPacer",
     "price": 1200,
     "description": "great outerwear jackets for Spring/Autumn/Winter, suitable for many occasions, such as working, hiking, camping, mountain/rock climbing, cycling, traveling or other outdoors. Good gift choice for you or your family member. A warm hearted love to Father, husband or son in this thanksgiving or Christmas Day.",
+    "colors": ["red", "blue", "yellow"],
     "category": "Shoes",
     "image": "/assets/apiImg/PeakPacer.png",
     "rating": {
@@ -42,6 +43,7 @@
     "name": "FlowTraverse",
     "price": 1500,
     "description": "A waterproof trail shoe with a lightweight and nimble design, designed to offer comfort and stability during running on uneven surfaces.",
+    "colors": ["red", "blue", "yellow"],
     "category": "Shoes",
     "image": "/assets/apiImg/FlowTraverse.png",
     "rating": {
@@ -67,6 +69,7 @@
     "name": "TrekTote",
     "price": 495,
     "description": "A compact backpack with a waterproof main compartment and a roll-top closure, perfect for water sports and outdoor activities in wet environments.",
+    "colors": ["red", "blue", "yellow"],
     "category": "backpack",
     "image": "/assets/apiImg/TrekTote.png",
     "rating": {
@@ -79,6 +82,7 @@
     "name": "SummitStrider",
     "price": 955,
     "description": "A large, mountaineering backpack with an adjustable frame, padded hip belt, and ample storage space for gear and supplies needed for extended outdoor adventures.",
+    "colors": ["red", "blue", "yellow"],
     "category": "electronics",
     "image": "/assets/apiImg/SummitStrider.png",
     "rating": {
@@ -91,6 +95,7 @@
     "name": "TrailSeeker",
     "price": 1100,
     "description": "A compact backpack with a waterproof main compartment and a roll-top closure, perfect for water sports and outdoor activities in wet environments.",
+    "colors": ["red", "blue", "yellow"],
     "category": "backpack",
     "image": "/assets/apiImg/TrailSeeker.png",
     "rating": {
@@ -103,6 +108,7 @@
     "name": "TrailBlazer",
     "price": 1130,
     "description": "A lightweight backpack with multiple pockets and attachment points for gear and hydration, designed for day hikes and trail running.",
+    "colors": ["red", "blue", "yellow"],
     "category": "backpack",
     "image": "/assets/apiImg/TrailBlazer.png",
     "rating": {
@@ -115,6 +121,7 @@
     "name": "SummitShield",
     "price": 64,
     "description": "A high-performance mountaineering jacket with a waterproof and breathable Gore-Tex shell, adjustable hood and cuffs, and multiple pockets for gear.",
+    "colors": ["red", "blue", "yellow"],
     "category": "men's jacket",
     "image": "/assets/apiImg/SummitShield.png",
     "rating": {
@@ -126,6 +133,7 @@
     "id": 11,
     "name": "TrailBlaze",
     "price": 109,
+    "colors": ["red", "blue", "yellow"],
     "description": "A lightweight and breathable hiking jacket with moisture-wicking fabric, ventilated panels, and adjustable features for optimal comfort and protection.",
     "category": "men's jacket",
     "image": "/assets/apiImg/TrailBlaze.png",
