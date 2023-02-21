@@ -38,6 +38,48 @@ https://stackoverflow.com/questions/19414856/how-can-i-make-all-images-of-differ
             alt="Picture of a man"
           />
           <p>Men</p>
+
+          <!-- <div class="button-div"> -->
+          <Routerlink>
+            <!-- <button class="btn">Button</button> />  -->
+          </Routerlink>
+          <!-- </div> -->
+        </div>
+        <div>
+          <div id="p-women">
+            <p>Women</p>
+            <img :src="categoryWomen" alt="Picture of a woman" />
+            <div class="button-div">
+              <Routerlink>
+                <!-- <button class="btn">Button</button> -->
+              </Routerlink>
+              <!-- </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="space-img" class="row">
+        <!-- <div id="space-img"> -->
+        <div>
+          <div id="p-equipment">
+            <p>Equipment</p>
+            <img :src="categoryEquipment" alt="Picture of equipment" />
+            <div class="button-div">
+              <Routerlink>
+                <!-- <button class="btn">Button</button> -->
+              </Routerlink>
+            </div>
+          </div>
+        </div>
+
+        <div id="p-shoes">
+          <p>Shoes</p>
+          <img :src="categoryShoes" alt="Picture of shoes" />
+          <div class="button-div">
+            <Routerlink>
+              <!-- <button class="btn">Button</button> -->
+            </Routerlink>
+          </div>
         </div>
         <!-- </div> -->
         <!-- <div> -->

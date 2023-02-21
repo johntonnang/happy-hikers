@@ -1,1 +1,1 @@
-<template><h1>Favoriter</h1></template>
+<template><h1>allo word</h1></template>
