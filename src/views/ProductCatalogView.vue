@@ -74,6 +74,8 @@
 
 <style scoped>
   main {
+    position: relative;
+    top: 100px;
     box-sizing: border-box;
     margin: 0 auto;
     padding: 0;

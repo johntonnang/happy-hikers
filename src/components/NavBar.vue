@@ -64,8 +64,10 @@
     margin: 0;
     padding: 0;
   }
+
   .navbar {
-    background-color: #fff;
+    width: 100%;
+    position: absolute;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -80,13 +82,18 @@
   }
 
   .navbar-search-field {
-    background-color: lightgrey;
-    border: none;
+    background-color: #ffffff00;
+    border: 1px solid #000;
     font-size: 1rem;
     padding: 5px 5px 5px 10px;
     border-radius: 5px;
     margin: 5px;
     outline: none;
+    color: #000;
+  }
+
+  .navbar-search-field::placeholder {
+    color: #000;
   }
 
   .navbar-search-button {
@@ -98,22 +105,23 @@
     border: none;
     cursor: pointer;
     font-size: 1.4rem;
+    color: #000;
   }
 
   .navbar-container {
     display: flex;
     justify-content: space-between;
     z-index: 1;
-    width: 100%;
     margin: 0 auto;
-    padding: 0 50px;
+    padding-right: 50px;
   }
 
   #navbar-logo {
+    margin-left: 300px;
+    margin-right: 300px;
     display: flex;
     text-decoration: none;
     cursor: pointer;
-    margin: 1rem;
   }
 
   .navbar-menu {
