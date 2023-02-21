@@ -175,10 +175,6 @@
       max-width: 100%;
     }
 
-    .navbar-search {
-      padding-left: 20px;
-    }
-
     .navbar-toggle .bar {
       width: 25px;
       height: 3px;
@@ -249,12 +245,13 @@
       #navbar-logo {
         margin: 0;
         margin-left: -360px;
-        max-width: 900%;
+        max-width: 200px;
       }
+
       .navbar-search {
-        margin: 0;
         margin-top: 30px;
       }
+
       .navbar-search-field {
         padding-right: 170px;
       }
@@ -265,6 +262,7 @@
 
       #mobile-menu {
         top: 0;
+        right: 7%;
       }
 
       .navbar-search-button {
@@ -274,7 +272,7 @@
 
       @media screen and (max-width: 375px) {
         #navbar-logo {
-          max-width: 3000%;
+          max-width: 200px;
         }
       }
     }
