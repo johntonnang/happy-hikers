@@ -157,18 +157,14 @@
       width: 100%;
       position: absolute;
       opacity: 1;
-      /* transition: all 0.5s ease; */
-      height: 50vh;
       z-index: -1;
       background: #fff;
       top: 100px;
-      /* left: 50%; */
     }
 
     .navbar-menu.active {
       top: -1000%;
       opacity: 1;
-      /* transition: all 0.5s ease; */
       z-index: 5;
       height: 50vh;
       font-size: 1.6rem;
@@ -201,7 +197,7 @@
 
     #mobile-menu {
       position: absolute;
-      top: 35px;
+      top: 45px;
       right: 5%;
       transform: translate(5%, 20%);
     }
@@ -233,6 +229,54 @@
 
     .bar.is-active:nth-child(3) {
       transform: translateY(0) rotate(0);
+    }
+
+    @media screen and (max-width: 768px) {
+      #navbar-logo {
+        max-width: 80%;
+      }
+
+      #mobile-menu {
+        top: 40px;
+      }
+
+      .navbar-menu.active {
+        top: -1500%;
+      }
+    }
+
+    @media screen and (max-width: 390px) {
+      #navbar-logo {
+        margin: 0;
+        margin-left: -360px;
+        max-width: 900%;
+      }
+      .navbar-search {
+        margin: 0;
+        margin-top: 30px;
+      }
+      .navbar-search-field {
+        padding-right: 170px;
+      }
+
+      .navbar-menu {
+        top: 80px;
+      }
+
+      #mobile-menu {
+        top: 0;
+      }
+
+      .navbar-search-button {
+        position: absolute;
+        right: 7%;
+      }
+
+      @media screen and (max-width: 375px) {
+        #navbar-logo {
+          max-width: 3000%;
+        }
+      }
     }
   }
 </style>
