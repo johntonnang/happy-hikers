@@ -1,5 +1,10 @@
 <script>
+  import ChildComponent from '../components/SliderDoubleThumbs.vue'
+
   export default {
+    components: {
+      ChildComponent
+    },
     data() {
       return {
         products: null
@@ -52,8 +57,12 @@
             <label for="sizeXXLarge" /> XXL
           </div>
         </div>
-        <div class="filter-container">
+        <div
+          class="filter-container filter-container-mobile"
+          style="margin-bottom: 20px"
+        >
           <h3>Pris</h3>
+          <ChildComponent />
         </div>
         <div class="filter-container">
           <h3>Färg</h3>
@@ -302,6 +311,11 @@
   @media (max-width: 760px) {
     #main-products-container {
       display: block;
+    }
+
+    .filter-container-mobile {
+      width: 40%;
+      text-align: center;
     }
 
     #product-intro-image {

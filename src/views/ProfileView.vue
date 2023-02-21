@@ -1,1 +1,3 @@
-<template><h1>Profilsida</h1></template>
+<template>
+  <h1>Profile</h1>
+</template>
