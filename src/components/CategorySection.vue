@@ -30,16 +30,16 @@ https://stackoverflow.com/questions/19414856/how-can-i-make-all-images-of-differ
   <div class="container">
     <div class="columns">
       <div class="row">
-        <div id="p-men">
+        <div class="center-p" id="p-men">
+          <p>Men</p>
           <img
             @click="navigateToCategory($event)"
             :src="categoryMen"
             alt="Picture of a man"
           />
-          <p>Men</p>
         </div>
         <div>
-          <div id="p-women">
+          <div class="center-p" id="p-women">
             <p>Women</p>
             <img
               @click="navigateToCategory($event)"
@@ -51,7 +51,7 @@ https://stackoverflow.com/questions/19414856/how-can-i-make-all-images-of-differ
       </div>
       <div id="space-img" class="row">
         <div>
-          <div id="p-equipment">
+          <div class="center-p" id="p-equipment">
             <p>Equipment</p>
             <img
               id="image-e"
@@ -61,7 +61,7 @@ https://stackoverflow.com/questions/19414856/how-can-i-make-all-images-of-differ
             />
           </div>
         </div>
-        <div id="p-shoes">
+        <div class="center-p" id="p-shoes">
           <p>Shoes</p>
           <img
             @click="navigateToCategory($event)"
@@ -84,34 +84,19 @@ https://stackoverflow.com/questions/19414856/how-can-i-make-all-images-of-differ
   }
 
   img {
-    width: 100%;
+    max-width: 100%;
   }
+
   p {
     position: absolute;
-    color: rgb(76, 75, 75);
-    background-color: white;
+    color: rgb(244, 240, 240);
     margin-top: 110px;
-    opacity: 0.7;
-    padding-right: 3px;
+    opacity: 0.9;
+    padding: 4px;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
   }
 
-  #p-women {
-    display: flex;
-    justify-content: center;
-  }
-
-  #p-equipment {
-    display: flex;
-    justify-content: center;
-  }
-
-  #p-shoes {
-    display: flex;
-    justify-content: center;
-    padding-bottom: 20px;
-  }
-
-  #p-men {
+  .center-p {
     display: flex;
     justify-content: center;
   }
@@ -131,9 +116,7 @@ https://stackoverflow.com/questions/19414856/how-can-i-make-all-images-of-differ
   }
 
   img {
-    float: left;
-    max-width: 100%;
-    max-height: 100%;
+    // opacity: 0.9;
     object-fit: cover;
   }
 
@@ -143,35 +126,80 @@ https://stackoverflow.com/questions/19414856/how-can-i-make-all-images-of-differ
     justify-content: center;
   }
 
-  // IpadOS
-  @media (min-width: 801px) and (max-width: 1080px) {
-  }
-
-  @media (min-width: 661px) and (max-width: 667px) {
-  }
-
-  @media (min-width: 599px) and (max-width: 980px) {
-  }
-
-  @media (min-width: 447px) and (max-width: 667px) {
+  @media (min-width: 900px) and (max-width: 1100px) {
     img {
-      margin-left: 30px;
+      width: 1000px;
+      height: 170px;
+    }
+    p {
+      font-size: 140%;
     }
   }
 
-  @media (min-width: 412px) and (max-width: 667px) {
-    // img {
-    // }
+  @media (min-width: 850px) and (max-width: 900px) {
+    img {
+      width: 1000px;
+      height: 160px;
+    }
+
+    p {
+      font-size: 130%;
+    }
   }
 
-  // Iphone SE och Iphone 12/13
-  @media (min-width: 375px) and (max-width: 667px) {
+  @media (min-width: 700px) and (max-width: 850px) {
     img {
-      float: left;
+      width: 900px;
+      height: 150px;
+    }
+  }
+
+  @media (min-width: 600px) and (max-width: 700px) {
+    img {
+      width: 800px;
+      height: 150px;
+    }
+  }
+
+  @media (min-width: 576px) and (max-width: 600px) {
+    img {
+      width: 600px;
+      height: 150px;
+    }
+  }
+
+  @media (min-width: 568px) and (max-width: 576px) {
+    img {
+      width: 400px;
+      height: 150px;
+    }
+  }
+
+  @media (min-width: 447px) and (max-width: 568px) {
+    img {
+      width: 300px;
+      height: 150px;
+    }
+  }
+
+  @media (min-width: 405px) and (max-width: 447px) {
+    img {
+      width: 250px;
+      height: 150px;
+    }
+  }
+
+  @media (min-width: 383px) and (max-width: 405px) {
+    img {
+      width: 170px;
+      height: 150px;
+    }
+  }
+
+  @media (min-width: 375px) and (max-width: 383px) {
+    img {
       width: 160px;
       height: 150px;
-      object-fit: cover;
-      // margin-left: 80px;
     }
   }
 </style>
