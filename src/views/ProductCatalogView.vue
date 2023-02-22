@@ -47,27 +47,65 @@
       <div id="product-selection-container">
         <div class="filter-container">
           <h3 style="margin-top: 0px">Storlek</h3>
-          <h4 class="filter-selection">Small</h4>
-          <h4 class="filter-selection">Medium</h4>
-          <h4 class="filter-selection">Large</h4>
+
+          <div class="checkbox-container">
+            <input type="checkbox" value="XS" name="size" />
+            <label for="sizeXSmall" /> XS
+          </div>
+          <div class="checkbox-container">
+            <input type="checkbox" value="S" name="size" checked />
+            <label for="sizeSmall" /> S
+          </div>
+          <div class="checkbox-container">
+            <input type="checkbox" value="M" name="size" />
+            <label for="sizeMedium" /> M
+          </div>
+          <div class="checkbox-container">
+            <input type="checkbox" value="L" name="size" />
+            <label for="sizeLarge" /> L
+          </div>
+          <div class="checkbox-container">
+            <input type="checkbox" value="XL" name="size" />
+            <label for="sizeXLarge" /> XL
+          </div>
+          <div class="checkbox-container">
+            <input type="checkbox" value="XXL" name="size" />
+            <label for="sizeXXLarge" /> XXL
+          </div>
         </div>
         <div
           class="filter-container filter-container-mobile"
           style="margin-bottom: 20px"
         >
           <h3>Pris</h3>
-
-          <h4 class="filter-selection">0-499</h4>
-          <h4 class="filter-selection">500-999</h4>
-          <h4 class="filter-selection">1000-1499</h4>
-
           <ChildComponent />
         </div>
         <div class="filter-container">
           <h3>Färg</h3>
-          <h4 class="filter-selection">Blå</h4>
-          <h4 class="filter-selection">Röd</h4>
-          <h4 class="filter-selection">Grön</h4>
+          <div class="checkbox-container">
+            <input type="checkbox" value="blue" name="color" />
+            <label for="sizeXSmall" /> Blue
+          </div>
+          <div class="checkbox-container">
+            <input type="checkbox" value="red" name="color" checked />
+            <label for="sizeSmall" /> Red
+          </div>
+          <div class="checkbox-container">
+            <input type="checkbox" value="green" name="color" />
+            <label for="sizeMedium" /> Green
+          </div>
+          <div class="checkbox-container">
+            <input type="checkbox" value="yellow" name="color" />
+            <label for="sizeLarge" /> Yellow
+          </div>
+          <div class="checkbox-container">
+            <input type="checkbox" value="black" name="color" />
+            <label for="sizeXLarge" /> Black
+          </div>
+          <div class="checkbox-container">
+            <input type="checkbox" value="white" name="color" />
+            <label for="sizeXXLarge" /> White
+          </div>
         </div>
       </div>
       <div class="product-container">
@@ -134,6 +172,8 @@
 
 <style scoped>
   main {
+    position: relative;
+    top: 100px;
     box-sizing: border-box;
     margin: 0 auto;
     padding: 0;
@@ -167,6 +207,22 @@
     position: sticky;
     top: 0;
     left: 0;
+  }
+
+  .checkbox-container {
+    color: #424242;
+    font-weight: 600;
+    margin-bottom: 5px;
+  }
+
+  .filter-container {
+    margin-bottom: 30px;
+  }
+
+  .filter-container h3 {
+    border-bottom: 1px solid black;
+    padding-bottom: 5px;
+    font-weight: 600;
   }
 
   .filter-selection {
@@ -278,92 +334,92 @@
 
   .carousel__slide {
     padding: 55px 0px;
+  }
 
-    @media (max-width: 1600px) {
-      main {
-        width: 95%;
-      }
-
-      #product-selection-container {
-        width: 25%;
-      }
-      .product-container {
-        width: 100%;
-      }
-      .product-box {
-        margin: 0px 10px 25px 10px;
-      }
+  @media (max-width: 1600px) {
+    main {
+      width: 95%;
     }
 
-    @media (max-width: 1200px) {
-      main {
-        width: 95%;
-      }
+    #product-selection-container {
+      width: 25%;
+    }
+    .product-container {
+      width: 100%;
+    }
+    .product-box {
+      margin: 0px 10px 25px 10px;
+    }
+  }
+
+  @media (max-width: 1200px) {
+    main {
+      width: 95%;
+    }
+  }
+
+  @media (max-width: 960px) {
+    .product-box {
+      width: 100%;
+      display: flex;
     }
 
-    @media (max-width: 960px) {
-      .product-box {
-        width: 100%;
-        display: flex;
-      }
-
-      .product-box img {
-        max-height: 175px;
-        width: 30%;
-        width: 150px;
-        height: 150px;
-        object-fit: cover;
-      }
-
-      .product-title-rating {
-        align-items: start;
-        justify-content: center;
-        align-items: center;
-      }
-
-      .product-title-rating img {
-        width: 85px;
-        height: 30px;
-        margin-top: 2px;
-        margin-right: 8px;
-      }
-      .align-content-mobile {
-        width: 100%;
-        margin-left: 10px;
-      }
+    .product-box img {
+      max-height: 175px;
+      width: 30%;
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
     }
 
-    @media (max-width: 760px) {
-      #main-products-container {
-        display: block;
-      }
+    .product-title-rating {
+      align-items: start;
+      justify-content: center;
+      align-items: center;
+    }
 
-      .filter-container-mobile {
-        width: 40%;
-        text-align: center;
-      }
+    .product-title-rating img {
+      width: 85px;
+      height: 30px;
+      margin-top: 2px;
+      margin-right: 8px;
+    }
+    .align-content-mobile {
+      width: 100%;
+      margin-left: 10px;
+    }
+  }
 
-      #product-intro-image {
-        padding-top: 5px;
-        padding-left: 5px;
-        font-size: 2rem;
-      }
+  @media (max-width: 760px) {
+    #main-products-container {
+      display: block;
+    }
 
-      #product-selection-container {
-        width: 100%;
-        display: flex;
-        justify-content: space-around;
-        position: static;
-      }
-      .filter-container h3 {
-        margin-top: 0px;
-      }
-      .product-container {
-        margin-top: 20px;
-      }
-      .align-content-mobile h2 {
-        font-size: 1.5rem;
-      }
+    .filter-container-mobile {
+      width: 40%;
+      text-align: center;
+    }
+
+    #product-intro-image {
+      padding-top: 5px;
+      padding-left: 5px;
+      font-size: 2rem;
+    }
+
+    #product-selection-container {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      position: static;
+    }
+    .filter-container h3 {
+      margin-top: 0px;
+    }
+    .product-container {
+      margin-top: 20px;
+    }
+    .align-content-mobile h2 {
+      font-size: 1.5rem;
     }
   }
 </style>
