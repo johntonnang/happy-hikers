@@ -1,5 +1,8 @@
 <!-- https://www.flaticon.com/free-icon/delete_1214428?term=bin&page=1&position=6&origin=search&related_id=1214428 -->
 
+<!-- Delete product -->
+<!-- https://paulund.co.uk/vuejs-crud-delete-product-page -->
+
 <script>
   export default {
     data() {
@@ -49,6 +52,10 @@
 
 <style scoped>
   /* CARD */
+
+  #position-text {
+    padding-bottom: 10px;
+  }
 
   img {
     width: 50%;
@@ -131,7 +138,6 @@
     }
     #card {
       padding-top: 5%;
-      /* background-color: white; */
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
       align-items: center;
       text-align: center;
