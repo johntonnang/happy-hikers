@@ -6,6 +6,7 @@ import ProfileView from './views/ProfileView.vue'
 import CartView from './views/CartView.vue'
 import ProductCatalog from './views/ProductCatalogView.vue'
 import ProductView from './views/ProductView.vue'
+import SandboxView from './views/SandboxView.vue'
 
 export default createRouter({
   history: createWebHashHistory(),
@@ -33,6 +34,10 @@ export default createRouter({
     {
       component: ProductView,
       path: '/ProductView/:id'
+    },
+    {
+      component: SandboxView,
+      path: '/SandboxView'
     }
   ]
 })
