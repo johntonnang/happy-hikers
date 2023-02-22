@@ -82,7 +82,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 10%;
+    width: 35%;
+    /* padding-left: 50px; */
+    /* padding-right: 200px; */
   }
 
   .navbar-search-field {
@@ -122,6 +124,7 @@
   #navbar-logo {
     text-decoration: none;
     cursor: pointer;
+    width: 100%;
   }
   .img-container {
     justify-content: center;
@@ -152,8 +155,8 @@
     opacity: 0.7;
   }
 
-  #mobile-menu {
-    display: none;
+  .navbar-menu.active {
+    width: 20%;
   }
 
   .navbar-toggle {
@@ -176,14 +179,14 @@
       margin: 0;
       width: 100%;
       position: absolute;
-      opacity: 1;
       z-index: -1;
       background: #fff;
       top: 100px;
+      height: 50vh;
     }
 
     .navbar-menu.active {
-      top: -1000%;
+      top: -2000%;
       opacity: 1;
       z-index: 5;
       height: 50vh;
@@ -192,7 +195,6 @@
     }
 
     #navbar-logo {
-      max-width: 100%;
       padding-right: 250px;
     }
 
@@ -214,7 +216,7 @@
 
     #mobile-menu {
       position: absolute;
-      top: 30px;
+      top: 20px;
       right: 5%;
       transform: translate(5%, 20%);
     }
@@ -248,52 +250,66 @@
       transform: translateY(0) rotate(0);
     }
 
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 768px) and (min-width: 400px) {
       #navbar-logo {
-        max-width: 80%;
+        max-width: 100%;
       }
 
       #mobile-menu {
-        top: 40px;
+        top: 20px;
       }
 
       .navbar-menu.active {
         top: -1500%;
+      }
+
+      .navbar-search {
+        margin-left: 50px;
       }
     }
 
     @media screen and (max-width: 390px) {
       #navbar-logo {
         margin: 0;
-        margin-left: -360px;
-        max-width: 200px;
+        width: 110%;
+        left: 10px;
+        top: 0;
+        position: absolute;
       }
 
       .navbar-search {
-        margin-top: 30px;
+        margin-top: 25px;
+        width: 200px;
       }
 
       .navbar-search-field {
         padding-right: 170px;
+        margin-left: 200px;
       }
 
       .navbar-menu {
         top: 80px;
+        height: 60vh;
       }
 
       #mobile-menu {
         top: 0;
-        right: 7%;
+        right: 0;
       }
 
       .navbar-search-button {
         position: absolute;
-        right: 7%;
+        right: 6%;
       }
 
       @media screen and (max-width: 375px) {
         #navbar-logo {
-          max-width: 200px;
+          max-width: 110%;
+        }
+
+        .navbar-search-field {
+          padding-right: 170px;
+          margin-left: 180px;
         }
       }
     }

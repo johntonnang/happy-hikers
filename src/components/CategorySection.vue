@@ -19,13 +19,18 @@ https://stackoverflow.com/questions/19414856/how-can-i-make-all-images-of-differ
       navigateToCategory() {
         this.$router.push('/ProductCatalog')
         // this.$router.push('/' + e.target.value)
+      },
+      scrollDown() {
+        this.$refs['bottom'].scrollIntoView({
+          behavior: 'smooth'
+        })
       }
     }
   }
 </script>
 
 <template>
-  <h1>Categories</h1>
+  <h1 ref="bottom">Categories</h1>
 
   <div class="container">
     <div class="columns">
@@ -71,6 +76,9 @@ https://stackoverflow.com/questions/19414856/how-can-i-make-all-images-of-differ
         </div>
       </div>
     </div>
+  </div>
+  <div class="scroll-container">
+    <button @click="scrollDown()" class="scroll-down" />
   </div>
 </template>
 
@@ -215,6 +223,65 @@ https://stackoverflow.com/questions/19414856/how-can-i-make-all-images-of-differ
     img {
       width: 160px;
       height: 150px;
+    }
+  }
+
+  .scroll-container {
+    position: absolute;
+    top: 92%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+  }
+
+  .scroll-down {
+    background-color: #ffffff00;
+    width: 60px;
+    height: 60px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    animation: down 1.5s infinite;
+    -webkit-animation: down 1.5s infinite;
+    &::before {
+      content: '';
+      position: absolute;
+      top: 15px;
+      left: 18px;
+      width: 18px;
+      height: 18px;
+      border-left: 2px solid #fff;
+      border-bottom: 2px solid #fff;
+      transform: rotate(-45deg);
+    }
+  }
+
+  @keyframes down {
+    0% {
+      transform: translate(0);
+    }
+    20% {
+      transform: translateY(15px);
+    }
+    40% {
+      transform: translate(0);
+    }
+  }
+
+  @-webkit-keyframes down {
+    0% {
+      transform: translate(0);
+    }
+    20% {
+      transform: translateY(15px);
+    }
+    40% {
+      transform: translate(0);
+    }
+  }
+
+  @media screen and (max-width: 1400px) {
+    .scroll-down {
+      display: none;
     }
   }
 </style>
