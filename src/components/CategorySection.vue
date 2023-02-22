@@ -116,14 +116,29 @@ https://stackoverflow.com/questions/19414856/how-can-i-make-all-images-of-differ
   }
 
   img {
-    // opacity: 0.9;
     object-fit: cover;
+    margin-bottom: 15px;
+  }
+
+  img:hover {
+    box-shadow: 0 10px 30px 0 rgba(2, 84, 44, 0.594);
+    transition: 0.7s;
   }
 
   .container {
     display: flex;
     flex-direction: column;
     justify-content: center;
+  }
+
+  @media (min-width: 1100px) and (max-width: 1300px) {
+    img {
+      width: 1100px;
+      height: 180px;
+    }
+    p {
+      font-size: 140%;
+    }
   }
 
   @media (min-width: 900px) and (max-width: 1100px) {
