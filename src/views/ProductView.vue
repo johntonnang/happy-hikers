@@ -1,9 +1,41 @@
 <script>
   export default {
     data() {
-      return { product: '', products: '', CartText: '+  Add to cart   ' }
+      return {
+        product: '',
+        products: '',
+        similarProducts: [],
+        CartText: '+  Add to cart   ',
+        id: this.$route.params.id
+      }
+    },
+    watch: {
+      $route() {
+        fetch('/assets/api.JSON')
+          .then((response) => response.json())
+          .then((result) => {
+            this.products = result
+            this.similarProducts = []
+            for (let i = 0; i < this.products.length; i++) {
+              if (this.products[i].id === Number(this.$route.params.id)) {
+                this.product = this.products[i]
+              }
+            }
+            for (let i = 0; i < this.products.length; i++) {
+              if (this.products[i].category === this.product.category) {
+                if (this.products[i].id !== this.product.id)
+                  this.similarProducts.push(this.products[i])
+              }
+            }
+          })
+      }
     },
     created() {
+      // this.$watch(
+      //   () = this.$route.params.id, (params) => {
+      //     console.log(params)
+      //   }
+      // )
       fetch('/assets/api.JSON')
         .then((response) => response.json())
         .then((result) => {
@@ -11,7 +43,12 @@
           for (let i = 0; i < this.products.length; i++) {
             if (this.products[i].id === Number(this.$route.params.id)) {
               this.product = this.products[i]
-              console.log(this.product)
+            }
+          }
+          for (let i = 0; i < this.products.length; i++) {
+            if (this.products[i].category === this.product.category) {
+              if (this.products[i].id !== this.product.id)
+                this.similarProducts.push(this.products[i])
             }
           }
         })
@@ -29,6 +66,12 @@
           console.log(localStorage.getItem('Cart') + '2')
         }
         setTimeout(() => (this.CartText = 'Remove from Cart'), 2000)
+      },
+      openProduct(id) {
+        this.$router.push({
+          path: '/ProductView/' + id,
+          replace: true
+        })
       }
     }
   }
@@ -111,6 +154,50 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
   }
+  .product-container {
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content: center; */
+    /* width: 82.5%; */
+  }
+  .product-box {
+    margin: 0px 50px 25px 0px;
+    font-size: 1.1rem;
+    transition: all 0.2s;
+  }
+  .product-box:hover {
+    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.202);
+    border-radius: 5px;
+  }
+  .product-box img {
+    max-width: 300px;
+    max-height: 350px;
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    transition: all 0.4;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+  }
+  .align-content-mobile {
+    padding: 5px;
+  }
+  .product-title-rating {
+    display: flex;
+    align-items: center;
+  }
+  .product-title-rating img {
+    margin: 4px 0px 0px auto;
+    width: 80px;
+    height: 20px;
+  }
+  .product-box h2 {
+    font-size: 2.2rem;
+    margin-bottom: 0px;
+  }
+  .otherInformation {
+    display: grid;
+  }
   @media (max-width: 900px) {
     section {
       display: grid;
@@ -184,6 +271,37 @@
           </div>
         </div>
       </div>
+    </section>
+    <section class="otherInformation">
+      <h2>Similar products</h2>
+      <!-- <div class="similairProducts"> -->
+      <div class="product-container">
+        <div
+          :key="similarProduct.id"
+          v-for="similarProduct in similarProducts"
+          class="product-box"
+          @click="openProduct(similarProduct.id)"
+        >
+          <img id="bg-image" alt="" :src="similarProduct.image" />
+          <div class="align-content-mobile">
+            <div class="product-title-rating">
+              <div style="display: flex">
+                <span
+                  v-for="color in similarProduct.colors"
+                  :key="color"
+                  class="color-circle-one"
+                  :style="{ backgroundColor: color }"
+                />
+              </div>
+              <img alt="" src="/assets/rating-image.png" /> (32)
+            </div>
+            <h3 style="margin: 0px">{{ similarProduct.name }}</h3>
+            <p style="margin-top: 2px">{{ similarProduct.category }}</p>
+            <h2>{{ similarProduct.price }}:-</h2>
+          </div>
+        </div>
+      </div>
+      <!-- </div> -->
     </section>
   </main>
 </template>

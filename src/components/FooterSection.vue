@@ -30,7 +30,7 @@
 <style scoped>
   .footer {
     position: relative;
-    top: 50px;
+    top: 100px;
     display: grid;
     justify-content: space-between;
     bottom: 0;
