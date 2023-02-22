@@ -1,9 +1,15 @@
 <script>
   import ChildComponent from '../components/SliderDoubleThumbs.vue'
+  import 'vue3-carousel/dist/carousel.css'
+  import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
 
   export default {
     components: {
-      ChildComponent
+      ChildComponent,
+      Carousel,
+      Slide,
+      Pagination,
+      Navigation
     },
     data() {
       return {
@@ -32,17 +38,40 @@
 <template>
   <main>
     <p id="page-direction">Hem / Produkter</p>
-    <div id="product-intro-image">
-      <h2>Produkter för män</h2>
-      <h3>25% på utvalda produkter</h3>
-    </div>
+    <img
+      id="product-intro-image"
+      src="/assets/roland-losslein-X7Res52lR3c-unsplash.jpg"
+      alt=""
+    />
     <div id="main-products-container">
       <div id="product-selection-container">
         <div class="filter-container">
           <h3 style="margin-top: 0px">Storlek</h3>
-          <h4 class="filter-selection">Small</h4>
-          <h4 class="filter-selection">Medium</h4>
-          <h4 class="filter-selection">Large</h4>
+
+          <div class="checkbox-container">
+            <input type="checkbox" value="XS" name="size" />
+            <label for="sizeXSmall" /> XS
+          </div>
+          <div class="checkbox-container">
+            <input type="checkbox" value="S" name="size" checked />
+            <label for="sizeSmall" /> S
+          </div>
+          <div class="checkbox-container">
+            <input type="checkbox" value="M" name="size" />
+            <label for="sizeMedium" /> M
+          </div>
+          <div class="checkbox-container">
+            <input type="checkbox" value="L" name="size" />
+            <label for="sizeLarge" /> L
+          </div>
+          <div class="checkbox-container">
+            <input type="checkbox" value="XL" name="size" />
+            <label for="sizeXLarge" /> XL
+          </div>
+          <div class="checkbox-container">
+            <input type="checkbox" value="XXL" name="size" />
+            <label for="sizeXXLarge" /> XXL
+          </div>
         </div>
         <div
           class="filter-container filter-container-mobile"
@@ -56,9 +85,30 @@
         </div>
         <div class="filter-container">
           <h3>Färg</h3>
-          <h4 class="filter-selection">Blå</h4>
-          <h4 class="filter-selection">Röd</h4>
-          <h4 class="filter-selection">Grön</h4>
+          <div class="checkbox-container">
+            <input type="checkbox" value="blue" name="color" />
+            <label for="sizeXSmall" /> Blue
+          </div>
+          <div class="checkbox-container">
+            <input type="checkbox" value="red" name="color" checked />
+            <label for="sizeSmall" /> Red
+          </div>
+          <div class="checkbox-container">
+            <input type="checkbox" value="green" name="color" />
+            <label for="sizeMedium" /> Green
+          </div>
+          <div class="checkbox-container">
+            <input type="checkbox" value="yellow" name="color" />
+            <label for="sizeLarge" /> Yellow
+          </div>
+          <div class="checkbox-container">
+            <input type="checkbox" value="black" name="color" />
+            <label for="sizeXLarge" /> Black
+          </div>
+          <div class="checkbox-container">
+            <input type="checkbox" value="white" name="color" />
+            <label for="sizeXXLarge" /> White
+          </div>
         </div>
       </div>
       <div class="product-container">
@@ -88,20 +138,53 @@
         </div>
       </div>
     </div>
-    <div id="popular-products-container">
-      <h2>POPULAR PRODUCTS YO</h2>
-    </div>
+
+    <carousel class="carousel-container" :items-to-show="3" :wrap-around="true">
+      <slide :key="101">
+        <img src="/assets/hiking-jacket-man-1.png" alt="" />
+        <button class="explore-btn">Explore</button>
+      </slide>
+      <slide :key="102">
+        <img src="/assets/hiking-jacket-man-2.png" alt="" />
+        <button class="explore-btn">Explore</button>
+      </slide>
+      <slide :key="103">
+        <img src="/assets/hiking-pants-man-1.png" alt="" />
+        <button class="explore-btn">Explore</button>
+      </slide>
+      <slide :key="104">
+        <img src="/assets/hiking-pants-man-2.png" alt="" />
+        <button class="explore-btn">Explore</button>
+      </slide>
+      <slide :key="105">
+        <img src="/assets/hiking-boots-man-1.png" alt="" />
+        <button class="explore-btn">Explore</button>
+      </slide>
+      <slide :key="106">
+        <img src="/assets/hiking-boots-man-2.png" alt="" />
+        <button class="explore-btn">Explore</button>
+      </slide>
+
+      <template #addons>
+        <navigation />
+        <pagination />
+      </template>
+    </carousel>
   </main>
 </template>
 
 <style scoped>
   main {
+    position: relative;
+    top: 100px;
     box-sizing: border-box;
     margin: 0 auto;
     padding: 0;
     width: 80%;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS',
       sans-serif;
+    position: relative;
+    top: 100px;
   }
 
   #page-direction {
@@ -111,12 +194,11 @@
   }
 
   #product-intro-image {
-    /* background-color: #f73f3f; */
-    background-color: #579d5d;
-    padding-top: 50px;
-    padding-left: 45px;
     font-size: 2.5rem;
-    height: 350px;
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 5px;
   }
 
   #main-products-container {
@@ -130,6 +212,22 @@
     position: sticky;
     top: 0;
     left: 0;
+  }
+
+  .checkbox-container {
+    color: #424242;
+    font-weight: 600;
+    margin-bottom: 5px;
+  }
+
+  .filter-container {
+    margin-bottom: 30px;
+  }
+
+  .filter-container h3 {
+    border-bottom: 1px solid black;
+    padding-bottom: 5px;
+    font-weight: 600;
   }
 
   .filter-selection {
@@ -202,15 +300,45 @@
     font-size: 2.2rem;
     margin-bottom: 0px;
   }
+  .carousel-container {
+    margin: 20px auto 170px auto;
+    width: 90%;
+  }
+  .carousel-container img {
+    max-width: 70%;
+    object-fit: cover;
+    position: relative;
+    top: 0;
+    left: 0;
+    transition: box-shadow 0.2s ease-in-out;
+  }
+  .carousel-container img:hover {
+    box-shadow: 0px 0px 42px rgba(0, 0, 0, 1);
+    cursor: pointer;
+  }
+  .explore-btn {
+    position: absolute;
+    top: 1;
+    left: 1;
+    background-color: rgb(255, 255, 255);
+    color: black;
+    border: none;
+    padding: 8px 25px;
+    font-weight: 600;
+    font-size: 15px;
+    border-radius: 2px;
+  }
+  .explore-btn:hover {
+    cursor: pointer;
+  }
 
-  #popular-products-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 400px;
-    /* background-color: #f73f3f; */
-    background-color: #579d5d;
+  .carousel__pagination {
+    padding: 0;
+    margin-top: 25px;
+  }
+
+  .carousel__slide {
+    padding: 55px 0px;
   }
 
   @media (max-width: 1600px) {
