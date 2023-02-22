@@ -127,4 +127,10 @@
       transform: translate(0);
     }
   }
+
+  @media screen and (max-width: 1400px) {
+    .scroll-down {
+      display: none;
+    }
+  }
 </style>
