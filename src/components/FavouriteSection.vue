@@ -34,7 +34,12 @@
           <p>{{ product.category }}</p>
           <div id="align-button-and-icon">
             <button>+ Add to cart</button>
-            <img id="icon" src="/assets/delete.png" alt="bin icon" />
+            <img
+              @click="removeProduct"
+              id="icon"
+              src="/assets/delete.png"
+              alt="bin icon"
+            />
           </div>
         </div>
       </div>
@@ -49,11 +54,7 @@
     width: 50%;
     border-radius: 5px;
   }
-  .container {
-    max-width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-  }
+
   #card {
     padding-top: 5%;
     /* background-color: white; */
@@ -76,6 +77,7 @@
   button {
     background-color: rgba(50, 108, 50, 0.804);
     border-radius: 5px;
+    cursor: pointer;
   }
 
   button:hover {
@@ -89,6 +91,7 @@
     width: 8%;
     height: 5%;
     margin-left: 3%;
+    cursor: pointer;
   }
 
   #icon:hover {
@@ -102,15 +105,30 @@
     padding-bottom: 5%;
   }
 
-  /* ------------- */
-  @media (max-width: 700px) {
-    /* .container {
+  @media (min-width: 899px) {
+    .container {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-    } */
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    #icon {
+      margin-top: 3px;
+    }
   }
 
-  @media (max-width: 375px) {
+  /* ------------- */
+  @media (min-width: 600px) and (max-width: 899px) {
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (min-width: 375px) and (max-width: 600px) {
+    .container {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
     #card {
       padding-top: 5%;
       /* background-color: white; */
