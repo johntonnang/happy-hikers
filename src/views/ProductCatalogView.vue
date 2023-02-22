@@ -140,6 +140,8 @@
     width: 80%;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS',
       sans-serif;
+    position: relative;
+    top: 100px;
   }
 
   #page-direction {
