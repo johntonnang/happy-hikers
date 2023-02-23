@@ -49,7 +49,7 @@
     margin: 2rem auto;
   }
 
-  @media screen and (max-width: 1200px) {
+  @media screen and (max-width: 1300px) {
     #carouselExampleSlidesOnly {
       height: 400px;
     }

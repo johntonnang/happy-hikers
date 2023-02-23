@@ -126,6 +126,8 @@ https://stackoverflow.com/questions/19414856/how-can-i-make-all-images-of-differ
   img {
     object-fit: cover;
     margin-bottom: 15px;
+    width: 1100px;
+    height: 300px;
   }
 
   img:hover {
@@ -139,7 +141,7 @@ https://stackoverflow.com/questions/19414856/how-can-i-make-all-images-of-differ
     justify-content: center;
   }
 
-  @media (min-width: 1100px) and (max-width: 1300px) {
+  @media (max-width: 1300px) {
     img {
       width: 1100px;
       height: 180px;
