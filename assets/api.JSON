@@ -71,7 +71,7 @@
     "price": 495,
     "description": "A compact backpack with a waterproof main compartment and a roll-top closure, perfect for water sports and outdoor activities in wet environments.",
     "colors": ["red", "blue", "yellow"],
-    "category": "backpack",
+    "category": "Backpack",
     "image": "/assets/apiImg/TrekTote.png",
     "rating": {
       "rate": 4.6,
@@ -84,7 +84,7 @@
     "price": 955,
     "description": "A large, mountaineering backpack with an adjustable frame, padded hip belt, and ample storage space for gear and supplies needed for extended outdoor adventures.",
     "colors": ["red", "blue", "yellow"],
-    "category": "backpack",
+    "category": "Backpack",
     "image": "/assets/apiImg/SummitStrider.png",
     "rating": {
       "rate": 3.3,
@@ -97,7 +97,7 @@
     "price": 1100,
     "description": "A compact backpack with a waterproof main compartment and a roll-top closure, perfect for water sports and outdoor activities in wet environments.",
     "colors": ["red", "blue", "yellow"],
-    "category": "backpack",
+    "category": "Backpack",
     "image": "/assets/apiImg/TrailSeeker.png",
     "rating": {
       "rate": 3,
@@ -110,7 +110,7 @@
     "price": 1130,
     "description": "A lightweight backpack with multiple pockets and attachment points for gear and hydration, designed for day hikes and trail running.",
     "colors": ["red", "blue", "yellow"],
-    "category": "backpack",
+    "category": "Backpack",
     "image": "/assets/apiImg/TrailBlazer.png",
     "rating": {
       "rate": 1.9,
@@ -123,7 +123,7 @@
     "price": 64,
     "description": "A high-performance mountaineering jacket with a waterproof and breathable Gore-Tex shell, adjustable hood and cuffs, and multiple pockets for gear.",
     "colors": ["red", "blue", "yellow"],
-    "category": "men's jacket",
+    "category": "Men's jacket",
     "image": "/assets/apiImg/SummitShield.png",
     "rating": {
       "rate": 3.3,
@@ -136,7 +136,7 @@
     "price": 109,
     "colors": ["red", "blue", "yellow"],
     "description": "A lightweight and breathable hiking jacket with moisture-wicking fabric, ventilated panels, and adjustable features for optimal comfort and protection.",
-    "category": "men's jacket",
+    "category": "Men's jacket",
     "image": "/assets/apiImg/TrailBlaze.png",
     "rating": {
       "rate": 2.9,
@@ -149,7 +149,7 @@
     "price": 64,
     "description": "A high-performance mountaineering jacket with a waterproof and breathable Gore-Tex shell, adjustable hood and cuffs, and multiple pockets for gear.",
     "colors": ["red", "blue", "yellow"],
-    "category": "men's jacket",
+    "category": "Men's jacket",
     "image": "/assets/apiImg/Ridgeback.png",
     "rating": {
       "rate": 3.3,
@@ -162,7 +162,7 @@
     "price": 109,
     "description": "A lightweight and breathable hiking jacket with moisture-wicking fabric, ventilated panels, and adjustable features for optimal comfort and protection.",
     "colors": ["red", "blue", "yellow"],
-    "category": "men's jacket",
+    "category": "Men's jacket",
     "image": "/assets/apiImg/Mountaineer.png",
     "rating": {
       "rate": 2.9,
@@ -175,7 +175,7 @@
     "price": 109,
     "description": "A lightweight and breathable hiking jacket with moisture-wicking fabric, ventilated panels, and adjustable features for optimal comfort and protection.",
     "colors": ["red", "blue", "yellow"],
-    "category": "men's jacket",
+    "category": "Men's jacket",
     "image": "/assets/apiImg/Pathfinder.png",
     "rating": {
       "rate": 2.9,
@@ -188,7 +188,7 @@
     "price": 109,
     "description": "A lightweight and packable shell jacket that's perfect for alpine climbing and mountaineering. Made with a waterproof and breathable membrane, this jacket features pit zips for ventilation and a removable hood.",
     "colors": ["red", "blue", "yellow"],
-    "category": "women's jacket",
+    "category": "Women's jacket",
     "image": "/assets/apiImg/NordicExplorer.png",
     "rating": {
       "rate": 2.9,
@@ -201,7 +201,7 @@
     "price": 109,
     "description": "A lightweight and breathable jacket that's perfect for warm weather adventures. Made with moisture-wicking materials, this jacket features mesh ventilation and a zippered chest pocket.",
     "colors": ["red", "blue", "yellow"],
-    "category": "women's jacket",
+    "category": "Women's jacket",
     "image": "/assets/apiImg/DesertExplorer.png",
     "rating": {
       "rate": 2.9,
@@ -214,7 +214,7 @@
     "price": 109,
     "description": "A warm and stylish parka that's perfect for winter adventures. Made with wind-resistant and water-repellent materials, this jacket features a faux-fur trimmed hood and multiple pockets for storage.",
     "colors": ["red", "blue", "yellow"],
-    "category": "women's jacket",
+    "category": "Women's jacket",
     "image": "/assets/apiImg/MountainMajesty.png",
     "rating": {
       "rate": 2.9,
@@ -227,7 +227,7 @@
     "price": 109,
     "description": "A waterproof and breathable jacket that's perfect for rainy days on the trail. Made with sealed seams and adjustable cuffs, this jacket features a hood and a zippered chest pocket.",
     "colors": ["red", "blue", "yellow"],
-    "category": "women's jacket",
+    "category": "Women's jacket",
     "image": "/assets/apiImg/ForestRanger.png",
     "rating": {
       "rate": 2.9,
