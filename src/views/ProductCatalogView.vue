@@ -59,9 +59,6 @@
           style="margin-bottom: 20px"
         >
           <h3>Pris</h3>
-          <h4 class="filter-selection">0-499</h4>
-          <h4 class="filter-selection">500-999</h4>
-          <h4 class="filter-selection">1000-1499</h4>
           <ChildComponent />
         </div>
         <div class="filter-container">
