@@ -147,9 +147,10 @@ https://stackoverflow.com/questions/19414856/how-can-i-make-all-images-of-differ
     p {
       font-size: 140%;
     }
-    // .scroll-down {
-    //   display: none;
-    // }
+
+    .scroll-container {
+      display: none;
+    }
   }
 
   @media (min-width: 900px) and (max-width: 1100px) {
@@ -231,7 +232,7 @@ https://stackoverflow.com/questions/19414856/how-can-i-make-all-images-of-differ
 
   .scroll-container {
     position: absolute;
-    top: 92%;
+    top: 90vh;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 10;
