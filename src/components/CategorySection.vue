@@ -147,9 +147,9 @@ https://stackoverflow.com/questions/19414856/how-can-i-make-all-images-of-differ
     p {
       font-size: 140%;
     }
-    .scroll-down {
-      display: none;
-    }
+    // .scroll-down {
+    //   display: none;
+    // }
   }
 
   @media (min-width: 900px) and (max-width: 1100px) {
