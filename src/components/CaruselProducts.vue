@@ -20,7 +20,7 @@
     <h1>RUNNING SHOES</h1>
   </div>
 
-  <carousel :items-to-show="2.5" :wrap-around="true">
+  <carousel :items-to-show="3" :wrap-around="true">
     <slide :key="1">
       <img src="/assets/white.orange.shoe.jpg" alt="white running shoe" />
     </slide>
@@ -46,8 +46,35 @@
     margin: 1rem;
   }
 
+  .carousel {
+    width: 85%;
+    margin: 0 auto;
+  }
+
+  .carousel__track {
+    padding: 100px;
+  }
+
+  .carousel__pagination {
+    padding: 0;
+    margin-top: 25px;
+  }
+
   img {
-    width: 80%;
-    margin: auto;
+    width: 100%;
+    margin-right: 50px;
+    margin-left: 50px;
+  }
+
+  svg {
+    width: 50px;
+    height: 50px;
+  }
+
+  @media screen and (max-width: 960px) {
+    img {
+      margin-right: 5px;
+      margin-left: 5px;
+    }
   }
 </style>
