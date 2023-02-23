@@ -66,14 +66,15 @@
           })
           localStorage.setItem('Cart', JSON.stringify(cart))
         } else {
+          console.log(JSON.parse(localStorage.getItem('Cart')))
           let cart = [
-            cart.push({
+            {
               id: this.product.id,
               name: this.product.name,
               price: this.product.price,
               image: this.product.image,
               description: this.product.description
-            })
+            }
           ]
           localStorage.setItem('Cart', JSON.stringify(cart))
         }
