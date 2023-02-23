@@ -47,8 +47,6 @@
       <h2>{{ price }}:-</h2>
     </div>
   </div>
-
-  ´
 </template>
 
 <style scoped>

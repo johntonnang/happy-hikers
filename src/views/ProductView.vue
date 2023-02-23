@@ -6,7 +6,10 @@
         products: '',
         similarProducts: [],
         CartText: '+  Add to cart   ',
-        id: this.$route.params.id
+        WishText: '+  Add to Wishlist   ',
+        id: this.$route.params.id,
+        CartColor: 'rgba(0, 0, 0)',
+        WishColor: 'rgba(0, 0, 0)'
       }
     },
     watch: {
@@ -78,7 +81,13 @@
           ]
           localStorage.setItem('Cart', JSON.stringify(cart))
         }
-        setTimeout(() => (this.CartText = 'Remove from Cart'), 2000)
+        this.CartColor = 'rgba(0,0,0,0)'
+        setTimeout(() => (this.CartText = '✓'), 350)
+        setTimeout(() => (this.CartColor = 'rgba(0,0,0)'), 350)
+
+        setTimeout(() => (this.CartColor = 'rgba(0,0,0,0)'), 3000)
+        setTimeout(() => (this.CartColor = 'rgba(0,0,0,1)'), 3350)
+        setTimeout(() => (this.CartText = 'Remove from Cart'), 3350)
       },
       openProduct(id) {
         this.$router.push({
@@ -128,8 +137,9 @@
   .product-btn {
     width: 45%;
     margin-right: 5%;
-    margin-top: 1.5rem;
-    padding: 1rem;
+    margin-top: 20px;
+    /* padding: 1rem; */
+    height: 50px;
     background-color: #579d5d;
     border-radius: 3px;
     border: 0px solid;
@@ -137,11 +147,8 @@
     transition: all 0.35s;
   }
   .product-btn:hover {
-    background-color: rgb(0, 0, 0);
-    color: #579d5d;
-    border-radius: 3px;
-    border: 0px solid;
-    font-weight: 400;
+    background-color: #45804a;
+    /* color: #579d5d; */
   }
   .product-wishlist {
     background-color: #b1ea38;
@@ -170,8 +177,6 @@
   .product-container {
     display: flex;
     flex-wrap: wrap;
-    /* justify-content: center; */
-    /* width: 82.5%; */
   }
   .product-box {
     margin: 0px 50px 25px 0px;
@@ -254,11 +259,13 @@
             class="product-btn"
             type="button"
             :value="CartText"
+            :style="{ color: this.CartColor }"
           />
           <input
             class="product-btn product-wishlist"
             type="button"
-            value="Add to wishlist"
+            :value="WishText"
+            :style="{ color: this.WishColor }"
           />
         </div>
         <div class="product-return-container">
