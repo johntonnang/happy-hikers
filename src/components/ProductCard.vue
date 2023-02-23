@@ -22,7 +22,13 @@
 </script>
 
 <template>
-  <div class="product-box" @click="openProduct(this.id)">
+  <div
+    v-if="
+      this.category.toLowerCase() === this.$route.params.category.toLowerCase()
+    "
+    class="product-box"
+    @click="openProduct(this.id)"
+  >
     <img id="bg-image" alt="" :src="img" />
     <div class="align-content-mobile">
       <div class="product-title-rating">

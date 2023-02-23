@@ -27,7 +27,6 @@
     },
     watch: {
       $route() {
-        console.log('hej')
         fetch('/assets/api.json')
           .then((response) => response.json())
           .then((response) => {
