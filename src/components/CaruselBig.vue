@@ -44,16 +44,29 @@
 <style scoped>
   #carouselExampleSlidesOnly {
     overflow: hidden;
-    height: 500px;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+    height: 550px;
+    width: 85%;
+    margin: 2rem auto;
   }
+
+  @media screen and (max-width: 1200px) {
+    #carouselExampleSlidesOnly {
+      height: 400px;
+    }
+  }
+
   @media screen and (max-width: 960px) {
     #carouselExampleSlidesOnly {
       overflow: hidden;
-      height: 350px;
+      height: 400px;
       margin-top: 0.5rem;
       margin-bottom: 0.5rem;
+    }
+  }
+
+  @media screen and (max-width: 760px) {
+    #carouselExampleSlidesOnly {
+      height: 100%;
     }
   }
 </style>
