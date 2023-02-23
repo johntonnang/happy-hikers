@@ -7,7 +7,7 @@
     },
     computed: {
       total() {
-        return this.cartItems.reduce((acc, item) => acc + item.price, 0)
+        return this.cartItems.reduce((x, item) => x + item.price, 0)
       }
     },
     mounted() {
@@ -47,10 +47,9 @@
             <div class="itemRow">
               <div><img :src="item.image" :alt="item.name" /></div>
               <div class="productInfo">
-                <span class="namePrice"
-                  >{{ item.name }} {{ item.price }};-</span
-                >
-                <span>{{ item.description }}</span>
+                <span class="name">{{ item.name }}</span>
+                <span class="price">{{ item.price }};- </span>
+                <span class="description">{{ item.description }}</span>
                 <button @click="removeItem(index)">Remove</button>
               </div>
             </div>
@@ -66,15 +65,14 @@
 <style scoped>
   main {
     position: relative;
-    top: 10rem;
+    top: 100px;
     width: 95%;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS',
       sans-serif;
     margin-bottom: 8rem;
   }
   main h1 {
-    margin: 2rem;
-    margin-left: 7rem;
+    margin-left: 3rem;
   }
   .total {
     font-size: 2rem;
@@ -95,8 +93,11 @@
     margin-top: 2rem;
     margin-bottom: 2rem;
   }
-  .namePrice {
+  .name {
     font-size: 1.5rem;
+  }
+  .price {
+    font-size: 1rem;
     margin-bottom: 0.5rem;
   }
   .cartItems {
@@ -118,5 +119,26 @@
   .cartItems button {
     width: 7rem;
     margin-top: 1rem;
+  }
+  @media (max-width: 800px) {
+    .cartItems img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      transition: all 0.4;
+      border-top-right-radius: 5px;
+      border-top-left-radius: 5px;
+    }
+    .container {
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
+    .description {
+      display: none;
+    }
+    .cartItems button {
+      width: 5rem;
+      margin-top: 1rem;
+    }
   }
 </style>
