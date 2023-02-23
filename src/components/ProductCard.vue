@@ -7,7 +7,7 @@
       price: { type: Number, required: true },
       img: { type: String, required: true },
       category: { type: String, required: true },
-      colors: { type: String, required: true }
+      colors: { type: Object, required: true }
     },
     methods: {
       openProduct(id) {
@@ -22,7 +22,7 @@
 </script>
 
 <template>
-  <div class="product-box" @click="openProduct(id)">
+  <div class="product-box" @click="openProduct(this.id)">
     <img id="bg-image" alt="" :src="img" />
     <div class="align-content-mobile">
       <div class="product-title-rating">

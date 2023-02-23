@@ -6,7 +6,7 @@
     },
     data() {
       return {
-        products: null
+        // productsList: this.products
       }
     },
     methods: {
@@ -18,14 +18,17 @@
         console.log('hej')
       }
     },
-    created() {
-      fetch('/assets/api.JSON')
-        .then((response) => response.json())
-        .then((result) => {
-          this.products = result
-          console.log(result)
-        })
+    props: {
+      products: { type: Object, default: null }
     }
+    // created() {
+    //   fetch('/assets/api.JSON')
+    //     .then((response) => response.json())
+    //     .then((result) => {
+    //       this.products = result
+    //       console.log(result)
+    //     })
+    // }
   }
 </script>
 
@@ -34,6 +37,7 @@
     <product-card
       v-for="product in products"
       :key="product.id"
+      :id="product.id"
       :img="product.image"
       :name="product.name"
       :category="product.category"
