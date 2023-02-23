@@ -8,12 +8,21 @@
       img: { type: String, required: true },
       category: { type: String, required: true },
       colors: { type: String, required: true }
+    },
+    methods: {
+      openProduct(id) {
+        this.$router.push({
+          path: '/ProductView/' + id,
+          replace: true
+        })
+        console.log('hej')
+      }
     }
   }
 </script>
 
 <template>
-  <div class="product-box">
+  <div class="product-box" @click="openProduct(id)">
     <img id="bg-image" alt="" :src="img" />
     <div class="align-content-mobile">
       <div class="product-title-rating">

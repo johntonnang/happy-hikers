@@ -57,32 +57,14 @@
       addToCart() {
         if (localStorage.getItem('Cart') !== null) {
           let cart = JSON.parse(localStorage.getItem('Cart'))
-          cart.push({
-            id: this.product.id,
-            name: this.product.name,
-            price: this.product.price,
-            image: this.product.image,
-            description: this.product.description
-          })
+          cart.push(this.product.id)
           localStorage.setItem('Cart', JSON.stringify(cart))
-          console.log(localStorage.getItem('Cart') + '1')
         } else {
-          let cart = [
-            {
-              id: this.product.id,
-              name: this.product.name,
-              price: this.product.price,
-              image: this.product.image,
-              description: this.product.description
-            }
-          ]
+          let cart = [this.product.id]
           localStorage.setItem('Cart', JSON.stringify(cart))
-          console.log(localStorage.getItem('Cart') + '2')
         }
-
         setTimeout(() => (this.CartText = 'Remove from Cart'), 2000)
       },
-
       openProduct(id) {
         this.$router.push({
           path: '/ProductView/' + id,
@@ -90,7 +72,7 @@
         })
       }
     }
-  } ///STOPP!!
+  }
 </script>
 <style scoped>
   main {

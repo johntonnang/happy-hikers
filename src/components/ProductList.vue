@@ -15,6 +15,7 @@
           path: '/ProductView/' + id,
           replace: true
         })
+        console.log('hej')
       }
     },
     created() {
@@ -31,7 +32,6 @@
 <template>
   <div class="product-container">
     <product-card
-      @click="openProduct(product.id)"
       v-for="product in products"
       :key="product.id"
       :img="product.image"
