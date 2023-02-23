@@ -17,6 +17,37 @@
           this.products = result
           console.log(result)
         })
+    },
+    methods: {
+      // Add to wishlist
+      addToWishlist() {
+        if (localStorage.getItem('Wishlist') !== null) {
+          let wish = JSON.parse(localStorage.getItem('Wishlist'))
+          wish.push({
+            id: this.product.id,
+            name: this.product.name,
+            price: this.product.price,
+            image: this.product.image
+            // description: this.product.description
+          })
+          localStorage.setItem('Wishlist', JSON.stringify(wish))
+          console.log(localStorage.getItem('Wishlist') + '1')
+        } else {
+          let wish = [
+            {
+              id: this.product.id,
+              name: this.product.name,
+              price: this.product.price,
+              image: this.product.image
+              // description: this.product.description
+            }
+          ]
+          localStorage.setItem('Wishlist', JSON.stringify(wish))
+          console.log(localStorage.getItem('Wishlist') + '2')
+        }
+
+        // remove from wishlist
+      }
     }
   }
 </script>
@@ -36,7 +67,7 @@
           <h5>{{ product.price }} :-</h5>
           <p>{{ product.category }}</p>
           <div id="align-button-and-icon">
-            <button>+ Add to cart</button>
+            <button @click="addToWishlist">+ Add to cart</button>
             <img
               @click="removeProduct"
               id="icon"
