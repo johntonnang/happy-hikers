@@ -127,6 +127,7 @@
     width: 100%;
   }
   .img-container {
+    padding-left: 40px;
     justify-content: center;
     display: flex;
     width: 60%;
