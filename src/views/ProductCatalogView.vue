@@ -13,7 +13,8 @@
         L: false,
         XL: false,
         XXL: false,
-        products: null
+        products: null,
+        category: this.$route.params.category
       }
     },
     components: {
@@ -24,6 +25,20 @@
       Pagination,
       Navigation
     },
+    watch: {
+      $route() {
+        fetch('/assets/api.json')
+          .then((response) => response.json())
+          .then((response) => {
+            this.products = response
+            for (let i = 0; i < this.products.length; i++) {
+              if (this.products[i].category === this.searchID) {
+                this.products = this.products[i]
+              }
+            }
+          })
+      }
+    },
     created() {
       fetch('/assets/api.JSON')
         .then((response) => response.json())
@@ -33,7 +48,14 @@
         })
     },
     methods: {
-      filterSize() {}
+      filterSize() {},
+      searchResult() {
+        for (let i = 0; i < this.products.length; i++) {
+          if (this.searchID === this.products[i].category) {
+            this.productsSearch.push(this.products[i])
+          }
+        }
+      }
     }
   }
 </script>

@@ -73,7 +73,7 @@
     margin-bottom: 8rem;
   }
   main h1 {
-    margin: 2rem;
+    /* margin: 2rem; */
     margin-left: 7rem;
   }
   .total {

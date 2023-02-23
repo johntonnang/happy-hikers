@@ -141,6 +141,12 @@ https://stackoverflow.com/questions/19414856/how-can-i-make-all-images-of-differ
     justify-content: center;
   }
 
+  @media screen and (max-width: 1400px) {
+    .scroll-container {
+      display: none;
+    }
+  }
+
   @media (max-width: 1300px) {
     img {
       width: 1100px;
@@ -149,10 +155,6 @@ https://stackoverflow.com/questions/19414856/how-can-i-make-all-images-of-differ
     p {
       font-size: 140%;
     }
-
-    // .scroll-container {
-    //   display: none;
-    // }
   }
 
   @media (min-width: 900px) and (max-width: 1100px) {
