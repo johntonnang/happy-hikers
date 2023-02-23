@@ -5,6 +5,17 @@
   import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
 
   export default {
+    data() {
+      return {
+        XS: false,
+        S: false,
+        M: false,
+        L: false,
+        XL: false,
+        XXL: false,
+        products: null
+      }
+    },
     components: {
       ChildComponent,
       Carousel,
@@ -12,6 +23,17 @@
       ProductList,
       Pagination,
       Navigation
+    },
+    created() {
+      fetch('/assets/api.JSON')
+        .then((response) => response.json())
+        .then((result) => {
+          this.products = result
+          console.log(result)
+        })
+    },
+    methods: {
+      filterSize() {}
     }
   }
 </script>
@@ -30,27 +52,27 @@
           <h3 style="margin-top: 0px">Storlek</h3>
 
           <div class="checkbox-container">
-            <input type="checkbox" value="XS" name="size" />
+            <input v-model="XS" type="checkbox" value="XS" name="size" />
             <label for="sizeXSmall" /> XS
           </div>
           <div class="checkbox-container">
-            <input type="checkbox" value="S" name="size" checked />
+            <input v-model="S" type="checkbox" value="S" name="size" checked />
             <label for="sizeSmall" /> S
           </div>
           <div class="checkbox-container">
-            <input type="checkbox" value="M" name="size" />
+            <input v-model="M" type="checkbox" value="M" name="size" />
             <label for="sizeMedium" /> M
           </div>
           <div class="checkbox-container">
-            <input type="checkbox" value="L" name="size" />
+            <input v-model="L" type="checkbox" value="L" name="size" />
             <label for="sizeLarge" /> L
           </div>
           <div class="checkbox-container">
-            <input type="checkbox" value="XL" name="size" />
+            <input v-model="XL" type="checkbox" value="XL" name="size" />
             <label for="sizeXLarge" /> XL
           </div>
           <div class="checkbox-container">
-            <input type="checkbox" value="XXL" name="size" />
+            <input v-model="XXL" type="checkbox" value="XXL" name="size" />
             <label for="sizeXXLarge" /> XXL
           </div>
         </div>
@@ -90,7 +112,7 @@
         </div>
       </div>
 
-      <product-list />
+      <product-list :products="this.products" />
     </div>
 
     <carousel class="carousel-container" :items-to-show="3" :wrap-around="true">

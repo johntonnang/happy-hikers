@@ -57,10 +57,24 @@
       addToCart() {
         if (localStorage.getItem('Cart') !== null) {
           let cart = JSON.parse(localStorage.getItem('Cart'))
-          cart.push(this.product.id)
+          cart.push({
+            id: this.product.id,
+            name: this.product.name,
+            price: this.product.price,
+            image: this.product.image,
+            description: this.product.description
+          })
           localStorage.setItem('Cart', JSON.stringify(cart))
         } else {
-          let cart = [this.product.id]
+          let cart = [
+            cart.push({
+              id: this.product.id,
+              name: this.product.name,
+              price: this.product.price,
+              image: this.product.image,
+              description: this.product.description
+            })
+          ]
           localStorage.setItem('Cart', JSON.stringify(cart))
         }
         setTimeout(() => (this.CartText = 'Remove from Cart'), 2000)
