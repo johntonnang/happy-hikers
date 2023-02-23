@@ -148,9 +148,9 @@ https://stackoverflow.com/questions/19414856/how-can-i-make-all-images-of-differ
       font-size: 140%;
     }
 
-    .scroll-container {
-      display: none;
-    }
+    // .scroll-container {
+    //   display: none;
+    // }
   }
 
   @media (min-width: 900px) and (max-width: 1100px) {
