@@ -7,7 +7,7 @@
       price: { type: Number, required: true },
       img: { type: String, required: true },
       category: { type: String, required: true },
-      colors: { type: String, required: true }
+      colors: { type: Object, required: true }
     },
     methods: {
       openProduct(id) {
