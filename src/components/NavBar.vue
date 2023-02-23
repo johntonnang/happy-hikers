@@ -2,15 +2,27 @@
   export default {
     data() {
       return {
-        isActive: true
+        isActive: true,
+        searchID: '',
+        products: [],
+        productsSearch: [],
+        id: this.$route.params.id
       }
+    },
+    created() {
+      fetch('/assets/api.json')
+        .then((response) => response.json())
+        .then((response) => {
+          console.log(response)
+          this.products = response
+        })
     },
     methods: {
       toggleMenu() {
         this.isActive = !this.isActive
       },
       searchProducts() {
-        this.$router.push('/ProductCatalog')
+        this.$router.push(`/ProductCatalog/` + this.searchID)
       }
     }
   }
@@ -21,9 +33,11 @@
     <div class="navbar-container">
       <div class="navbar-search">
         <input
+          @keyup.enter="searchProducts"
           type="text"
           class="navbar-search-field"
           placeholder="Search..."
+          v-model="searchID"
         />
         <button class="navbar-search-button" @click="searchProducts">
           <font-awesome-icon icon="fa-solid fa-magnifying-glass" />
@@ -66,7 +80,6 @@
     margin: 0;
     padding: 0;
   }
-
   .navbar {
     width: 100%;
     position: absolute;
@@ -306,6 +319,8 @@
       @media screen and (max-width: 375px) {
         #navbar-logo {
           max-width: 110%;
+          top: 0;
+          left: 0;
         }
 
         .navbar-search-field {

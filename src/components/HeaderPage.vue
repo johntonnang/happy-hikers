@@ -1,11 +1,5 @@
 <script>
   export default {
-    props: {
-      msg: {
-        required: true,
-        type: String
-      }
-    },
     mounted() {
       this.slowDown()
     },
@@ -69,66 +63,8 @@
   }
 
   #hiker-background {
-    height: 100vh;
+    // height: 100vh;
+    width: 100%;
     filter: brightness(75%);
   }
-
-  // .scroll-container {
-  //   position: absolute;
-  //   top: 92%;
-  //   left: 50%;
-  //   transform: translate(-50%, -50%);
-  //   z-index: 10;
-  // }
-
-  // .scroll-down {
-  //   background-color: #ffffff00;
-  //   width: 60px;
-  //   height: 60px;
-  //   border: 2px solid #fff;
-  //   border-radius: 50%;
-  //   animation: down 1.5s infinite;
-  //   -webkit-animation: down 1.5s infinite;
-  //   &::before {
-  //     content: '';
-  //     position: absolute;
-  //     top: 15px;
-  //     left: 18px;
-  //     width: 18px;
-  //     height: 18px;
-  //     border-left: 2px solid #fff;
-  //     border-bottom: 2px solid #fff;
-  //     transform: rotate(-45deg);
-  //   }
-  // }
-
-  // @keyframes down {
-  //   0% {
-  //     transform: translate(0);
-  //   }
-  //   20% {
-  //     transform: translateY(15px);
-  //   }
-  //   40% {
-  //     transform: translate(0);
-  //   }
-  // }
-
-  // @-webkit-keyframes down {
-  //   0% {
-  //     transform: translate(0);
-  //   }
-  //   20% {
-  //     transform: translateY(15px);
-  //   }
-  //   40% {
-  //     transform: translate(0);
-  //   }
-  // }
-
-  // @media screen and (max-width: 1400px) {
-  //   .scroll-down {
-  //     display: none;
-  //   }
-  // }
 </style>

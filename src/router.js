@@ -32,6 +32,10 @@ export default createRouter({
       path: '/ProductCatalog'
     },
     {
+      component: ProductCatalog,
+      path: '/ProductCatalog/:category'
+    },
+    {
       component: ProductView,
       path: '/ProductView/:id'
     },

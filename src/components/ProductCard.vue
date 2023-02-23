@@ -22,7 +22,35 @@
 </script>
 
 <template>
-  <div class="product-box" @click="openProduct(this.id)">
+  <div v-if="this.$route.params.category != null">
+    <div
+      v-if="
+        this.category.toLowerCase() ===
+        this.$route.params.category.toLowerCase()
+      "
+      class="product-box"
+      @click="openProduct(this.id)"
+    >
+      <img id="bg-image" alt="" :src="img" />
+      <div class="align-content-mobile">
+        <div class="product-title-rating">
+          <div style="display: flex">
+            <!--  <span
+              v-for="color in product.colors"
+              :key="color"
+              class="color-circle-one"
+              :style="{ backgroundColor: color }"
+            /> -->
+          </div>
+          <!--<img alt="" src="/assets/rating-image.png" /> (32)-->
+        </div>
+        <h3 style="margin: 0px">{{ name }}</h3>
+        <p style="margin-top: 2px">{{ category }}</p>
+        <h2>{{ price }}:-</h2>
+      </div>
+    </div>
+  </div>
+  <div v-else class="product-box" @click="openProduct(this.id)">
     <img id="bg-image" alt="" :src="img" />
     <div class="align-content-mobile">
       <div class="product-title-rating">
@@ -41,8 +69,6 @@
       <h2>{{ price }}:-</h2>
     </div>
   </div>
-
-  ´
 </template>
 
 <style scoped>
