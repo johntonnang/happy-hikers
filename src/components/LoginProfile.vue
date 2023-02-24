@@ -12,7 +12,8 @@
         this.loginSuccesfull = true
         this.$emit('login-success', this.loginSuccesfull)
       }
-    }
+    },
+    emits: ['login-success']
   }
 </script>
 
@@ -135,6 +136,4 @@
       width: 40%;
     }
   }
-
-
 </style>
