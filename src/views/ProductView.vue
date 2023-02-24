@@ -57,29 +57,49 @@
         })
     },
     methods: {
-      addToCart() {
+      addToCart(id) {
         if (localStorage.getItem('Cart') !== null) {
-          let cart = JSON.parse(localStorage.getItem('Cart'))
-          cart.push({
-            id: this.product.id,
-            name: this.product.name,
-            price: this.product.price,
-            image: this.product.image,
-            description: this.product.description
-          })
-          localStorage.setItem('Cart', JSON.stringify(cart))
-        } else {
-          console.log(JSON.parse(localStorage.getItem('Cart')))
-          let cart = [
-            {
+          if (this.CartText === '+  Add to cart   ') {
+            let cart = JSON.parse(localStorage.getItem('Cart'))
+            cart.push({
               id: this.product.id,
               name: this.product.name,
               price: this.product.price,
               image: this.product.image,
               description: this.product.description
+            })
+            localStorage.setItem('Cart', JSON.stringify(cart))
+            console.log('hej 1')
+          } else if (this.CartText === 'Remove from Cart') {
+            let cart = JSON.parse(localStorage.getItem('Cart'))
+            console.log(cart)
+            let i = 0
+            for (let product of cart) {
+              console.log(product)
+              console.log(product.id + '   ' + id)
+
+              if (product.id === id) {
+                cart.splice(i, 1)
+                localStorage.setItem('Cart', JSON.stringify(cart))
+              }
+              i++
             }
-          ]
-          localStorage.setItem('Cart', JSON.stringify(cart))
+          }
+        } else {
+          let cart = null
+          if (this.CartText === '+  Add to cart   ') {
+            console.log('hej 3')
+            cart = [
+              {
+                id: this.product.id,
+                name: this.product.name,
+                price: this.product.price,
+                image: this.product.image,
+                description: this.product.description
+              }
+            ]
+            localStorage.setItem('Cart', JSON.stringify(cart))
+          }
         }
         this.CartColor = 'rgba(0,0,0,0)'
         setTimeout(() => (this.CartText = '✓'), 350)
@@ -255,7 +275,7 @@
         </select>
         <div class="product-btns">
           <input
-            @click="addToCart"
+            @click="addToCart(product.id)"
             class="product-btn"
             type="button"
             :value="CartText"
