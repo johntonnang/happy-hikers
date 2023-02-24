@@ -115,7 +115,7 @@
   </div>
 </template>
 
-<style>
+<style scoped>
   .option-container {
     display: flex;
     align-items: center;

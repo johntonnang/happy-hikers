@@ -60,7 +60,7 @@
   </div>
 </template>
 
-<style>
+<style scoped>
   #points-container {
     padding: 15px;
     display: flex;
