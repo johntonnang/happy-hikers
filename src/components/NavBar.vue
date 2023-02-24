@@ -95,9 +95,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 35%;
-    /* padding-left: 50px; */
-    /* padding-right: 200px; */
   }
 
   .navbar-search-field {
@@ -140,7 +137,6 @@
     width: 100%;
   }
   .img-container {
-    padding-left: 40px;
     justify-content: center;
     display: flex;
     width: 60%;
@@ -169,12 +165,8 @@
     opacity: 0.7;
   }
 
-  .navbar-menu.active {
-    width: 20%;
-  }
-
   .navbar-toggle {
-    width: 20%;
+    display: none;
   }
 
   @media screen and (max-width: 960px) {
@@ -208,10 +200,6 @@
       padding: 25px;
     }
 
-    #navbar-logo {
-      padding-right: 250px;
-    }
-
     .navbar-toggle .bar {
       width: 25px;
       height: 3px;
@@ -229,10 +217,11 @@
     }
 
     #mobile-menu {
+      display: inline;
       position: absolute;
-      top: 20px;
+      top: 30px;
       right: 5%;
-      transform: translate(5%, 20%);
+      transform: translate(5%, 30%);
     }
 
     .navbar-toggle .bar {
@@ -264,35 +253,38 @@
       transform: translateY(0) rotate(0);
     }
 
-    @media screen and (max-width: 768px) and (min-width: 400px) {
+    @media screen and (max-width: 768px) {
       #navbar-logo {
-        max-width: 100%;
+        width: 100%;
       }
 
       #mobile-menu {
-        top: 20px;
+        top: 30px;
       }
 
       .navbar-menu.active {
         top: -1500%;
       }
+    }
 
-      .navbar-search {
-        margin-left: 50px;
+    @media screen and (max-width: 700px) {
+      .img-container {
+        width: 300px;
+        padding-right: 20px;
       }
     }
 
     @media screen and (max-width: 390px) {
       #navbar-logo {
         margin: 0;
-        width: 110%;
-        left: 10px;
+        left: 8px;
         top: 0;
         position: absolute;
+        width: 200px;
       }
 
       .navbar-search {
-        margin-top: 25px;
+        margin-top: 30px;
         width: 200px;
       }
 
@@ -308,7 +300,7 @@
 
       #mobile-menu {
         top: 0;
-        right: 0;
+        right: 6%;
       }
 
       .navbar-search-button {
@@ -318,13 +310,11 @@
 
       @media screen and (max-width: 375px) {
         #navbar-logo {
-          max-width: 110%;
           top: 0;
           left: 0;
         }
 
         .navbar-search-field {
-          padding-right: 170px;
           margin-left: 180px;
         }
       }
