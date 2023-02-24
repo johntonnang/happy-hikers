@@ -1,7 +1,7 @@
 <script></script>
 <template>
   <main>
-    <p>Hallo</p>
+    <p>Test</p>
   </main>
 </template>
 
