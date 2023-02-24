@@ -2,21 +2,29 @@
   import PreviousOrders from '../components/PreviousOrders.vue'
   import ProfileMenu from '../components/ProfileMenu.vue'
   import ProfilePoints from '../components/ProfilePoints.vue'
+  import LoginProfile from '../components/LoginProfile.vue'
   export default {
     data() {
-      return {}
+      return {
+        loginSuccesfull: false
+      }
     },
     components: {
       PreviousOrders,
       ProfileMenu,
-      ProfilePoints
+      ProfilePoints,
+      LoginProfile
     }
   }
 </script>
 
 <template>
   <main>
-    <div id="main-container">
+    <LoginProfile
+      v-if="!loginSuccesfull"
+      @login-success="loginSuccesfull = true"
+    />
+    <div v-if="loginSuccesfull" id="main-container">
       <div id="menu-container">
         <ProfilePoints />
         <div id="discount-container">
@@ -44,7 +52,9 @@
         <ProfileMenu />
       </div>
       <div id="order-container">
-        <h1 style="font-weight: 800">Hej Göran!</h1>
+        <h1 style="font-weight: 800">
+          Hej Slobodan Vladislavus Larva Dick Robin Lidvall!
+        </h1>
         <h3>Dina tidigare beställningar:</h3>
         <PreviousOrders />
         <h1>Vill du returnera en vara? Synd. Det får du inte.</h1>
