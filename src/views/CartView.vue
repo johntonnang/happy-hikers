@@ -64,8 +64,8 @@
           </div>
           <div class="total">Total: {{ total }}</div>
           <div class="checkoutCointainer">
-            <RouterLink to="/CheckhoutView">
-              <button class="checkout">Checkhout</button>
+            <RouterLink to="/CheckoutView">
+              <button class="checkout">Checkout</button>
             </RouterLink>
           </div>
         </div>

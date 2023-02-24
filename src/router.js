@@ -46,7 +46,7 @@ export default createRouter({
     },
     {
       component: CheckouteView,
-      path: '/CheckouteView'
+      path: '/CheckoutView'
     }
   ]
 })
