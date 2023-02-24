@@ -34,9 +34,11 @@ https://stackoverflow.com/questions/19414856/how-can-i-make-all-images-of-differ
 
   <div class="container">
     <div class="columns">
-      <div class="row">
+      <div class="rows">
         <div class="center-p" id="p-men">
-          <p>Men</p>
+          <button @click="navigateToCategory" class="navigate-button">
+            Men
+          </button>
           <img
             @click="navigateToCategory($event)"
             :src="categoryMen"
@@ -45,7 +47,9 @@ https://stackoverflow.com/questions/19414856/how-can-i-make-all-images-of-differ
         </div>
         <div>
           <div class="center-p" id="p-women">
-            <p>Women</p>
+            <button @click="navigateToCategory" class="navigate-button">
+              Women
+            </button>
             <img
               @click="navigateToCategory($event)"
               :src="categoryWomen"
@@ -54,10 +58,12 @@ https://stackoverflow.com/questions/19414856/how-can-i-make-all-images-of-differ
           </div>
         </div>
       </div>
-      <div id="space-img" class="row">
+      <div id="space-img" class="rows">
         <div>
           <div class="center-p" id="p-equipment">
-            <p>Equipment</p>
+            <button @click="navigateToCategory" class="navigate-button">
+              Equipment
+            </button>
             <img
               id="image-e"
               @click="navigateToCategory($event)"
@@ -67,7 +73,9 @@ https://stackoverflow.com/questions/19414856/how-can-i-make-all-images-of-differ
           </div>
         </div>
         <div class="center-p" id="p-shoes">
-          <p>Shoes</p>
+          <button @click="navigateToCategory" class="navigate-button">
+            Shoes
+          </button>
           <img
             @click="navigateToCategory($event)"
             :src="categoryShoes"
@@ -95,21 +103,27 @@ https://stackoverflow.com/questions/19414856/how-can-i-make-all-images-of-differ
     max-width: 100%;
   }
 
-  p {
+  .navigate-button {
     position: absolute;
     color: rgb(244, 240, 240);
     margin-top: 110px;
     opacity: 0.9;
     padding: 4px;
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+    border: none;
+    border-radius: 5px;
   }
 
   .center-p {
     display: flex;
     justify-content: center;
+    margin-bottom: 15px;
+    margin-right: 5px;
+    margin-left: 5px;
+    border-radius: 5px;
   }
 
-  .row {
+  .rows {
     display: grid;
     grid-template-columns: 1fr 1fr;
   }
@@ -125,14 +139,15 @@ https://stackoverflow.com/questions/19414856/how-can-i-make-all-images-of-differ
 
   img {
     object-fit: cover;
-    margin-bottom: 15px;
     width: 1100px;
     height: 300px;
+    cursor: pointer;
+    border-radius: 5px;
   }
 
-  img:hover {
+  .center-p:hover {
     box-shadow: 0 10px 30px 0 rgba(2, 84, 44, 0.594);
-    transition: 0.7s;
+    transition: 0.4s;
   }
 
   .container {
