@@ -62,7 +62,7 @@
 
 <template>
   <main>
-    <p id="page-direction">Hem / Produkter</p>
+    <p id="page-direction">Home / Products</p>
     <img
       id="product-intro-image"
       src="/assets/roland-losslein-X7Res52lR3c-unsplash.jpg"
@@ -71,7 +71,7 @@
     <div id="main-products-container">
       <div id="product-selection-container">
         <div class="filter-container">
-          <h3 style="margin-top: 0px">Storlek</h3>
+          <h3 style="margin-top: 0px">Size</h3>
 
           <div class="checkbox-container">
             <input v-model="XS" type="checkbox" value="XS" name="size" />
@@ -102,11 +102,11 @@
           class="filter-container filter-container-mobile"
           style="margin-bottom: 20px"
         >
-          <h3>Pris</h3>
+          <h3>Price</h3>
           <ChildComponent />
         </div>
         <div class="filter-container">
-          <h3>Färg</h3>
+          <h3>Color</h3>
           <div class="checkbox-container">
             <input type="checkbox" value="blue" name="color" />
             <label for="sizeXSmall" /> Blue
