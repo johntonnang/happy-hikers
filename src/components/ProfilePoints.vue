@@ -61,7 +61,6 @@
 </template>
 
 <style>
-
   #points-container {
     padding: 15px;
     display: flex;
