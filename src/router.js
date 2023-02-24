@@ -7,6 +7,7 @@ import CartView from './views/CartView.vue'
 import ProductCatalog from './views/ProductCatalogView.vue'
 import ProductView from './views/ProductView.vue'
 import SandboxView from './views/SandboxView.vue'
+import CheckouteView from './views/CheckoutView.vue'
 
 export default createRouter({
   history: createWebHashHistory(),
@@ -42,6 +43,10 @@ export default createRouter({
     {
       component: SandboxView,
       path: '/SandboxView'
+    },
+    {
+      component: CheckouteView,
+      path: '/CheckouteView'
     }
   ]
 })
