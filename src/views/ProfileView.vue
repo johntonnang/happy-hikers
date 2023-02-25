@@ -156,10 +156,10 @@
 
   @media (max-width: 1200px) {
     #menu-container {
-      width: 50%;
+      width: 45%;
     }
     #order-container {
-      width: 50%;
+      width: 55%;
     }
     .prev-order-container {
       width: 90%;
@@ -168,10 +168,38 @@
 
   @media (max-width: 960px) {
     #menu-container {
-      width: 25%;
+      width: 50%;
     }
     #order-container {
-      width: 75%;
+      width: 50%;
+    }
+
+    .discount-container-box {
+      scale: 0.9;
+      width: 50%;
+      height: 320px;
+      margin-top: 0px;
+    }
+  }
+  @media (max-width: 760px) {
+    #main-container {
+      flex-direction: column;
+    }
+
+    #menu-container {
+      width: 100%;
+      margin: 0 auto;
+      order: 2;
+    }
+
+    #order-container {
+      width: 100%;
+      margin-left: 0px;
+      padding: 15px 15px 15px 15px;
+      order: 1;
+    }
+    .discount-container-box img {
+      height: 60%;
     }
   }
 </style>

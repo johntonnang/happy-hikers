@@ -34,7 +34,7 @@
       <div class="align-content-mobile">
         <div class="product-title-rating">
           <div style="display: flex">
-            <!--  <span
+            <!-- <span
               v-for="color in product.colors"
               :key="color"
               class="color-circle-one"
@@ -54,7 +54,7 @@
     <div class="align-content-mobile">
       <div class="product-title-rating">
         <div style="display: flex">
-          <!--  <span
+          <!-- <span
               v-for="color in product.colors"
               :key="color"
               class="color-circle-one"
@@ -91,6 +91,7 @@
   .product-box:hover {
     box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.202);
     border-radius: 5px;
+    cursor: pointer;
   }
   .product-box img {
     max-width: 300px;
@@ -134,10 +135,8 @@
       display: flex;
     }
     .product-box img {
-      max-width: 300px;
-      max-height: 350px;
-      width: 250px;
-      height: 250px;
+      max-width: 175px;
+      max-height: 175px;
       object-fit: cover;
       transition: all 0.4;
       border-top-left-radius: 5px;

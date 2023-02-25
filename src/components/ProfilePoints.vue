@@ -116,4 +116,33 @@
     text-align: left;
     font-weight: 600;
   }
+
+  @media (max-width: 1100px) {
+    .bar-profile-active,
+    .bar-profile-unactive {
+      width: 65px;
+    }
+  }
+
+  @media (max-width: 960px) {
+    .bar-profile-active,
+    .bar-profile-unactive {
+      width: 45px;
+    }
+  }
+
+  @media (max-width: 760px) {
+    #points-container {
+      padding: 0px 15px 15px 15px;
+      align-items: flex-start;
+    }
+
+    #points-container h2 {
+      margin-bottom: 15px;
+    }
+    .bar-profile-active,
+    .bar-profile-unactive {
+      width: 45px;
+    }
+  }
 </style>

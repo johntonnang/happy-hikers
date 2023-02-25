@@ -136,4 +136,10 @@
       width: 40%;
     }
   }
+
+  @media (max-width: 760px) {
+    #login-container {
+      width: 85%;
+    }
+  }
 </style>
