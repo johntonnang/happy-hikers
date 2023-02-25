@@ -6,7 +6,8 @@
   export default {
     data() {
       return {
-        loginSuccesfull: false
+        loginSuccesfull: false,
+        userName: ''
       }
     },
     components: {
@@ -14,6 +15,9 @@
       ProfileMenu,
       ProfilePoints,
       LoginProfile
+    },
+    created() {
+      this.userName = localStorage.getItem('name')
     }
   }
 </script>
@@ -52,9 +56,7 @@
         <ProfileMenu />
       </div>
       <div ref="content" id="order-container">
-        <h1 style="font-weight: 800">
-          Hej Slobodan Vladislavus Larva Dick Robin Lidvall!
-        </h1>
+        <h1 style="font-weight: 800">Hej {{ userName }}!</h1>
         <h3>Dina tidigare beställningar:</h3>
         <PreviousOrders />
         <h1>Vill du returnera en vara? Synd. Det får du inte.</h1>

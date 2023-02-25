@@ -1,24 +1,58 @@
 <script>
+  import BecomeMember from '../components/BecomeMember.vue'
+
   export default {
+    components: {
+      BecomeMember
+    },
     data() {
       return {
         loginSuccesfull: false,
-        usernameInput: 'Slobodan_Vladisalvus_Larva_Robin_Lidvall@gmail.com',
-        passwordInput: 'asdf1234'
+        EmailInput: '',
+        passwordInput: '',
+        becomeMember: false,
+        loginMember: true,
+        existingUser: true,
+        failedInput: false,
+        loadingIcon: false
       }
     },
     methods: {
       loginProfile() {
-        this.loginSuccesfull = true
-        this.$emit('login-success', this.loginSuccesfull)
+        this.loadingIcon = true
+        this.failedInput = false
+        setTimeout(() => {
+          const email = localStorage.getItem('username')
+          const password = localStorage.getItem('password')
+
+          if (email === this.EmailInput && password === this.passwordInput) {
+            this.loginSuccesfull = true
+            this.failedInput = false
+          }
+          if (this.loginSuccesfull) {
+            this.$emit('login-success', this.loginSuccesfull)
+            localStorage.setItem('existing-user', this.existingUser)
+          } else {
+            this.failedInput = true
+            this.loadingIcon = false
+          }
+        }, 1500)
       }
     },
-    emits: ['login-success']
+    emits: ['login-success'],
+    created() {
+      const alreadyUser = localStorage.getItem('existing-user')
+      if (alreadyUser) {
+        this.$emit('login-success', this.loginSuccesfull)
+        this.becomeMember = false
+        this.loginMember = true
+      }
+    }
   }
 </script>
 
 <template>
-  <div v-if="!loginSuccesfull" id="login-container">
+  <div v-if="!loginSuccesfull && loginMember" id="login-container">
     <div id="login-content">
       <div id="exit-login-container">
         <h2>Logga in</h2>
@@ -28,7 +62,7 @@
       </p>
       <div class="input-container">
         <label for="username" /> E-postadress *
-        <input class="input-field" v-model="usernameInput" name="username" />
+        <input class="input-field" v-model="EmailInput" name="username" />
       </div>
       <div class="input-container">
         <label for="username" /> Lösenord *
@@ -39,17 +73,29 @@
           name="password"
         />
       </div>
+      <p style="color: rgb(219, 15, 15)" v-if="failedInput">
+        Wrong email address or password, please try again.
+      </p>
       <div class="checkbox-container">
         <input type="checkbox" name="remember-me" />
         <label for="remember-me" /> Kom ihåg mig
       </div>
       <div id="profile-btn-container">
-        <button id="login-btn" @click="loginProfile">Logga in</button>
-        <button id="member-btn">Bli medlem</button>
+        <button id="login-btn" @click="loginProfile">
+          <div class="loader" v-if="loadingIcon" />
+          <span v-else>Log in</span>
+        </button>
+        <button
+          id="member-btn"
+          @click=";(becomeMember = true), (loginMember = false)"
+        >
+          Become Member
+        </button>
       </div>
       <p style="margin: 0">Om medlemskapet</p>
     </div>
   </div>
+  <BecomeMember v-if="becomeMember" />
 </template>
 <style scoped>
   #login-container {
@@ -110,12 +156,33 @@
     color: #222;
     padding: 14px 0;
     font-weight: 600;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
   }
 
   #login-btn:hover {
     cursor: pointer;
     background-color: #8fee97;
+  }
+
+  .loader {
+    border: 3px solid #e6e6e6;
+    border-radius: 50%;
+    border-top: 3px solid #0d0d0e;
+    width: 28px;
+    height: 28px;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
   }
 
   #member-btn {
