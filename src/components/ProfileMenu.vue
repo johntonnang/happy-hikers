@@ -121,9 +121,7 @@
       </svg>
     </div>
     <div v-if="openMenuTestBool" id="contact-info-container">
-      <a href="https://maximument.com/"
-        >https://maximument.com/</a
-      >
+      <a href="https://maximument.com/">https://maximument.com/</a>
     </div>
     <div class="option-container" @click="openMenuContact()">
       <h4 style="margin-bottom: 0px">Kontakta oss</h4>
