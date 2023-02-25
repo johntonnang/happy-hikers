@@ -137,10 +137,9 @@
       padding: 10px 25px 10px 25px;
     }
 
-    .prev-order-container h4{
+    .prev-order-container h4 {
       margin-bottom: 16px;
       margin-top: 7px;
-
     }
   }
 </style>
