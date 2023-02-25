@@ -25,7 +25,7 @@
       @login-success="loginSuccesfull = true"
     />
     <div v-if="loginSuccesfull" id="main-container">
-      <div id="menu-container">
+      <div ref="content" id="menu-container">
         <ProfilePoints />
         <div id="discount-container">
           <div class="discount-container-box">
@@ -51,7 +51,7 @@
         </div>
         <ProfileMenu />
       </div>
-      <div id="order-container">
+      <div ref="content" id="order-container">
         <h1 style="font-weight: 800">
           Hej Slobodan Vladislavus Larva Dick Robin Lidvall!
         </h1>
