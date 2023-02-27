@@ -258,7 +258,7 @@
       }
 
       .navbar-menu.active {
-        top: -1500%;
+        top: -2000%;
       }
     }
 
