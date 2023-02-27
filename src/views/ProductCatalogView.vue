@@ -12,14 +12,20 @@
     },
     data() {
       return {
-        XS: false,
-        S: false,
-        M: false,
-        L: false,
-        XL: false,
-        XXL: false,
+        colors: {
+          blue: false,
+          red: false,
+          green: false,
+          yellow: false,
+          black: false,
+          white: false,
+          brown: false
+        },
+        colorFilter: ['showAll'],
         products: null,
-        category: this.$route.params.category
+        showProducts: [],
+        category: this.$route.params.category,
+        newerData: false
       }
     },
     components: {
@@ -43,12 +49,38 @@
             }
           })
       }
+      // newerData() {
+      //   if (this.newerData === true) {
+      //     if (this.colorFilter[0] === 'showAll') {
+      //     } else {
+      //       this.showProducts = []
+      //       for (let productId in this.products) {
+      //         for (let color in this.colorFilter) {
+      //           console.log('hej' + color)
+      //           if (
+      //             this.products[productId].colors.includes(
+      //               this.colorFilter[color]
+      //             )
+      //           ) {
+      //             if (this.colors[this.colorFilter[color]] === false) {
+      //               this.showProducts.push(this.products[productId])
+      //             } else {
+      //               this.showProducts.splice(productId, 1)
+      //             }
+      //           }
+      //         }
+      //       }
+      //     }
+      //     this.newerData = false
+      //   }
+      // }
     },
     created() {
       fetch('/assets/api.JSON')
         .then((response) => response.json())
         .then((result) => {
           this.products = result
+          this.showProducts = this.products
           console.log(result)
         })
     },
@@ -60,6 +92,79 @@
             this.productsSearch.push(this.products[i])
           }
         }
+      },
+      addColor(color) {
+        if (this.colors[color] === false) {
+          if (this.colorFilter[0] === 'showAll') {
+            this.showProducts = this.products
+            this.colorFilter = [color]
+          } else {
+            this.colorFilter.push(color)
+          }
+          this.showProducts = []
+          for (let productId in this.products) {
+            for (let color in this.colorFilter) {
+              if (
+                this.products[productId].colors.includes(
+                  this.colorFilter[color]
+                )
+              ) {
+                this.showProducts.push(this.products[productId])
+              }
+            }
+          }
+        } else if (this.colors[color] === true) {
+          for (let i in this.colorFilter) {
+            if (this.colorFilter[i] === color) {
+              this.colorFilter.splice(i, 1)
+              if (this.colorFilter.length === 0) {
+                this.colorFilter = ['showAll']
+              }
+            }
+          }
+          if (this.colorFilter[0] === 'showAll') {
+            this.showProducts = this.products
+          } else {
+            this.showProducts = []
+            for (let productId in this.products) {
+              for (let color in this.colorFilter) {
+                if (
+                  this.products[productId].colors.includes(
+                    this.colorFilter[color]
+                  )
+                ) {
+                  this.showProducts.push(this.products[productId])
+                }
+              }
+            }
+          }
+        }
+        // console.log(this.colors[color])
+        // let currentColor = color
+        // if (this.colorFilter[0] === 'showAll') {
+        //   this.colorFilter = []
+        //   this.showProducts = this.products
+        //   console.log('1')
+        // }
+        // if (this.colors[color] === false) {
+        //   if (this.colorFilter[0] === 'showAll') {
+        //     this.colorFilter = []
+        //     this.showProducts = this.products
+        //     console.log('1')
+        //   }
+        //   this.colorFilter.push(color)
+        // } else {
+        //   console.log('2')
+        // for (let i in this.colorFilter) {
+        //   if (this.colorFilter[i] === currentColor) {
+        //     this.colorFilter.splice(i, 1)
+        //     if (this.colorFilter.length === 0) {
+        //       this.colorFilter = ['showAll']
+        //     }
+        //   }
+        //   }
+        // }
+        // this.newerData = true
       }
     },
     computed: {
@@ -84,55 +189,101 @@
           <h3 style="margin-top: 0px">Size</h3>
 
           <div class="checkbox-container">
-            <input v-model="XS" type="checkbox" value="XS" name="size" />
+            <input type="checkbox" value="XS" name="size" />
             <label for="sizeXSmall" /> XS
           </div>
           <div class="checkbox-container">
-            <input v-model="S" type="checkbox" value="S" name="size" checked />
+            <input type="checkbox" value="S" name="size" checked />
             <label for="sizeSmall" /> S
           </div>
           <div class="checkbox-container">
-            <input v-model="M" type="checkbox" value="M" name="size" />
+            <input type="checkbox" value="M" name="size" />
             <label for="sizeMedium" /> M
           </div>
           <div class="checkbox-container">
-            <input v-model="L" type="checkbox" value="L" name="size" />
+            <input type="checkbox" value="L" name="size" />
             <label for="sizeLarge" /> L
           </div>
           <div class="checkbox-container">
-            <input v-model="XL" type="checkbox" value="XL" name="size" />
+            <input type="checkbox" value="XL" name="size" />
             <label for="sizeXLarge" /> XL
           </div>
           <div class="checkbox-container">
-            <input v-model="XXL" type="checkbox" value="XXL" name="size" />
+            <input type="checkbox" value="XXL" name="size" />
             <label for="sizeXXLarge" /> XXL
           </div>
         </div>
         <div class="filter-container">
           <h3>Color</h3>
           <div class="checkbox-container">
-            <input type="checkbox" value="blue" name="color" />
+            <input
+              type="checkbox"
+              value="blue"
+              v-model="colors.blue"
+              name="color"
+              @click="addColor('blue')"
+            />
             <label for="sizeXSmall" /> Blue
           </div>
           <div class="checkbox-container">
-            <input type="checkbox" value="red" name="color" checked />
+            <input
+              type="checkbox"
+              value="red"
+              v-model="colors.red"
+              name="color"
+              @click="addColor('red')"
+            />
             <label for="sizeSmall" /> Red
           </div>
           <div class="checkbox-container">
-            <input type="checkbox" value="green" name="color" />
+            <input
+              type="checkbox"
+              value="green"
+              v-model="colors.green"
+              name="color"
+              @click="addColor('green')"
+            />
             <label for="sizeMedium" /> Green
           </div>
           <div class="checkbox-container">
-            <input type="checkbox" value="yellow" name="color" />
+            <input
+              type="checkbox"
+              value="yellow"
+              v-model="colors.yellow"
+              name="color"
+              @click="addColor('yellow')"
+            />
             <label for="sizeLarge" /> Yellow
           </div>
           <div class="checkbox-container">
-            <input type="checkbox" value="black" name="color" />
+            <input
+              type="checkbox"
+              value="black"
+              v-model="colors.black"
+              name="color"
+              @click="addColor('black')"
+            />
             <label for="sizeXLarge" /> Black
           </div>
           <div class="checkbox-container">
-            <input type="checkbox" value="white" name="color" />
+            <input
+              type="checkbox"
+              value="white"
+              v-model="colors.white"
+              name="color"
+              @click="addColor('white')"
+            />
             <label for="sizeXXLarge" /> White
+          </div>
+          <div class="checkbox-container">
+            <input
+              type="checkbox"
+              value="brown"
+              v-model="colors.brown"
+              name="color"
+              @click="addColor('brown')"
+            />
+            <label for="sizeXXLarge" /> Brown
           </div>
         </div>
         <div
@@ -144,7 +295,11 @@
         </div>
       </div>
 
-      <product-list :products="this.products" />
+      <product-list
+        :products="this.showProducts"
+        :colors-filter="this.colorFilter"
+        :show-products="this.showProducts"
+      />
     </div>
     <h4 id="carousel-intro-text">YOU MAY ALSO LIKE</h4>
     <carousel

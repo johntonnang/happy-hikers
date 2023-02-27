@@ -5,6 +5,7 @@ https://stackoverflow.com/questions/19414856/how-can-i-make-all-images-of-differ
   export default {
     data() {
       return {
+        categoryID: this.$route.params.category,
         categoryMen:
           'https://images.unsplash.com/photo-1505866535066-ccebd6b2b98a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=589&q=80',
         categoryWomen:
@@ -15,10 +16,17 @@ https://stackoverflow.com/questions/19414856/how-can-i-make-all-images-of-differ
           'https://images.unsplash.com/photo-1509866899599-a1144f7e54ca?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80'
       }
     },
+    created() {
+      fetch('/assets/api.JSON')
+        .then((response) => response.json())
+        .then((result) => {
+          this.products = result
+          console.log(result)
+        })
+    },
     methods: {
-      navigateToCategory() {
-        this.$router.push('/ProductCatalog')
-        // this.$router.push('/' + e.target.value)
+      navigateToCategory(category) {
+        this.$router.push('/ProductCatalog/' + category)
       },
       scrollDown() {
         this.$refs['bottom'].scrollIntoView({
@@ -36,22 +44,28 @@ https://stackoverflow.com/questions/19414856/how-can-i-make-all-images-of-differ
     <div class="columns">
       <div class="rows">
         <div class="center-p" id="p-men">
-          <button @click="navigateToCategory" class="navigate-button">
+          <button
+            @click="navigateToCategory(`men's%20jacket`)"
+            class="navigate-button"
+          >
             Men
           </button>
           <img
-            @click="navigateToCategory($event)"
+            @click="navigateToCategory(`men's%20jacket`)"
             :src="categoryMen"
             alt="Picture of a man"
           />
         </div>
         <div>
           <div class="center-p" id="p-women">
-            <button @click="navigateToCategory" class="navigate-button">
+            <button
+              @click="navigateToCategory(`women's%20jacket`)"
+              class="navigate-button"
+            >
               Women
             </button>
             <img
-              @click="navigateToCategory($event)"
+              @click="navigateToCategory(`women's%20jacket`)"
               :src="categoryWomen"
               alt="Picture of a woman"
             />
@@ -61,23 +75,26 @@ https://stackoverflow.com/questions/19414856/how-can-i-make-all-images-of-differ
       <div id="space-img" class="rows">
         <div>
           <div class="center-p" id="p-equipment">
-            <button @click="navigateToCategory" class="navigate-button">
+            <button
+              @click="navigateToCategory(`backpack`)"
+              class="navigate-button"
+            >
               Equipment
             </button>
             <img
               id="image-e"
-              @click="navigateToCategory($event)"
+              @click="navigateToCategory(`backpack`)"
               :src="categoryEquipment"
               alt="Picture of equipment"
             />
           </div>
         </div>
         <div class="center-p" id="p-shoes">
-          <button @click="navigateToCategory" class="navigate-button">
+          <button @click="navigateToCategory(`shoes`)" class="navigate-button">
             Shoes
           </button>
           <img
-            @click="navigateToCategory($event)"
+            @click="navigateToCategory(`shoes`)"
             :src="categoryShoes"
             alt="Picture of shoes"
           />

@@ -4,7 +4,7 @@
     "name": "PeakQuest",
     "price": 1599,
     "description": "A high-performance alpine shoe with integrated crampons and powerful grip, making it ideal for technical climbing and icy mountain terrain.",
-    "colors": ["red", "blue", "yellow"],
+    "colors": ["yellow"],
     "category": "Shoes",
     "image": "/assets/apiImg/PeakQuest.png",
     "rating": {
@@ -17,7 +17,7 @@
     "name": "TrailTrekker",
     "price": 915,
     "description": "A versatile hiking shoe with a durable and breathable mesh upper, flexible sole, and responsive cushioning for comfort and support on a variety of terrains.",
-    "colors": ["pink", "green"],
+    "colors": ["black"],
     "category": "Shoes",
     "image": "/assets/apiImg/TrailTrekker.png",
     "rating": {
@@ -30,7 +30,7 @@
     "name": "PeakPacer",
     "price": 1200,
     "description": "great outerwear jackets for Spring/Autumn/Winter, suitable for many occasions, such as working, hiking, camping, mountain/rock climbing, cycling, traveling or other outdoors. Good gift choice for you or your family member. A warm hearted love to Father, husband or son in this thanksgiving or Christmas Day.",
-    "colors": ["red", "blue", "yellow"],
+    "colors": ["black", "blue"],
     "category": "Shoes",
     "image": "/assets/apiImg/PeakPacer.png",
     "rating": {
@@ -43,7 +43,7 @@
     "name": "FlowTraverse",
     "price": 1500,
     "description": "A waterproof trail shoe with a lightweight and nimble design, designed to offer comfort and stability during running on uneven surfaces.",
-    "colors": ["red", "blue", "yellow"],
+    "colors": ["brown", "black"],
     "category": "Shoes",
     "image": "/assets/apiImg/FlowTraverse.png",
     "rating": {
@@ -56,7 +56,7 @@
     "name": "Roamer",
     "price": 1500,
     "description": "The Wildfire Roamer Trail Shoe is a durable hiking shoe with a breathable mesh upper, rubber outsole for traction, EVA midsole for support and comfort, and reinforced toe cap for protection. Ideal for off-road adventures.",
-    "colors": ["red", "blue", "yellow"],
+    "colors": ["black"],
     "category": "Shoes",
     "image": "/assets/apiImg/Roamer.png",
     "rating": {
@@ -70,7 +70,7 @@
     "name": "TrekTote",
     "price": 495,
     "description": "A compact backpack with a waterproof main compartment and a roll-top closure, perfect for water sports and outdoor activities in wet environments.",
-    "colors": ["red", "blue", "yellow"],
+    "colors": ["black", "blue"],
     "category": "Backpack",
     "image": "/assets/apiImg/TrekTote.png",
     "rating": {
@@ -83,7 +83,7 @@
     "name": "SummitStrider",
     "price": 955,
     "description": "A large, mountaineering backpack with an adjustable frame, padded hip belt, and ample storage space for gear and supplies needed for extended outdoor adventures.",
-    "colors": ["red", "blue", "yellow"],
+    "colors": ["black"],
     "category": "Backpack",
     "image": "/assets/apiImg/SummitStrider.png",
     "rating": {
@@ -96,7 +96,7 @@
     "name": "TrailSeeker",
     "price": 1100,
     "description": "A compact backpack with a waterproof main compartment and a roll-top closure, perfect for water sports and outdoor activities in wet environments.",
-    "colors": ["red", "blue", "yellow"],
+    "colors": ["black"],
     "category": "Backpack",
     "image": "/assets/apiImg/TrailSeeker.png",
     "rating": {
@@ -109,7 +109,7 @@
     "name": "TrailBlazer",
     "price": 1130,
     "description": "A lightweight backpack with multiple pockets and attachment points for gear and hydration, designed for day hikes and trail running.",
-    "colors": ["red", "blue", "yellow"],
+    "colors": ["black"],
     "category": "Backpack",
     "image": "/assets/apiImg/TrailBlazer.png",
     "rating": {
@@ -122,7 +122,7 @@
     "name": "SummitShield",
     "price": 64,
     "description": "A high-performance mountaineering jacket with a waterproof and breathable Gore-Tex shell, adjustable hood and cuffs, and multiple pockets for gear.",
-    "colors": ["red", "blue", "yellow"],
+    "colors": ["blue"],
     "category": "Men's jacket",
     "image": "/assets/apiImg/SummitShield.png",
     "rating": {
@@ -134,7 +134,7 @@
     "id": 11,
     "name": "TrailBlaze",
     "price": 109,
-    "colors": ["red", "blue", "yellow"],
+    "colors": ["black"],
     "description": "A lightweight and breathable hiking jacket with moisture-wicking fabric, ventilated panels, and adjustable features for optimal comfort and protection.",
     "category": "Men's jacket",
     "image": "/assets/apiImg/TrailBlaze.png",
@@ -148,7 +148,7 @@
     "name": "Ridgeback",
     "price": 64,
     "description": "A high-performance mountaineering jacket with a waterproof and breathable Gore-Tex shell, adjustable hood and cuffs, and multiple pockets for gear.",
-    "colors": ["red", "blue", "yellow"],
+    "colors": ["brown"],
     "category": "Men's jacket",
     "image": "/assets/apiImg/Ridgeback.png",
     "rating": {
@@ -161,7 +161,7 @@
     "name": "Mountaineer",
     "price": 109,
     "description": "A lightweight and breathable hiking jacket with moisture-wicking fabric, ventilated panels, and adjustable features for optimal comfort and protection.",
-    "colors": ["red", "blue", "yellow"],
+    "colors": ["green"],
     "category": "Men's jacket",
     "image": "/assets/apiImg/Mountaineer.png",
     "rating": {
@@ -174,7 +174,7 @@
     "name": "Pathfinder",
     "price": 109,
     "description": "A lightweight and breathable hiking jacket with moisture-wicking fabric, ventilated panels, and adjustable features for optimal comfort and protection.",
-    "colors": ["red", "blue", "yellow"],
+    "colors": ["blue"],
     "category": "Men's jacket",
     "image": "/assets/apiImg/Pathfinder.png",
     "rating": {
@@ -187,7 +187,7 @@
     "name": "NordicExplorer",
     "price": 109,
     "description": "A lightweight and packable shell jacket that's perfect for alpine climbing and mountaineering. Made with a waterproof and breathable membrane, this jacket features pit zips for ventilation and a removable hood.",
-    "colors": ["red", "blue", "yellow"],
+    "colors": ["blue"],
     "category": "Women's jacket",
     "image": "/assets/apiImg/NordicExplorer.png",
     "rating": {
@@ -196,11 +196,11 @@
     }
   },
   {
-    "id": 15,
+    "id": 16,
     "name": "DesertExplorer",
     "price": 109,
     "description": "A lightweight and breathable jacket that's perfect for warm weather adventures. Made with moisture-wicking materials, this jacket features mesh ventilation and a zippered chest pocket.",
-    "colors": ["red", "blue", "yellow"],
+    "colors": ["blue"],
     "category": "Women's jacket",
     "image": "/assets/apiImg/DesertExplorer.png",
     "rating": {
@@ -209,11 +209,11 @@
     }
   },
   {
-    "id": 16,
+    "id": 17,
     "name": "MountainMajesty",
     "price": 109,
     "description": "A warm and stylish parka that's perfect for winter adventures. Made with wind-resistant and water-repellent materials, this jacket features a faux-fur trimmed hood and multiple pockets for storage.",
-    "colors": ["red", "blue", "yellow"],
+    "colors": ["black"],
     "category": "Women's jacket",
     "image": "/assets/apiImg/MountainMajesty.png",
     "rating": {
@@ -222,11 +222,11 @@
     }
   },
   {
-    "id": 17,
+    "id": 18,
     "name": "ForestRanger",
     "price": 109,
     "description": "A waterproof and breathable jacket that's perfect for rainy days on the trail. Made with sealed seams and adjustable cuffs, this jacket features a hood and a zippered chest pocket.",
-    "colors": ["red", "blue", "yellow"],
+    "colors": ["blue"],
     "category": "Women's jacket",
     "image": "/assets/apiImg/ForestRanger.png",
     "rating": {
