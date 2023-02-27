@@ -34,32 +34,31 @@
         <div id="discount-container">
           <div class="discount-container-box">
             <img src="/assets/snel-hezt.jpg" alt="" />
-            <h3>Medlemmar får 20% på linnement för hästar!</h3>
-            <p>Giltig till och med: 17/11-2023</p>
+            <h3>Members get 20% off liniment for horses!</h3>
+            <p>Valid until: 17/11-2023</p>
           </div>
           <div class="discount-container-box">
             <img src="/assets/snel-hezt.jpg" alt="" />
-            <h3>Medlemmar får 20% på linnement för hästar!</h3>
-            <p>Giltig till och med: 17/11-2023</p>
+            <h3>Members get 20% off liniment for horses!</h3>
+            <p>Valid until: 17/11-2023</p>
           </div>
           <div class="discount-container-box">
             <img src="/assets/snel-hezt.jpg" alt="nej" />
-            <h3>Medlemmar får 20% på linnement för hästar!</h3>
-            <p>Giltig till och med: 17/11-2023</p>
+            <h3>Members get 20% off liniment for horses!</h3>
+            <p>Valid until: 17/11-2023</p>
           </div>
           <div class="discount-container-box">
             <img src="/assets/snel-hezt.jpg" alt="" />
-            <h3>Medlemmar får 20% på linnement för hästar!</h3>
-            <p>Giltig till och med: 17/11-2023</p>
+            <h3>Members get 20% off liniment for horses!</h3>
+            <p>Valid until: 17/11-2023</p>
           </div>
         </div>
         <ProfileMenu />
       </div>
       <div ref="content" id="order-container">
-        <h1 style="font-weight: 800">Hej {{ userName }}!</h1>
-        <h3>Dina tidigare beställningar:</h3>
+        <h1 style="font-weight: 800">Hi {{ userName }}!</h1>
+        <h3>Your previous orders:</h3>
         <PreviousOrders />
-        <h1>Vill du returnera en vara? Synd. Det får du inte.</h1>
       </div>
     </div>
   </main>

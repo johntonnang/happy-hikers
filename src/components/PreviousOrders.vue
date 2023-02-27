@@ -1,8 +1,8 @@
 <template>
   <div class="prev-order-container">
     <div class="order-content">
-      <h4>Beställning</h4>
-      <p style="margin-left: 2px">5 antal varor</p>
+      <h4>Order</h4>
+      <p style="margin-left: 2px">5 items</p>
     </div>
     <div class="order-content">
       <p>1337,50kr</p>
@@ -24,8 +24,8 @@
   </div>
   <div class="prev-order-container">
     <div class="order-content">
-      <h4>Beställning</h4>
-      <p>5 antal varor</p>
+      <h4>Order</h4>
+      <p>5 items</p>
     </div>
     <div class="order-content">
       <p>1337,50kr</p>
@@ -47,8 +47,8 @@
   </div>
   <div class="prev-order-container">
     <div class="order-content">
-      <h4>Beställning</h4>
-      <p>5 antal varor</p>
+      <h4>Order</h4>
+      <p>5 items</p>
     </div>
     <div class="order-content">
       <p>1337,50kr</p>
@@ -70,8 +70,8 @@
   </div>
   <div class="prev-order-container">
     <div class="order-content">
-      <h4>Beställning</h4>
-      <p>5 antal varor</p>
+      <h4>Order</h4>
+      <p>5 items</p>
     </div>
     <div class="order-content">
       <p>1337,50kr</p>
