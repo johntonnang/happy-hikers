@@ -49,31 +49,6 @@
             }
           })
       }
-      // newerData() {
-      //   if (this.newerData === true) {
-      //     if (this.colorFilter[0] === 'showAll') {
-      //     } else {
-      //       this.showProducts = []
-      //       for (let productId in this.products) {
-      //         for (let color in this.colorFilter) {
-      //           console.log('hej' + color)
-      //           if (
-      //             this.products[productId].colors.includes(
-      //               this.colorFilter[color]
-      //             )
-      //           ) {
-      //             if (this.colors[this.colorFilter[color]] === false) {
-      //               this.showProducts.push(this.products[productId])
-      //             } else {
-      //               this.showProducts.splice(productId, 1)
-      //             }
-      //           }
-      //         }
-      //       }
-      //     }
-      //     this.newerData = false
-      //   }
-      // }
     },
     created() {
       fetch('/assets/api.JSON')
@@ -104,12 +79,17 @@
           this.showProducts = []
           for (let productId in this.products) {
             for (let color in this.colorFilter) {
+              console.log(this.showProducts.includes(this.products[productId]))
               if (
                 this.products[productId].colors.includes(
                   this.colorFilter[color]
                 )
               ) {
-                this.showProducts.push(this.products[productId])
+                if (
+                  this.showProducts.includes(this.products[productId]) === false
+                ) {
+                  this.showProducts.push(this.products[productId])
+                }
               }
             }
           }
@@ -139,32 +119,6 @@
             }
           }
         }
-        // console.log(this.colors[color])
-        // let currentColor = color
-        // if (this.colorFilter[0] === 'showAll') {
-        //   this.colorFilter = []
-        //   this.showProducts = this.products
-        //   console.log('1')
-        // }
-        // if (this.colors[color] === false) {
-        //   if (this.colorFilter[0] === 'showAll') {
-        //     this.colorFilter = []
-        //     this.showProducts = this.products
-        //     console.log('1')
-        //   }
-        //   this.colorFilter.push(color)
-        // } else {
-        //   console.log('2')
-        // for (let i in this.colorFilter) {
-        //   if (this.colorFilter[i] === currentColor) {
-        //     this.colorFilter.splice(i, 1)
-        //     if (this.colorFilter.length === 0) {
-        //       this.colorFilter = ['showAll']
-        //     }
-        //   }
-        //   }
-        // }
-        // this.newerData = true
       }
     },
     computed: {
