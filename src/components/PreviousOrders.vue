@@ -118,4 +118,28 @@
     color: #5a5a5a;
     margin-top: 10px;
   }
+
+  @media (max-width: 1600px) {
+    .prev-order-container {
+      width: 90%;
+    }
+  }
+
+  @media (max-width: 960px) {
+    .prev-order-container {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 760px) {
+    .prev-order-container {
+      width: 100%;
+      padding: 10px 25px 10px 25px;
+    }
+
+    .prev-order-container h4 {
+      margin-bottom: 16px;
+      margin-top: 7px;
+    }
+  }
 </style>

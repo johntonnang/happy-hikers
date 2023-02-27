@@ -5,6 +5,11 @@
   import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
 
   export default {
+    mounted() {
+      window.addEventListener('resize', () => {
+        this.$forceUpdate()
+      })
+    },
     data() {
       return {
         colors: {
@@ -161,13 +166,18 @@
         // }
         // this.newerData = true
       }
+    },
+    computed: {
+      itemsToShow() {
+        return window.innerWidth < 760 ? 1 : 3
+      }
     }
   }
 </script>
 
 <template>
   <main>
-    <p id="page-direction">Hem / Produkter</p>
+    <p id="page-direction">Home / Products</p>
     <img
       id="product-intro-image"
       src="/assets/roland-losslein-X7Res52lR3c-unsplash.jpg"
@@ -176,7 +186,7 @@
     <div id="main-products-container">
       <div id="product-selection-container">
         <div class="filter-container">
-          <h3 style="margin-top: 0px">Storlek</h3>
+          <h3 style="margin-top: 0px">Size</h3>
 
           <div class="checkbox-container">
             <input type="checkbox" value="XS" name="size" />
@@ -203,15 +213,8 @@
             <label for="sizeXXLarge" /> XXL
           </div>
         </div>
-        <div
-          class="filter-container filter-container-mobile"
-          style="margin-bottom: 20px"
-        >
-          <h3>Pris</h3>
-          <ChildComponent />
-        </div>
         <div class="filter-container">
-          <h3>Färg</h3>
+          <h3>Color</h3>
           <div class="checkbox-container">
             <input
               type="checkbox"
@@ -283,6 +286,13 @@
             <label for="sizeXXLarge" /> Brown
           </div>
         </div>
+        <div
+          class="filter-container filter-container-mobile"
+          style="margin-bottom: 20px"
+        >
+          <h3>Price</h3>
+          <ChildComponent />
+        </div>
       </div>
 
       <product-list
@@ -291,8 +301,12 @@
         :show-products="this.showProducts"
       />
     </div>
-
-    <carousel class="carousel-container" :items-to-show="3" :wrap-around="true">
+    <h4 id="carousel-intro-text">YOU MAY ALSO LIKE</h4>
+    <carousel
+      class="carousel-container"
+      :items-to-show="itemsToShow"
+      :wrap-around="true"
+    >
       <slide :key="101">
         <img src="/assets/hiking-jacket-man-1.png" alt="" />
         <button class="explore-btn">Explore</button>
@@ -371,6 +385,8 @@
     color: #424242;
     font-weight: 600;
     margin-bottom: 5px;
+    display: flex;
+    gap: 3px;
   }
 
   .filter-container {
@@ -430,8 +446,19 @@
     font-size: 2.2rem;
     margin-bottom: 0px;
   }
+
+  #carousel-intro-text {
+    text-align: center;
+    color: rgb(85, 85, 85);
+    font-weight: 400;
+    margin: 25px auto 0 auto;
+    width: 85%;
+    padding: 20px;
+    border-bottom: 1px solid rgb(114, 114, 114);
+    font-size: 1.7rem;
+  }
   .carousel-container {
-    margin: 20px auto 170px auto;
+    margin: 0px auto 170px auto;
     width: 90%;
   }
   .carousel-container img {
@@ -496,22 +523,34 @@
     .filter-container-mobile {
       width: 40%;
       text-align: center;
-    }
-
-    #product-intro-image {
-      padding-top: 5px;
-      padding-left: 5px;
-      font-size: 2rem;
+      position: relative;
     }
 
     #product-selection-container {
       width: 100%;
       display: flex;
-      justify-content: space-around;
+      flex-wrap: wrap;
       position: static;
+    }
+
+    .filter-container {
+      flex-basis: 40%;
+      margin: 0 auto;
+    }
+
+    .filter-container:nth-child(3) {
+      margin-top: 10px;
+      flex-basis: 95%;
     }
     .filter-container h3 {
       margin-top: 0px;
+    }
+
+    .carousel {
+      margin-bottom: 40px;
+    }
+    .explore-btn {
+      display: none;
     }
   }
 </style>

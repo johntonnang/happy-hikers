@@ -2,7 +2,7 @@
   export default {
     data() {
       return {
-        isActive: true,
+        isActive: false,
         searchID: '',
         products: [],
         productsSearch: [],
@@ -57,18 +57,18 @@
         <span class="bar" :class="{ 'is-active': isActive }" />
       </div>
       <div class="navbar-menu" :class="{ active: isActive }">
-        <router-link class="navbar-links" to="/Favourite"
+        <router-link @click="toggleMenu" class="navbar-links" to="/Favourite"
           ><font-awesome-icon icon="fa-regular fa-heart" />
-          <p v-if="!isActive">Wishlist</p></router-link
-        >
-        <router-link class="navbar-links" to="/Profile"
+          <!-- <p v-if="!isActive">Wishlist</p> -->
+        </router-link>
+        <router-link @click="toggleMenu" class="navbar-links" to="/Profile"
           ><font-awesome-icon icon="fa-regular fa-user" />
-          <p v-if="!isActive">Profile</p></router-link
-        >
-        <router-link class="navbar-links" to="/Cart"
+          <!-- <p v-if="!isActive">Profile</p> -->
+        </router-link>
+        <router-link @click="toggleMenu" class="navbar-links" to="/Cart"
           ><font-awesome-icon icon="fa-solid fa-cart-shopping" />
-          <p v-if="!isActive">Shopping cart</p></router-link
-        >
+          <!-- <p v-if="!isActive">Shopping cart</p> -->
+        </router-link>
       </div>
     </div>
   </nav>
@@ -95,9 +95,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 35%;
-    /* padding-left: 50px; */
-    /* padding-right: 200px; */
   }
 
   .navbar-search-field {
@@ -137,13 +134,11 @@
   #navbar-logo {
     text-decoration: none;
     cursor: pointer;
-    width: 100%;
   }
   .img-container {
-    padding-left: 40px;
     justify-content: center;
     display: flex;
-    width: 60%;
+    margin-right: 120px;
   }
   .navbar-menu {
     display: flex;
@@ -169,12 +164,8 @@
     opacity: 0.7;
   }
 
-  .navbar-menu.active {
-    width: 20%;
-  }
-
   .navbar-toggle {
-    width: 20%;
+    display: none;
   }
 
   @media screen and (max-width: 960px) {
@@ -193,23 +184,15 @@
       margin: 0;
       width: 100%;
       position: absolute;
-      z-index: -1;
+      z-index: 1;
       background: #fff;
-      top: 100px;
-      height: 50vh;
+      top: 0;
+      height: 100vh;
+      transition: all 0.4s ease-in-out;
     }
 
     .navbar-menu.active {
       top: -2000%;
-      opacity: 1;
-      z-index: 5;
-      height: 50vh;
-      font-size: 1.6rem;
-      padding: 25px;
-    }
-
-    #navbar-logo {
-      padding-right: 250px;
     }
 
     .navbar-toggle .bar {
@@ -223,21 +206,22 @@
 
     .navbar-links {
       text-align: center;
-      padding: 2rem;
       width: 100%;
-      display: table;
+      font-size: 2.5rem;
     }
 
     #mobile-menu {
+      display: inline;
       position: absolute;
-      top: 20px;
+      top: 30px;
       right: 5%;
-      transform: translate(5%, 20%);
+      transform: translate(5%, 30%);
+      z-index: 2;
+      cursor: pointer;
     }
 
     .navbar-toggle .bar {
       display: block;
-      cursor: pointer;
     }
 
     .bar:nth-child(2) {
@@ -264,35 +248,38 @@
       transform: translateY(0) rotate(0);
     }
 
-    @media screen and (max-width: 768px) and (min-width: 400px) {
+    @media screen and (max-width: 768px) {
       #navbar-logo {
-        max-width: 100%;
+        width: 100%;
       }
 
       #mobile-menu {
-        top: 20px;
+        top: 30px;
       }
 
       .navbar-menu.active {
         top: -1500%;
       }
+    }
 
-      .navbar-search {
-        margin-left: 50px;
+    @media screen and (max-width: 700px) {
+      .img-container {
+        width: 300px;
+        padding-right: 20px;
       }
     }
 
     @media screen and (max-width: 390px) {
       #navbar-logo {
         margin: 0;
-        width: 110%;
-        left: 10px;
+        left: 8px;
         top: 0;
         position: absolute;
+        width: 200px;
       }
 
       .navbar-search {
-        margin-top: 25px;
+        margin-top: 30px;
         width: 200px;
       }
 
@@ -308,7 +295,7 @@
 
       #mobile-menu {
         top: 0;
-        right: 0;
+        right: 6%;
       }
 
       .navbar-search-button {
@@ -318,13 +305,11 @@
 
       @media screen and (max-width: 375px) {
         #navbar-logo {
-          max-width: 110%;
           top: 0;
           left: 0;
         }
 
         .navbar-search-field {
-          padding-right: 170px;
           margin-left: 180px;
         }
       }

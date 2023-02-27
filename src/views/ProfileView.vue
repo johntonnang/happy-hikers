@@ -2,22 +2,34 @@
   import PreviousOrders from '../components/PreviousOrders.vue'
   import ProfileMenu from '../components/ProfileMenu.vue'
   import ProfilePoints from '../components/ProfilePoints.vue'
+  import LoginProfile from '../components/LoginProfile.vue'
   export default {
     data() {
-      return {}
+      return {
+        loginSuccesfull: false,
+        userName: ''
+      }
     },
     components: {
       PreviousOrders,
       ProfileMenu,
-      ProfilePoints
+      ProfilePoints,
+      LoginProfile
+    },
+    created() {
+      this.userName = localStorage.getItem('name')
     }
   }
 </script>
 
 <template>
   <main>
-    <div id="main-container">
-      <div id="menu-container">
+    <LoginProfile
+      v-if="!loginSuccesfull"
+      @login-success="loginSuccesfull = true"
+    />
+    <div v-if="loginSuccesfull" id="main-container">
+      <div ref="content" id="menu-container">
         <ProfilePoints />
         <div id="discount-container">
           <div class="discount-container-box">
@@ -43,8 +55,8 @@
         </div>
         <ProfileMenu />
       </div>
-      <div id="order-container">
-        <h1 style="font-weight: 800">Hej Göran!</h1>
+      <div ref="content" id="order-container">
+        <h1 style="font-weight: 800">Hej {{ userName }}!</h1>
         <h3>Dina tidigare beställningar:</h3>
         <PreviousOrders />
         <h1>Vill du returnera en vara? Synd. Det får du inte.</h1>
@@ -146,10 +158,10 @@
 
   @media (max-width: 1200px) {
     #menu-container {
-      width: 50%;
+      width: 45%;
     }
     #order-container {
-      width: 50%;
+      width: 55%;
     }
     .prev-order-container {
       width: 90%;
@@ -158,10 +170,38 @@
 
   @media (max-width: 960px) {
     #menu-container {
-      width: 25%;
+      width: 50%;
     }
     #order-container {
-      width: 75%;
+      width: 50%;
+    }
+
+    .discount-container-box {
+      scale: 0.9;
+      width: 50%;
+      height: 320px;
+      margin-top: 0px;
+    }
+  }
+  @media (max-width: 760px) {
+    #main-container {
+      flex-direction: column;
+    }
+
+    #menu-container {
+      width: 100%;
+      margin: 0 auto;
+      order: 2;
+    }
+
+    #order-container {
+      width: 100%;
+      margin-left: 0px;
+      padding: 15px 15px 15px 15px;
+      order: 1;
+    }
+    .discount-container-box img {
+      height: 60%;
     }
   }
 </style>

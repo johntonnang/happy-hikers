@@ -35,7 +35,7 @@
 
 <template>
   <main>
-    <h1>Kundvagn</h1>
+    <h1>Shopping cart</h1>
     <div class="container">
       <div class="cartBox">
         <div v-if="cartItems.length">
@@ -45,16 +45,29 @@
             :key="index"
           >
             <div class="itemRow">
-              <div><img :src="item.image" :alt="item.name" /></div>
+              <div>
+                <img class="productImg" :src="item.image" :alt="item.name" />
+              </div>
               <div class="productInfo">
                 <span class="name">{{ item.name }}</span>
+                <img
+                  class="trashImg"
+                  @click="removeItem(index)"
+                  src="/assets/trash-can-solid.svg"
+                  alt="trash can"
+                  width="20"
+                />
                 <span class="price">{{ item.price }};- </span>
                 <span class="description">{{ item.description }}</span>
-                <button @click="removeItem(index)">Remove</button>
               </div>
             </div>
           </div>
           <div class="total">Total: {{ total }}</div>
+          <div class="checkoutCointainer">
+            <RouterLink to="/CheckoutView">
+              <button class="checkout">Checkout</button>
+            </RouterLink>
+          </div>
         </div>
         <div v-else>Your cart is empty</div>
       </div>
@@ -66,23 +79,28 @@
   main {
     position: relative;
     top: 100px;
-    width: 95%;
+    width: 100%;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS',
       sans-serif;
     margin-bottom: 8rem;
   }
   main h1 {
-    margin-left: 3rem;
+    margin-left: 8rem;
   }
   .total {
     font-size: 2rem;
     display: flex;
     justify-content: end;
     align-items: flex-end;
+    margin: 2rem;
   }
   .itemRow {
     display: flex;
     flex-direction: row;
+    max-width: 90%;
+    position: relative;
+    margin-top: 1rem;
+    box-shadow: 0px 46px 130px rgba(0, 25, 64, 0.142);
   }
   .productInfo {
     display: flex;
@@ -106,7 +124,7 @@
     margin: 0.5rem;
   }
 
-  .cartItems img {
+  .productImg {
     max-width: 300px;
     max-height: 350px;
     width: 250px;
@@ -120,14 +138,52 @@
     width: 7rem;
     margin-top: 1rem;
   }
-  @media (max-width: 800px) {
-    .cartItems img {
+  .trashImg {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
+  .checkout {
+    width: 20rem;
+    color: white;
+    background-color: black;
+    border-radius: 35px;
+    border: none;
+    cursor: pointer;
+    padding: 15px 15px;
+    font-size: medium;
+    margin: 0.5rem;
+  }
+  .checkoutCointainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  @media (max-width: 600px) {
+    .productImg {
       width: 150px;
       height: 150px;
       object-fit: cover;
       transition: all 0.4;
       border-top-right-radius: 5px;
       border-top-left-radius: 5px;
+    }
+    .total {
+      font-size: 1.5rem;
+    }
+    .name {
+      font-size: 1rem;
+    }
+    .cartItems {
+      display: flex;
+      width: 100%;
+    }
+    .itemRow {
+      display: flex;
+      flex-direction: row;
+      background-color: rgb(246, 245, 245);
+      width: 90%;
+      position: relative;
     }
     .container {
       margin-top: 1rem;
@@ -136,9 +192,29 @@
     .description {
       display: none;
     }
-    .cartItems button {
-      width: 5rem;
-      margin-top: 1rem;
+  }
+  @media (max-width: 760px) {
+    .productImg {
+      object-fit: cover;
+      transition: all 0.4;
+      border-top-right-radius: 5px;
+      border-top-left-radius: 5px;
+    }
+
+    .description {
+      font-size: 12px;
+    }
+  }
+  @media (max-width: 980px) {
+    .itemRow {
+      display: flex;
+      flex-direction: row;
+      background-color: rgb(246, 245, 245);
+      max-width: 100%;
+      position: relative;
+    }
+    .container {
+      margin: none;
     }
   }
 </style>
