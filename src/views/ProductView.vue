@@ -161,13 +161,6 @@
             localStorage.setItem('Wish', JSON.stringify(wish))
           }
         }
-        // this.WishColor = 'rgba(0,0,0,0)'
-        // setTimeout(() => (this.WishText = '✓'), 350)
-        // setTimeout(() => (this.WishColor = 'rgba(0,0,0)'), 350)
-
-        // setTimeout(() => (this.WishColor = 'rgba(0,0,0,0)'), 3000)
-        // setTimeout(() => (this.WishColor = 'rgba(0,0,0,1)'), 3350)
-        // setTimeout(() => (this.WishText = 'Remove from Wishlist'), 3350)
       }
     }
   }
