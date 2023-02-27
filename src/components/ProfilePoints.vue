@@ -2,7 +2,7 @@
   export default {
     data() {
       return {
-        points: 1000
+        points: 2000
       }
     }
   }

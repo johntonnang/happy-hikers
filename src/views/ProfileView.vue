@@ -33,23 +33,25 @@
         <ProfilePoints />
         <div id="discount-container">
           <div class="discount-container-box">
-            <img src="/assets/snel-hezt.jpg" alt="" />
-            <h3>Members get 20% off liniment for horses!</h3>
+            <img src="/assets/starbucks-discount.jpg" alt="" />
+            <h3>Morningtired? 5% discount on all coffees at Starbucks!</h3>
             <p>Valid until: 17/11-2023</p>
           </div>
           <div class="discount-container-box">
-            <img src="/assets/snel-hezt.jpg" alt="" />
-            <h3>Members get 20% off liniment for horses!</h3>
+            <img src="/assets/uber-discount.jpg" alt="" />
+            <h3>In a hurry? 30% discount on your first ride with Uber!</h3>
             <p>Valid until: 17/11-2023</p>
           </div>
           <div class="discount-container-box">
-            <img src="/assets/snel-hezt.jpg" alt="nej" />
-            <h3>Members get 20% off liniment for horses!</h3>
+            <img src="/assets/bnb-discount.jpg" alt="nej" />
+            <h3>
+              Stay comfortably! 15% discount on selected reservation at Airbnb!
+            </h3>
             <p>Valid until: 17/11-2023</p>
           </div>
           <div class="discount-container-box">
-            <img src="/assets/snel-hezt.jpg" alt="" />
-            <h3>Members get 20% off liniment for horses!</h3>
+            <img src="/assets/vpn-discount.jpg" alt="" />
+            <h3>Surf safely! 25% off the first three months with NordVPN!</h3>
             <p>Valid until: 17/11-2023</p>
           </div>
         </div>
@@ -107,11 +109,11 @@
     box-shadow: 0px 0px 20px black;
   }
   .discount-container-box {
-    background-color: #79d681;
+    background-color: #f3f3f3;
     width: 200px;
     margin-top: 30px;
     border-radius: 8px;
-    height: 300px;
+    height: 350px;
   }
 
   .discount-container-box img {
@@ -178,7 +180,7 @@
     .discount-container-box {
       scale: 0.9;
       width: 50%;
-      height: 320px;
+      height: 420px;
       margin-top: 0px;
     }
   }
