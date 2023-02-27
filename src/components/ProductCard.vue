@@ -101,7 +101,7 @@
     object-fit: cover;
     transition: all 0.4;
     border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
+    border-top-right-radius: 5px;
   }
   .product-box h2 {
     font-size: 2.2rem;
@@ -140,7 +140,7 @@
       object-fit: cover;
       transition: all 0.4;
       border-top-left-radius: 5px;
-      border-bottom-left-radius: 5px;
+      border-top-right-radius: 5px;
     }
   }
 </style>
