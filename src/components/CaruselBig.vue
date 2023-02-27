@@ -42,6 +42,10 @@
 </template>
 
 <style scoped>
+  img {
+    border-radius: 5px;
+  }
+
   #carouselExampleSlidesOnly {
     overflow: hidden;
     height: 550px;

@@ -15,7 +15,6 @@
           path: '/ProductView/' + id,
           replace: true
         })
-        console.log('hej')
       }
     },
     props: {

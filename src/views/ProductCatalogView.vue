@@ -25,6 +25,7 @@
         products: null,
         showProducts: [],
         category: this.$route.params.category,
+        id: this.$route.params.id,
         newerData: false
       }
     },
@@ -85,6 +86,13 @@
         })
     },
     methods: {
+      openProduct(id) {
+        this.$router.push({
+          path: '/ProductView/' + id,
+          replace: true
+        })
+        console.log('hello world')
+      },
       filterSize() {},
       searchResult() {
         for (let i = 0; i < this.products.length; i++) {
@@ -307,29 +315,41 @@
       :items-to-show="itemsToShow"
       :wrap-around="true"
     >
-      <slide :key="101">
-        <img src="/assets/hiking-jacket-man-1.png" alt="" />
-        <button class="explore-btn">Explore</button>
+      <slide @click="openProduct(products[5].id)" :key="101">
+        <div class="explore-container">
+          <img :src="products[5].image" alt="" />
+          <button class="explore-btn">Explore</button>
+        </div>
       </slide>
-      <slide :key="102">
-        <img src="/assets/hiking-jacket-man-2.png" alt="" />
-        <button class="explore-btn">Explore</button>
+      <slide @click="openProduct(products[0].id)" :key="102">
+        <div class="explore-container">
+          <img :src="products[0].image" alt="" />
+          <button class="explore-btn">Explore</button>
+        </div>
       </slide>
-      <slide :key="103">
-        <img src="/assets/hiking-pants-man-1.png" alt="" />
-        <button class="explore-btn">Explore</button>
+      <slide @click="openProduct(products[9].id)" :key="103">
+        <div class="explore-container">
+          <img :src="products[9].image" alt="" />
+          <button class="explore-btn">Explore</button>
+        </div>
       </slide>
-      <slide :key="104">
-        <img src="/assets/hiking-pants-man-2.png" alt="" />
-        <button class="explore-btn">Explore</button>
+      <slide @click="openProduct(products[15].id)" :key="104">
+        <div class="explore-container">
+          <img :src="products[15].image" alt="" />
+          <button class="explore-btn">Explore</button>
+        </div>
       </slide>
-      <slide :key="105">
-        <img src="/assets/hiking-boots-man-1.png" alt="" />
-        <button class="explore-btn">Explore</button>
+      <slide @click="openProduct(products[8].id)" :key="105">
+        <div class="explore-container">
+          <img :src="products[8].image" alt="" />
+          <button class="explore-btn">Explore</button>
+        </div>
       </slide>
-      <slide :key="106">
-        <img src="/assets/hiking-boots-man-2.png" alt="" />
-        <button class="explore-btn">Explore</button>
+      <slide @click="openProduct(products[12].id)" :key="106">
+        <div class="explore-container">
+          <img :src="products[12].image" alt="" />
+          <button class="explore-btn">Explore</button>
+        </div>
       </slide>
 
       <template #addons>
@@ -461,18 +481,28 @@
     width: 90%;
   }
   .carousel-container img {
-    max-width: 70%;
+    max-width: 100%;
     object-fit: cover;
     position: relative;
     top: 0;
     left: 0;
     transition: box-shadow 0.2s ease-in-out;
   }
-  .carousel-container img:hover {
-    box-shadow: 0px 0px 42px rgba(0, 0, 0, 1);
+
+  .explore-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70%;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .explore-container:hover {
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.7);
     cursor: pointer;
     opacity: 1;
   }
+
   .explore-btn {
     position: absolute;
     top: 1;
@@ -495,7 +525,7 @@
   }
 
   .carousel__slide {
-    padding: 55px 0px;
+    margin: 55px 0px;
   }
 
   @media (max-width: 1600px) {
