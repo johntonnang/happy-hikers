@@ -9,7 +9,7 @@
 </script>
 <template>
   <div id="points-container">
-    <h2 style="font-size: 3rem; font-weight: 800">Poäng: {{ this.points }}</h2>
+    <h2 style="font-size: 3rem; font-weight: 800">Points: {{ this.points }}</h2>
     <div id="points-bar-container">
       <div class="bar-profile-row" v-if="this.points >= 500">
         <span class="bar-profile-active" />
@@ -53,9 +53,9 @@
       </div>
     </div>
     <p>
-      Du behöver 1337 poäng till för att få din nästa bonusrabatt, och 1864 till
-      för att bli Plus-1337-medlem. Bonusrabatter utfärdas med en fördräjning på
-      30 dagar.
+      You need 1337 points to get your next bonus discount, and 1864 points to
+      become a Plus-1337 member. Bonus discounts are issued with a delay of 30
+      days.
     </p>
   </div>
 </template>

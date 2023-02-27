@@ -32,6 +32,9 @@
           this.rotateAngleContact = 'rotate(90deg)'
           this.openMenuContactBool = true
         }
+      },
+      profileLogOut() {
+        localStorage.removeItem('existing-user')
       }
     }
   }
@@ -40,7 +43,7 @@
 <template>
   <div id="profile-options-container">
     <div @click="scrollUp()" class="option-container oc-2">
-      <h4 style="margin-bottom: 0px">Mina beställningar</h4>
+      <h4 style="margin-bottom: 0px">My orders</h4>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="16"
@@ -56,7 +59,7 @@
       </svg>
     </div>
     <div @click="scrollUp()" class="option-container">
-      <h4 style="margin-bottom: 0px">Mina poäng</h4>
+      <h4 style="margin-bottom: 0px">My points</h4>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="16"
@@ -72,7 +75,7 @@
       </svg>
     </div>
     <div class="option-container oc-2">
-      <h4 style="margin-bottom: 0px">Kontoinställningar</h4>
+      <h4 style="margin-bottom: 0px">Account settings</h4>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="16"
@@ -88,7 +91,7 @@
       </svg>
     </div>
     <div class="option-container">
-      <h4 style="margin-bottom: 0px">Bjud in en vän</h4>
+      <h4 style="margin-bottom: 0px">Invite a friend</h4>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="16"
@@ -104,7 +107,7 @@
       </svg>
     </div>
     <div class="option-container oc-2" @click="openMenuTest()">
-      <h4 style="margin-bottom: 0px">Investera i Maximum Entertainment</h4>
+      <h4 style="margin-bottom: 0px">Invest in Maximum Entertainment</h4>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="16"
@@ -124,7 +127,7 @@
       <a href="https://maximument.com/">https://maximument.com/</a>
     </div>
     <div class="option-container" @click="openMenuContact()">
-      <h4 style="margin-bottom: 0px">Kontakta oss</h4>
+      <h4 style="margin-bottom: 0px">Contact us</h4>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="16"
@@ -146,8 +149,8 @@
       <p>Adress: 105 10 Stockholm</p>
       <p style="text-decoration: underline">Vanliga frågor</p>
     </div>
-    <div @click="reloadPage" class="option-container oc-2">
-      <h4 style="margin-bottom: 0px">Logga ut</h4>
+    <div @click="reloadPage(), profileLogOut()" class="option-container oc-2">
+      <h4 style="margin-bottom: 0px">Log out</h4>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="16"

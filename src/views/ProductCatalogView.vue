@@ -251,7 +251,6 @@
   .product-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     width: 82.5%;
   }
 
