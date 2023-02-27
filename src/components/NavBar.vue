@@ -2,7 +2,7 @@
   export default {
     data() {
       return {
-        isActive: true,
+        isActive: false,
         searchID: '',
         products: [],
         productsSearch: [],
@@ -57,18 +57,18 @@
         <span class="bar" :class="{ 'is-active': isActive }" />
       </div>
       <div class="navbar-menu" :class="{ active: isActive }">
-        <router-link class="navbar-links" to="/Favourite"
+        <router-link @click="toggleMenu" class="navbar-links" to="/Favourite"
           ><font-awesome-icon icon="fa-regular fa-heart" />
-          <p v-if="!isActive">Wishlist</p></router-link
-        >
-        <router-link class="navbar-links" to="/Profile"
+          <!-- <p v-if="!isActive">Wishlist</p> -->
+        </router-link>
+        <router-link @click="toggleMenu" class="navbar-links" to="/Profile"
           ><font-awesome-icon icon="fa-regular fa-user" />
-          <p v-if="!isActive">Profile</p></router-link
-        >
-        <router-link class="navbar-links" to="/Cart"
+          <!-- <p v-if="!isActive">Profile</p> -->
+        </router-link>
+        <router-link @click="toggleMenu" class="navbar-links" to="/Cart"
           ><font-awesome-icon icon="fa-solid fa-cart-shopping" />
-          <p v-if="!isActive">Shopping cart</p></router-link
-        >
+          <!-- <p v-if="!isActive">Shopping cart</p> -->
+        </router-link>
       </div>
     </div>
   </nav>
@@ -134,12 +134,11 @@
   #navbar-logo {
     text-decoration: none;
     cursor: pointer;
-    width: 100%;
   }
   .img-container {
     justify-content: center;
     display: flex;
-    width: 60%;
+    margin-right: 120px;
   }
   .navbar-menu {
     display: flex;
@@ -185,19 +184,15 @@
       margin: 0;
       width: 100%;
       position: absolute;
-      z-index: -1;
+      z-index: 1;
       background: #fff;
-      top: 100px;
-      height: 50vh;
+      top: 0;
+      height: 100vh;
+      transition: all 0.4s ease-in-out;
     }
 
     .navbar-menu.active {
       top: -2000%;
-      opacity: 1;
-      z-index: 5;
-      height: 50vh;
-      font-size: 1.6rem;
-      padding: 25px;
     }
 
     .navbar-toggle .bar {
@@ -211,9 +206,8 @@
 
     .navbar-links {
       text-align: center;
-      padding: 2rem;
       width: 100%;
-      display: table;
+      font-size: 2.5rem;
     }
 
     #mobile-menu {
@@ -222,11 +216,12 @@
       top: 30px;
       right: 5%;
       transform: translate(5%, 30%);
+      z-index: 2;
+      cursor: pointer;
     }
 
     .navbar-toggle .bar {
       display: block;
-      cursor: pointer;
     }
 
     .bar:nth-child(2) {
