@@ -55,17 +55,17 @@
   <div v-if="!loginSuccesfull && loginMember" id="login-container">
     <div id="login-content">
       <div id="exit-login-container">
-        <h2>Logga in</h2>
+        <h2>Log in</h2>
       </div>
       <p style="margin: 0">
-        Bli medlem - missa inte erbjudanden, rabattarer och bonuscheckar.
+        Become a member - don't miss out on offers, discounts, and bonus checks.
       </p>
       <div class="input-container">
-        <label for="username" /> E-postadress *
+        <label for="username" /> Email Address *
         <input class="input-field" v-model="EmailInput" name="username" />
       </div>
       <div class="input-container">
-        <label for="username" /> Lösenord *
+        <label for="username" /> Password *
         <input
           type="password"
           class="input-field"
@@ -78,7 +78,7 @@
       </p>
       <div class="checkbox-container">
         <input type="checkbox" name="remember-me" />
-        <label for="remember-me" /> Kom ihåg mig
+        <label for="remember-me" /> Remember me
       </div>
       <div id="profile-btn-container">
         <button id="login-btn" @click="loginProfile">
@@ -92,7 +92,7 @@
           Become Member
         </button>
       </div>
-      <p style="margin: 0">Om medlemskapet</p>
+      <p style="margin: 0">About membership</p>
     </div>
   </div>
   <BecomeMember v-if="becomeMember" />

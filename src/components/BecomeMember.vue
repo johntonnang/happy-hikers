@@ -105,7 +105,7 @@
         </button>
         <button id="return-login-btn" @click="reloadPage">Log in</button>
       </div>
-      <p style="margin: 0">Om medlemskapet</p>
+      <p style="margin: 0">About membership</p>
     </div>
   </div>
 </template>
