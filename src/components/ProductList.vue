@@ -19,7 +19,9 @@
       }
     },
     props: {
-      products: { type: Object, default: null }
+      products: { type: Object, default: null },
+      colorsFilter: { type: Object, default: null },
+      showProducts: { type: Object, default: null }
     }
     // created() {
     //   fetch('/assets/api.JSON')
@@ -43,6 +45,8 @@
       :category="product.category"
       :price="product.price"
       :colors="product.colors"
+      :colors-filter="colorsFilter"
+      :show-products="this.showProducts"
     />
   </div>
 </template>
