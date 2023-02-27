@@ -6,7 +6,7 @@
         products: '',
         similarProducts: [],
         CartText: '+  Add to cart   ',
-        WishText: '+  Add to Wishlist   ',
+        WishText: '+  Add to wishlist   ',
         id: this.$route.params.id,
         CartColor: 'rgba(0, 0, 0)',
         WishColor: 'rgba(0, 0, 0)'
@@ -114,6 +114,60 @@
           path: '/ProductView/' + id,
           replace: true
         })
+      },
+      addToWish(id) {
+        if (localStorage.getItem('Wish') !== null) {
+          if (this.WishText === '+  Add to wishlist   ') {
+            console.log('Hej!')
+            let wish = JSON.parse(localStorage.getItem('Wish'))
+
+            wish.push({
+              id: this.product.id,
+              name: this.product.name,
+              price: this.product.price,
+              image: this.product.image,
+              description: this.product.description
+            })
+            localStorage.setItem('Wish', JSON.stringify(wish))
+            console.log('Wish 1')
+          } else if (this.WishText === 'Remove from Wishlist') {
+            let wish = JSON.parse(localStorage.getItem('Wish'))
+            console.log(wish)
+            let i = 0
+            for (let product of wish) {
+              console.log(product)
+              console.log(product.id + '   ' + id)
+
+              if (product.id === id) {
+                wish.splice(i, 1)
+                localStorage.setItem('Wish', JSON.stringify(wish))
+              }
+              i++
+            }
+          }
+        } else {
+          let wish = null
+          if (this.WishText === '+  Add to Wish   ') {
+            console.log('Wish 3')
+            wish = [
+              {
+                id: this.product.id,
+                name: this.product.name,
+                price: this.product.price,
+                image: this.product.image,
+                description: this.product.description
+              }
+            ]
+            localStorage.setItem('Wish', JSON.stringify(wish))
+          }
+        }
+        // this.WishColor = 'rgba(0,0,0,0)'
+        // setTimeout(() => (this.WishText = '✓'), 350)
+        // setTimeout(() => (this.WishColor = 'rgba(0,0,0)'), 350)
+
+        // setTimeout(() => (this.WishColor = 'rgba(0,0,0,0)'), 3000)
+        // setTimeout(() => (this.WishColor = 'rgba(0,0,0,1)'), 3350)
+        // setTimeout(() => (this.WishText = 'Remove from Wishlist'), 3350)
       }
     }
   }
@@ -282,6 +336,7 @@
             :style="{ color: this.CartColor }"
           />
           <input
+            @click="addToWish(product.id)"
             class="product-btn product-wishlist"
             type="button"
             :value="WishText"

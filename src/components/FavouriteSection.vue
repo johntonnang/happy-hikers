@@ -7,46 +7,29 @@
   export default {
     data() {
       return {
-        products: null
+        wishItems: []
       }
     },
-    created() {
-      fetch('/assets/api.JSON')
-        .then((response) => response.json())
-        .then((result) => {
-          this.products = result
-          console.log(result)
-        })
+
+    mounted() {
+      let wish = localStorage.getItem('Wish')
+      if (wish !== null) {
+        this.wishItems = JSON.parse(wish)
+      }
+    },
+    watch: {
+      wishItems: {
+        handler: function (value) {
+          localStorage.setItem('Wish', JSON.stringify(value))
+        },
+        deep: true
+      }
     },
     methods: {
-      // Add to wishlist
-      addToWishlist() {
-        if (localStorage.getItem('Wishlist') !== null) {
-          let wish = JSON.parse(localStorage.getItem('Wishlist'))
-          wish.push({
-            id: this.product.id,
-            name: this.product.name,
-            price: this.product.price,
-            image: this.product.image
-            // description: this.product.description
-          })
-          localStorage.setItem('Wishlist', JSON.stringify(wish))
-          console.log(localStorage.getItem('Wishlist') + '1')
-        } else {
-          let wish = [
-            {
-              id: this.product.id,
-              name: this.product.name,
-              price: this.product.price,
-              image: this.product.image
-              // description: this.product.description
-            }
-          ]
-          localStorage.setItem('Wishlist', JSON.stringify(wish))
-          console.log(localStorage.getItem('Wishlist') + '2')
-        }
-
-        // remove from wishlist
+      removeFromWishlist(index) {
+        this.wishItems.splice(index, 1)
+        localStorage.setItem('Wish', JSON.stringify(this.wishItems))
+        console.log('Remove from wishlist')
       }
     }
   }
@@ -59,21 +42,31 @@
 
       <h1>My Favourites</h1>
     </div>
+
     <div class="container">
-      <div id="products-div" :key="product.id" v-for="product in products">
-        <div id="card">
-          <img :src="product.image" alt="image of product" />
-          <h3 style="margin: 0px">{{ product.name }}</h3>
-          <h5>{{ product.price }} :-</h5>
-          <p>{{ product.category }}</p>
-          <div id="align-button-and-icon">
-            <button @click="addToWishlist">+ Add to cart</button>
-            <img
-              @click="removeProduct"
-              id="icon"
-              src="/assets/delete.png"
-              alt="bin icon"
-            />
+      <div class="wishBox">
+        <div v-if="wishItems.length">
+          <div
+            class="wishItems"
+            v-for="(item, index) in wishItems"
+            :key="index"
+          >
+            <div id="card">
+              <img :src="item.image" alt="image of product" />
+
+              <h3>{{ item.name }}</h3>
+              <h5>{{ item.price }} :-</h5>
+              <p>{{ item.category }}</p>
+              <div id="align-button-and-icon">
+                <button @click="someFunction">+ Add to Cart</button>
+                <img
+                  @click="removeFromWishlist(index)"
+                  id="icon"
+                  src="/assets/delete.png"
+                  alt="bin icon"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>
