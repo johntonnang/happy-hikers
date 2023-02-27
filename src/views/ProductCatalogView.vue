@@ -112,9 +112,13 @@
                   this.products[productId].colors.includes(
                     this.colorFilter[color]
                   )
-                ) {
-                  this.showProducts.push(this.products[productId])
-                }
+                )
+                  if (
+                    this.showProducts.includes(this.products[productId]) ===
+                    false
+                  ) {
+                    this.showProducts.push(this.products[productId])
+                  }
               }
             }
           }
