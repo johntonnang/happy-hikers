@@ -195,6 +195,7 @@
     border-radius: 5px;
     padding: 0.7rem;
     transition: all 0.35s;
+    appearance: none;
   }
   .product-size:hover {
     background-color: rgb(44, 44, 44);
