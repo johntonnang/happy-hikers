@@ -147,7 +147,8 @@
           }
         } else {
           let wish = null
-          if (this.WishText === '+  Add to Wish   ') {
+          if (this.WishText === '+  Add to wishlist   ') {
+            console.log('hej')
             console.log('Wish 3')
             wish = [
               {
