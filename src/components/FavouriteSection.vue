@@ -10,7 +10,8 @@
         cartItem: [],
         wishItems: [],
         id: this.$route.params.id,
-        CartText: '+ Add to cart'
+        CartText: '+  Add to cart   ',
+        product: null
       }
     },
 
@@ -46,10 +47,17 @@
         console.log('Remove from wishlist')
       },
       addToCart(id) {
+        for (let product in this.wishItems) {
+          if (this.wishItems[product].id === id) {
+            console.log(2)
+            this.product = this.wishItems[product]
+          }
+        }
         if (localStorage.getItem('Cart') !== null) {
-          if (this.CartText === '+ Add to cart') {
+          if (this.CartText === '+  Add to cart   ') {
+            console.log('hej')
             let cart = JSON.parse(localStorage.getItem('Cart'))
-            cart.push({
+            cart.unshift({
               id: this.product.id,
               name: this.product.name,
               price: this.product.price,
@@ -98,7 +106,9 @@
 <template>
   <main>
     <div id="position-text">
-      <p id="page-direction">Home / Wishlist</p>
+      <p id="page-direction">
+        <a class="home-direction" href="/">Home</a> / Wishlist
+      </p>
       <h1>My Favourites</h1>
     </div>
 
@@ -111,7 +121,7 @@
             <h5>{{ item.price }} :-</h5>
             <p>{{ item.category }}</p>
             <div id="align-button-and-icon">
-              <button @click="addToCart(id)">+ Add to cart</button>
+              <button @click="addToCart(item.id)">{{ this.CartText }}</button>
               <img
                 @click="removeFromWishlist(index)"
                 id="icon"
@@ -131,6 +141,22 @@
 
   #position-text {
     padding-bottom: 10px;
+    margin-bottom: 100px;
+  }
+
+  #page-direction {
+    font-weight: 600;
+    color: #424242;
+    font-size: 1.12rem;
+  }
+
+  .home-direction {
+    text-decoration: none;
+    color: #424242;
+    transition: all 0.4s ease-in-out;
+  }
+  .home-direction:hover {
+    opacity: 0.7;
   }
 
   img {
@@ -139,11 +165,12 @@
   }
 
   #card {
-    padding-top: 5%;
+    padding-top: 10%;
     /* background-color: white; */
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     align-items: center;
     text-align: center;
+
     margin-bottom: 5%;
     border-radius: 5px;
     margin: 5%;
@@ -155,7 +182,7 @@
   #position-text {
     position: relative;
     top: 100px;
-    padding-left: 5%;
+    margin-left: 27px;
   }
 
   button {

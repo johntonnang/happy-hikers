@@ -27,7 +27,7 @@
             for (let i = 0; i < this.products.length; i++) {
               if (this.products[i].category === this.product.category) {
                 if (this.products[i].id !== this.product.id)
-                  this.similarProducts.push(this.products[i])
+                  this.similarProducts.unshift(this.products[i])
               }
             }
           })
@@ -51,7 +51,7 @@
           for (let i = 0; i < this.products.length; i++) {
             if (this.products[i].category === this.product.category) {
               if (this.products[i].id !== this.product.id)
-                this.similarProducts.push(this.products[i])
+                this.similarProducts.unshift(this.products[i])
             }
           }
         })
@@ -61,7 +61,7 @@
         if (localStorage.getItem('Cart') !== null) {
           if (this.CartText === '+  Add to cart   ') {
             let cart = JSON.parse(localStorage.getItem('Cart'))
-            cart.push({
+            cart.unshift({
               id: this.product.id,
               name: this.product.name,
               price: this.product.price,
@@ -69,7 +69,13 @@
               description: this.product.description
             })
             localStorage.setItem('Cart', JSON.stringify(cart))
-            console.log('hej 1')
+            this.CartColor = 'rgba(0,0,0,0)'
+            setTimeout(() => (this.CartText = '✓'), 350)
+            setTimeout(() => (this.CartColor = 'rgba(0,0,0)'), 350)
+
+            setTimeout(() => (this.CartColor = 'rgba(0,0,0,0)'), 3000)
+            setTimeout(() => (this.CartColor = 'rgba(0,0,0,1)'), 3350)
+            setTimeout(() => (this.CartText = 'Remove from Cart'), 3350)
           } else if (this.CartText === 'Remove from Cart') {
             let cart = JSON.parse(localStorage.getItem('Cart'))
             console.log(cart)
@@ -84,30 +90,15 @@
               }
               i++
             }
-          }
-        } else {
-          let cart = null
-          if (this.CartText === '+  Add to cart   ') {
-            console.log('hej 3')
-            cart = [
-              {
-                id: this.product.id,
-                name: this.product.name,
-                price: this.product.price,
-                image: this.product.image,
-                description: this.product.description
-              }
-            ]
-            localStorage.setItem('Cart', JSON.stringify(cart))
+            this.CartColor = 'rgba(0,0,0,0)'
+            setTimeout(() => (this.CartText = '✓'), 350)
+            setTimeout(() => (this.CartColor = 'rgba(0,0,0)'), 350)
+
+            setTimeout(() => (this.CartColor = 'rgba(0,0,0,0)'), 3000)
+            setTimeout(() => (this.CartColor = 'rgba(0,0,0,1)'), 3350)
+            setTimeout(() => (this.CartText = '+  Add to cart   '), 3350)
           }
         }
-        this.CartColor = 'rgba(0,0,0,0)'
-        setTimeout(() => (this.CartText = '✓'), 350)
-        setTimeout(() => (this.CartColor = 'rgba(0,0,0)'), 350)
-
-        setTimeout(() => (this.CartColor = 'rgba(0,0,0,0)'), 3000)
-        setTimeout(() => (this.CartColor = 'rgba(0,0,0,1)'), 3350)
-        setTimeout(() => (this.CartText = 'Remove from Cart'), 3350)
       },
       openProduct(id) {
         this.$router.push({
@@ -121,7 +112,7 @@
             console.log('Hej!')
             let wish = JSON.parse(localStorage.getItem('Wish'))
 
-            wish.push({
+            wish.unshift({
               id: this.product.id,
               name: this.product.name,
               price: this.product.price,
@@ -129,7 +120,14 @@
               description: this.product.description
             })
             localStorage.setItem('Wish', JSON.stringify(wish))
-            console.log('Wish 1')
+            this.WishColor = 'rgba(0,0,0,0)'
+            setTimeout(() => (this.WishText = '✓'), 350)
+            setTimeout(() => (this.WishColor = 'rgba(0,0,0)'), 350)
+
+            setTimeout(() => (this.WishColor = 'rgba(0,0,0,0)'), 3000)
+            setTimeout(() => (this.WishColor = 'rgba(0,0,0,1)'), 3350)
+            setTimeout(() => (this.WishText = 'Remove from Wishlist'), 3350)
+            setTimeout(() => console.log('1'), 3350)
           } else if (this.WishText === 'Remove from Wishlist') {
             let wish = JSON.parse(localStorage.getItem('Wish'))
             console.log(wish)
@@ -144,24 +142,33 @@
               }
               i++
             }
-          }
-        } else {
-          let wish = null
-          if (this.WishText === '+  Add to wishlist   ') {
-            console.log('hej')
-            console.log('Wish 3')
-            wish = [
-              {
-                id: this.product.id,
-                name: this.product.name,
-                price: this.product.price,
-                image: this.product.image,
-                description: this.product.description
-              }
-            ]
-            localStorage.setItem('Wish', JSON.stringify(wish))
+            this.WishColor = 'rgba(0,0,0,0)'
+            setTimeout(() => (this.WishText = '✓'), 350)
+            setTimeout(() => (this.WishColor = 'rgba(0,0,0)'), 350)
+
+            setTimeout(() => (this.WishColor = 'rgba(0,0,0,0)'), 3000)
+            setTimeout(() => (this.WishColor = 'rgba(0,0,0,1)'), 3350)
+            setTimeout(() => (this.WishText = '+  Add to wishlist   '), 3350)
           }
         }
+        //   else {
+        //     let wish = null
+        //     if (this.WishText === '+  Add to wishlist   ') {
+        //       console.log('hej')
+        //       console.log('Wish 3')
+        //       wish = [
+        //         {
+        //           id: this.product.id,
+        //           name: this.product.name,
+        //           price: this.product.price,
+        //           image: this.product.image,
+        //           description: this.product.description
+        //         }
+        //       ]
+        //       localStorage.setItem('Wish', JSON.stringify(wish))
+        //     }
+        //   }
+        // }
       }
     }
   }
@@ -223,8 +230,8 @@
     background-color: #b1ea38;
   }
   .product-wishlist:hover {
-    background-color: black;
-    color: #b1ea38;
+    background-color: #8ab72a;
+    /* color: #b1ea38; */
   }
   .product-return {
     display: flex;
