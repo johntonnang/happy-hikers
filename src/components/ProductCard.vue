@@ -76,6 +76,7 @@
 <style scoped>
   .align-content-mobile {
     padding: 5px;
+    margin: 1rem;
   }
   .product-title-rating {
     display: flex;
