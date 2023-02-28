@@ -22,7 +22,12 @@
         orders: [],
         temp: [],
         order: [],
-        saveData: false
+        saveData: false,
+        existingUser: false,
+        profileName: '',
+        profileEmail: '',
+        profilePhone: '',
+        loginTrue: false
       }
     },
 
@@ -32,7 +37,24 @@
       }
     },
     mounted() {
+      const existingUser = localStorage.getItem('existing-user')
+      const registredUser = localStorage.getItem('registred-user')
+
+      if (registredUser && !existingUser) {
+        this.registredUser = true
+        this.loginTrue = true
+      }
+
       let cart = localStorage.getItem('Cart')
+      const existingUsername = localStorage.getItem('name')
+      const existingEmail = localStorage.getItem('username')
+      const existingPhone = localStorage.getItem('phone')
+      if (existingUser) {
+        this.existingUser = true
+        this.profileName = existingUsername
+        this.profileEmail = existingEmail
+        this.profilePhone = existingPhone
+      }
       if (cart !== null) {
         this.cartItems = JSON.parse(cart)
       }
@@ -74,6 +96,13 @@
       }
     },
     methods: {
+      loginActive() {
+        if (!this.loginTrue) {
+          this.loginTrue = true
+        } else {
+          this.loginTrue = false
+        }
+      },
       submitOrder() {
         // Sende til server som vi ikke har :)
         this.name = ''
@@ -188,25 +217,57 @@
 </script>
 <template>
   <main>
-    <LoginProfile />
-    <div class="mainContainer">
+    <div
+      v-if="loginTrue"
+      class="login-container"
+      :class="{ 'login-container-active': loginTrue }"
+    >
+      <svg
+        class="svg-icon"
+        @click="loginActive()"
+        style="
+          width: 32px;
+          height: 32px;
+          vertical-align: middle;
+          fill: currentColor;
+          overflow: hidden;
+          margin-left: auto;
+          margin-top: 3px;
+        "
+        viewBox="0 0 1024 1024"
+        version="1.1"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M810.65984 170.65984q18.3296 0 30.49472 12.16512t12.16512 30.49472q0 18.00192-12.32896 30.33088l-268.67712 268.32896 268.67712 268.32896q12.32896 12.32896 12.32896 30.33088 0 18.3296-12.16512 30.49472t-30.49472 12.16512q-18.00192 0-30.33088-12.32896l-268.32896-268.67712-268.32896 268.67712q-12.32896 12.32896-30.33088 12.32896-18.3296 0-30.49472-12.16512t-12.16512-30.49472q0-18.00192 12.32896-30.33088l268.67712-268.32896-268.67712-268.32896q-12.32896-12.32896-12.32896-30.33088 0-18.3296 12.16512-30.49472t30.49472-12.16512q18.00192 0 30.33088 12.32896l268.32896 268.67712 268.32896-268.67712q12.32896-12.32896 30.33088-12.32896z"
+        />
+      </svg>
+      <LoginProfile />
+    </div>
+    <div class="mainContainer" :class="{ 'main-login-active': loginTrue }">
       <div class="checkoutcontainer">
         <h1 class="h1Checkout">Checkout</h1>
-        <div id="login-check-container">
+        <div class="login-check-container" v-if="existingUser">
+          <h2>Inloggad som</h2>
+          <span>
+            <RouterLink to="/Profile">{{ profileName }}</RouterLink>
+          </span>
+        </div>
+        <div class="login-check-container" v-else>
           <h2>Har du redan ett konto?</h2>
-          <span> Logga in</span>
+          <span @click="loginActive()"> Logga in</span>
         </div>
         <form class="formContainer" @submit.prevent="submitOrder">
           <fieldset class="custom">
             <legend>Custom Information</legend>
             <label for="name">Name:</label>
-            <input type="text" id="name" v-model="name" required />
+            <input type="text" id="name" v-model="profileName" required />
 
             <label for="email">Email:</label>
-            <input type="email" id="email" v-model="email" required />
+            <input type="email" id="email" v-model="profileEmail" required />
 
             <label for="phone">Phone:</label>
-            <input type="tel" id="phone" v-model="phone" required />
+            <input type="tel" id="phone" v-model="profilePhone" required />
           </fieldset>
 
           <fieldset class="shipping">
@@ -281,6 +342,11 @@
       sans-serif;
     margin-bottom: 10rem;
   }
+
+  .main-login-active {
+    opacity: 0.4;
+  }
+
   .checkoutcontainer {
     display: flex;
     flex-direction: column;
@@ -288,27 +354,58 @@
     margin-left: 2rem;
   }
 
-  #login-check-container {
+  .login-container {
+    position: fixed;
+    top: 100px;
+    left: 0;
+    width: 100%;
+    transition: 1s ease-in-out;
+    opacity: 0;
+    z-index: -99;
+  }
+
+  .login-container-active {
+    opacity: 1;
+    z-index: 99;
+  }
+
+  .login-container svg {
+    position: absolute;
+    left: 60%;
+    top: 1.5%;
+  }
+
+  .login-container svg:hover {
+    cursor: pointer;
+  }
+
+  .login-check-container {
     display: flex;
     align-items: center;
     margin-left: 15px;
     font-size: 1.1rem;
   }
 
-  #login-check-container h2 {
+  .login-check-container h2 {
     font-size: 1.2rem;
     margin-bottom: 0px;
   }
 
-  #login-check-container span {
+  .login-check-container span {
     margin-left: 5px;
-    text-decoration: underline;
+    margin-top: 1px;
     font-weight: 600;
   }
 
-  #login-check-container span:hover {
+  .login-check-container a {
+    text-decoration: underline;
+    font-weight: 600;
+    color: rgb(14, 14, 14);
+  }
+
+  .login-check-container span:hover {
     cursor: pointer;
-    opacity: 0.7;
+    opacity: 0.9;
   }
   .formContainer {
     max-width: 90%;
@@ -424,11 +521,21 @@
     margin-top: 1rem;
     margin-left: 0.5rem;
   }
+
+  @media (max-width: 1600px) {
+    .login-container svg {
+      left: 66%;
+    }
+  }
+
   @media (max-width: 1100px) {
     .shoppingcartPreview {
       width: 40%;
       margin: 2rem;
       margin-top: 7rem;
+    }
+    .login-container svg {
+      left: 65%;
     }
   }
 
@@ -448,6 +555,15 @@
       flex-direction: column;
       width: 90%;
       margin-left: 2rem;
+    }
+    .login-container svg {
+      left: 85%;
+    }
+  }
+  @media (max-width: 530px) {
+    .login-container svg {
+      left: 80%;
+      top: 2%;
     }
   }
 </style>

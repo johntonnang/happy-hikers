@@ -5,10 +5,13 @@
         memberNameInput: '',
         memberUsernameInput: '',
         memberPasswordInput: '',
+        memberPhoneInput: '',
         correctName: true,
         correctUsername: true,
         correctPassword: true,
-        loadingIcon: false
+        correctPhone: true,
+        loadingIcon: false,
+        registredUser: true
       }
     },
     methods: {
@@ -36,10 +39,16 @@
             this.correctPassword = false
             this.loadingIcon = false
             return
+          } else if (this.memberPhoneInput === '') {
+            this.correctPhone = false
+            this.loadingIcon = false
+            return
           } else {
             localStorage.setItem('name', this.memberNameInput)
             localStorage.setItem('username', this.memberUsernameInput)
             localStorage.setItem('password', this.memberPasswordInput)
+            localStorage.setItem('phone', this.memberPhoneInput)
+            localStorage.setItem('registred-user', this.registredUser)
             this.reloadPage()
           }
         }, 1500)
@@ -85,6 +94,13 @@
         />
         <span class="error" v-if="!correctPassword"
           >The password field cannot be left empty.</span
+        >
+      </div>
+      <div class="input-container">
+        <label for="Phone" /> Phone (Optional)
+        <input class="input-field" v-model="memberPhoneInput" name="phone" />
+        <span class="error" v-if="!correctPhone"
+          >The name field cannot be left empty.</span
         >
       </div>
       <label for="day" />Date of birth *

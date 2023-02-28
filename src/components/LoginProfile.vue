@@ -18,6 +18,9 @@
       }
     },
     methods: {
+      reloadPage() {
+        window.location.reload()
+      },
       loginProfile() {
         this.loadingIcon = true
         this.failedInput = false
@@ -32,6 +35,7 @@
           if (this.loginSuccesfull) {
             this.$emit('login-success', this.loginSuccesfull)
             localStorage.setItem('existing-user', this.existingUser)
+            this.reloadPage()
           } else {
             this.failedInput = true
             this.loadingIcon = false
