@@ -1,5 +1,11 @@
 <script>
+  import LoginProfile from '../components/LoginProfile.vue'
+
   export default {
+    components: {
+      LoginProfile
+    },
+
     data() {
       return {
         name: '',
@@ -54,9 +60,14 @@
 </script>
 <template>
   <main>
+    <LoginProfile />
     <div class="mainContainer">
       <div class="checkoutcontainer">
         <h1 class="h1Checkout">Checkout</h1>
+        <div id="login-check-container">
+          <h2>Har du redan ett konto?</h2>
+          <span> Logga in</span>
+        </div>
         <form class="formContainer" @submit.prevent="submitOrder">
           <fieldset class="custom">
             <legend>Custom Information</legend>
@@ -141,6 +152,29 @@
     flex-direction: column;
     width: 50%;
     margin-left: 2rem;
+  }
+
+  #login-check-container {
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+    font-size: 1.1rem;
+  }
+
+  #login-check-container h2 {
+    font-size: 1.2rem;
+    margin-bottom: 0px;
+  }
+
+  #login-check-container span {
+    margin-left: 5px;
+    text-decoration: underline;
+    font-weight: 600;
+  }
+
+  #login-check-container span:hover {
+    cursor: pointer;
+    opacity: 0.7;
   }
   .formContainer {
     max-width: 90%;

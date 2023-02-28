@@ -6,7 +6,10 @@
       OrderChart
     },
     data() {
-      return { openOrder: false, rotateArrow: '' }
+      return {
+        openOrder: false,
+        rotateArrow: ''
+      }
     },
     methods: {
       toggleOrder() {
@@ -48,39 +51,18 @@
         />
       </svg>
     </div>
-    <div v-if="openOrder" id="item-content-info">
-      <h2>Hej</h2>
-      <h2>Hej</h2>
-    </div>
-  </div>
-  <div id="order-container">
-    <div @click="toggleOrder" class="prev-order-container">
-      <div class="order-content">
-        <h4>Order</h4>
-        <p>5 items</p>
+    <div v-if="openOrder" id="item-content-container">
+      <!-- for-loop på denna -->
+      <div class="item-content-info first-info">
+        <img src="/assets/starbucks-discount.jpg" alt="" />
+        <h5>En Jacka :)</h5>
+        <p>1337;-</p>
       </div>
-      <div class="order-content">
-        <p>1337,50kr</p>
-        <p>01/01/2023</p>
+      <div class="item-content-info">
+        <img src="/assets/starbucks-discount.jpg" alt="" />
+        <h5>En Jacka :)</h5>
+        <p>1337;-</p>
       </div>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="28"
-        height="28"
-        fill="currentColor"
-        class="bi bi-chevron-right"
-        viewBox="0 0 16 16"
-        :style="{ transform: rotateArrow }"
-      >
-        <path
-          fill-rule="evenodd"
-          d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
-        />
-      </svg>
-    </div>
-    <div v-if="openOrder" id="item-content-info">
-      <h2>Hej</h2>
-      <h2>Hej</h2>
     </div>
   </div>
   <OrderChart />
@@ -89,7 +71,7 @@
 <style scoped>
   #order-container {
     box-shadow: 1px 1px 8px black;
-    width: 70%;
+    width: 85%;
     margin: 40px 0px 40px 0px;
     background: linear-gradient(0.25turn, #fcfcfc, #f9faf9, #f3f2f0);
     border-radius: 8px;
@@ -119,15 +101,41 @@
     margin-top: 10px;
   }
 
-  #item-content-info {
+  #item-content-container {
     background: linear-gradient(0.25turn, #fcfcfc, #f9faf9, #f3f2f0);
     padding: 25px;
     border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #item-content-container img {
+    max-width: 100%;
+    height: 125px;
+  }
+
+  .item-content-info {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    border-bottom: 1px solid black;
+    padding: 20px 0px;
+  }
+
+  .first-info {
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+  }
+
+  .item-content-info h6,
+  .item-content-info p {
+    margin-bottom: 0px;
   }
 
   @media (max-width: 1600px) {
     .prev-order-container {
-      width: 90%;
+      width: 100%;
     }
   }
 
