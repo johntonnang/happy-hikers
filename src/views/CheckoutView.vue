@@ -114,6 +114,23 @@
             localStorage.removeItem('Cart')
           }
         }
+        const data = {
+          name: this.name,
+          email: this.email,
+          phone: this.phone,
+          address: this.address,
+          city: this.city,
+          state: this.state,
+          zip: this.zip,
+          card: this.card,
+          exp: this.exp,
+          cvv: this.cvv
+        }
+        if (this.saveData) {
+          localStorage.setItem('data', JSON.stringify(data))
+        } else {
+          localStorage.removeItem('data')
+        }
       },
       sendData() {
         const data = {
@@ -219,14 +236,12 @@
             <input type="text" id="cvv" v-model="cvv" required />
           </fieldset>
 
+          <div class="saveInfo">
+            <input type="checkbox" v-model="saveData" />
+            <p class="saveInfoP">Save my Information</p>
+          </div>
           <button class="submitButton" @click="addOrderToProfile" type="submit">
-            <div class="saveInfo">
-              <input type="checkbox" v-model="saveData" />
-              <p class="saveInfoP">Save my Information</p>
-            </div>
-            <button class="submitButton" @click="sendData" type="submit">
-              Place Order
-            </button>
+            Place Order
           </button>
         </form>
       </div>
@@ -436,23 +451,3 @@
     }
   }
 </style>
-
-<!-- <div id="app">
-  <label for="name-input">Name:</label>
-  <input type="text" id="name-input" v-model="name">
-  <label for="address-input">Address:</label>
-  <input type="text" id="address-input" v-model="address">
-  <label for="number-input">Number:</label>
-  <input type="number" id="number-input" v-model="number">
-  <label>
-    <input type="checkbox" v-model="saveData">
-    Save data to local storage
-  </label>
-  <button @click="sendData">Send</button>
-</div>
-
-new Vue({ el: "#app", data: { name: "", address: "", number: null, saveData:
-false, }, methods: { sendData() { const data = { name: this.name, address:
-this.address, number: this.number, }; if (this.saveData) {
-localStorage.setItem("data", JSON.stringify(data)); } else {
-localStorage.removeItem("data"); } alert("Data sent!"); }, }, }); -->
