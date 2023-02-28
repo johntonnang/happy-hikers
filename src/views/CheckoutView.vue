@@ -428,6 +428,14 @@
     display: flex;
     flex-direction: column;
   }
+
+  input,
+  textarea {
+    border-width: 2px;
+    border-style: inset;
+    border-color: black;
+    border-image: initial;
+  }
   .submitButton {
     display: flex;
     justify-content: center;
