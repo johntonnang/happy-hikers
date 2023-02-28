@@ -98,6 +98,28 @@
             setTimeout(() => (this.CartColor = 'rgba(0,0,0,1)'), 3350)
             setTimeout(() => (this.CartText = '+  Add to cart   '), 3350)
           }
+        } else {
+          let cart = null
+          if (this.CartText === '+  Add to cart   ') {
+            console.log('hej')
+            cart = [
+              {
+                id: this.product.id,
+                name: this.product.name,
+                price: this.product.price,
+                image: this.product.image,
+                description: this.product.description
+              }
+            ]
+            localStorage.setItem('Cart', JSON.stringify(cart))
+            this.CartColor = 'rgba(0,0,0,0)'
+            setTimeout(() => (this.CartText = '✓'), 350)
+            setTimeout(() => (this.CartColor = 'rgba(0,0,0)'), 350)
+
+            setTimeout(() => (this.CartColor = 'rgba(0,0,0,0)'), 3000)
+            setTimeout(() => (this.CartColor = 'rgba(0,0,0,1)'), 3350)
+            setTimeout(() => (this.CartText = 'Remove from Cart'), 3350)
+          }
         }
       },
       openProduct(id) {
@@ -150,25 +172,30 @@
             setTimeout(() => (this.WishColor = 'rgba(0,0,0,1)'), 3350)
             setTimeout(() => (this.WishText = '+  Add to wishlist   '), 3350)
           }
+        } else {
+          let wish = null
+          if (this.WishText === '+  Add to wishlist   ') {
+            console.log('hej')
+            console.log('Wish 3')
+            wish = [
+              {
+                id: this.product.id,
+                name: this.product.name,
+                price: this.product.price,
+                image: this.product.image,
+                description: this.product.description
+              }
+            ]
+            localStorage.setItem('Wish', JSON.stringify(wish))
+            this.WishColor = 'rgba(0,0,0,0)'
+            setTimeout(() => (this.WishText = '✓'), 350)
+            setTimeout(() => (this.WishColor = 'rgba(0,0,0)'), 350)
+
+            setTimeout(() => (this.WishColor = 'rgba(0,0,0,0)'), 3000)
+            setTimeout(() => (this.WishColor = 'rgba(0,0,0,1)'), 3350)
+            setTimeout(() => (this.WishText = '+  Add to wishlist   '), 3350)
+          }
         }
-        //   else {
-        //     let wish = null
-        //     if (this.WishText === '+  Add to wishlist   ') {
-        //       console.log('hej')
-        //       console.log('Wish 3')
-        //       wish = [
-        //         {
-        //           id: this.product.id,
-        //           name: this.product.name,
-        //           price: this.product.price,
-        //           image: this.product.image,
-        //           description: this.product.description
-        //         }
-        //       ]
-        //       localStorage.setItem('Wish', JSON.stringify(wish))
-        //     }
-        //   }
-        // }
       }
     }
   }

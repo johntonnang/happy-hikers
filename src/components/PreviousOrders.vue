@@ -6,7 +6,7 @@
       OrderChart
     },
     data() {
-      return { openOrder: false, rotateArrow: '' }
+      return { openOrder: false, rotateArrow: '', products: null }
     },
     methods: {
       toggleOrder() {

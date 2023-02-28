@@ -12,7 +12,11 @@
         card: '',
         exp: '',
         cvv: '',
-        cartItems: []
+        cartItems: [],
+        // temp: localStorage.getItem('Cart'),
+        orders: [],
+        temp: [],
+        order: []
       }
     },
 
@@ -20,6 +24,9 @@
       total() {
         return this.cartItems.reduce((x, item) => x + item.price, 0)
       }
+      // orders() {
+      //   return [localStorage.getItem('Cart')]
+      // }
     },
     mounted() {
       let cart = localStorage.getItem('Cart')
@@ -48,6 +55,38 @@
         this.card = ''
         this.exp = ''
         this.cvv = ''
+      },
+      addOrderToProfile() {
+        if (
+          this.name &&
+          this.email.includes('@') &&
+          this.email.includes('.') &&
+          this.phone &&
+          this.address &&
+          this.city &&
+          this.state &&
+          this.zip &&
+          this.card &&
+          this.exp &&
+          this.cvv
+        ) {
+          if (localStorage.getItem('Orders')) {
+            this.order = JSON.parse(localStorage.getItem('Cart'))
+            this.orders = JSON.parse(localStorage.getItem('Orders'))
+            // this.temp.push(this.order)
+            console.log(1)
+            console.log(this.order)
+            this.orders.push(this.order)
+            console.log(this.orders)
+            localStorage.setItem('Orders', JSON.stringify(this.orders))
+            localStorage.removeItem('Cart')
+          } else {
+            this.order = JSON.parse(localStorage.getItem('Cart'))
+            this.orders.unshift(this.order)
+            localStorage.setItem('Orders', JSON.stringify(this.orders))
+            localStorage.removeItem('Cart')
+          }
+        }
       }
     }
   }
@@ -97,7 +136,9 @@
             <input type="text" id="cvv" v-model="cvv" required />
           </fieldset>
 
-          <button class="submitButton" type="submit">Place Order</button>
+          <button class="submitButton" @click="addOrderToProfile" type="submit">
+            Place Order
+          </button>
         </form>
       </div>
       <div class="shoppingcartPreview">
