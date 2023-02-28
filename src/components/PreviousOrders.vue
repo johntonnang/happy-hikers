@@ -6,7 +6,12 @@
       OrderChart
     },
     data() {
-      return { openOrder: false, rotateArrow: '', products: null }
+      return {
+        openOrder: false,
+        rotateArrow: '',
+        products: null,
+        orders: JSON.parse(localStorage.getItem('Orders'))
+      }
     },
     methods: {
       toggleOrder() {
@@ -23,14 +28,19 @@
 </script>
 
 <template>
-  <div @click="toggleOrder()" id="order-container">
+  <div
+    v-for="(order, index) in orders"
+    :key="index"
+    @click="toggleOrder()"
+    id="order-container"
+  >
     <div class="prev-order-container">
       <div class="order-content">
         <h4>Order</h4>
-        <p>5 items</p>
+        <p>{{ order.length }} items</p>
       </div>
       <div class="order-content">
-        <p>1337,50kr</p>
+        <p>{{ order.reduce((x, item) => x + item.price, 0) }}kr</p>
         <p>01/01/2023</p>
       </div>
       <svg
@@ -48,17 +58,13 @@
         />
       </svg>
     </div>
-    <div v-if="openOrder" id="item-content-container">
-      <!-- for-loop på denna -->
-      <div class="item-content-info first-info">
-        <img src="/assets/starbucks-discount.jpg" alt="" />
-        <h5>En Jacka :)</h5>
-        <p>1337;-</p>
-      </div>
-      <div class="item-content-info">
-        <img src="/assets/starbucks-discount.jpg" alt="" />
-        <h5>En Jacka :)</h5>
-        <p>1337;-</p>
+    <div v-for="item in order" :key="item.id">
+      <div v-if="openOrder" id="item-content-container">
+        <div class="item-content-info first-info">
+          <img :src="item.image" alt="" />
+          <h5>{{ item.name }}</h5>
+          <p>{{ item.price }}:-</p>
+        </div>
       </div>
     </div>
   </div>
