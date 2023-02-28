@@ -143,7 +143,9 @@
 
 <template>
   <main>
-    <p id="page-direction">Home / Products</p>
+    <p id="page-direction">
+      <a class="home-direction" href="/">Home</a> / Products
+    </p>
     <img
       id="product-intro-image"
       src="/assets/roland-losslein-X7Res52lR3c-unsplash.jpg"
@@ -336,6 +338,15 @@
     font-size: 1.1rem;
     font-weight: 600;
     color: #424242;
+  }
+
+  .home-direction {
+    text-decoration: none;
+    color: #424242;
+    transition: all 0.4s ease-in-out;
+  }
+  .home-direction:hover {
+    opacity: 0.7;
   }
 
   #product-intro-image {

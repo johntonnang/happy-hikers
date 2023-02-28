@@ -106,7 +106,9 @@
 <template>
   <main>
     <div id="position-text">
-      <p id="page-direction">Home / Wishlist</p>
+      <p id="page-direction">
+        <a class="home-direction" href="/">Home</a> / Wishlist
+      </p>
       <h1>My Favourites</h1>
     </div>
 
@@ -139,6 +141,22 @@
 
   #position-text {
     padding-bottom: 10px;
+    margin-bottom: 100px;
+  }
+
+  #page-direction {
+    font-weight: 600;
+    color: #424242;
+    font-size: 1.12rem;
+  }
+
+  .home-direction {
+    text-decoration: none;
+    color: #424242;
+    transition: all 0.4s ease-in-out;
+  }
+  .home-direction:hover {
+    opacity: 0.7;
   }
 
   img {
@@ -147,11 +165,12 @@
   }
 
   #card {
-    padding-top: 5%;
+    padding-top: 10%;
     /* background-color: white; */
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     align-items: center;
     text-align: center;
+
     margin-bottom: 5%;
     border-radius: 5px;
     margin: 5%;
@@ -163,7 +182,7 @@
   #position-text {
     position: relative;
     top: 100px;
-    padding-left: 5%;
+    margin-left: 27px;
   }
 
   button {

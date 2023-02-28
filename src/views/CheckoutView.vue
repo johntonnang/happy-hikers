@@ -1,5 +1,11 @@
 <script>
+  import LoginProfile from '../components/LoginProfile.vue'
+
   export default {
+    components: {
+      LoginProfile
+    },
+
     data() {
       return {
         name: '',
@@ -13,10 +19,10 @@
         exp: '',
         cvv: '',
         cartItems: [],
-        // temp: localStorage.getItem('Cart'),
         orders: [],
         temp: [],
-        order: []
+        order: [],
+        saveData: false
       }
     },
 
@@ -24,14 +30,39 @@
       total() {
         return this.cartItems.reduce((x, item) => x + item.price, 0)
       }
-      // orders() {
-      //   return [localStorage.getItem('Cart')]
-      // }
     },
     mounted() {
       let cart = localStorage.getItem('Cart')
       if (cart !== null) {
         this.cartItems = JSON.parse(cart)
+      }
+      const savedData = localStorage.getItem('data')
+      if (savedData) {
+        const {
+          name,
+          address,
+          number,
+          email,
+          phone,
+          city,
+          state,
+          zip,
+          card,
+          exp,
+          cvv
+        } = JSON.parse(savedData)
+        this.name = name
+        this.email = email
+        this.phone = phone
+        this.address = address
+        this.city = city
+        this.state = state
+        this.zip = zip
+        this.card = card
+        this.exp = exp
+        this.cvv = cvv
+        this.number = number
+        this.saveData = true
       }
     },
     watch: {
@@ -73,11 +104,7 @@
           if (localStorage.getItem('Orders')) {
             this.order = JSON.parse(localStorage.getItem('Cart'))
             this.orders = JSON.parse(localStorage.getItem('Orders'))
-            // this.temp.push(this.order)
-            console.log(1)
-            console.log(this.order)
             this.orders.push(this.order)
-            console.log(this.orders)
             localStorage.setItem('Orders', JSON.stringify(this.orders))
             localStorage.removeItem('Cart')
           } else {
@@ -87,15 +114,71 @@
             localStorage.removeItem('Cart')
           }
         }
+      },
+      sendData() {
+        const data = {
+          name: this.name,
+          email: this.email,
+          phone: this.phone,
+          address: this.address,
+          city: this.city,
+          state: this.state,
+          zip: this.zip,
+          card: this.card,
+          exp: this.exp,
+          cvv: this.cvv
+        }
+        if (this.saveData) {
+          localStorage.setItem('data', JSON.stringify(data))
+        } else {
+          localStorage.removeItem('data')
+        }
       }
+    },
+    submitOrder() {
+      // Sende til server som vi ikke har :)
+      this.name = ''
+      this.email = ''
+      this.phone = ''
+      this.address = ''
+      this.city = ''
+      this.state = ''
+      this.zip = ''
+      this.card = ''
+      this.exp = ''
+      this.cvv = ''
     }
+
+    /*saveInfo() {
+      localStorage.setItem(
+        'checkoutInfo',
+        JSON.stringify({
+          name: this.name,
+          email: this.email,
+          phone: this.phone,
+          address: this.address,
+          city: this.city,
+          state: this.state,
+          zip: this.zip,
+          card: this.card,
+          exp: this.exp,
+          cvv: this.cvv
+        })
+      )
+      localStorage.name = this.name
+    }*/
   }
 </script>
 <template>
   <main>
+    <LoginProfile />
     <div class="mainContainer">
       <div class="checkoutcontainer">
         <h1 class="h1Checkout">Checkout</h1>
+        <div id="login-check-container">
+          <h2>Har du redan ett konto?</h2>
+          <span> Logga in</span>
+        </div>
         <form class="formContainer" @submit.prevent="submitOrder">
           <fieldset class="custom">
             <legend>Custom Information</legend>
@@ -137,7 +220,13 @@
           </fieldset>
 
           <button class="submitButton" @click="addOrderToProfile" type="submit">
-            Place Order
+            <div class="saveInfo">
+              <input type="checkbox" v-model="saveData" />
+              <p class="saveInfoP">Save my Information</p>
+            </div>
+            <button class="submitButton" @click="sendData" type="submit">
+              Place Order
+            </button>
           </button>
         </form>
       </div>
@@ -182,6 +271,29 @@
     flex-direction: column;
     width: 50%;
     margin-left: 2rem;
+  }
+
+  #login-check-container {
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+    font-size: 1.1rem;
+  }
+
+  #login-check-container h2 {
+    font-size: 1.2rem;
+    margin-bottom: 0px;
+  }
+
+  #login-check-container span {
+    margin-left: 5px;
+    text-decoration: underline;
+    font-weight: 600;
+  }
+
+  #login-check-container span:hover {
+    cursor: pointer;
+    opacity: 0.7;
   }
   .formContainer {
     max-width: 90%;
@@ -287,6 +399,16 @@
     font-size: medium;
     margin: 1rem;
   }
+  .saveInfo {
+    display: flex;
+    flex-direction: row;
+    margin: 1rem;
+    align-items: center;
+  }
+  .saveInfoP {
+    margin-top: 1rem;
+    margin-left: 0.5rem;
+  }
   @media (max-width: 1100px) {
     .shoppingcartPreview {
       width: 40%;
@@ -314,3 +436,23 @@
     }
   }
 </style>
+
+<!-- <div id="app">
+  <label for="name-input">Name:</label>
+  <input type="text" id="name-input" v-model="name">
+  <label for="address-input">Address:</label>
+  <input type="text" id="address-input" v-model="address">
+  <label for="number-input">Number:</label>
+  <input type="number" id="number-input" v-model="number">
+  <label>
+    <input type="checkbox" v-model="saveData">
+    Save data to local storage
+  </label>
+  <button @click="sendData">Send</button>
+</div>
+
+new Vue({ el: "#app", data: { name: "", address: "", number: null, saveData:
+false, }, methods: { sendData() { const data = { name: this.name, address:
+this.address, number: this.number, }; if (this.saveData) {
+localStorage.setItem("data", JSON.stringify(data)); } else {
+localStorage.removeItem("data"); } alert("Data sent!"); }, }, }); -->

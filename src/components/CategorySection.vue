@@ -170,7 +170,7 @@ https://stackoverflow.com/questions/19414856/how-can-i-make-all-images-of-differ
   }
 
   .center-p:hover {
-    box-shadow: 0 10px 30px 0 rgba(2, 84, 44, 0.594);
+    box-shadow: 0 0 40px rgba(2, 84, 44, 0.594);
   }
 
   .container {
@@ -228,6 +228,10 @@ https://stackoverflow.com/questions/19414856/how-can-i-make-all-images-of-differ
     .navigate-button {
       font-size: 3rem;
     }
+
+    .main-title {
+      font-size: 4rem;
+    }
   }
 
   @media (min-width: 600px) and (max-width: 700px) {
@@ -238,6 +242,10 @@ https://stackoverflow.com/questions/19414856/how-can-i-make-all-images-of-differ
 
     .navigate-button {
       font-size: 3rem;
+    }
+
+    .main-title {
+      font-size: 4rem;
     }
   }
 
@@ -250,6 +258,10 @@ https://stackoverflow.com/questions/19414856/how-can-i-make-all-images-of-differ
     .navigate-button {
       font-size: 3rem;
     }
+
+    .main-title {
+      font-size: 4rem;
+    }
   }
 
   @media (min-width: 568px) and (max-width: 576px) {
@@ -260,6 +272,10 @@ https://stackoverflow.com/questions/19414856/how-can-i-make-all-images-of-differ
 
     .navigate-button {
       font-size: 3rem;
+    }
+
+    .main-title {
+      font-size: 4rem;
     }
   }
 
@@ -272,6 +288,10 @@ https://stackoverflow.com/questions/19414856/how-can-i-make-all-images-of-differ
     .navigate-button {
       font-size: 2rem;
     }
+
+    .main-title {
+      font-size: 3rem;
+    }
   }
 
   @media (min-width: 405px) and (max-width: 447px) {
@@ -282,6 +302,10 @@ https://stackoverflow.com/questions/19414856/how-can-i-make-all-images-of-differ
 
     .navigate-button {
       font-size: 2rem;
+    }
+
+    .main-title {
+      font-size: 3rem;
     }
   }
 
@@ -294,6 +318,10 @@ https://stackoverflow.com/questions/19414856/how-can-i-make-all-images-of-differ
     .navigate-button {
       font-size: 1.5rem;
     }
+
+    .main-title {
+      font-size: 2.5rem;
+    }
   }
 
   @media (min-width: 375px) and (max-width: 383px) {
@@ -304,6 +332,10 @@ https://stackoverflow.com/questions/19414856/how-can-i-make-all-images-of-differ
 
     .navigate-button {
       font-size: 1.5rem;
+    }
+
+    .main-title {
+      font-size: 2.5rem;
     }
   }
 
