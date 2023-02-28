@@ -66,7 +66,6 @@
           path: '/ProductView/' + id,
           replace: true
         })
-        console.log('hello world')
       },
       filterSize() {},
       searchResult() {
@@ -273,39 +272,39 @@
       :items-to-show="itemsToShow"
       :wrap-around="true"
     >
-      <slide @click="openProduct(products[5].id)" :key="101">
+      <slide @click="openProduct(this.products[5].id)" :key="101">
         <div class="explore-container">
-          <img :src="products[5].image" alt="" />
+          <img :src="this.products[5].image" alt="" />
           <button class="explore-btn">Explore</button>
         </div>
       </slide>
-      <slide @click="openProduct(products[0].id)" :key="102">
+      <slide @click="openProduct(this.products[0].id)" :key="102">
         <div class="explore-container">
-          <img :src="products[0].image" alt="" />
+          <img :src="this.products[0].image" alt="" />
           <button class="explore-btn">Explore</button>
         </div>
       </slide>
-      <slide @click="openProduct(products[9].id)" :key="103">
+      <slide @click="openProduct(this.products[9].id)" :key="103">
         <div class="explore-container">
-          <img :src="products[9].image" alt="" />
+          <img :src="this.products[9].image" alt="" />
           <button class="explore-btn">Explore</button>
         </div>
       </slide>
-      <slide @click="openProduct(products[15].id)" :key="104">
+      <slide @click="openProduct(this.products[15].id)" :key="104">
         <div class="explore-container">
-          <img :src="products[15].image" alt="" />
+          <img :src="this.products[15].image" alt="" />
           <button class="explore-btn">Explore</button>
         </div>
       </slide>
-      <slide @click="openProduct(products[8].id)" :key="105">
+      <slide @click="openProduct(this.products[8].id)" :key="105">
         <div class="explore-container">
-          <img :src="products[8].image" alt="" />
+          <img :src="this.products[8].image" alt="" />
           <button class="explore-btn">Explore</button>
         </div>
       </slide>
-      <slide @click="openProduct(products[12].id)" :key="106">
+      <slide @click="openProduct(this.products[12].id)" :key="106">
         <div class="explore-container">
-          <img :src="products[12].image" alt="" />
+          <img :src="this.products[12].image" alt="" />
           <button class="explore-btn">Explore</button>
         </div>
       </slide>

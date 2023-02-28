@@ -98,7 +98,7 @@
 <template>
   <main>
     <div id="position-text">
-      <p id="page-direction">Hem / Wishlist</p>
+      <p id="page-direction">Home / Wishlist</p>
       <h1>My Favourites</h1>
     </div>
 
@@ -153,7 +153,8 @@
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   }
   #position-text {
-    padding-top: 30%;
+    position: relative;
+    top: 100px;
     padding-left: 5%;
   }
 

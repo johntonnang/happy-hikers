@@ -63,7 +63,6 @@
   }
 
   #hiker-background {
-    // height: 100vh;
     width: 100%;
     filter: brightness(75%);
   }

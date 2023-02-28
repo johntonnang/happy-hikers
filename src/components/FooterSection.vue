@@ -3,7 +3,7 @@
     <div class="footer-top">
       <ul>
         <li class="bold-footer-text"><a href="#">Customer service</a></li>
-        <li><a href="#">Contact us</a></li>
+        <li><a href="mailto:happyhikers@iths.se">Contact us</a></li>
         <li><a href="#">Common questions</a></li>
         <li><a href="#">Purchase conditions</a></li>
       </ul>

@@ -289,8 +289,7 @@
       }
 
       .navbar-menu {
-        top: 80px;
-        height: 60vh;
+        height: 100vh;
       }
 
       #mobile-menu {

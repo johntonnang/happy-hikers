@@ -26,8 +26,9 @@
   <div v-if="this.$route.params.category != null">
     <div
       v-if="
-        this.category.toLowerCase() ===
-        this.$route.params.category.toLowerCase()
+        this.category
+          .toLowerCase()
+          .includes(this.$route.params.category.toLowerCase())
       "
       class="product-box"
       @click="openProduct(this.id)"
