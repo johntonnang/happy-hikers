@@ -106,7 +106,7 @@
 
   #item-content-container {
     background: linear-gradient(0.25turn, #fcfcfc, #f9faf9, #f3f2f0);
-    padding: 25px;
+    padding: 0px 25px;
     border-radius: 8px;
     display: flex;
     flex-direction: column;
@@ -122,12 +122,11 @@
     justify-content: space-between;
     width: 100%;
     align-items: center;
-    border-bottom: 1px solid black;
+
     padding: 20px 0px;
   }
 
   .first-info {
-    border-bottom: 1px solid black;
     border-top: 1px solid black;
   }
 
