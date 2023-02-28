@@ -10,7 +10,8 @@
         cartItem: [],
         wishItems: [],
         id: this.$route.params.id,
-        CartText: '+ Add to cart'
+        CartText: '+  Add to cart   ',
+        product: null
       }
     },
 
@@ -46,10 +47,17 @@
         console.log('Remove from wishlist')
       },
       addToCart(id) {
+        for (let product in this.wishItems) {
+          if (this.wishItems[product].id === id) {
+            console.log(2)
+            this.product = this.wishItems[product]
+          }
+        }
         if (localStorage.getItem('Cart') !== null) {
-          if (this.CartText === '+ Add to cart') {
+          if (this.CartText === '+  Add to cart   ') {
+            console.log('hej')
             let cart = JSON.parse(localStorage.getItem('Cart'))
-            cart.push({
+            cart.unshift({
               id: this.product.id,
               name: this.product.name,
               price: this.product.price,
@@ -113,7 +121,7 @@
             <h5>{{ item.price }} :-</h5>
             <p>{{ item.category }}</p>
             <div id="align-button-and-icon">
-              <button @click="addToCart(id)">+ Add to cart</button>
+              <button @click="addToCart(item.id)">{{ this.CartText }}</button>
               <img
                 @click="removeFromWishlist(index)"
                 id="icon"
