@@ -14,6 +14,6 @@
 
 <template>
   <FavouriteSection />
-  <carusel-big style="position: relative; top: 100px" />
+  <carusel-big />
   <!-- <carusel-products />  -->
 </template>
