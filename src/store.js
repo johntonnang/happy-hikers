@@ -6,7 +6,8 @@ const mutations = {
     }
   },
   state = {
-    counter: 0
+    counter: 0,
+    cartItems: []
   }
 
 export default createStore({ mutations, state, strict: true, cart: [] })

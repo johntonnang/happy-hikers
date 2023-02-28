@@ -12,6 +12,7 @@
         card: '',
         exp: '',
         cvv: '',
+        saveData: false,
         cartItems: []
       }
     },
@@ -26,6 +27,34 @@
       if (cart !== null) {
         this.cartItems = JSON.parse(cart)
       }
+      const savedData = localStorage.getItem('data')
+      if (savedData) {
+        const {
+          name,
+          address,
+          number,
+          email,
+          phone,
+          city,
+          state,
+          zip,
+          card,
+          exp,
+          cvv
+        } = JSON.parse(savedData)
+        this.name = name
+        this.email = email
+        this.phone = phone
+        this.address = address
+        this.city = city
+        this.state = state
+        this.zip = zip
+        this.card = card
+        this.exp = exp
+        this.cvv = cvv
+        this.number = number
+        this.saveData = true
+      }
     },
     watch: {
       cartItems: {
@@ -36,20 +65,58 @@
       }
     },
     methods: {
-      submitOrder() {
-        // Sende til server som vi ikke har :)
-        this.name = ''
-        this.email = ''
-        this.phone = ''
-        this.address = ''
-        this.city = ''
-        this.state = ''
-        this.zip = ''
-        this.card = ''
-        this.exp = ''
-        this.cvv = ''
+      sendData() {
+        const data = {
+          name: this.name,
+          email: this.email,
+          phone: this.phone,
+          address: this.address,
+          city: this.city,
+          state: this.state,
+          zip: this.zip,
+          card: this.card,
+          exp: this.exp,
+          cvv: this.cvv
+        }
+        if (this.saveData) {
+          localStorage.setItem('data', JSON.stringify(data))
+        } else {
+          localStorage.removeItem('data')
+        }
       }
+    },
+    submitOrder() {
+      // Sende til server som vi ikke har :)
+      this.name = ''
+      this.email = ''
+      this.phone = ''
+      this.address = ''
+      this.city = ''
+      this.state = ''
+      this.zip = ''
+      this.card = ''
+      this.exp = ''
+      this.cvv = ''
     }
+
+    /*saveInfo() {
+      localStorage.setItem(
+        'checkoutInfo',
+        JSON.stringify({
+          name: this.name,
+          email: this.email,
+          phone: this.phone,
+          address: this.address,
+          city: this.city,
+          state: this.state,
+          zip: this.zip,
+          card: this.card,
+          exp: this.exp,
+          cvv: this.cvv
+        })
+      )
+      localStorage.name = this.name
+    }*/
   }
 </script>
 <template>
@@ -96,8 +163,13 @@
             <label for="cvv">CVV:</label>
             <input type="text" id="cvv" v-model="cvv" required />
           </fieldset>
-
-          <button class="submitButton" type="submit">Place Order</button>
+          <div class="saveInfo">
+            <input type="checkbox" v-model="saveData" />
+            <p class="saveInfoP">Save my Information</p>
+          </div>
+          <button class="submitButton" @click="sendData" type="submit">
+            Place Order
+          </button>
         </form>
       </div>
       <div class="shoppingcartPreview">
@@ -246,6 +318,16 @@
     font-size: medium;
     margin: 1rem;
   }
+  .saveInfo {
+    display: flex;
+    flex-direction: row;
+    margin: 1rem;
+    align-items: center;
+  }
+  .saveInfoP {
+    margin-top: 1rem;
+    margin-left: 0.5rem;
+  }
   @media (max-width: 1100px) {
     .shoppingcartPreview {
       width: 40%;
@@ -273,3 +355,49 @@
     }
   }
 </style>
+
+<!--
+
+
+  <div id="app">
+  <label for="name-input">Name:</label>
+  <input type="text" id="name-input" v-model="name">
+  <label for="address-input">Address:</label>
+  <input type="text" id="address-input" v-model="address">
+  <label for="number-input">Number:</label>
+  <input type="number" id="number-input" v-model="number">
+  <label>
+    <input type="checkbox" v-model="saveData">
+    Save data to local storage
+  </label>
+  <button @click="sendData">Send</button>
+</div>
+
+
+
+  new Vue({
+  el: "#app",
+  data: {
+    name: "",
+    address: "",
+    number: null,
+    saveData: false,
+  },
+  methods: {
+    sendData() {
+      const data = {
+        name: this.name,
+        address: this.address,
+        number: this.number,
+      };
+      if (this.saveData) {
+        localStorage.setItem("data", JSON.stringify(data));
+      } else {
+        localStorage.removeItem("data");
+      }
+      alert("Data sent!");
+    },
+  },
+});
+
+-->
