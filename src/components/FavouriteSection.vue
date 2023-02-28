@@ -7,7 +7,10 @@
   export default {
     data() {
       return {
-        wishItems: []
+        cartItem: [],
+        wishItems: [],
+        id: this.$route.params.id,
+        CartText: '+ Add to cart'
       }
     },
 
@@ -16,6 +19,10 @@
       if (wish !== null) {
         this.wishItems = JSON.parse(wish)
       }
+      let cart = localStorage.getItem('Cart')
+      if (cart !== null) {
+        this.cartItems = JSON.parse(cart)
+      }
     },
     watch: {
       wishItems: {
@@ -23,14 +30,67 @@
           localStorage.setItem('Wish', JSON.stringify(value))
         },
         deep: true
+      },
+      cartItems: {
+        handler: function (value) {
+          localStorage.setItem('Cart', JSON.stringify(value))
+        },
+        deep: true
       }
     },
+
     methods: {
       removeFromWishlist(index) {
         this.wishItems.splice(index, 1)
         localStorage.setItem('Wish', JSON.stringify(this.wishItems))
         console.log('Remove from wishlist')
+      },
+      addToCart(id) {
+        if (localStorage.getItem('Cart') !== null) {
+          if (this.CartText === '+ Add to cart') {
+            let cart = JSON.parse(localStorage.getItem('Cart'))
+            cart.push({
+              id: this.product.id,
+              name: this.product.name,
+              price: this.product.price,
+              image: this.product.image,
+              description: this.product.description
+            })
+            localStorage.setItem('Cart', JSON.stringify(cart))
+            console.log('hej 1')
+          } else if (this.CartText === 'Remove from Cart') {
+            let cart = JSON.parse(localStorage.getItem('Cart'))
+            console.log(cart)
+            let i = 0
+            for (let product of cart) {
+              console.log(product)
+              console.log(product.id + '   ' + id)
+
+              if (product.id === id) {
+                cart.splice(i, 1)
+                localStorage.setItem('Cart', JSON.stringify(cart))
+              }
+              i++
+            }
+          }
+        } else {
+          let cart = null
+          if (this.CartText === '+ Add to cart') {
+            console.log('hej 3')
+            cart = [
+              {
+                id: this.product.id,
+                name: this.product.name,
+                price: this.product.price,
+                image: this.product.image,
+                description: this.product.description
+              }
+            ]
+            localStorage.setItem('Cart', JSON.stringify(cart))
+          }
+        }
       }
+      // Här vill jag ha en addToCart-funktion
     }
   }
 </script>
@@ -39,33 +99,25 @@
   <main>
     <div id="position-text">
       <p id="page-direction">Hem / Wishlist</p>
-
       <h1>My Favourites</h1>
     </div>
 
-    <div class="container">
-      <div class="wishBox">
-        <div v-if="wishItems.length">
-          <div
-            class="wishItems"
-            v-for="(item, index) in wishItems"
-            :key="index"
-          >
-            <div id="card">
-              <img :src="item.image" alt="image of product" />
-
-              <h3>{{ item.name }}</h3>
-              <h5>{{ item.price }} :-</h5>
-              <p>{{ item.category }}</p>
-              <div id="align-button-and-icon">
-                <button @click="someFunction">+ Add to Cart</button>
-                <img
-                  @click="removeFromWishlist(index)"
-                  id="icon"
-                  src="/assets/delete.png"
-                  alt="bin icon"
-                />
-              </div>
+    <div v-if="wishItems.length">
+      <div class="container">
+        <div class="wishItems" v-for="(item, index) in wishItems" :key="index">
+          <div id="card">
+            <img :src="item.image" alt="image of product" />
+            <h3>{{ item.name }}</h3>
+            <h5>{{ item.price }} :-</h5>
+            <p>{{ item.category }}</p>
+            <div id="align-button-and-icon">
+              <button @click="addToCart(id)">+ Add to cart</button>
+              <img
+                @click="removeFromWishlist(index)"
+                id="icon"
+                src="/assets/delete.png"
+                alt="bin icon"
+              />
             </div>
           </div>
         </div>

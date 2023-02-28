@@ -88,6 +88,7 @@
         } else {
           let cart = null
           if (this.CartText === '+  Add to cart   ') {
+            console.log('hej 3')
             cart = [
               {
                 id: this.product.id,
