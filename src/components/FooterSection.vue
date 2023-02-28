@@ -19,9 +19,20 @@
       <p><b>Follow us</b></p>
       <p>Download our app at to iOS or Android</p>
       <div class="links-container">
-        <img src="/assets/facebook.svg" alt="Facebook logo" />
-        <img src="/assets/instagram.svg" alt="Instagram logo" />
-        <img src="/assets/twitter.svg" alt="Twitter logo" />
+        <a
+          href="https://www.facebook.com/groups/663870405804535/"
+          target="_blank"
+        >
+          <img src="/assets/facebook.svg" alt="Facebook logo"
+        /></a>
+        <a
+          href="https://instagram.com/happyhikers2023?igshid=YmMyMTA2M2Y="
+          target="_blank"
+          ><img src="/assets/instagram.svg" alt="Instagram logo"
+        /></a>
+        <a href="https://twitter.com/mahasrithanet" target="_blank"
+          ><img src="/assets/twitter.svg" alt="Twitter logo"
+        /></a>
       </div>
     </div>
   </footer>
