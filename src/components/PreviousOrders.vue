@@ -156,7 +156,6 @@
   }
 
   @media (max-width: 760px) {
-
     #order-container {
       width: 100%;
     }
