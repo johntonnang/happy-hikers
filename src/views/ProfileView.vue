@@ -109,6 +109,7 @@
     box-shadow: 0px 0px 20px black;
   }
   .discount-container-box {
+    transition: all 0.3s;
     background-color: #f3f3f3;
     width: 200px;
     margin-top: 30px;

@@ -84,7 +84,8 @@
 
   #order-container:hover {
     cursor: pointer;
-    opacity: 0.6;
+
+    /* opacity: 0.8; */
   }
   .prev-order-container {
     display: flex;
@@ -92,8 +93,13 @@
     align-items: center;
     width: 100%;
     padding: 25px;
-    background: linear-gradient(0.25turn, #fcfcfc, #f9faf9, #f3f2f0);
+    /* background: linear-gradient(0.25turn, #fcfcfc, #f9faf9, #f3f2f0); */
+    background: #fcfcfc;
     border-radius: 8px;
+    transition: all 0.4s;
+  }
+  .prev-order-container:hover {
+    background: #e3e3e3;
   }
 
   .order-content h4 {
