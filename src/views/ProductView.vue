@@ -14,7 +14,8 @@
         SizeError: false,
         currentDate: '',
         cartItems: [],
-        showCart: false
+        showCart: false,
+        isHoveringCartPreview: false
       }
     },
     computed: {
@@ -156,14 +157,20 @@
 
         const currentCartItems = JSON.parse(localStorage.getItem('Cart'))
         this.cartItems = currentCartItems
+
+        this.showCartPreview()
+
+        console.log('currentCartItems', this.cartItems)
+      },
+
+      showCartPreview() {
         this.showCart = true
 
         setTimeout(() => {
           this.showCart = false
         }, 3000)
-
-        console.log('currentCartItems', this.cartItems)
       },
+
       removeItem(index) {
         this.cartItems.splice(index, 1)
         localStorage.setItem('Cart', JSON.stringify(this.cartItems))
@@ -443,7 +450,12 @@
 </style>
 <template>
   <main>
-    <div v-if="showCart" class="cart-preview">
+    <div
+      v-if="showCart || isHoveringCartPreview"
+      class="cart-preview"
+      @mouseover="isHoveringCartPreview = true"
+      @mouseleave="showCartPreview(), (isHoveringCartPreview = false)"
+    >
       <h3>Your shopping cart</h3>
       <div class="cartItems" v-for="(item, index) in cartItems" :key="index">
         <div class="itemRow">
