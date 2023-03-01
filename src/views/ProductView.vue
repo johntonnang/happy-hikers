@@ -12,9 +12,18 @@
         WishColor: 'rgba(0, 0, 0)',
         ChooseSize: false,
         SizeError: false,
-        currentDate: ''
+        currentDate: '',
+        cartItems: [],
+        showCart: false
       }
     },
+    computed: {
+      total() {
+        console.log(this.cartItems.length)
+        return this.cartItems.reduce((x, item) => x + item.price, 0)
+      }
+    },
+
     watch: {
       $route() {
         fetch('/assets/api.JSON')
@@ -79,6 +88,7 @@
         if (localStorage.getItem('Cart') !== null) {
           if (this.CartText === '+  Add to cart   ') {
             let cart = JSON.parse(localStorage.getItem('Cart'))
+            console.log('Cart', cart)
             cart.unshift({
               id: this.product.id,
               name: this.product.name,
@@ -143,6 +153,20 @@
             setTimeout(() => (this.CartText = 'Remove from Cart'), 3350)
           }
         }
+
+        const currentCartItems = JSON.parse(localStorage.getItem('Cart'))
+        this.cartItems = currentCartItems
+        this.showCart = true
+
+        setTimeout(() => {
+          this.showCart = false
+        }, 3000)
+
+        console.log('currentCartItems', this.cartItems)
+      },
+      removeItem(index) {
+        this.cartItems.splice(index, 1)
+        localStorage.setItem('Cart', JSON.stringify(this.cartItems))
       },
       openProduct(id) {
         this.WishText = '+  Add to wishlist   '
@@ -228,6 +252,58 @@
   }
 </script>
 <style scoped>
+  h3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
+  }
+  .cart-preview {
+    position: fixed;
+    top: 0.5rem;
+    right: 0.5rem;
+    width: 25rem;
+    background-color: white;
+    border: 1px solid black;
+    padding: 1rem;
+    z-index: 999;
+  }
+  .trashImg {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 1rem;
+  }
+  .productInfo {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+  }
+  .itemRow {
+    display: flex;
+    flex-direction: row;
+    max-width: 90%;
+    position: relative;
+    margin-top: 1rem;
+    box-shadow: 0px 46px 130px rgba(0, 25, 64, 0.142);
+  }
+  .total {
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: end;
+    align-items: flex-end;
+    margin: 2rem;
+  }
+  .productImg {
+    max-width: 150px;
+    max-height: 150px;
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    transition: all 0.4;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+  }
   main {
     position: relative;
     top: 100px;
@@ -365,6 +441,28 @@
 </style>
 <template>
   <main>
+    <div v-if="showCart" class="cart-preview">
+      <h3>Your shopping cart</h3>
+      <div class="cartItems" v-for="(item, index) in cartItems" :key="index">
+        <div class="itemRow">
+          <div>
+            <img class="productImg" :src="item.image" :alt="item.name" />
+          </div>
+          <div class="productInfo">
+            <span class="name">{{ item.name }}</span>
+            <img
+              class="trashImg"
+              @click="removeItem(index)"
+              src="/assets/trash-can-solid.svg"
+              alt="trash can"
+              width="20"
+            />
+            <span class="price">{{ item.price }};- </span>
+          </div>
+        </div>
+      </div>
+      <div class="total">Total: {{ total }}</div>
+    </div>
     <p>Hem / Produkter / Jackor</p>
     <section>
       <img :src="product.image" alt="Img of the product" class="product-img" />
