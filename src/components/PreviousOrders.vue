@@ -39,7 +39,7 @@
         </div>
         <div class="order-content">
           <p>{{ order.reduce((x, item) => x + item.price, 0) }}kr</p>
-          <p>01/01/2023</p>
+          <p>{{ order[0].date }}</p>
         </div>
         <svg
           xmlns="http://www.w3.org/2000/svg"

@@ -27,6 +27,7 @@
         profileName: '',
         profileEmail: '',
         profilePhone: '',
+        addPoints: 0,
         loginTrue: false
       }
     },
@@ -118,10 +119,6 @@
       },
       addOrderToProfile() {
         if (
-          this.name &&
-          this.email.includes('@') &&
-          this.email.includes('.') &&
-          this.phone &&
           this.address &&
           this.city &&
           this.state &&
@@ -133,14 +130,26 @@
           if (localStorage.getItem('Orders')) {
             this.order = JSON.parse(localStorage.getItem('Cart'))
             this.orders = JSON.parse(localStorage.getItem('Orders'))
+            let profilePoints = parseInt(localStorage.getItem('ProfilePoints'))
+            for (let i = 0; i < this.order.length; i++) {
+              profilePoints += 200
+            }
+            localStorage.setItem('ProfilePoints', profilePoints)
+
             this.orders.push(this.order)
             localStorage.setItem('Orders', JSON.stringify(this.orders))
             localStorage.removeItem('Cart')
+            console.log('hej')
           } else {
             this.order = JSON.parse(localStorage.getItem('Cart'))
+            for (let i = 0; i < this.order.length; i++) {
+              this.addPoints += 200
+            }
+            localStorage.setItem('ProfilePoints', this.addPoints)
             this.orders.unshift(this.order)
             localStorage.setItem('Orders', JSON.stringify(this.orders))
             localStorage.removeItem('Cart')
+            console.log('hej')
           }
         }
         const data = {

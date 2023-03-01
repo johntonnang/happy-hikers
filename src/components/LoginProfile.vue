@@ -14,7 +14,9 @@
         loginMember: true,
         existingUser: true,
         failedInput: false,
-        loadingIcon: false
+        loadingIcon: false,
+        loginAccepted: false,
+        errorInput: false
       }
     },
     methods: {
@@ -24,23 +26,30 @@
       loginProfile() {
         this.loadingIcon = true
         this.failedInput = false
+        this.errorInput = false
         setTimeout(() => {
           const email = localStorage.getItem('username')
           const password = localStorage.getItem('password')
 
           if (email === this.EmailInput && password === this.passwordInput) {
-            this.loginSuccesfull = true
+            this.loginProfileAccepted()
             this.failedInput = false
-          }
-          if (this.loginSuccesfull) {
-            this.$emit('login-success', this.loginSuccesfull)
-            localStorage.setItem('existing-user', this.existingUser)
-            this.reloadPage()
+            this.errorInput = false
           } else {
-            this.failedInput = true
             this.loadingIcon = false
+            this.errorInput = true
           }
         }, 1500)
+      },
+      loginProfileAccepted() {
+        this.loginSuccesfull = true
+        this.loginAccepted = true
+        this.failedInput = true
+        setTimeout(() => {
+          this.$emit('login-success', this.loginSuccesfull)
+          localStorage.setItem('existing-user', this.existingUser)
+          window.location.reload()
+        }, 3000)
       }
     },
     emits: ['login-success'],
@@ -56,7 +65,7 @@
 </script>
 
 <template>
-  <div v-if="!loginSuccesfull && loginMember" id="login-container">
+  <div v-if="!failedInput && loginMember" id="login-container">
     <div id="login-content">
       <div id="exit-login-container">
         <h2>Log in</h2>
@@ -77,7 +86,7 @@
           name="password"
         />
       </div>
-      <p style="color: rgb(219, 15, 15)" v-if="failedInput">
+      <p style="color: rgb(219, 15, 15)" v-if="errorInput">
         Wrong email address or password, please try again.
       </p>
       <div class="checkbox-container">
@@ -85,9 +94,18 @@
         <label for="remember-me" /> Remember me
       </div>
       <div id="profile-btn-container">
-        <button id="login-btn" @click="loginProfile">
+        <button v-if="!loginAccepted" id="login-btn" @click="loginProfile">
           <div class="loader" v-if="loadingIcon" />
           <span v-else>Log in</span>
+        </button>
+        <button
+          v-if="loginAccepted"
+          style="background-color: white"
+          id="login-btn"
+          @click="loginProfile"
+        >
+          <img src="assets/icons8-checkmark.gif" alt="Checkmark" />
+          <span style="margin-left: 5px">Redirecting...</span>
         </button>
         <button
           id="member-btn"
@@ -102,6 +120,10 @@
   <BecomeMember v-if="becomeMember" />
 </template>
 <style scoped>
+  #login-btn img {
+    width: 30px;
+    background-color: yellow;
+  }
   #login-container {
     display: flex;
     flex-direction: column;

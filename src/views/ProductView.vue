@@ -9,7 +9,10 @@
         WishText: '+  Add to wishlist   ',
         id: this.$route.params.id,
         CartColor: 'rgba(0, 0, 0)',
-        WishColor: 'rgba(0, 0, 0)'
+        WishColor: 'rgba(0, 0, 0)',
+        ChooseSize: false,
+        SizeError: false,
+        currentDate: ''
       }
     },
     watch: {
@@ -34,6 +37,7 @@
       }
     },
     created() {
+      this.renderDate()
       // this.$watch(
       //   () = this.$route.params.id, (params) => {
       //     console.log(params)
@@ -56,8 +60,22 @@
           }
         })
     },
+
     methods: {
+      renderDate() {
+        const currentDate = new Date()
+        const day = String(currentDate.getDate()).padStart(2, '0')
+        const month = String(currentDate.getMonth() + 1).padStart(2, '0')
+        const year = currentDate.getFullYear()
+        this.currentDate = `${day}/${month}/${year}`
+      },
       addToCart(id) {
+        if (!this.ChooseSize) {
+          this.SizeError = true
+          return
+        } else {
+          this.SizeError = false
+        }
         if (localStorage.getItem('Cart') !== null) {
           if (this.CartText === '+  Add to cart   ') {
             let cart = JSON.parse(localStorage.getItem('Cart'))
@@ -66,7 +84,8 @@
               name: this.product.name,
               price: this.product.price,
               image: this.product.image,
-              description: this.product.description
+              description: this.product.description,
+              date: this.currentDate
             })
             localStorage.setItem('Cart', JSON.stringify(cart))
             this.CartColor = 'rgba(0,0,0,0)'
@@ -108,7 +127,8 @@
                 name: this.product.name,
                 price: this.product.price,
                 image: this.product.image,
-                description: this.product.description
+                description: this.product.description,
+                date: this.currentDate
               }
             ]
             localStorage.setItem('Cart', JSON.stringify(cart))
@@ -196,6 +216,9 @@
             setTimeout(() => (this.WishText = '+  Add to wishlist   '), 3350)
           }
         }
+      },
+      sizeSelected() {
+        this.ChooseSize = true
       }
     }
   }
@@ -347,7 +370,7 @@
         <p class="product-description">
           {{ product.description }}
         </p>
-        <select class="product-size" type="option">
+        <select class="product-size" type="option" @change="sizeSelected">
           <option value="" disabled selected hidden>Choose a size</option>
           <option value="XS">XS</option>
           <option value="S">S</option>
@@ -356,6 +379,9 @@
           <option value="XL">XL</option>
           <option value="XXl">XXL</option>
         </select>
+        <p v-if="this.SizeError" style="color: red">
+          You need to choose a size.
+        </p>
         <div class="product-btns">
           <input
             @click="addToCart(product.id)"

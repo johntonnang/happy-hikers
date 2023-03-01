@@ -143,6 +143,9 @@
     top: 1rem;
     right: 1rem;
   }
+  .trashImg:hover {
+    cursor: pointer;
+  }
   .checkout {
     width: 20rem;
     color: white;

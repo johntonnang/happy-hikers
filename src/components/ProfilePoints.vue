@@ -2,16 +2,21 @@
   export default {
     data() {
       return {
-        points: 2000
+        profilePoints: 0
       }
+    },
+    created() {
+      this.profilePoints = localStorage.getItem('ProfilePoints')
     }
   }
 </script>
 <template>
   <div id="points-container">
-    <h2 style="font-size: 3rem; font-weight: 800">Points: {{ this.points }}</h2>
+    <h2 style="font-size: 3rem; font-weight: 800">
+      Points: {{ this.profilePoints }}
+    </h2>
     <div id="points-bar-container">
-      <div class="bar-profile-row" v-if="this.points >= 500">
+      <div class="bar-profile-row" v-if="this.profilePoints >= 500">
         <span class="bar-profile-active" />
         <span class="circle-active" />
       </div>
@@ -19,7 +24,7 @@
         <span class="bar-profile-unactive" />
         <span class="circle" />
       </div>
-      <div class="bar-profile-row" v-if="this.points >= 1000">
+      <div class="bar-profile-row" v-if="this.profilePoints >= 1000">
         <span class="bar-profile-active" />
         <span class="circle-active" />
       </div>
@@ -27,7 +32,7 @@
         <span class="bar-profile-unactive" />
         <span class="circle" />
       </div>
-      <div class="bar-profile-row" v-if="this.points >= 1500">
+      <div class="bar-profile-row" v-if="this.profilePoints >= 1500">
         <span class="bar-profile-active" />
         <span class="circle-active" />
       </div>
@@ -35,7 +40,7 @@
         <span class="bar-profile-unactive" />
         <span class="circle" />
       </div>
-      <div class="bar-profile-row" v-if="this.points >= 2000">
+      <div class="bar-profile-row" v-if="this.profilePoints >= 2000">
         <span class="bar-profile-active" />
         <span class="circle-active" />
       </div>
@@ -43,7 +48,7 @@
         <span class="bar-profile-unactive" />
         <span class="circle" />
       </div>
-      <div class="bar-profile-row" v-if="this.points >= 2500">
+      <div class="bar-profile-row" v-if="this.profilePoints >= 2500">
         <span class="bar-profile-active" />
         <span class="circle-active" />
       </div>

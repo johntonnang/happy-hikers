@@ -39,10 +39,6 @@
             this.correctPassword = false
             this.loadingIcon = false
             return
-          } else if (this.memberPhoneInput === '') {
-            this.correctPhone = false
-            this.loadingIcon = false
-            return
           } else {
             localStorage.setItem('name', this.memberNameInput)
             localStorage.setItem('username', this.memberUsernameInput)
@@ -99,9 +95,6 @@
       <div class="input-container">
         <label for="Phone" /> Phone (Optional)
         <input class="input-field" v-model="memberPhoneInput" name="phone" />
-        <span class="error" v-if="!correctPhone"
-          >The name field cannot be left empty.</span
-        >
       </div>
       <label for="day" />Date of birth *
       <div id="date-of-birth-container">
