@@ -123,6 +123,8 @@
         }
       },
       openProduct(id) {
+        this.WishText = '+  Add to wishlist   '
+        this.CartText = '+  Add to cart   '
         this.$router.push({
           path: '/ProductView/' + id,
           replace: true
