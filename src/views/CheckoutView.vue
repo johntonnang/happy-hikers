@@ -132,7 +132,7 @@
             this.orders = JSON.parse(localStorage.getItem('Orders'))
             let profilePoints = parseInt(localStorage.getItem('ProfilePoints'))
             for (let i = 0; i < this.order.length; i++) {
-              profilePoints += 200
+              profilePoints += 197
             }
             localStorage.setItem('ProfilePoints', profilePoints)
 
@@ -143,7 +143,7 @@
           } else {
             this.order = JSON.parse(localStorage.getItem('Cart'))
             for (let i = 0; i < this.order.length; i++) {
-              this.addPoints += 200
+              this.addPoints += 197
             }
             localStorage.setItem('ProfilePoints', this.addPoints)
             this.orders.unshift(this.order)

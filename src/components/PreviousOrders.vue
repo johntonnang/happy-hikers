@@ -156,6 +156,10 @@
   }
 
   @media (max-width: 760px) {
+
+    #order-container {
+      width: 100%;
+    }
     .prev-order-container {
       width: 100%;
       padding: 10px 25px 10px 25px;

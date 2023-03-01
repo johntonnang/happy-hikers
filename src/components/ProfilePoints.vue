@@ -2,11 +2,19 @@
   export default {
     data() {
       return {
-        profilePoints: 0
+        profilePoints: 0,
+        bonusUpgrade: 2500,
+        plusMember: 5000,
+        nextBonus: 0,
+        plusMemberLeft: 0
       }
     },
     created() {
       this.profilePoints = localStorage.getItem('ProfilePoints')
+      // Calculate next bonus
+      this.nextBonus = this.bonusUpgrade - this.profilePoints
+      //Calculate till plus-member
+      this.plusMemberLeft = this.plusMember - this.profilePoints
     }
   }
 </script>
@@ -58,9 +66,10 @@
       </div>
     </div>
     <p>
-      You need 1337 points to get your next bonus discount, and 1864 points to
-      become a Plus-1337 member. Bonus discounts are issued with a delay of 30
-      days.
+      You need {{ nextBonus }} points to get your next bonus discount, and
+      {{ plusMemberLeft }}
+      points to become a Plus member. Bonus discounts are issued with a delay of
+      30 days.
     </p>
   </div>
 </template>

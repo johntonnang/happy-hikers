@@ -85,6 +85,7 @@
               price: this.product.price,
               image: this.product.image,
               description: this.product.description,
+              category: this.product.category,
               date: this.currentDate
             })
             localStorage.setItem('Cart', JSON.stringify(cart))
@@ -128,6 +129,7 @@
                 price: this.product.price,
                 image: this.product.image,
                 description: this.product.description,
+                category: this.product.category,
                 date: this.currentDate
               }
             ]
