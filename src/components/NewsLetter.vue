@@ -2,7 +2,7 @@
   export default {
     data() {
       return {
-        x: 'block'
+        x: 'none'
       }
     },
     methods: {
@@ -57,10 +57,9 @@
     border: none;
     font-size: large;
     font-weight: bold;
-    /* margin-right: 100%; */
   }
   #h1-news {
-    color: rgba(2, 70, 2, 0.716);
+    color: rgba(4, 92, 4, 0.716);
     font-weight: bold;
   }
 
@@ -70,56 +69,50 @@
 
   h5,
   p {
-    color: rgb(80, 77, 77);
+    color: rgb(191, 186, 186);
   }
 
   #newsletter {
+    background-color: rgb(34, 34, 34);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    /*margin-bottom: 5%;
-    border-radius: 5px;
-    transition: width 2s, height 4s; */
-    width: 40px;
-    height: 200px;
+    width: 30px;
+    height: 100px;
     right: 0%;
-    top: 50%;
+    top: 30%;
     position: fixed;
     z-index: 4;
+    opacity: 0.9;
+    border-radius: 5%;
   }
 
   #newsletter:hover {
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
     padding: 15px;
     border-radius: 5px;
     transition: width 2s, height 4s;
     width: 500px;
-    height: 300px;
+    height: 200px;
+    padding-bottom: 25%;
     overflow: hidden;
-    /* opacity: 1; */
-    /* position: fixed;
-    z-index: 4; */
+    /* opacity: 0.9; */
   }
 
   #align-text {
     text-align: center;
-    /* opacity: 0; */
+    opacity: 0;
   }
 
   #align-text:hover {
-    /* opacity: 1; */
+    opacity: 1;
   }
 
   button {
-    color: black;
-    background-color: white;
+    color: rgb(234, 232, 232);
+    background-color: rgb(34, 34, 34);
     border-color: 1px black;
   }
 
   button:hover {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-  }
-
-  input {
-    border-bottom: 3px black;
   }
 
   form {
