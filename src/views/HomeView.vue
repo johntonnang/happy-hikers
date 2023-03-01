@@ -17,11 +17,11 @@
 </script>
 
 <template>
+  <NewsLetter />
   <HeaderPage />
   <CategorySection />
   <carusel-big />
   <carusel-products />
-  <NewsLetter />
 </template>
 
 <style scoped></style>
