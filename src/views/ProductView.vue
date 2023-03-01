@@ -267,6 +267,8 @@
     border: 1px solid black;
     padding: 1rem;
     z-index: 999;
+    max-height: 40rem;
+    overflow-y: auto;
   }
   .trashImg {
     position: absolute;
