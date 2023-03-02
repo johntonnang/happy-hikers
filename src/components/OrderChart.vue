@@ -19,7 +19,10 @@
       }
     },
     mounted() {
-      const orders = JSON.parse(localStorage.getItem('Orders'))
+      let orders = []
+      if (localStorage.getItem('Orders')) {
+        orders = JSON.parse(localStorage.getItem('Orders'))
+      }
       const products = orders.flat()
       products.forEach((product) => {
         switch (product.category) {
