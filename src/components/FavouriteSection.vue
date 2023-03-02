@@ -42,6 +42,7 @@
 
     methods: {
       removeFromWishlist(index) {
+        console.log(index)
         this.wishItems.splice(index, 1)
         localStorage.setItem('Wish', JSON.stringify(this.wishItems))
         console.log('Remove from wishlist')
@@ -90,7 +91,7 @@
           }
         } else {
           let cart = null
-          if (this.CartText === '+ Add to cart') {
+          if (this.CartText === '+  Add to cart   ') {
             console.log('hej 3')
             cart = [
               {
@@ -101,7 +102,7 @@
                 description: this.product.description
               }
             ]
-
+            this.removeFromWishlist(index)
             localStorage.setItem('Cart', JSON.stringify(cart))
           }
         }
@@ -127,7 +128,7 @@
             <h5>{{ item.price }} :-</h5>
             <p>{{ item.category }}</p>
             <div id="align-button-and-icon">
-              <button class="favourite-btn" @click="addToCart(item.id)">
+              <button class="favourite-btn" @click="addToCart(item.id, index)">
                 {{ this.CartText }}
               </button>
               <img
