@@ -18,6 +18,7 @@
 
 <template>
   <HeaderPage />
+
   <CategorySection />
   <carusel-big />
   <carusel-products />

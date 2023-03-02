@@ -46,7 +46,7 @@
         localStorage.setItem('Wish', JSON.stringify(this.wishItems))
         console.log('Remove from wishlist')
       },
-      addToCart(id) {
+      addToCart(id, index) {
         for (let product in this.wishItems) {
           if (this.wishItems[product].id === id) {
             console.log(2)
@@ -64,22 +64,29 @@
               image: this.product.image,
               description: this.product.description
             })
-            localStorage.setItem('Cart', JSON.stringify(cart))
-            console.log('hej 1')
-          } else if (this.CartText === 'Remove from Cart') {
-            let cart = JSON.parse(localStorage.getItem('Cart'))
-            console.log(cart)
-            let i = 0
-            for (let product of cart) {
-              console.log(product)
-              console.log(product.id + '   ' + id)
 
-              if (product.id === id) {
-                cart.splice(i, 1)
-                localStorage.setItem('Cart', JSON.stringify(cart))
-              }
-              i++
-            }
+            this.removeFromWishlist(index)
+
+            console.log('wishItems array: ' + this.wishItems)
+            console.log('removing ' + this.product.name)
+
+            localStorage.setItem('Cart', JSON.stringify(cart))
+
+            // console.log('hej 1')
+            // } else if (this.CartText === 'Remove from Cart') {
+            //   let cart = JSON.parse(localStorage.getItem('Cart'))
+            //   console.log(cart)
+            //   let i = 0
+            //   for (let product of cart) {
+            //     console.log(product)
+            //     console.log(product.id + '   ' + id)
+
+            //     if (product.id === id) {
+            //       cart.splice(i, 1)
+            //       localStorage.setItem('Cart', JSON.stringify(cart))
+            //     }
+            //     i++
+            //   }
           }
         } else {
           let cart = null
@@ -94,6 +101,7 @@
                 description: this.product.description
               }
             ]
+
             localStorage.setItem('Cart', JSON.stringify(cart))
           }
         }
@@ -119,7 +127,9 @@
             <h5>{{ item.price }} :-</h5>
             <p>{{ item.category }}</p>
             <div id="align-button-and-icon">
-              <button @click="addToCart(item.id)">{{ this.CartText }}</button>
+              <button @click="addToCart(item.id, index)">
+                {{ this.CartText }}
+              </button>
               <img
                 @click="removeFromWishlist(index)"
                 id="icon"

@@ -11,33 +11,47 @@
   export default {
     data() {
       return {
-        test: 10,
-        test2: 15,
-        backgroundColors: [
-          '#012107',
-          '#023B0D',
-          '#036716',
-          '#049220',
-          '#05B929',
-          '#04D32D'
-        ]
+        Shoes: [],
+        Backpacks: [],
+        jacketsWoman: [],
+        jacketsMan: [],
+        backgroundColors: ['#012107', '#023B0D', '#036716', '#049220']
       }
     },
     mounted() {
+      const orders = JSON.parse(localStorage.getItem('Orders'))
+      const products = orders.flat()
+      products.forEach((product) => {
+        switch (product.category) {
+          case 'Shoes':
+            this.Shoes.push(product)
+            break
+          case 'Backpack':
+            this.Backpacks.push(product)
+            break
+          case "Men's jacket":
+            this.jacketsMan.push(product)
+            break
+          case "Women's jacket":
+            this.jacketsWoman.push(product)
+            break
+          default:
+            break
+        }
+      })
+
       const chartData = {
-        labels: [
-          'Shoes',
-          'Backpacks',
-          'Equipment',
-          'Jackets',
-          'Women Clothing',
-          'Men Clothing'
-        ],
+        labels: ['Shoes', 'Backpacks', "Men's jacket", "Women's jacket"],
         datasets: [
           {
             label: '',
             backgroundColor: this.backgroundColors,
-            data: [3, 4, 5, 6, 7, 8]
+            data: [
+              this.Shoes.length,
+              this.Backpacks.length,
+              this.jacketsMan.length,
+              this.jacketsWoman.length
+            ]
           }
         ]
       }
