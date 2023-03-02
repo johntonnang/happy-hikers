@@ -57,12 +57,12 @@
                   alt="trash can"
                   width="20"
                 />
-                <span class="price">{{ item.price }};- </span>
+                <span class="price">{{ item.price }} :- </span>
                 <span class="description">{{ item.description }}</span>
               </div>
             </div>
           </div>
-          <div class="total">Total: {{ total }}</div>
+          <div class="total">Total: {{ total }} :-</div>
           <div class="checkoutCointainer">
             <RouterLink to="/CheckoutView">
               <button class="checkout">Checkout</button>
@@ -148,8 +148,9 @@
   }
   .checkout {
     width: 20rem;
-    color: white;
-    background-color: black;
+    color: #eee;
+    /* background-color: black; */
+    background-color: rgba(2, 70, 2, 0.716);
     border-radius: 35px;
     border: none;
     cursor: pointer;

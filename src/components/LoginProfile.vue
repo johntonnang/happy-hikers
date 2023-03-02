@@ -134,6 +134,7 @@
     margin-bottom: 100px; /* Ska tas bort? */
     box-shadow: 0px 0px 8px black;
     background-color: rgb(250, 250, 250);
+    border-radius: 5px;
   }
 
   #exit-login-container {
@@ -167,6 +168,7 @@
   .input-container > .input-field {
     padding: 12px;
     border: 1px solid rgb(179, 179, 179);
+    border-radius: 5px;
   }
 
   #profile-btn-container {
@@ -177,14 +179,18 @@
   }
 
   #login-btn {
-    background-color: #58aa5f;
-    border: 1.5px solid black;
-    color: #222;
+    /* background-color: #58aa5f; */
+    background-color: rgba(2, 70, 2, 0.716);
+    /* border: 1.5px solid black; */
+    /* color: #222; */
+    border: none;
+    color: #eee;
     padding: 14px 0;
     font-weight: 600;
     font-size: 1.2rem;
     display: flex;
     justify-content: center;
+    border-radius: 35px;
   }
 
   #login-btn:hover {
@@ -218,6 +224,7 @@
     font-weight: 600;
     font-size: 1.1rem;
     border: 1px solid black;
+    border-radius: 35px;
   }
 
   #member-btn:hover {

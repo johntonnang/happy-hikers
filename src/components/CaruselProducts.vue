@@ -17,18 +17,18 @@
 
 <template>
   <div class="categoriesText">
-    <h1>RUNNING SHOES</h1>
+    <h1>OUTDOOR GEAR</h1>
   </div>
 
   <carousel :items-to-show="3" :wrap-around="true">
     <slide :key="1">
-      <img src="/assets/white.orange.shoe.jpg" alt="white running shoe" />
+      <img src="/assets/hiking-boots-man-1.png" alt="white running shoe" />
     </slide>
     <slide :key="2">
-      <img src="/assets/black.shoe.jpg" alt="black running shoe" />
+      <img src="/assets/hiking-pants-man-2.png" alt="black running shoe" />
     </slide>
     <slide :key="3">
-      <img src="/assets/shoe.jpg" alt="running shoe" />
+      <img src="/assets/hiking-jacket-man-1.png" alt="running shoe" />
     </slide>
 
     <template #addons>

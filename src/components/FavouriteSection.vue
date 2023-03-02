@@ -121,7 +121,9 @@
             <h5>{{ item.price }} :-</h5>
             <p>{{ item.category }}</p>
             <div id="align-button-and-icon">
-              <button @click="addToCart(item.id)">{{ this.CartText }}</button>
+              <button class="favourite-btn" @click="addToCart(item.id)">
+                {{ this.CartText }}
+              </button>
               <img
                 @click="removeFromWishlist(index)"
                 id="icon"
@@ -185,13 +187,14 @@
     margin-left: 27px;
   }
 
-  button {
+  .favourite-btn {
     background-color: rgba(50, 108, 50, 0.804);
     border-radius: 5px;
     cursor: pointer;
+    border: none;
   }
 
-  button:hover {
+  .favourite-btn:hover {
     transition: 0.9s;
     background-color: black;
     color: rgb(169, 164, 164);

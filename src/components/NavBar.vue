@@ -59,15 +59,12 @@
       <div class="navbar-menu" :class="{ active: isActive }">
         <router-link @click="toggleMenu" class="navbar-links" to="/Favourite"
           ><font-awesome-icon icon="fa-regular fa-heart" />
-          <!-- <p v-if="!isActive">Wishlist</p> -->
         </router-link>
         <router-link @click="toggleMenu" class="navbar-links" to="/Profile"
           ><font-awesome-icon icon="fa-regular fa-user" />
-          <!-- <p v-if="!isActive">Profile</p> -->
         </router-link>
         <router-link @click="toggleMenu" class="navbar-links" to="/Cart"
           ><font-awesome-icon icon="fa-solid fa-cart-shopping" />
-          <!-- <p v-if="!isActive">Shopping cart</p> -->
         </router-link>
       </div>
     </div>

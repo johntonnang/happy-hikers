@@ -62,10 +62,10 @@
   .footer {
     position: relative;
     top: 100px;
-    height: 30vh;
+    height: 35vh;
     bottom: 0;
     left: 0;
-    background-color: #eee;
+    background-color: rgba(2, 70, 2, 0.716);
   }
 
   .footer-container {
@@ -99,7 +99,7 @@
   }
   a {
     text-decoration: none;
-    color: black;
+    color: #eee;
   }
   img {
     width: 30px;

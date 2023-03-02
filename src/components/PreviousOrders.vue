@@ -38,7 +38,7 @@
           <p>{{ order.length }} items</p>
         </div>
         <div class="order-content">
-          <p>{{ order.reduce((x, item) => x + item.price, 0) }}kr</p>
+          <p>{{ order.reduce((x, item) => x + item.price, 0) }} :-</p>
           <p>{{ order[0].date }}</p>
         </div>
         <svg
@@ -61,7 +61,7 @@
           <div class="item-content-info first-info">
             <img :src="item.image" alt="" />
             <h5>{{ item.name }}</h5>
-            <p>{{ item.price }}:-</p>
+            <p>{{ item.price }} :-</p>
           </div>
         </div>
       </div>

@@ -16,13 +16,13 @@
           id="email"
           placeholder=" Enter your email"
         />
-        <button>Submit</button>
+        <button class="submit-btn">Submit</button>
       </form>
     </div>
   </main>
 </template>
 
-<style>
+<style scoped>
   #h1-news {
     color: rgba(2, 70, 2, 0.716);
     font-weight: bold;
@@ -53,17 +53,24 @@
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   }
 
-  button {
+  .submit-btn {
     color: black;
     background-color: white;
-    border-color: black;
+
+    border-radius: 5px;
+    border: 1px solid black;
   }
 
-  button:hover {
+  .submit-btn:hover {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   }
 
   input {
-    border: none;
+    /* border: none; */
+    margin-right: 10px;
+    width: 50%;
+    border-radius: 5px;
+    border: 1px solid rgb(179, 179, 179);
+    outline: none;
   }
 </style>

@@ -1,5 +1,11 @@
 <script>
   export default {
+    data() {
+      return {
+        y: 'translateY(0px)',
+        x: 'translateX(0px)'
+      }
+    },
     mounted() {
       this.slowDown()
     },
@@ -7,6 +13,10 @@
       slowDown() {
         const videoPlayer = this.$refs.videoBackground
         videoPlayer.playbackRate = 0.5
+      },
+      closeChat() {
+        this.y = 'translateY(200%)'
+        this.x = 'translateX(100%)'
       }
     }
   }
@@ -14,17 +24,6 @@
 
 <template>
   <div class="video-container">
-    <!-- <div class="main-text-container">
-      <div class="header-text">
-        <h1 class="header-title">Experience nature</h1>
-        <p>
-          Take a break from the hustle and bustle of city life and immerse
-          yourself in the breathtaking beauty of the great outdoors. Hiking is
-          the perfect way to reconnect with nature and discover hidden gems that
-          are off the beaten path.
-        </p>
-      </div>
-    </div> -->
     <video ref="videoBackground" autoplay muted loop id="hiker-background">
       <source
         id="video-source"
@@ -33,6 +32,39 @@
       />
     </video>
   </div>
+  <div class="chat-container" :style="{ transform: y + x }">
+    <div class="chat-box">
+      <div class="chat-support">
+        <div class="chat-header">
+          <div class="img-container">
+            <img src="/assets/jonkri-bot.png" alt="" />
+          </div>
+          <h3>JonKri Bot</h3>
+          <button @click="closeChat" class="close-btn">
+            <span class="cross-icon">&#x2715;</span>
+          </button>
+        </div>
+        <div id="root" />
+      </div>
+      <div class="chat-dialog">
+        <div class="chat-greeting">
+          <p>
+            Hello there, my name is JonKri Bot. How may I assist you today? 👋
+          </p>
+        </div>
+        <div class="chat-input-container">
+          <input
+            class="chat-input"
+            type="text"
+            placeholder="Ask JonKri Bot..."
+          />
+          <button class="arrow-right">
+            <font-awesome-icon icon="fa-solid fa-circle-arrow-right" />
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <style lang="scss" scoped>
@@ -40,20 +72,6 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-  }
-  .main-text-container {
-    display: flex;
-    align-items: flex-end;
-  }
-
-  .header-text {
-    z-index: 1;
-    position: absolute;
-    justify-content: center;
-    max-width: 50%;
-    padding: 20px;
-    color: #fff;
-    font-size: 1.5rem;
   }
 
   .video-container {
@@ -66,4 +84,139 @@
     width: 100%;
     filter: brightness(75%);
   }
+
+  // JonKri support bot
+  .chat-container {
+    display: none;
+    // display: flex;
+    // flex-direction: row;
+    // justify-content: flex-end;
+    // height: 400px;
+    // width: 300px;
+    // z-index: 10;
+    // position: fixed;
+    // right: 20px;
+    // bottom: 20px;
+    // transition: all 0.3s ease-in-out;
+  }
+
+  .chat-box {
+    display: flex;
+    height: 100%;
+    max-width: 100%;
+    flex-direction: column;
+    justify-content: flex-start;
+    border: 1px solid rgba(128, 128, 128, 0.491);
+    border-radius: 5px;
+  }
+  .close-btn {
+    background: #424242;
+    width: 40px;
+    height: 40px;
+    border: 0;
+    border-radius: 100%;
+    margin: 0 8px 8px;
+    align-self: end;
+    color: #fff;
+    cursor: pointer;
+    text-align: center;
+  }
+
+  .cross-icon {
+    font-size: 1.1rem;
+  }
+
+  .chat-support {
+    display: flex;
+    flex-direction: column;
+    width: 391px;
+    padding: 8px;
+    max-width: 100%;
+    background: #579d5d;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.491);
+    color: #f1f1f1;
+  }
+
+  .chat-header {
+    align-items: center;
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    height: 50px;
+    width: 100%;
+  }
+
+  .img-container img {
+    width: 40px;
+    border-radius: 100%;
+    margin: 10px;
+  }
+
+  .chat-dialog {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .chat-greeting {
+    width: 250px;
+    color: #f1f1f1;
+    background-color: #579d5d;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    margin-top: 10px;
+    margin-left: 20px;
+  }
+
+  .chat-greeting p {
+    margin: 0.5rem;
+    width: fit-content;
+  }
+
+  .chat-input-container {
+    display: flex;
+    border-radius: 50px;
+    background: white;
+    box-shadow: 0px 0px 5px grey;
+    width: 80%;
+    padding: 0.5rem;
+    margin: 20px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .chat-input {
+    border: none;
+    overflow: auto;
+    padding-right: 1rem;
+    outline: none;
+  }
+
+  .arrow-right {
+    color: black;
+    border: none;
+    background: #fff;
+  }
+
+  @keyframes slideaway {
+    from {
+      display: block;
+    }
+    to {
+      transform: translateY(400px);
+    }
+  }
+
+  // .chat-container {
+  //   animation: slideaway 200ms;
+  // }
 </style>
