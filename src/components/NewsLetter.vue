@@ -40,7 +40,7 @@
             id="email"
             placeholder=" Enter your email"
           />
-          <button>Submit</button>
+          <button class="submit-btn">Submit</button>
         </form>
       </div>
       <!-- </div> -->
@@ -48,7 +48,7 @@
   </main>
 </template>
 
-<style>
+<style scoped>
   #container {
     display: flex;
     justify-content: right;
@@ -108,11 +108,20 @@
   button {
     color: rgb(234, 232, 232);
     background-color: rgb(34, 34, 34);
-    border-color: 1px black;
+    border: 1px solid black;
+    border-radius: 5px;
   }
 
-  button:hover {
+  .submit-btn:hover {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  }
+
+  input {
+    margin-right: 10px;
+    width: 50%;
+    border-radius: 5px;
+    border: 1px solid rgb(179, 179, 179);
+    outline: none;
   }
 
   form {

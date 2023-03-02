@@ -257,14 +257,14 @@
       <div class="checkoutcontainer">
         <h1 class="h1Checkout">Checkout</h1>
         <div class="login-check-container" v-if="existingUser">
-          <h2>Inloggad som</h2>
+          <h2>Logged in as</h2>
           <span>
             <RouterLink to="/Profile">{{ profileName }}</RouterLink>
           </span>
         </div>
         <div class="login-check-container" v-else>
-          <h2>Har du redan ett konto?</h2>
-          <span @click="loginActive()"> Logga in</span>
+          <h2>Already have an account?</h2>
+          <span @click="loginActive()"> Log in</span>
         </div>
         <form class="formContainer" @submit.prevent="submitOrder">
           <fieldset class="custom">
@@ -330,12 +330,12 @@
                 </div>
                 <div class="productInfo">
                   <span class="name">{{ item.name }}</span>
-                  <span class="price">{{ item.price }};- </span>
+                  <span class="price">{{ item.price }} :- </span>
                 </div>
               </div>
             </div>
           </div>
-          <div class="total">Total: {{ total }}</div>
+          <div class="total">Total: {{ total }} :-</div>
         </div>
       </div>
     </div>

@@ -38,7 +38,7 @@ https://stackoverflow.com/questions/19414856/how-can-i-make-all-images-of-differ
 </script>
 
 <template>
-  <h1 ref="bottom" class="main-title">Categories</h1>
+  <h1 ref="bottom" class="main-title">Products</h1>
 
   <div class="container">
     <div class="columns">

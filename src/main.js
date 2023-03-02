@@ -5,6 +5,7 @@ import { faUser } from '@fortawesome/free-regular-svg-icons'
 import { faHeart } from '@fortawesome/free-regular-svg-icons'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
+import { faCircleArrowRight } from '@fortawesome/free-solid-svg-icons'
 
 import App from './App.vue'
 import router from './router'
@@ -14,6 +15,7 @@ library.add(faUser)
 library.add(faHeart)
 library.add(faShoppingCart)
 library.add(faMagnifyingGlass)
+library.add(faCircleArrowRight)
 createApp(App)
   .use(router)
   .use(store)
