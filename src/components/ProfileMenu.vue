@@ -35,6 +35,7 @@
       },
       profileLogOut() {
         localStorage.removeItem('existing-user')
+        localStorage.removeItem('registred-user')
       }
     }
   }
@@ -106,26 +107,7 @@
         />
       </svg>
     </div>
-    <div class="option-container oc-2" @click="openMenuTest()">
-      <h4 style="margin-bottom: 0px">Invest in Maximum Entertainment</h4>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="16"
-        height="16"
-        fill="currentColor"
-        class="bi bi-chevron-right"
-        viewBox="0 0 16 16"
-        :style="{ transform: rotateAngleTest }"
-      >
-        <path
-          fill-rule="evenodd"
-          d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
-        />
-      </svg>
-    </div>
-    <div v-if="openMenuTestBool" id="contact-info-container">
-      <a href="https://maximument.com/">https://maximument.com/</a>
-    </div>
+
     <div class="option-container" @click="openMenuContact()">
       <h4 style="margin-bottom: 0px">Contact us</h4>
       <svg
