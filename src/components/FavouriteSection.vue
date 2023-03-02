@@ -141,15 +141,12 @@
         </div>
       </div>
     </div>
+    <div id="empty-txt" v-else>Your wishlist is empty</div>
   </main>
 </template>
 
 <style scoped>
   /* CARD */
-
-  #position-text {
-    padding-bottom: 10px;
-  }
 
   img {
     width: 50%;
@@ -171,9 +168,19 @@
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   }
   #position-text {
+    /* margin-left: 8rem; */
+    padding-bottom: 90px;
     position: relative;
     top: 100px;
     padding-left: 5%;
+  }
+
+  #empty-txt {
+    position: relative;
+    /* top: 100px; */
+    /* margin-left: 1rem; */
+    padding-top: 2%;
+    padding-left: 6%;
   }
 
   .favourite-btn {
