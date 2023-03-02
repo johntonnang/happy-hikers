@@ -58,7 +58,7 @@
         <ProfileMenu />
       </div>
       <div ref="content" id="order-container">
-        <h1 style="font-weight: 800">Hi {{ userName }}!</h1>
+        <h1 style="font-weight: 700">Hi {{ userName }}!</h1>
         <h3>Your previous orders:</h3>
         <PreviousOrders />
       </div>
@@ -105,16 +105,20 @@
 
   .discount-container-box:hover {
     cursor: pointer;
-    opacity: 0.6;
-    box-shadow: 0px 0px 20px black;
+    /* opacity: 0.6; */
+    /* box-shadow: 0px 0px 20px black; */
+    filter: brightness(90%);
+    background: #e6e6e6;
   }
   .discount-container-box {
-    transition: all 0.3s;
-    background-color: #f3f3f3;
+    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.202);
+    transition: all 0.35s;
+    /* background-color: #f3f3f3; */
     width: 200px;
     margin-top: 30px;
-    border-radius: 8px;
+    border-radius: 5px;
     height: 350px;
+    /* border: 1px solid rgb(179, 179, 179); */
   }
 
   .discount-container-box img {

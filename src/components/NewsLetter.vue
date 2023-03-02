@@ -50,8 +50,10 @@
 
 <style scoped>
   #container {
-    display: flex;
-    justify-content: right;
+    /* Remove display none to show newsletter */
+    display: none;
+    /* display: flex;
+    justify-content: right; */
   }
   #close-button {
     border: none;

@@ -124,11 +124,14 @@
     flex-direction: column;
     margin: 0 auto;
     width: 25%;
-    border: 1px solid black;
+    /* border: 1px solid black; */
+    border: 1px solid rgb(179, 179, 179);
     padding: 20px;
     margin-bottom: 100px; /* Ska tas bort? */
-    box-shadow: 0px 0px 8px black;
+    /* box-shadow: 0px 0px 8px black; */
+    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.202);
     background-color: rgb(250, 250, 250);
+    border-radius: 5px;
   }
 
   #exit-login-container {
@@ -162,6 +165,8 @@
   .input-container > .input-field {
     padding: 12px;
     border: 1px solid rgb(179, 179, 179);
+    border-radius: 5px;
+    outline: none;
   }
 
   #date-of-birth-container {
@@ -171,6 +176,7 @@
     border-top: 1px solid rgb(179, 179, 179);
     border-bottom: 1px solid rgb(179, 179, 179);
     border-left: 1px solid rgb(179, 179, 179);
+    border-radius: 5px;
   }
 
   .input-field-date {
@@ -189,19 +195,22 @@
   }
 
   #become-member-btn {
-    background-color: #58aa5f;
-    border: 1.5px solid black;
-    color: #222;
+    /* background-color: #58aa5f; */
+    background-color: rgba(2, 70, 2, 0.716);
+    border: none;
+    color: #eee;
     padding: 14px 0;
     font-weight: 600;
     font-size: 1.1rem;
     display: flex;
     justify-content: center;
+    border-radius: 35px;
+    transition: all 0.35s;
   }
 
   #become-member-btn:hover {
     cursor: pointer;
-    background-color: #8fee97;
+    background-color: rgb(2, 40, 2, 0.716);
   }
 
   .loader {
@@ -228,16 +237,19 @@
   }
 
   #return-login-btn {
-    background-color: #fff;
+    background-color: #e6e6e6;
     color: #222;
     padding: 12px 0;
     font-weight: 600;
     font-size: 1.1rem;
-    border: 1px solid black;
+    border: none;
+    border-radius: 35px;
+    transition: all 0.35s;
   }
 
   #return-login-btn:hover {
     cursor: pointer;
+    background-color: #d6d6d6;
   }
 
   @media (max-width: 1600px) {

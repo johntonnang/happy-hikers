@@ -94,6 +94,7 @@
   }
   .product-box:hover {
     box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.202);
+    /* box-shadow: 0 0 40px rgba(2, 84, 44, 0.594); */
     border-radius: 5px;
     cursor: pointer;
   }

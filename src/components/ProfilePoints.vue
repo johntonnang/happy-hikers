@@ -20,7 +20,7 @@
 </script>
 <template>
   <div id="points-container">
-    <h2 style="font-size: 3rem; font-weight: 800">
+    <h2 style="font-size: 3rem; font-weight: 700">
       Points: {{ this.profilePoints }}
     </h2>
     <div id="points-bar-container">
@@ -113,14 +113,16 @@
     display: block;
     width: 80px;
     height: 7px;
-    background-color: #4ea055;
+    /* background-color: #4ea055; */
+    background-color: rgba(2, 70, 2, 0.716);
   }
 
   .circle-active {
     display: block;
     width: 18px;
     height: 18px;
-    background-color: #4ea055;
+    /* background-color: #4ea055; */
+    background-color: rgba(2, 70, 2, 0.716);
     border-radius: 50px;
     margin-right: 0px;
   }

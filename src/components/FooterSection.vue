@@ -99,8 +99,14 @@
   }
   a {
     text-decoration: none;
-    color: #eee;
+    color: #e6e6e6;
+    transition: all 0.35s ease-in-out;
   }
+
+  a:hover {
+    color: #d6d6d6;
+  }
+
   img {
     width: 30px;
   }

@@ -72,7 +72,7 @@
     background: none;
     border: none;
     color: #ffffff48;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.35s ease-in-out;
   }
 
   .explore-button:hover {
@@ -84,12 +84,13 @@
     height: 550px;
     width: 85%;
     margin: 2rem auto;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.35s ease-in-out;
     border-radius: 5px;
   }
 
   #carouselExampleSlidesOnly:hover {
-    box-shadow: 0 0 40px rgba(2, 84, 44, 0.594);
+    /* box-shadow: 0 0 40px rgba(2, 84, 44, 0.594); */
+    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.202);
   }
 
   @media screen and (max-width: 1300px) {

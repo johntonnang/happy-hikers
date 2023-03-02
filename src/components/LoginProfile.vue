@@ -100,11 +100,11 @@
         </button>
         <button
           v-if="loginAccepted"
-          style="background-color: white"
+          style="background-color: rgba(2, 70, 2, 0.716)"
           id="login-btn"
           @click="loginProfile"
         >
-          <img src="assets/icons8-checkmark.gif" alt="Checkmark" />
+          <img src="assets/output-onlinegiftools.gif" alt="Checkmark" />
           <span style="margin-left: 5px">Redirecting...</span>
         </button>
         <button
@@ -122,17 +122,18 @@
 <style scoped>
   #login-btn img {
     width: 30px;
-    background-color: yellow;
   }
   #login-container {
     display: flex;
     flex-direction: column;
     margin: 0 auto;
     width: 25%;
-    border: 1px solid black;
+    /* border: 1px solid black; */
+    border: 1px solid rgb(179, 179, 179);
     padding: 20px;
     margin-bottom: 100px; /* Ska tas bort? */
-    box-shadow: 0px 0px 8px black;
+    /* box-shadow: 0px 0px 8px black; */
+    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.202);
     background-color: rgb(250, 250, 250);
     border-radius: 5px;
   }
@@ -169,6 +170,7 @@
     padding: 12px;
     border: 1px solid rgb(179, 179, 179);
     border-radius: 5px;
+    outline: none;
   }
 
   #profile-btn-container {
@@ -181,6 +183,7 @@
   #login-btn {
     /* background-color: #58aa5f; */
     background-color: rgba(2, 70, 2, 0.716);
+    /* background-color: #579d5d; */
     /* border: 1.5px solid black; */
     /* color: #222; */
     border: none;
@@ -191,11 +194,13 @@
     display: flex;
     justify-content: center;
     border-radius: 35px;
+    transition: all 0.35s;
   }
 
   #login-btn:hover {
     cursor: pointer;
-    background-color: #8fee97;
+    /* background-color: #8fee97; */
+    background-color: rgb(2, 40, 2, 0.716);
   }
 
   .loader {
@@ -218,17 +223,20 @@
   }
 
   #member-btn {
-    background-color: #fff;
+    background-color: #e6e6e6;
     color: #222;
     padding: 12px 0;
     font-weight: 600;
     font-size: 1.1rem;
-    border: 1px solid black;
+    /* border: 1px solid black; */
+    border: none;
     border-radius: 35px;
+    transition: all 0.35s;
   }
 
   #member-btn:hover {
     cursor: pointer;
+    background-color: #d6d6d6;
   }
 
   @media (max-width: 1600px) {

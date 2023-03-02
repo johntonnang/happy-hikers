@@ -124,17 +124,20 @@ https://stackoverflow.com/questions/19414856/how-can-i-make-all-images-of-differ
 
   .navigate-button {
     position: absolute;
-    // color: rgb(244, 240, 240);
-    // color: #ffffff90;
     color: #ffffffdc;
     margin-top: 110px;
     opacity: 0.9;
-    padding: 4px;
+
     // background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
     background-color: #ffffff00;
     border: none;
     border-radius: 5px;
     font-size: 5rem;
+    transition: all 0.35s ease-in-out;
+  }
+
+  .navigate-button:hover {
+    color: #ffffff;
   }
 
   .center-p {
@@ -144,7 +147,7 @@ https://stackoverflow.com/questions/19414856/how-can-i-make-all-images-of-differ
     margin-right: 18px;
     margin-left: 18px;
     border-radius: 5px;
-    transition: all 0.2s ease-in-out;
+    transition: all 0.35s ease-in-out;
   }
 
   .rows {
@@ -170,7 +173,8 @@ https://stackoverflow.com/questions/19414856/how-can-i-make-all-images-of-differ
   }
 
   .center-p:hover {
-    box-shadow: 0 0 40px rgba(2, 84, 44, 0.594);
+    // box-shadow: 0 0 40px rgba(2, 84, 44, 0.594);
+    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.202);
   }
 
   .container {

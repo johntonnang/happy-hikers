@@ -157,15 +157,17 @@
     padding: 15px;
     margin: 15px 0;
     border-radius: 5px;
-    background-color: rgb(241, 241, 241);
+    /* background-color: rgb(241, 241, 241); */
+    background-color: #e6e6e6;
     font-size: 0.5rem;
   }
 
   .option-container:hover {
     cursor: pointer;
-    background-color: black;
-    color: white;
-    transition: 0.3s ease-in-out;
+    /* background-color: black; */
+    /* color: white; */
+    transition: 0.35s ease-in-out;
+    background-color: #d6d6d6;
   }
 
   .option-container h4 {
@@ -177,10 +179,10 @@
   }
 
   #contact-info-container {
-    background-color: rgb(241, 241, 241);
+    /* background-color: rgb(241, 241, 241); */
     color: rgb(71, 71, 71);
     margin-top: -17px;
-    transition: 0.3s ease-in-out;
+    transition: 0.35s ease-in-out;
     padding: 10px 0px 3px 15px;
     font-weight: 600;
     font-size: 0.9rem;
