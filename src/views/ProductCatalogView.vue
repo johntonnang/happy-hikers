@@ -161,7 +161,7 @@
             <label for="sizeXSmall" /> XS
           </div>
           <div class="checkbox-container">
-            <input type="checkbox" value="S" name="size" checked />
+            <input type="checkbox" value="S" name="size" />
             <label for="sizeSmall" /> S
           </div>
           <div class="checkbox-container">

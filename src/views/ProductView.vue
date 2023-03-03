@@ -271,11 +271,13 @@
     right: 0.5rem;
     width: 25rem;
     background-color: white;
-    border: 1px solid black;
+    /* border: 1px solid black; */
+    border: 1px solid rgb(179, 179, 179);
     padding: 1rem;
     z-index: 999;
     max-height: 40rem;
     overflow-y: auto;
+    border-radius: 5px;
   }
   .trashImg {
     position: absolute;
@@ -471,11 +473,11 @@
               alt="trash can"
               width="20"
             />
-            <span class="price">{{ item.price }};- </span>
+            <span class="price">{{ item.price }} :- </span>
           </div>
         </div>
       </div>
-      <div class="total">Total: {{ total }}</div>
+      <div class="total">Total: {{ total }} :-</div>
     </div>
     <p>Hem / Produkter / Jackor</p>
     <section>
