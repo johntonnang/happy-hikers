@@ -62,7 +62,7 @@
   .footer {
     position: relative;
     top: 100px;
-    height: 35vh;
+    /* height: 35vh; */
     bottom: 0;
     left: 0;
     background-color: rgba(2, 70, 2, 0.716);
@@ -78,7 +78,7 @@
   }
 
   .footer-container ul {
-    width: 50px;
+    width: 30px;
     padding: 0px;
     margin-right: 40px;
     list-style: none;
