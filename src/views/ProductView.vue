@@ -340,16 +340,20 @@
     font-weight: 700;
   }
   .product-size {
-    background-color: rgba(255, 255, 255, 0);
-    border: 1px solid;
+    /* background-color: rgba(255, 255, 255, 0); */
+    background-color: #e6e6e6;
+    /* border: 1px solid; */
+    border: 1px solid rgb(179, 179, 179);
     border-radius: 5px;
     padding: 0.7rem;
     transition: all 0.35s;
     appearance: none;
+    outline: none;
   }
   .product-size:hover {
-    background-color: rgb(44, 44, 44);
-    color: white;
+    /* background-color: rgb(44, 44, 44); */
+    background-color: #d6d6d6;
+    color: #000;
   }
   .product-btn {
     width: 45%;
@@ -433,6 +437,22 @@
   .otherInformation {
     display: grid;
   }
+
+  .home-direction {
+    text-decoration: none;
+    color: #424242;
+    transition: all 0.35s ease-in-out;
+  }
+  .home-direction:hover {
+    opacity: 0.7;
+  }
+
+  #page-direction {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #424242;
+  }
+
   @media (max-width: 900px) {
     section {
       display: grid;
@@ -479,12 +499,17 @@
       </div>
       <div class="total">Total: {{ total }} :-</div>
     </div>
-    <p>Hem / Produkter / Jackor</p>
+    <p id="page-direction">
+      <router-link class="home-direction" to="/">Home</router-link> /
+      <router-link class="home-direction" to="/ProductCatalog"
+        >Products</router-link
+      >
+    </p>
     <section>
       <img :src="product.image" alt="Img of the product" class="product-img" />
       <div class="product-information">
         <h2 class="product-name">{{ product.name }}</h2>
-        <h2 class="product-price">{{ product.price }}:-</h2>
+        <h2 class="product-price">{{ product.price }} :-</h2>
         <p class="product-description">
           {{ product.description }}
         </p>

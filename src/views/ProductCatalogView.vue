@@ -144,7 +144,10 @@
 <template>
   <main>
     <p id="page-direction">
-      <a class="home-direction" href="/">Home</a> / Products
+      <router-link class="home-direction" to="/">Home</router-link> /
+      <router-link class="home-direction" to="/ProductCatalog"
+        >Products</router-link
+      >
     </p>
     <img
       id="product-intro-image"
@@ -343,7 +346,7 @@
   .home-direction {
     text-decoration: none;
     color: #424242;
-    transition: all 0.4s ease-in-out;
+    transition: all 0.35s ease-in-out;
   }
   .home-direction:hover {
     opacity: 0.7;

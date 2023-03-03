@@ -6,9 +6,9 @@
         x: 'translateX(0px)'
       }
     },
-    mounted() {
-      this.slowDown()
-    },
+    // mounted() {
+    //   this.slowDown()
+    // },
     methods: {
       slowDown() {
         const videoPlayer = this.$refs.videoBackground
@@ -27,7 +27,7 @@
     <video ref="videoBackground" autoplay muted loop id="hiker-background">
       <source
         id="video-source"
-        src="/assets/hiker-background.mp4"
+        src="/assets/happy-hikers-background.mp4"
         type="video/mp4"
       />
     </video>
@@ -82,7 +82,7 @@
 
   #hiker-background {
     width: 100%;
-    filter: brightness(75%);
+    // filter: brightness(75%);
   }
 
   // JonKri support bot

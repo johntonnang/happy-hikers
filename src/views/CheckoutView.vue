@@ -513,6 +513,7 @@
   }
   .container {
     box-shadow: 0px 46px 130px rgba(0, 25, 64, 0.142);
+    border-radius: 5px;
   }
   .h1Checkout {
     margin: 1.5rem;
