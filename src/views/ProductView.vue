@@ -85,6 +85,7 @@
           return
         } else {
           this.SizeError = false
+          this.$store.commit('addToCart')
         }
         if (localStorage.getItem('Cart') !== null) {
           if (this.CartText === '+  Add to cart   ') {
@@ -184,6 +185,7 @@
         })
       },
       addToWish(id) {
+        this.$store.commit('addToWish')
         if (localStorage.getItem('Wish') !== null) {
           if (this.WishText === '+  Add to wishlist   ') {
             console.log('Hej!')

@@ -6,7 +6,9 @@
         searchID: '',
         products: [],
         productsSearch: [],
-        id: this.$route.params.id
+        id: this.$route.params.id,
+        storageCart: 0,
+        storageWish: 0
       }
     },
     created() {
@@ -16,7 +18,17 @@
           console.log(response)
           this.products = response
         })
+
+      if (JSON.parse(localStorage.getItem('Cart'))) {
+        const cart = JSON.parse(localStorage.getItem('Cart'))
+        this.storageCart = cart.length
+      }
+      if (JSON.parse(localStorage.getItem('Wish'))) {
+        const wish = JSON.parse(localStorage.getItem('Wish'))
+        this.storageWish = wish.length
+      }
     },
+
     methods: {
       toggleMenu() {
         this.isActive = !this.isActive
@@ -57,14 +69,32 @@
         <span class="bar" :class="{ 'is-active': isActive }" />
       </div>
       <div class="navbar-menu" :class="{ active: isActive }">
-        <router-link @click="toggleMenu" class="navbar-links" to="/Favourite"
-          ><font-awesome-icon icon="fa-regular fa-heart" />
+        <router-link @click="toggleMenu" class="navbar-links" to="/Favourite">
+          <div
+            class="amount-circle-favourites"
+            v-if="$store.state.currentWish || storageWish > 0"
+          >
+            <p v-if="storageWish + $store.state.currentWish < 10">
+              {{ storageWish + $store.state.currentWish }}
+            </p>
+            <p v-else>9+</p>
+          </div>
+          <font-awesome-icon icon="fa-regular fa-heart" />
         </router-link>
         <router-link @click="toggleMenu" class="navbar-links" to="/Profile"
           ><font-awesome-icon icon="fa-regular fa-user" />
         </router-link>
         <router-link @click="toggleMenu" class="navbar-links" to="/Cart"
           ><font-awesome-icon icon="fa-solid fa-cart-shopping" />
+          <div
+            class="amount-circle-cart"
+            v-if="$store.state.currentCart || storageCart > 0"
+          >
+            <p v-if="storageCart + $store.state.currentCart < 10">
+              {{ storageCart + $store.state.currentCart }}
+            </p>
+            <p v-else>9+</p>
+          </div>
         </router-link>
       </div>
     </div>
@@ -143,6 +173,40 @@
     list-style: none;
     text-align: center;
     top: -1000%;
+  }
+
+  .amount-circle-favourites {
+    width: 20px;
+    height: 20px;
+    background-color: rgb(13, 199, 13);
+    border-radius: 50px;
+    position: relative;
+    top: -12px;
+    left: 38px;
+  }
+
+  .amount-circle-favourites p {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-top: -2px;
+    margin-left: 0px;
+  }
+
+  .amount-circle-cart {
+    width: 20px;
+    height: 20px;
+    background-color: rgb(13, 199, 13);
+    border-radius: 50px;
+    position: relative;
+    top: -12px;
+    left: -5px;
+  }
+
+  .amount-circle-cart p {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-top: -2px;
+    margin-left: 0px;
   }
 
   .navbar-links {
