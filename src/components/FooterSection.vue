@@ -59,14 +59,34 @@
 </template>
 
 <style scoped>
-  /* .footer {
+  .footer {
     position: relative;
     top: 100px;
     height: 35vh;
     bottom: 0;
     left: 0;
     background-color: rgba(2, 70, 2, 0.716);
-  } */
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  .footer-container {
+    justify-content: space-around;
+    display: flex;
+    width: 100vw;
+    padding: 2rem;
+  }
+
+  .footer-container ul {
+    width: 50px;
+    padding: 0px;
+    margin-right: 40px;
+    list-style: none;
+  }
+
+  .social-media-icon {
+    margin: 2rem;
+  }
 
   /* .footer-container {
     justify-content: space-around;
@@ -116,37 +136,36 @@
     }
   }
 
-  @media (min-width: 375px) and (max-width: 500px) {
-    footer {
-      margin-top: 40px;
-    }
+  @media (min-width: 501px) and (max-width: 600px) {
     .footer {
-      position: relative;
-      padding-top: 50px;
-      top: 100px;
+      padding-top: 40px;
       height: 50vh;
-      bottom: 0;
-      left: 0;
-      background-color: rgba(2, 70, 2, 0.716);
-      max-width: 100%;
     }
-    .footer-container {
-      justify-content: space-around;
-      display: flex;
-      /* width: 100vw; */
-      /* padding: 2rem; */
+
+    .social-media-icon {
+      margin: 2rem;
+      padding-top: 30px;
     }
 
     .footer-container ul {
       width: 50px;
-      /* padding: 0px; */
       margin-right: 40px;
-      list-style: none;
+    }
+  }
+
+  @media (min-width: 360px) and (max-width: 500px) {
+    footer {
+      margin-top: 30px;
+    }
+    .footer {
+      padding-top: 40px;
+      height: 50vh;
     }
 
-    .social-media-icon {
-      padding-top: 30px;
-      margin: 2rem;
+    .footer-container ul {
+      width: 50px;
+      margin-right: 13%;
+      /* padding-right: 20%; */
     }
   }
 </style>
