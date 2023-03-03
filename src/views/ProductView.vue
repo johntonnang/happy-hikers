@@ -22,6 +22,9 @@
       total() {
         console.log(this.cartItems.length)
         return this.cartItems.reduce((x, item) => x + item.price, 0)
+      },
+      shouldShowCart() {
+        return this.showCart || this.isHoveringCartPreview
       }
     },
 
@@ -169,7 +172,11 @@
 
         setTimeout(() => {
           this.showCart = false
-        }, 3000)
+        }, 2500)
+      },
+      closeCartPreview() {
+        this.showCart = false
+        this.isHoveringCartPreview = false
       },
 
       removeItem(index) {
@@ -261,6 +268,11 @@
   }
 </script>
 <style scoped>
+  .close-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
   h3 {
     display: flex;
     justify-content: center;
@@ -481,6 +493,9 @@
       @mouseleave="showCartPreview(), (isHoveringCartPreview = false)"
     >
       <h3>Your shopping cart</h3>
+      <div class="close-button" @click="closeCartPreview()">
+        <font-awesome-icon icon="fa-solid fa-x" />
+      </div>
       <div class="cartItems" v-for="(item, index) in cartItems" :key="index">
         <div class="itemRow">
           <div>
