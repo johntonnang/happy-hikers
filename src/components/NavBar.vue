@@ -47,7 +47,7 @@
         <router-link to="/">
           <img
             id="navbar-logo"
-            src="/assets/happy-hikers-logo-removebg-preview.png"
+            src="/assets/happy-hikers-logo-removebg-preview.svg"
           />
         </router-link>
       </div>
