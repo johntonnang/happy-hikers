@@ -35,47 +35,65 @@
 
 <template>
   <main>
-    <h1>Shopping cart</h1>
+    <h1 class="shoppingh1">Shopping cart</h1>
     <div class="container">
       <div class="cartBox">
-        <div v-if="cartItems.length">
-          <div
-            class="cartItems"
-            v-for="(item, index) in cartItems"
-            :key="index"
-          >
-            <div class="itemRow">
-              <div>
-                <img class="productImg" :src="item.image" :alt="item.name" />
-              </div>
-              <div class="productInfo">
-                <span class="name">{{ item.name }}</span>
-                <img
-                  class="trashImg"
-                  @click="removeItem(index)"
-                  src="/assets/trash-can-solid.svg"
-                  alt="trash can"
-                  width="20"
-                />
-                <span class="price">{{ item.price }} :- </span>
-                <span class="description">{{ item.description }}</span>
+        <div>
+          <div v-if="cartItems.length">
+            <div
+              class="cartItems"
+              v-for="(item, index) in cartItems"
+              :key="index"
+            >
+              <div class="itemRow">
+                <div>
+                  <img class="productImg" :src="item.image" :alt="item.name" />
+                </div>
+                <div class="productInfo">
+                  <span class="name">{{ item.name }}</span>
+                  <img
+                    class="trashImg"
+                    @click="removeItem(index)"
+                    src="/assets/trash-can-solid.svg"
+                    alt="trash can"
+                    width="20"
+                  />
+                  <span class="price">{{ item.price }} :- </span>
+                  <span class="description">{{ item.description }}</span>
+                </div>
               </div>
             </div>
+            <div class="total">Total: {{ total }} :-</div>
           </div>
-          <div class="total">Total: {{ total }} :-</div>
-          <div class="checkoutCointainer">
-            <RouterLink to="/CheckoutView">
-              <button class="checkout">Checkout</button>
-            </RouterLink>
-          </div>
+          <div v-else>Your cart is empty</div>
         </div>
-        <div v-else>Your cart is empty</div>
+      </div>
+      <div class="checkoutCointainer">
+        <RouterLink to="/CheckoutView">
+          <button class="checkout">Checkout</button>
+        </RouterLink>
       </div>
     </div>
   </main>
 </template>
 
 <style scoped>
+  .cartBox {
+    background-color: rgba(238, 238, 238, 0.4);
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+  }
+  .shoppingh1 {
+    padding-top: 5rem;
+    margin-left: 10rem;
+    margin-right: 14rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   main {
     position: relative;
     top: 100px;
@@ -93,6 +111,7 @@
     justify-content: end;
     align-items: flex-end;
     margin: 2rem;
+    margin-right: 6rem;
   }
   .itemRow {
     display: flex;
@@ -119,16 +138,17 @@
     margin-bottom: 0.5rem;
   }
   .cartItems {
+    justify-content: center;
+    align-items: center;
     display: flex;
     width: 100%;
-    margin: 0.5rem;
   }
 
   .productImg {
     max-width: 300px;
     max-height: 350px;
-    width: 250px;
-    height: 250px;
+    width: 150px;
+    height: 150px;
     object-fit: cover;
     transition: all 0.4;
     border-top-right-radius: 5px;
@@ -157,21 +177,34 @@
     padding: 15px 15px;
     font-size: medium;
     margin: 0.5rem;
+    margin: 2rem;
   }
   .checkoutCointainer {
     display: flex;
     justify-content: center;
     align-items: center;
   }
+
   @media (max-width: 600px) {
+    .shoppingh1 {
+      padding-top: 5rem;
+      margin-left: 7rem;
+    }
     .productImg {
-      width: 150px;
-      height: 150px;
+      width: 125px;
+      height: 125px;
       object-fit: cover;
       transition: all 0.4;
       border-top-right-radius: 5px;
       border-top-left-radius: 5px;
     }
+    .shoppingh1 {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      margin-right: 0rem;
+    }
+
     .total {
       font-size: 1.5rem;
     }
@@ -180,14 +213,15 @@
     }
     .cartItems {
       display: flex;
-      width: 100%;
+      min-width: 300px;
     }
     .itemRow {
       display: flex;
       flex-direction: row;
       background-color: rgb(246, 245, 245);
-      width: 90%;
+      width: 100%;
       position: relative;
+      margin: 0.5rem;
     }
     .container {
       margin-top: 1rem;
@@ -203,6 +237,10 @@
       transition: all 0.4;
       border-top-right-radius: 5px;
       border-top-left-radius: 5px;
+    }
+    .cartItems {
+      display: flex;
+      min-width: 400px;
     }
 
     .description {

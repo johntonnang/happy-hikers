@@ -1,13 +1,17 @@
 import { createStore } from 'vuex'
 
 const mutations = {
-    increment(state) {
-      state.counter += 1
+    addToCart(state) {
+      state.currentCart += 1
+    },
+    addToWish(state) {
+      state.currentWish += 1
     }
   },
   state = {
-    counter: 0,
-    cartItems: []
+    cartItems: [],
+    currentCart: 0,
+    currentWish: 0
   }
 
-export default createStore({ mutations, state, strict: true, cart: [] })
+export default createStore({ mutations, state, strict: true })
