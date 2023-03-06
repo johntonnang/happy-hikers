@@ -2,26 +2,35 @@
   export default {
     data() {
       return {
-        x: 'none'
+        // Shows newsletter popup
+        showPopup: true,
+        // Hides confirmation
+        showConfirmationPopup: false,
+        email: ''
       }
     },
+
     methods: {
-      closeNewsletter() {
-        if (this.x.style.display === 'none') {
-          this.x.style.display = 'block'
-        } else {
-          this.x.style.display = 'none'
-        }
+      //  Close popup
+      closePopup() {
+        this.showPopup = false
+      },
+      // show confirmation
+      showConfirmation() {
+        this.showConfirmationPopup = true
       }
     }
   }
 </script>
 
 <template>
-  <main id="container">
+  <!-- If showPopup is true do this -->
+  <main id="container" v-if="showPopup">
     <div id="newsletter">
-      <button id="close-button" @click="closeNewsletter">X</button>
-      <div id="align-text">
+      <button id="popup-close" @click="closePopup">X</button>
+
+      <!-- if showConfirmationPopup false do this -->
+      <div v-if="!showConfirmationPopup" id="align-text">
         <h1 id="h1-news">Newsletter</h1>
         <h5>Join us</h5>
 
@@ -32,35 +41,50 @@
           exclusive deals. Enter your email and start receiving updates today.
         </p>
 
-        <!-- <div id=" align-form"> -->
-        <form>
+        <!-- When user click Submit confirmation will show -->
+        <form @submit.prevent="showConfirmation">
           <input
             type="email"
             name="email"
             id="email"
             placeholder=" Enter your email"
+            v-model="email"
           />
           <button class="submit-btn">Submit</button>
         </form>
       </div>
-      <!-- </div> -->
+      <div v-else id="confirmation-popup">
+        <h1>Thank you for subscribing</h1>
+        <p>We´ll send you uppdates and exclusive deals to: {{ email }}.</p>
+      </div>
     </div>
   </main>
 </template>
 
 <style scoped>
-  #container {
-    /* Remove display none to show newsletter */
-    display: none;
-    /* display: flex;
-    justify-content: right; */
+  #confirmation-popup {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
   }
-  #close-button {
+
+  h2 {
+    padding-top: 30px;
+  }
+
+  #container {
+    display: flex;
+    justify-content: center;
+  }
+  #popup-close {
     border: none;
     font-size: large;
     font-weight: bold;
+    padding-top: 10px;
+    padding-right: 80%;
   }
-  #h1-news {
+  h1 {
     color: rgba(4, 92, 4, 0.716);
     font-weight: bold;
   }
@@ -77,33 +101,20 @@
   #newsletter {
     background-color: rgb(34, 34, 34);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    width: 30px;
-    height: 100px;
-    right: 0%;
-    top: 30%;
+    width: 400px;
+    height: 350px;
+    top: 20%;
     position: fixed;
-    z-index: 4;
+    z-index: 99;
     opacity: 0.9;
-    border-radius: 5%;
-  }
-
-  #newsletter:hover {
-    padding: 15px;
-    border-radius: 5px;
-    transition: width 2s, height 4s;
-    width: 500px;
-    height: 200px;
-    padding-bottom: 25%;
-    overflow: hidden;
-    /* opacity: 0.9; */
+    border-radius: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   #align-text {
     text-align: center;
-    opacity: 0;
-  }
-
-  #align-text:hover {
     opacity: 1;
   }
 
@@ -111,7 +122,7 @@
     color: rgb(234, 232, 232);
     background-color: rgb(34, 34, 34);
     border: 1px solid black;
-    border-radius: 5px;
+    border-radius: 3px;
   }
 
   .submit-btn:hover {
