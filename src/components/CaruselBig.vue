@@ -64,8 +64,8 @@
 
   .explore-button {
     top: 0;
-    /* height: 100%;
-    width: 100%; */
+    height: 100%;
+    width: 100%;
     position: absolute;
     z-index: 5;
     font-size: 6rem;
@@ -81,7 +81,7 @@
 
   #carouselExampleSlidesOnly {
     overflow: hidden;
-    /* height: 550px; */
+    height: 550px;
     width: 85%;
     margin: 2rem auto;
     transition: all 0.35s ease-in-out;
@@ -95,14 +95,14 @@
 
   @media screen and (max-width: 1300px) {
     #carouselExampleSlidesOnly {
-      /* height: 400px; */
+      height: 400px;
     }
   }
 
   @media screen and (max-width: 960px) {
     #carouselExampleSlidesOnly {
       overflow: hidden;
-      /* height: 400px; */
+      height: 400px;
       margin-top: 0.5rem;
       margin-bottom: 0.5rem;
     }
@@ -110,45 +110,51 @@
 
   @media (min-width: 1051px) and (max-width: 1500px) {
     .explore-button {
-      font-size: 90px;
-      margin-top: 20%;
+      /* font-size: 90px; */
+      font-size: 5rem;
+      /* margin-top: 20%; */
     }
   }
 
   @media (min-width: 901px) and (max-width: 1050px) {
     .explore-button {
-      font-size: 80px;
-      margin-top: 20%;
+      /* font-size: 80px; */
+      font-size: 5rem;
+      /* margin-top: 20%; */
     }
   }
 
   @media (min-width: 781px) and (max-width: 900px) {
     .explore-button {
-      font-size: 70px;
-      margin-top: 20%;
+      /* font-size: 70px; */
+      font-size: 5rem;
+      /* margin-top: 20%; */
     }
   }
 
   @media (min-width: 651px) and (max-width: 780px) {
     .explore-button {
-      font-size: 65px;
-      margin-top: 20%;
+      /* font-size: 65px; */
+      font-size: 4rem;
+      /* margin-top: 20%; */
     }
   }
 
   /* @media screen and (max-width: 700px) { */
   @media (min-width: 551px) and (max-width: 650px) {
     .explore-button {
-      font-size: 60px;
-      margin-top: 20%;
+      /* font-size: 60px; */
+      font-size: 4rem;
+      /* margin-top: 20%; */
     }
   }
 
   /* @media screen and (max-width: 600px) { */
   @media (min-width: 471px) and (max-width: 550px) {
     .explore-button {
-      font-size: 50px;
-      margin-top: 20%;
+      /* font-size: 50px; */
+      font-size: 3rem;
+      /* margin-top: 20%; */
     }
   }
 
@@ -162,7 +168,7 @@
 
     .explore-button {
       font-size: 40px;
-      margin-top: 20%;
+      /* margin-top: 20%; */
     }
   }
 </style>

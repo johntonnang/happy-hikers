@@ -62,7 +62,7 @@
   .footer {
     position: relative;
     top: 100px;
-    /* height: 35vh; */
+    height: 45vh;
     bottom: 0;
     left: 0;
     background-color: rgba(2, 70, 2, 0.716);
@@ -139,12 +139,11 @@
   @media (min-width: 501px) and (max-width: 600px) {
     .footer {
       padding-top: 40px;
-      height: 50vh;
+      height: 45vh;
     }
 
     .social-media-icon {
       margin: 2rem;
-      padding-top: 30px;
     }
 
     .footer-container ul {
@@ -159,7 +158,7 @@
     }
     .footer {
       padding-top: 40px;
-      height: 50vh;
+      height: 45vh;
     }
 
     .footer-container ul {

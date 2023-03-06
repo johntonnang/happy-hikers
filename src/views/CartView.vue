@@ -45,8 +45,8 @@
 
 <template>
   <main>
-    <h1 class="shoppingh1">Shopping cart</h1>
     <div class="container">
+      <h1 class="shoppingh1">Shopping cart</h1>
       <div class="cartBox">
         <div>
           <div v-if="cartItems.length">
@@ -102,19 +102,19 @@
 <style scoped>
   .cartBox {
     background-color: rgba(238, 238, 238, 0.4);
-    padding: 2rem;
+    padding: 4rem;
+    margin: 2rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 90%;
+    width: 100%;
+    border-radius: 5px;
   }
   .shoppingh1 {
-    padding-top: 5rem;
-    margin-left: 10rem;
-    margin-right: 14rem;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 2rem;
   }
   main {
     position: relative;
@@ -124,9 +124,7 @@
       sans-serif;
     margin-bottom: 8rem;
   }
-  main h1 {
-    margin-left: 8rem;
-  }
+
   .total {
     font-size: 2rem;
     display: flex;
@@ -166,8 +164,12 @@
     margin: 1rem;
   }
   .container {
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    /* margin-top: 2rem; */
+    /* margin-bottom: 2rem; */
+    justify-content: center;
+    flex-direction: column;
   }
   .name {
     font-size: 1.5rem;

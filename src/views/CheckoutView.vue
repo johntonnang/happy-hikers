@@ -1,9 +1,11 @@
 <script>
   import LoginProfile from '../components/LoginProfile.vue'
+  import CheckoutInput from '../components/CheckoutInput.vue'
 
   export default {
     components: {
-      LoginProfile
+      LoginProfile,
+      CheckoutInput
     },
 
     data() {
@@ -34,6 +36,7 @@
       }
     },
 
+<<<<<<< HEAD
     computed: {
       total() {
         if (localStorage.getItem('discountActive')) {
@@ -43,6 +46,9 @@
         }
       }
     },
+=======
+    computed: {},
+>>>>>>> 71bff2ca9b62ce686952d8f853322a962e1008fd
     mounted() {
       const existingUser = localStorage.getItem('existing-user')
       const registredUser = localStorage.getItem('registred-user')
@@ -100,6 +106,7 @@
         this.saveData = true
       }
     },
+<<<<<<< HEAD
 
     watch: {
       cartItems: {
@@ -109,6 +116,9 @@
         deep: true
       }
     },
+=======
+    watch: {},
+>>>>>>> 71bff2ca9b62ce686952d8f853322a962e1008fd
     methods: {
       loginActive() {
         if (!this.loginTrue) {
@@ -117,19 +127,7 @@
           this.loginTrue = false
         }
       },
-      submitOrder() {
-        // Sende til server som vi ikke har :)
-        this.name = ''
-        this.email = ''
-        this.phone = ''
-        this.address = ''
-        this.city = ''
-        this.state = ''
-        this.zip = ''
-        this.card = ''
-        this.exp = ''
-        this.cvv = ''
-      },
+
       addOrderToProfile() {
         if (
           this.address &&
@@ -184,59 +182,8 @@
         } else {
           localStorage.removeItem('data')
         }
-      },
-      sendData() {
-        const data = {
-          name: this.name,
-          email: this.email,
-          phone: this.phone,
-          address: this.address,
-          city: this.city,
-          state: this.state,
-          zip: this.zip,
-          card: this.card,
-          exp: this.exp,
-          cvv: this.cvv
-        }
-        if (this.saveData) {
-          localStorage.setItem('data', JSON.stringify(data))
-        } else {
-          localStorage.removeItem('data')
-        }
       }
-    },
-    submitOrder() {
-      // Sende til server som vi ikke har :)
-      this.name = ''
-      this.email = ''
-      this.phone = ''
-      this.address = ''
-      this.city = ''
-      this.state = ''
-      this.zip = ''
-      this.card = ''
-      this.exp = ''
-      this.cvv = ''
     }
-
-    /*saveInfo() {
-      localStorage.setItem(
-        'checkoutInfo',
-        JSON.stringify({
-          name: this.name,
-          email: this.email,
-          phone: this.phone,
-          address: this.address,
-          city: this.city,
-          state: this.state,
-          zip: this.zip,
-          card: this.card,
-          exp: this.exp,
-          cvv: this.cvv
-        })
-      )
-      localStorage.name = this.name
-    }*/
   }
 </script>
 <template>
@@ -270,23 +217,19 @@
     </div>
     <div class="mainContainer" :class="{ 'main-login-active': loginTrue }">
       <div class="checkoutcontainer">
-        <h1 class="h1Checkout">Checkout</h1>
         <div class="login-check-container" v-if="existingUser">
           <h2>Logged in as</h2>
           <span>
             <RouterLink to="/Profile">{{ profileName }}</RouterLink>
           </span>
         </div>
+
         <div class="login-check-container" v-else>
           <h2>Already have an account?</h2>
           <span @click="loginActive()"> Log in</span>
         </div>
-        <form class="formContainer" @submit.prevent="submitOrder">
-          <fieldset class="custom">
-            <legend>Custom Information</legend>
-            <label for="name">Name:</label>
-            <input type="text" id="name" v-model="profileName" required />
 
+<<<<<<< HEAD
             <label for="email">Email:</label>
             <input type="email" id="email" v-model="profileEmail" required />
 
@@ -362,8 +305,12 @@
             Membership discount of 15% is active.
           </p>
         </div>
+=======
+        <form class="formContainer" @submit.prevent="submitOrder" />
+>>>>>>> 71bff2ca9b62ce686952d8f853322a962e1008fd
       </div>
     </div>
+    <checkout-input class="checkoutInput" />
   </main>
 </template>
 
@@ -375,6 +322,9 @@
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS',
       sans-serif;
     margin-bottom: 10rem;
+  }
+  .checkoutInput {
+    padding-bottom: 5rem;
   }
 
   .main-login-active {

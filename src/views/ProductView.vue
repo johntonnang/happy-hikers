@@ -275,6 +275,145 @@
     }
   }
 </script>
+
+<template>
+  <main>
+    <div
+      v-if="showCart || isHoveringCartPreview"
+      class="cart-preview"
+      @mouseover="isHoveringCartPreview = true"
+      @mouseleave="showCartPreview(), (isHoveringCartPreview = false)"
+    >
+      <h3>Your shopping cart</h3>
+      <div class="close-button" @click="closeCartPreview()">
+        <font-awesome-icon icon="fa-solid fa-x" />
+      </div>
+      <div class="cartItems" v-for="(item, index) in cartItems" :key="index">
+        <div class="itemRow">
+          <div>
+            <img class="productImg" :src="item.image" :alt="item.name" />
+          </div>
+          <div class="productInfo">
+            <span class="name">{{ item.name }}</span>
+            <img
+              class="trashImg"
+              @click="removeItem(index)"
+              src="/assets/trash-can-solid.svg"
+              alt="trash can"
+              width="20"
+            />
+            <span class="price">{{ item.price }} :- </span>
+          </div>
+        </div>
+      </div>
+      <div class="total">Total: {{ total }} :-</div>
+    </div>
+    <p id="page-direction">
+      <router-link class="home-direction" to="/">Home</router-link> /
+      <router-link class="home-direction" to="/ProductCatalog"
+        >Products</router-link
+      >
+      /
+      <router-link
+        class="home-direction"
+        :to="'/ProductCatalog/' + product.category"
+        >{{ product.category }}</router-link
+      >
+    </p>
+    <section>
+      <img :src="product.image" alt="Img of the product" class="product-img" />
+      <div class="product-information">
+        <h2 class="product-name">{{ product.name }}</h2>
+        <h2 class="product-price">{{ product.price }} :-</h2>
+        <p class="product-description">
+          {{ product.description }}
+        </p>
+        <select class="product-size" type="option" @change="sizeSelected">
+          <option value="" disabled selected hidden>Choose a size</option>
+          <option value="XS">XS</option>
+          <option value="S">S</option>
+          <option value="M">M</option>
+          <option value="L">L</option>
+          <option value="XL">XL</option>
+          <option value="XXl">XXL</option>
+        </select>
+        <p v-if="this.SizeError" style="color: red">
+          You need to choose a size.
+        </p>
+        <div class="product-btns">
+          <input
+            @click="addToCart(product.id)"
+            class="product-btn"
+            type="button"
+            :value="CartText"
+            :style="{ color: this.CartColor }"
+          />
+          <input
+            @click="addToWish(product.id)"
+            class="product-btn product-wishlist"
+            type="button"
+            :value="WishText"
+            :style="{ color: this.WishColor }"
+          />
+        </div>
+        <div class="product-return-container">
+          <div class="product-return">
+            <img src="/assets/check.svg" alt="" />
+            <p class="product-return-text"><b>30</b> day price guarantee</p>
+          </div>
+          <div class="product-return">
+            <img src="/assets/check.svg" alt="" />
+            <p class="product-return-text">
+              <b>Free</b> return & right of exchange
+            </p>
+          </div>
+          <div class="product-return">
+            <img src="/assets/check.svg" alt="" />
+            <p class="product-return-text">
+              <b>Free shipping</b> on orders over 399:-
+            </p>
+          </div>
+          <div class="product-return">
+            <img src="/assets/check.svg" alt="" />
+            <p class="product-return-text"><b>365</b> days open purchase</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="otherInformation">
+      <h2>Similar products</h2>
+      <!-- <div class="similairProducts"> -->
+      <div class="product-container">
+        <div
+          :key="similarProduct.id"
+          v-for="similarProduct in similarProducts"
+          class="product-box"
+          @click="openProduct(similarProduct.id)"
+        >
+          <img id="bg-image" alt="" :src="similarProduct.image" />
+          <div class="align-content-mobile">
+            <div class="product-title-rating">
+              <div style="display: flex">
+                <span
+                  v-for="color in similarProduct.colors"
+                  :key="color"
+                  class="color-circle-one"
+                  :style="{ backgroundColor: color }"
+                />
+              </div>
+              <img alt="" src="/assets/rating-image.png" /> (32)
+            </div>
+            <h3 style="margin: 0px">{{ similarProduct.name }}</h3>
+            <p style="margin-top: 2px">{{ similarProduct.category }}</p>
+            <h2>{{ similarProduct.price }}:-</h2>
+          </div>
+        </div>
+      </div>
+      <!-- </div> -->
+    </section>
+  </main>
+</template>
+
 <style scoped>
   .close-button {
     position: absolute;
