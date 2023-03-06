@@ -350,21 +350,7 @@
     margin-bottom: 0rem;
     padding: 1.5rem;
   }
-  .total-discount {
-    color: rgb(245, 8, 8);
-    margin-left: 10px;
-  }
-  #discount-active {
-    text-decoration: line-through;
-  }
-  #member-active-text {
-    color: rgb(228, 13, 13);
-    display: flex;
-    justify-content: end;
-    align-items: flex-end;
-    margin-right: 1.5rem;
-    padding-bottom: 2rem;
-  }
+
   .name {
     font-size: 1rem;
   }

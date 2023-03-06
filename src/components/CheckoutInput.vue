@@ -42,6 +42,7 @@
       const existingUsername = localStorage.getItem('name')
       const existingEmail = localStorage.getItem('username')
       const existingPhone = localStorage.getItem('phone')
+
       if (existingUser) {
         this.existingUser = true
         this.profileName = existingUsername
@@ -50,6 +51,7 @@
       }
       if (cart !== null) {
         this.cartItems = JSON.parse(cart)
+        this.totalValue = this.cartItems.reduce((x, item) => x + item.price, 0)
       }
       const savedData = localStorage.getItem('data')
       if (savedData) {
@@ -313,8 +315,23 @@
     align-items: flex-end;
     font-size: 1.5rem;
     margin-left: 4rem;
-    margin-bottom: 4rem;
     padding: 1.5rem;
+  }
+
+  .total-discount {
+    color: rgb(245, 8, 8);
+    margin-left: 10px;
+  }
+  #discount-active {
+    text-decoration: line-through;
+  }
+  #member-active-text {
+    color: rgb(228, 13, 13);
+    display: flex;
+    justify-content: end;
+    align-items: flex-end;
+    margin-right: 1.5rem;
+    padding-bottom: 2rem;
   }
 
   .name {
