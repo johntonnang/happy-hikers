@@ -111,7 +111,6 @@ https://stackoverflow.com/questions/19414856/how-can-i-make-all-images-of-differ
     text-align: center;
     padding: 2rem;
     font-size: 4.5rem;
-    margin-top: 2rem;
   }
 
   #space-img {

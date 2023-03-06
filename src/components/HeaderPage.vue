@@ -89,11 +89,12 @@
     align-items: center;
     justify-content: center;
     width: 100%;
+    overflow: hidden;
   }
 
   #hiker-background {
     width: 100%;
-    scale: 1.06;
+    scale: 1.1;
     // filter: brightness(75%);
   }
 
