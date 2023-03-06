@@ -2,16 +2,6 @@
   export default {
     data() {
       return {
-        name: '',
-        email: '',
-        phone: '',
-        address: '',
-        city: '',
-        state: '',
-        zip: '',
-        card: '',
-        exp: '',
-        cvv: '',
         cartItems: [],
         orders: [],
         temp: [],
@@ -97,7 +87,8 @@
         },
         deep: true
       }
-    },
+    }
+    /*
     methods: {
       submitOrder() {
         // Sende til server som vi ikke har :)
@@ -132,7 +123,7 @@
           localStorage.removeItem('data')
         }
       }
-    }
+    }*/
     /*
     submitOrder() {
       // Sende til server som vi ikke har :)
@@ -169,62 +160,7 @@
   }
 </script>
 <template>
-  <div class="mainContainer" :class="{ 'main-login-active': loginTrue }">
-    <div class="checkoutcontainer">
-      <h1 class="h1Checkout">Checkout</h1>
-
-      <form class="formContainer" @submit.prevent="submitOrder">
-        <fieldset class="custom">
-          <legend>Custom Information</legend>
-          <label for="name">Name:</label>
-          <input type="text" id="name" v-model="profileName" required />
-
-          <label for="email">Email:</label>
-          <input type="email" id="email" v-model="profileEmail" required />
-
-          <label for="phone">Phone:</label>
-          <input type="tel" id="phone" v-model="profilePhone" required />
-        </fieldset>
-
-        <fieldset class="shipping">
-          <legend>Shipping Details</legend>
-          <label for="address">Address:</label>
-          <textarea id="address" v-model="address" required />
-
-          <label for="city">City:</label>
-          <input type="text" id="city" v-model="city" required />
-
-          <label for="state">State:</label>
-          <input type="text" id="state" v-model="state" required />
-
-          <label for="zip">ZIP Code:</label>
-          <input type="text" id="zip" v-model="zip" required />
-        </fieldset>
-
-        <fieldset class="payment">
-          <legend>Payment Information</legend>
-          <label for="card">Credit Card Number:</label>
-          <input type="text" id="card" v-model="card" required />
-
-          <label for="exp">Expiration Date:</label>
-          <input type="month" id="exp" v-model="exp" required />
-
-          <label for="cvv">CVV:</label>
-          <input type="text" id="cvv" v-model="cvv" required />
-          <PaymentInput />
-        </fieldset>
-
-        <div class="saveInfo">
-          <input type="checkbox" v-model="saveData" />
-          <p class="saveInfoP">Save my Information</p>
-        </div>
-        <RouterLink to="/ConfirmationView">
-          <button class="submitButton" @click="addOrderToProfile" type="submit">
-            Place Order
-          </button>
-        </RouterLink>
-      </form>
-    </div>
+  <div :class="{ 'main-login-active': loginTrue }">
     <div class="shoppingcartPreview">
       <div class="container">
         <h1 class="previewh">Shopping cart preview</h1>
@@ -263,15 +199,6 @@
 </template>
 
 <style scoped>
-  main {
-    position: relative;
-    top: 150px;
-    width: 100%;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS',
-      sans-serif;
-    margin-bottom: 10rem;
-  }
-
   .main-login-active {
     opacity: 0.4;
   }
@@ -415,9 +342,9 @@
     justify-content: space-between;
   }
   .shoppingcartPreview {
-    width: 30%;
     margin: 2rem;
     margin-top: 7rem;
+    width: 100%;
   }
 
   .previewh {

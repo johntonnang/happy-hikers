@@ -1,23 +1,16 @@
 <script>
   import LoginProfile from '../components/LoginProfile.vue'
   import CheckoutInput from '../components/CheckoutInput.vue'
+  import CustomerInfo from '../components/CustomerInfo.vue'
+
   export default {
     components: {
       LoginProfile,
-      CheckoutInput
+      CheckoutInput,
+      CustomerInfo
     },
     data() {
       return {
-        name: '',
-        email: '',
-        phone: '',
-        address: '',
-        city: '',
-        state: '',
-        zip: '',
-        card: '',
-        exp: '',
-        cvv: '',
         cartItems: [],
         orders: [],
         temp: [],
@@ -173,35 +166,35 @@
 </script>
 <template>
   <main>
-    <div
-      v-if="loginTrue"
-      class="login-container"
-      :class="{ 'login-container-active': loginTrue }"
-    >
-      <svg
-        class="svg-icon"
-        @click="loginActive()"
-        style="
-          width: 32px;
-          height: 32px;
-          vertical-align: middle;
-          fill: currentColor;
-          overflow: hidden;
-          margin-left: auto;
-          margin-top: 3px;
-        "
-        viewBox="0 0 1024 1024"
-        version="1.1"
-        xmlns="http://www.w3.org/2000/svg"
+    <div class="checkoutcontainer">
+      <div
+        v-if="loginTrue"
+        class="login-container"
+        :class="{ 'login-container-active': loginTrue }"
       >
-        <path
-          d="M810.65984 170.65984q18.3296 0 30.49472 12.16512t12.16512 30.49472q0 18.00192-12.32896 30.33088l-268.67712 268.32896 268.67712 268.32896q12.32896 12.32896 12.32896 30.33088 0 18.3296-12.16512 30.49472t-30.49472 12.16512q-18.00192 0-30.33088-12.32896l-268.32896-268.67712-268.32896 268.67712q-12.32896 12.32896-30.33088 12.32896-18.3296 0-30.49472-12.16512t-12.16512-30.49472q0-18.00192 12.32896-30.33088l268.67712-268.32896-268.67712-268.32896q-12.32896-12.32896-12.32896-30.33088 0-18.3296 12.16512-30.49472t30.49472-12.16512q18.00192 0 30.33088 12.32896l268.32896 268.67712 268.32896-268.67712q12.32896-12.32896 30.33088-12.32896z"
-        />
-      </svg>
-      <LoginProfile />
-    </div>
-    <div class="mainContainer" :class="{ 'main-login-active': loginTrue }">
-      <div class="checkoutcontainer">
+        <svg
+          class="svg-icon"
+          @click="loginActive()"
+          style="
+            width: 32px;
+            height: 32px;
+            vertical-align: middle;
+            fill: currentColor;
+            overflow: hidden;
+            margin-left: auto;
+            margin-top: 3px;
+          "
+          viewBox="0 0 1024 1024"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M810.65984 170.65984q18.3296 0 30.49472 12.16512t12.16512 30.49472q0 18.00192-12.32896 30.33088l-268.67712 268.32896 268.67712 268.32896q12.32896 12.32896 12.32896 30.33088 0 18.3296-12.16512 30.49472t-30.49472 12.16512q-18.00192 0-30.33088-12.32896l-268.32896-268.67712-268.32896 268.67712q-12.32896 12.32896-30.33088 12.32896-18.3296 0-30.49472-12.16512t-12.16512-30.49472q0-18.00192 12.32896-30.33088l268.67712-268.32896-268.67712-268.32896q-12.32896-12.32896-12.32896-30.33088 0-18.3296 12.16512-30.49472t30.49472-12.16512q18.00192 0 30.33088 12.32896l268.32896 268.67712 268.32896-268.67712q12.32896-12.32896 30.33088-12.32896z"
+          />
+        </svg>
+        <LoginProfile />
+      </div>
+      <div :class="{ 'main-login-active': loginTrue }">
         <div class="login-check-container" v-if="existingUser">
           <h2>Logged in as</h2>
           <span>
@@ -216,8 +209,11 @@
 
         <form class="formContainer" @submit.prevent="submitOrder" />
       </div>
+      <div class="componentDiv">
+        <customer-info class="customerInfo" />
+        <checkout-input class="checkoutInput" />
+      </div>
     </div>
-    <checkout-input class="checkoutInput" />
   </main>
 </template>
 
@@ -230,8 +226,23 @@
       sans-serif;
     margin-bottom: 10rem;
   }
+  .componentDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-right: 2rem;
+  }
+
   .checkoutInput {
     padding-bottom: 5rem;
+    display: flex;
+    justify-content: flex-end;
+    width: 30%;
+  }
+  .customerInfo {
+    display: flex;
+    justify-content: flex-start;
+    width: 40%;
   }
   .main-login-active {
     opacity: 0.4;
@@ -239,7 +250,7 @@
   .checkoutcontainer {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 100%;
     margin-left: 2rem;
   }
   .login-container {
@@ -446,6 +457,16 @@
       display: flex;
       flex-direction: column-reverse;
       justify-content: space-between;
+    }
+    .componentDiv {
+      display: flex;
+      flex-direction: column;
+    }
+    .customerInfo {
+      width: 90%;
+    }
+    .checkoutInput {
+      width: 90%;
     }
     .shoppingcartPreview {
       width: 90%;
