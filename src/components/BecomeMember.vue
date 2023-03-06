@@ -11,7 +11,8 @@
         correctPassword: true,
         correctPhone: true,
         loadingIcon: false,
-        registredUser: true
+        registredUser: true,
+        discountActive: true
       }
     },
     methods: {
@@ -45,6 +46,7 @@
             localStorage.setItem('password', this.memberPasswordInput)
             localStorage.setItem('phone', this.memberPhoneInput)
             localStorage.setItem('registred-user', this.registredUser)
+            localStorage.setItem('discountActive', this.discountActive)
             this.reloadPage()
           }
         }, 1500)

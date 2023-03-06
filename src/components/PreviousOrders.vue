@@ -9,7 +9,10 @@
       return {
         openOrderIndex: null,
         products: null,
-        orders: JSON.parse(localStorage.getItem('Orders'))
+        orders: JSON.parse(localStorage.getItem('Orders')),
+        firstDiscount: true,
+        firstDiscountDisplay: 0,
+        totalValue: 0
       }
     },
     methods: {
@@ -38,7 +41,10 @@
           <p>{{ order.length }} items</p>
         </div>
         <div class="order-content">
-          <p>{{ order.reduce((x, item) => x + item.price, 0) }} :-</p>
+          <p v-if="index === 0" style="color: #f00706">
+            {{ order.reduce((x, item) => x + item.price, 0) * 0.85 }} :-
+          </p>
+          <p v-else>{{ order.reduce((x, item) => x + item.price, 0) }} :-</p>
           <p>{{ order[0].date }}</p>
         </div>
         <svg
@@ -61,7 +67,10 @@
           <div class="item-content-info first-info">
             <img :src="item.image" alt="" />
             <h5>{{ item.name }}</h5>
-            <p>{{ item.price }} :-</p>
+            <p v-if="index === 0" style="color: red">
+              {{ item.price * 0.85 }} :-
+            </p>
+            <p v-else>{{ item.price }}</p>
           </div>
         </div>
       </div>

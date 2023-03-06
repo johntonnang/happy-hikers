@@ -28,18 +28,28 @@
         profileEmail: '',
         profilePhone: '',
         addPoints: 0,
-        loginTrue: false
+        loginTrue: false,
+        totalValue: 0,
+        discountActive: false
       }
     },
 
     computed: {
       total() {
-        return this.cartItems.reduce((x, item) => x + item.price, 0)
+        if (localStorage.getItem('discountActive')) {
+          return this.cartItems.reduce((x, item) => x + item.price, 0) * 0.85
+        } else {
+          return this.cartItems.reduce((x, item) => x + item.price, 0)
+        }
       }
     },
     mounted() {
       const existingUser = localStorage.getItem('existing-user')
       const registredUser = localStorage.getItem('registred-user')
+
+      if (localStorage.getItem('discountActive')) {
+        this.discountActive = true
+      }
 
       if (registredUser && !existingUser) {
         this.registredUser = true
@@ -47,6 +57,7 @@
       }
 
       let cart = localStorage.getItem('Cart')
+
       const existingUsername = localStorage.getItem('name')
       const existingEmail = localStorage.getItem('username')
       const existingPhone = localStorage.getItem('phone')
@@ -58,6 +69,7 @@
       }
       if (cart !== null) {
         this.cartItems = JSON.parse(cart)
+        this.totalValue = this.cartItems.reduce((x, item) => x + item.price, 0)
       }
       const savedData = localStorage.getItem('data')
       if (savedData) {
@@ -88,6 +100,7 @@
         this.saveData = true
       }
     },
+
     watch: {
       cartItems: {
         handler: function (value) {
@@ -139,7 +152,8 @@
             this.orders.push(this.order)
             localStorage.setItem('Orders', JSON.stringify(this.orders))
             localStorage.removeItem('Cart')
-            console.log('hej')
+            localStorage.removeItem('discountActive')
+            this.$store.commit('resetCart')
           } else {
             this.order = JSON.parse(localStorage.getItem('Cart'))
             for (let i = 0; i < this.order.length; i++) {
@@ -149,7 +163,8 @@
             this.orders.unshift(this.order)
             localStorage.setItem('Orders', JSON.stringify(this.orders))
             localStorage.removeItem('Cart')
-            console.log('hej')
+            localStorage.removeItem('discountActive')
+            this.$store.commit('resetCart')
           }
         }
         const data = {
@@ -335,7 +350,17 @@
               </div>
             </div>
           </div>
-          <div class="total">Total: {{ total }} :-</div>
+          <div class="total">
+            <h2 style="margin-right: 10px">Total:</h2>
+            <h2 id="discount-active" v-if="discountActive">
+              {{ totalValue }} :-
+            </h2>
+            <h2 v-else>{{ totalValue }} :-</h2>
+            <h2 v-if="discountActive" class="total-discount">{{ total }} :-</h2>
+          </div>
+          <p id="member-active-text" v-if="discountActive">
+            Membership discount of 15% is active.
+          </p>
         </div>
       </div>
     </div>
@@ -465,9 +490,27 @@
     justify-content: end;
     align-items: flex-end;
     font-size: 1.5rem;
-    margin-left: 4rem;
-    margin-bottom: 4rem;
+    margin-left: 0rem;
+    margin-bottom: 0rem;
     padding: 1.5rem;
+  }
+
+  .total-discount {
+    color: rgb(245, 8, 8);
+    margin-left: 10px;
+  }
+
+  #discount-active {
+    text-decoration: line-through;
+  }
+
+  #member-active-text {
+    color: rgb(228, 13, 13);
+    display: flex;
+    justify-content: end;
+    align-items: flex-end;
+    margin-right: 1.5rem;
+    padding-bottom: 2rem;
   }
 
   .name {
@@ -543,6 +586,12 @@
   @media (max-width: 1600px) {
     .login-container svg {
       left: 66%;
+    }
+  }
+
+  @media (max-width: 1260px) {
+    .total h2 {
+      font-size: 1.5rem;
     }
   }
 

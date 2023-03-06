@@ -59,6 +59,7 @@
         this.wishItems.splice(index, 1)
         localStorage.setItem('Wish', JSON.stringify(this.wishItems))
         console.log('Remove from wishlist')
+        this.$store.commit('removeWish')
       },
       addToCart(id, index) {
         for (let product in this.wishItems) {

@@ -15,16 +15,24 @@
         currentDate: '',
         cartItems: [],
         showCart: false,
-        isHoveringCartPreview: false
+        isHoveringCartPreview: false,
+        totalValue: 0,
+        discountActive: false
       }
     },
     computed: {
       total() {
-        console.log(this.cartItems.length)
-        return this.cartItems.reduce((x, item) => x + item.price, 0)
-      },
-      shouldShowCart() {
-        return this.showCart || this.isHoveringCartPreview
+        if (localStorage.getItem('discountActive')) {
+          return this.cartItems.reduce((x, item) => x + item.price, 0) * 0.85
+        } else {
+          return this.cartItems.reduce((x, item) => x + item.price, 0)
+        }
+      }
+    },
+
+    mounted() {
+      if (localStorage.getItem('discountActive')) {
+        this.discountActive = true
       }
     },
 
@@ -163,7 +171,7 @@
         this.cartItems = currentCartItems
 
         this.showCartPreview()
-
+        this.totalValue = this.cartItems.reduce((x, item) => x + item.price, 0)
         console.log('currentCartItems', this.cartItems)
       },
 
@@ -313,11 +321,28 @@
     box-shadow: 0px 46px 130px rgba(0, 25, 64, 0.142);
   }
   .total {
-    font-size: 1.5rem;
+    font-size: 2rem;
     display: flex;
     justify-content: end;
     align-items: flex-end;
-    margin: 2rem;
+    margin: 2rem 2rem 2rem 0rem;
+  }
+
+  .total-discount {
+    color: rgb(245, 8, 8);
+    margin-left: 10px;
+  }
+
+  #discount-active {
+    text-decoration: line-through;
+  }
+
+  #member-active-text {
+    color: rgb(228, 13, 13);
+    display: flex;
+    justify-content: end;
+    align-items: flex-end;
+    margin: 2rem 2rem 0rem 2rem;
   }
   .productImg {
     max-width: 150px;
@@ -514,7 +539,15 @@
           </div>
         </div>
       </div>
-      <div class="total">Total: {{ total }} :-</div>
+      <div class="total">
+        <h2 style="margin-right: 10px">Total:</h2>
+        <h2 id="discount-active" v-if="discountActive">{{ totalValue }} :-</h2>
+        <h2 v-else>{{ totalValue }} :-</h2>
+        <h2 v-if="discountActive" class="total-discount">{{ total }} :-</h2>
+      </div>
+      <p id="member-active-text" v-if="discountActive">
+        Membership discount of 15% is active.
+      </p>
     </div>
     <p id="page-direction">
       <router-link class="home-direction" to="/">Home</router-link> /

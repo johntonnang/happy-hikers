@@ -6,6 +6,12 @@ const mutations = {
     },
     addToWish(state) {
       state.currentWish += 1
+    },
+    resetCart(state) {
+      state.currentCart = 0
+    },
+    removeWish(state) {
+      state.currentWish -= 1
     }
   },
   state = {
