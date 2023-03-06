@@ -36,7 +36,6 @@
       }
     },
 
-<<<<<<< HEAD
     computed: {
       total() {
         if (localStorage.getItem('discountActive')) {
@@ -46,9 +45,6 @@
         }
       }
     },
-=======
-    computed: {},
->>>>>>> 71bff2ca9b62ce686952d8f853322a962e1008fd
     mounted() {
       const existingUser = localStorage.getItem('existing-user')
       const registredUser = localStorage.getItem('registred-user')
@@ -106,7 +102,6 @@
         this.saveData = true
       }
     },
-<<<<<<< HEAD
 
     watch: {
       cartItems: {
@@ -116,9 +111,7 @@
         deep: true
       }
     },
-=======
-    watch: {},
->>>>>>> 71bff2ca9b62ce686952d8f853322a962e1008fd
+
     methods: {
       loginActive() {
         if (!this.loginTrue) {
@@ -229,85 +222,7 @@
           <span @click="loginActive()"> Log in</span>
         </div>
 
-<<<<<<< HEAD
-            <label for="email">Email:</label>
-            <input type="email" id="email" v-model="profileEmail" required />
-
-            <label for="phone">Phone:</label>
-            <input type="tel" id="phone" v-model="profilePhone" required />
-          </fieldset>
-
-          <fieldset class="shipping">
-            <legend>Shipping Details</legend>
-            <label for="address">Address:</label>
-            <textarea id="address" v-model="address" required />
-
-            <label for="city">City:</label>
-            <input type="text" id="city" v-model="city" required />
-
-            <label for="state">State:</label>
-            <input type="text" id="state" v-model="state" required />
-
-            <label for="zip">ZIP Code:</label>
-            <input type="text" id="zip" v-model="zip" required />
-          </fieldset>
-
-          <fieldset class="payment">
-            <legend>Payment Information</legend>
-            <label for="card">Credit Card Number:</label>
-            <input type="text" id="card" v-model="card" required />
-
-            <label for="exp">Expiration Date:</label>
-            <input type="month" id="exp" v-model="exp" required />
-
-            <label for="cvv">CVV:</label>
-            <input type="text" id="cvv" v-model="cvv" required />
-          </fieldset>
-
-          <div class="saveInfo">
-            <input type="checkbox" v-model="saveData" />
-            <p class="saveInfoP">Save my Information</p>
-          </div>
-          <button class="submitButton" @click="addOrderToProfile" type="submit">
-            Place Order
-          </button>
-        </form>
-      </div>
-      <div class="shoppingcartPreview">
-        <div class="container">
-          <h1 class="previewh">Shopping cart preview</h1>
-          <div class="cartBox">
-            <div
-              class="cartItems"
-              v-for="(item, index) in cartItems"
-              :key="index"
-            >
-              <div class="itemRow">
-                <div>
-                  <img class="productImg" :src="item.image" :alt="item.name" />
-                </div>
-                <div class="productInfo">
-                  <span class="name">{{ item.name }}</span>
-                  <span class="price">{{ item.price }} :- </span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="total">
-            <h2 style="margin-right: 10px">Total:</h2>
-            <h2 id="discount-active" v-if="discountActive">
-              {{ totalValue }} :-
-            </h2>
-            <h2 v-else>{{ totalValue }} :-</h2>
-            <h2 v-if="discountActive" class="total-discount">{{ total }} :-</h2>
-          </div>
-          <p id="member-active-text" v-if="discountActive">
-            Membership discount of 15% is active.
-          </p>
-        </div>
-=======
         <form class="formContainer" @submit.prevent="submitOrder" />
->>>>>>> 71bff2ca9b62ce686952d8f853322a962e1008fd
       </div>
     </div>
     <checkout-input class="checkoutInput" />
