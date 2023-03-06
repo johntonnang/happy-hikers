@@ -1,13 +1,11 @@
 <script>
   import LoginProfile from '../components/LoginProfile.vue'
   import CheckoutInput from '../components/CheckoutInput.vue'
-
   export default {
     components: {
       LoginProfile,
       CheckoutInput
     },
-
     data() {
       return {
         name: '',
@@ -35,8 +33,6 @@
         discountActive: false
       }
     },
-
-<<<<<<< HEAD
     computed: {
       total() {
         if (localStorage.getItem('discountActive')) {
@@ -46,24 +42,17 @@
         }
       }
     },
-=======
-    computed: {},
->>>>>>> 71bff2ca9b62ce686952d8f853322a962e1008fd
     mounted() {
       const existingUser = localStorage.getItem('existing-user')
       const registredUser = localStorage.getItem('registred-user')
-
       if (localStorage.getItem('discountActive')) {
         this.discountActive = true
       }
-
       if (registredUser && !existingUser) {
         this.registredUser = true
         this.loginTrue = true
       }
-
       let cart = localStorage.getItem('Cart')
-
       const existingUsername = localStorage.getItem('name')
       const existingEmail = localStorage.getItem('username')
       const existingPhone = localStorage.getItem('phone')
@@ -106,8 +95,6 @@
         this.saveData = true
       }
     },
-<<<<<<< HEAD
-
     watch: {
       cartItems: {
         handler: function (value) {
@@ -116,9 +103,6 @@
         deep: true
       }
     },
-=======
-    watch: {},
->>>>>>> 71bff2ca9b62ce686952d8f853322a962e1008fd
     methods: {
       loginActive() {
         if (!this.loginTrue) {
@@ -127,7 +111,6 @@
           this.loginTrue = false
         }
       },
-
       addOrderToProfile() {
         if (
           this.address &&
@@ -146,7 +129,6 @@
               profilePoints += 197
             }
             localStorage.setItem('ProfilePoints', profilePoints)
-
             this.orders.push(this.order)
             localStorage.setItem('Orders', JSON.stringify(this.orders))
             localStorage.removeItem('Cart')
@@ -229,85 +211,7 @@
           <span @click="loginActive()"> Log in</span>
         </div>
 
-<<<<<<< HEAD
-            <label for="email">Email:</label>
-            <input type="email" id="email" v-model="profileEmail" required />
-
-            <label for="phone">Phone:</label>
-            <input type="tel" id="phone" v-model="profilePhone" required />
-          </fieldset>
-
-          <fieldset class="shipping">
-            <legend>Shipping Details</legend>
-            <label for="address">Address:</label>
-            <textarea id="address" v-model="address" required />
-
-            <label for="city">City:</label>
-            <input type="text" id="city" v-model="city" required />
-
-            <label for="state">State:</label>
-            <input type="text" id="state" v-model="state" required />
-
-            <label for="zip">ZIP Code:</label>
-            <input type="text" id="zip" v-model="zip" required />
-          </fieldset>
-
-          <fieldset class="payment">
-            <legend>Payment Information</legend>
-            <label for="card">Credit Card Number:</label>
-            <input type="text" id="card" v-model="card" required />
-
-            <label for="exp">Expiration Date:</label>
-            <input type="month" id="exp" v-model="exp" required />
-
-            <label for="cvv">CVV:</label>
-            <input type="text" id="cvv" v-model="cvv" required />
-          </fieldset>
-
-          <div class="saveInfo">
-            <input type="checkbox" v-model="saveData" />
-            <p class="saveInfoP">Save my Information</p>
-          </div>
-          <button class="submitButton" @click="addOrderToProfile" type="submit">
-            Place Order
-          </button>
-        </form>
-      </div>
-      <div class="shoppingcartPreview">
-        <div class="container">
-          <h1 class="previewh">Shopping cart preview</h1>
-          <div class="cartBox">
-            <div
-              class="cartItems"
-              v-for="(item, index) in cartItems"
-              :key="index"
-            >
-              <div class="itemRow">
-                <div>
-                  <img class="productImg" :src="item.image" :alt="item.name" />
-                </div>
-                <div class="productInfo">
-                  <span class="name">{{ item.name }}</span>
-                  <span class="price">{{ item.price }} :- </span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="total">
-            <h2 style="margin-right: 10px">Total:</h2>
-            <h2 id="discount-active" v-if="discountActive">
-              {{ totalValue }} :-
-            </h2>
-            <h2 v-else>{{ totalValue }} :-</h2>
-            <h2 v-if="discountActive" class="total-discount">{{ total }} :-</h2>
-          </div>
-          <p id="member-active-text" v-if="discountActive">
-            Membership discount of 15% is active.
-          </p>
-        </div>
-=======
         <form class="formContainer" @submit.prevent="submitOrder" />
->>>>>>> 71bff2ca9b62ce686952d8f853322a962e1008fd
       </div>
     </div>
     <checkout-input class="checkoutInput" />
@@ -326,18 +230,15 @@
   .checkoutInput {
     padding-bottom: 5rem;
   }
-
   .main-login-active {
     opacity: 0.4;
   }
-
   .checkoutcontainer {
     display: flex;
     flex-direction: column;
     width: 50%;
     margin-left: 2rem;
   }
-
   .login-container {
     position: fixed;
     top: 100px;
@@ -347,46 +248,38 @@
     opacity: 0;
     z-index: -99;
   }
-
   .login-container-active {
     opacity: 1;
     z-index: 99;
   }
-
   .login-container svg {
     position: absolute;
     left: 60%;
     top: 1.5%;
   }
-
   .login-container svg:hover {
     cursor: pointer;
   }
-
   .login-check-container {
     display: flex;
     align-items: center;
     margin-left: 15px;
     font-size: 1.1rem;
   }
-
   .login-check-container h2 {
     font-size: 1.2rem;
     margin-bottom: 0px;
   }
-
   .login-check-container span {
     margin-left: 5px;
     margin-top: 1px;
     font-weight: 600;
   }
-
   .login-check-container a {
     text-decoration: underline;
     font-weight: 600;
     color: rgb(14, 14, 14);
   }
-
   .login-check-container span:hover {
     cursor: pointer;
     opacity: 0.9;
@@ -412,7 +305,6 @@
     display: flex;
     flex-direction: column;
   }
-
   input,
   textarea {
     border-width: 2px;
@@ -444,16 +336,13 @@
     margin-bottom: 0rem;
     padding: 1.5rem;
   }
-
   .total-discount {
     color: rgb(245, 8, 8);
     margin-left: 10px;
   }
-
   #discount-active {
     text-decoration: line-through;
   }
-
   #member-active-text {
     color: rgb(228, 13, 13);
     display: flex;
@@ -462,7 +351,6 @@
     margin-right: 1.5rem;
     padding-bottom: 2rem;
   }
-
   .name {
     font-size: 1rem;
   }
@@ -478,7 +366,6 @@
     position: relative;
     margin: 0.5rem;
   }
-
   .description {
     display: none;
   }
@@ -492,7 +379,6 @@
     margin: 2rem;
     margin-top: 7rem;
   }
-
   .previewh {
     font-size: 1.5rem;
     margin-left: 1rem;
@@ -532,19 +418,16 @@
     margin-top: 1rem;
     margin-left: 0.5rem;
   }
-
   @media (max-width: 1600px) {
     .login-container svg {
       left: 66%;
     }
   }
-
   @media (max-width: 1260px) {
     .total h2 {
       font-size: 1.5rem;
     }
   }
-
   @media (max-width: 1100px) {
     .shoppingcartPreview {
       width: 40%;
@@ -555,7 +438,6 @@
       left: 65%;
     }
   }
-
   @media (max-width: 760px) {
     .mainContainer {
       display: flex;
