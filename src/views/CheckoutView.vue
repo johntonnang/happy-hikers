@@ -33,6 +33,7 @@
         discountActive: false
       }
     },
+
     computed: {
       total() {
         if (localStorage.getItem('discountActive')) {
@@ -95,6 +96,7 @@
         this.saveData = true
       }
     },
+
     watch: {
       cartItems: {
         handler: function (value) {
@@ -103,6 +105,7 @@
         deep: true
       }
     },
+
     methods: {
       loginActive() {
         if (!this.loginTrue) {
