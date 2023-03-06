@@ -116,6 +116,7 @@
     font-size: 1.2rem;
     z-index: 10;
     margin: 0;
+    padding: 0;
   }
 
   .navbar-search {
