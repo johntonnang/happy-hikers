@@ -321,6 +321,12 @@
       <router-link class="home-direction" to="/ProductCatalog"
         >Products</router-link
       >
+      /
+      <router-link
+        class="home-direction"
+        :to="'/ProductCatalog/' + product.category"
+        >{{ product.category }}</router-link
+      >
     </p>
     <section>
       <img :src="product.image" alt="Img of the product" class="product-img" />
