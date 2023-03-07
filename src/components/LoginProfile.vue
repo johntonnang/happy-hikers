@@ -5,14 +5,14 @@
     getFirestore,
     onSnapshot,
     collection,
-    doc,
-    deleteDoc,
-    setDoc,
-    addDoc,
-    orderBy,
+    // doc,
+    // deleteDoc,
+    // setDoc,
+    // addDoc,
+    // orderBy,
     query
   } from 'firebase/firestore'
-  import { onUnmounted, ref } from 'vue'
+  import { onUnmounted } from 'vue'
 
   const firebaseConfig = {
     apiKey: 'AIzaSyAGJoAN08CeHsyoibMdRQVpegwPibf1ANk',
