@@ -17,7 +17,8 @@ const mutations = {
   state = {
     cartItems: [],
     currentCart: 0,
-    currentWish: 0
+    currentWish: 0,
+    cart: []
   }
 
 export default createStore({ mutations, state, strict: true })

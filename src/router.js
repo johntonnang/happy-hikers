@@ -9,6 +9,7 @@ import ProductView from './views/ProductView.vue'
 import SandboxView from './views/SandboxView.vue'
 import CheckouteView from './views/CheckoutView.vue'
 import ConfirmationView from './views/ConfirmationView.vue'
+import CommonQuestionView from './views/CommonQuestionsView.vue'
 
 export default createRouter({
   history: createWebHashHistory(),
@@ -49,6 +50,7 @@ export default createRouter({
       component: CheckouteView,
       path: '/CheckoutView'
     },
-    { component: ConfirmationView, path: '/ConfirmationView' }
+    { component: ConfirmationView, path: '/ConfirmationView' },
+    { component: CommonQuestionView, path: '/CommonQuestionsView' }
   ]
 })
