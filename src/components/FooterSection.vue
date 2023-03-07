@@ -16,7 +16,7 @@
       </ul>
       <ul>
         <li class="bold-footer-text"><a href="#">Resources</a></li>
-        <li><a href="#">Blog</a></li>
+        <li><router-link to="/BlogView">Blog</router-link></li>
         <li><a href="#">Newsletter</a></li>
         <li><a href="#">Events</a></li>
         <li><a href="#">Tutorials</a></li>
@@ -117,7 +117,8 @@
     font-weight: bold;
     margin-bottom: 10px;
   }
-  a {
+  a,
+  router-link {
     text-decoration: none;
     color: #e6e6e6;
     transition: all 0.35s ease-in-out;

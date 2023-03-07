@@ -89,7 +89,6 @@
     font-size: large;
     font-weight: bold;
     margin-top: 10px;
-    /* padding-right: 80%; */
     margin-right: 80%;
   }
   h1 {
