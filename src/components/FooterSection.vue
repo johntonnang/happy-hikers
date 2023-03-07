@@ -136,10 +136,24 @@
     }
   }
 
+  @media (min-width: 801px) and (max-width: 1500px) {
+    .footer {
+      padding-top: 40px;
+      height: 70vh;
+    }
+  }
+
+  @media (min-width: 601px) and (max-width: 800px) {
+    .footer {
+      padding-top: 40px;
+      height: 70vh;
+    }
+  }
+
   @media (min-width: 501px) and (max-width: 600px) {
     .footer {
       padding-top: 40px;
-      height: 45vh;
+      height: 70vh;
     }
 
     .social-media-icon {
@@ -153,12 +167,16 @@
   }
 
   @media (min-width: 360px) and (max-width: 500px) {
+    #links-container {
+      top: 40px;
+    }
+
     footer {
       margin-top: 30px;
     }
     .footer {
       padding-top: 40px;
-      height: 45vh;
+      height: 70vh;
     }
 
     .footer-container ul {
