@@ -55,8 +55,13 @@
           <button class="submit-btn">Submit</button>
         </form>
       </div>
+
       <div v-else id="confirmation-popup">
         <h1>Thank you for subscribing</h1>
+        <div id="check-icon">
+          <img src="assets/output-onlinegiftools.gif" alt="Checkmark" />
+          <span>Redirecting...</span>
+        </div>
         <p>We´ll send you uppdates and exclusive deals to: {{ email }}.</p>
       </div>
     </div>
@@ -147,6 +152,19 @@
   #paragraph {
     padding-left: 20px;
     padding-right: 20px;
+  }
+
+  #check-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  img {
+    margin-top: 20px;
+    width: 30px;
+    height: 30px;
+    opacity: 0.8;
   }
 
   @media (min-width: 1101px) and (max-width: 1600px) {
