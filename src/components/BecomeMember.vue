@@ -1,18 +1,18 @@
 <script>
-  import { async } from '@firebase/util'
+  // import { async } from '@firebase/util'
   import { initializeApp } from 'firebase/app'
   import {
     getFirestore,
-    onSnapshot,
+    // onSnapshot,
     collection,
-    doc,
-    deleteDoc,
-    setDoc,
-    addDoc,
-    orderBy,
-    query
+    // doc,
+    // deleteDoc,
+    // setDoc,
+    addDoc
+    // orderBy,
+    // query
   } from 'firebase/firestore'
-  import { onUnmounted, ref } from 'vue'
+  // import { onUnmounted, ref } from 'vue'
 
   const firebaseConfig = {
     apiKey: 'AIzaSyAGJoAN08CeHsyoibMdRQVpegwPibf1ANk',
