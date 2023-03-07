@@ -1,0 +1,15 @@
+#_proprofs_trk_inner_footer_ {
+  display: none !important;
+}
+
+#_proprofs_trk_main_body_ {
+  box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.202) !important;
+  border-radius: 15px !important;
+  height: 480px !important;
+  width: 340px !important;
+}
+
+#ProProfs_greeting_div {
+  box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.202) !important;
+  border-radius: 5px !important;
+}

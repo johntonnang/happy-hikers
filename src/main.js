@@ -7,11 +7,13 @@ import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import { faCircleArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { faX } from '@fortawesome/free-solid-svg-icons'
+import { faStar } from '@fortawesome/free-solid-svg-icons'
 
 import App from './App.vue'
 import router from './router'
 import store from './store'
 
+library.add(faStar)
 library.add(faX)
 library.add(faUser)
 library.add(faHeart)

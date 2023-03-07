@@ -4,7 +4,9 @@
       <ul>
         <li class="bold-footer-text"><a href="#">Customer service</a></li>
         <li><a href="mailto:happyhikers@iths.se">Contact us</a></li>
-        <li><a href="#">Common questions</a></li>
+        <router-link to="/CommonQuestionsView"
+          ><li><a href="#">Common questions</a></li></router-link
+        >
         <li><a href="#">Purchase conditions</a></li>
       </ul>
       <ul>
@@ -16,7 +18,7 @@
       </ul>
       <ul>
         <li class="bold-footer-text"><a href="#">Resources</a></li>
-        <li><a href="#">Blog</a></li>
+        <li><router-link to="/BlogView">Blog</router-link></li>
         <li><a href="#">Newsletter</a></li>
         <li><a href="#">Events</a></li>
         <li><a href="#">Tutorials</a></li>
@@ -117,7 +119,8 @@
     font-weight: bold;
     margin-bottom: 10px;
   }
-  a {
+  a,
+  router-link {
     text-decoration: none;
     color: #e6e6e6;
     transition: all 0.35s ease-in-out;
@@ -136,10 +139,24 @@
     }
   }
 
+  @media (min-width: 801px) and (max-width: 1500px) {
+    .footer {
+      padding-top: 40px;
+      height: 70vh;
+    }
+  }
+
+  @media (min-width: 601px) and (max-width: 800px) {
+    .footer {
+      padding-top: 40px;
+      height: 70vh;
+    }
+  }
+
   @media (min-width: 501px) and (max-width: 600px) {
     .footer {
       padding-top: 40px;
-      height: 45vh;
+      height: 70vh;
     }
 
     .social-media-icon {
@@ -153,12 +170,16 @@
   }
 
   @media (min-width: 360px) and (max-width: 500px) {
+    #links-container {
+      top: 40px;
+    }
+
     footer {
       margin-top: 30px;
     }
     .footer {
       padding-top: 40px;
-      height: 45vh;
+      height: 70vh;
     }
 
     .footer-container ul {

@@ -1,16 +1,16 @@
 <script>
-  import ShoppingCart from '../components/ShoppingCart.vue'
+  import CommonQuestion from '../components/CommonQuestion.vue'
 
   export default {
     components: {
-      ShoppingCart
+      CommonQuestion
     }
   }
 </script>
 
 <template>
   <main>
-    <shopping-cart />
+    <common-question />
   </main>
 </template>
 

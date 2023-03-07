@@ -240,9 +240,10 @@
     width: 30%;
   }
   .customerInfo {
+    margin: 1rem;
     display: flex;
     justify-content: flex-start;
-    width: 40%;
+    width: 50%;
   }
   .main-login-active {
     opacity: 0.4;

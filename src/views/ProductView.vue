@@ -45,7 +45,12 @@
         showCart: false,
         isHoveringCartPreview: false,
         totalValue: 0,
-        discountActive: false
+        discountActive: false,
+        reviewName: '',
+        reviewStars: [],
+        reviewComment: '',
+        allReviews: [],
+        noReviews: true
       }
     },
     computed: {
@@ -55,6 +60,9 @@
         } else {
           return this.cartItems.reduce((x, item) => x + item.price, 0)
         }
+      },
+      starArray() {
+        return Array.from({ length: this.review.stars }, (_, index) => index)
       }
     },
 
@@ -428,6 +436,27 @@
 
       sizeSelected() {
         this.ChooseSize = true
+      },
+      toggleChecked(starIndex) {
+        this.reviewStars = []
+        for (let i = 1; i <= 5; i++) {
+          const starIcon = document.getElementById(`star-${i}`)
+          if (i <= starIndex) {
+            starIcon.classList.add('checked')
+            this.reviewStars.push('starIndex')
+          } else {
+            starIcon.classList.remove('checked')
+          }
+        }
+      },
+      addReviewSubmit() {
+        const newReview = {
+          name: this.reviewName,
+          stars: this.reviewStars,
+          comment: this.reviewComment
+        }
+        this.allReviews.push(newReview)
+        this.noReviews = false
       }
     }
   }
@@ -463,6 +492,7 @@
           </div>
         </div>
       </div>
+
       <div class="total">
         <h2 style="margin-right: 10px">Total:</h2>
         <h2 id="discount-active" v-if="discountActive">{{ totalValue }} :-</h2>
@@ -543,8 +573,77 @@
             <p class="product-return-text"><b>365</b> days open purchase</p>
           </div>
         </div>
+        <div id="review-container">
+          <h2>Reviews</h2>
+          <p v-if="noReviews">No reviews.</p>
+          <div
+            v-else
+            class="review-container-box"
+            :key="review"
+            v-for="review in allReviews"
+          >
+            <div class="review-container-header">
+              <h4>{{ review.name }},</h4>
+              <div :key="star" v-for="star in review.stars">
+                <font-awesome-icon class="checked" icon="fa-solid fa-star" />
+              </div>
+            </div>
+            <p>"{{ review.comment }}"</p>
+          </div>
+        </div>
       </div>
     </section>
+    <section id="review-counter">
+      <label for="name-input" /> Name *
+      <input
+        id="input-field-review"
+        v-model="reviewName"
+        placeholder="e.g John Doe.."
+        name="name-input"
+      />
+      <label>Rating:</label>
+      <div class="review-rating">
+        <font-awesome-icon
+          id="star-1"
+          class="font-star"
+          icon="fa-solid fa-star"
+          @click="toggleChecked(1)"
+        />
+        <font-awesome-icon
+          id="star-2"
+          class="font-star"
+          icon="fa-solid fa-star"
+          @click="toggleChecked(2)"
+        />
+        <font-awesome-icon
+          id="star-3"
+          class="font-star"
+          icon="fa-solid fa-star"
+          @click="toggleChecked(3)"
+        />
+        <font-awesome-icon
+          id="star-4"
+          class="font-star"
+          icon="fa-solid fa-star"
+          @click="toggleChecked(4)"
+        />
+        <font-awesome-icon
+          id="star-5"
+          class="font-star"
+          icon="fa-solid fa-star"
+          @click="toggleChecked(5)"
+        />
+      </div>
+      <label for="textarea-input" /> Add text *
+      <textarea
+        id="textarea-review"
+        v-model="reviewComment"
+        name="textarea-input"
+        placeholder="Review text.."
+      />
+      <button id="apply-review-btn" @click="addReviewSubmit">Add Review</button>
+    </section>
+
     <section class="otherInformation">
       <h2>Similar products</h2>
       <!-- <div class="similairProducts"> -->
@@ -587,7 +686,6 @@
   }
   h3 {
     display: flex;
-    justify-content: center;
     align-items: center;
     margin: 1rem;
   }
@@ -648,6 +746,17 @@
     align-items: flex-end;
     margin: 2rem 2rem 0rem 2rem;
   }
+
+  .color-circle-one,
+  .color-circle-two,
+  .color-circle-three,
+  .color-circle-four {
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50px;
+    margin-right: 8px;
+  }
   .productImg {
     max-width: 150px;
     max-height: 150px;
@@ -667,6 +776,7 @@
   }
   .product-img {
     width: 50%;
+    height: 50%;
     object-fit: cover;
   }
   section {
@@ -733,6 +843,80 @@
     line-height: 1;
   }
 
+  #review-container {
+    border-top: 1px solid rgb(80, 80, 80);
+    padding: 10px 0px;
+    width: 100%;
+    margin-top: 30px;
+  }
+
+  #review-container h2 {
+    text-decoration: underline;
+  }
+
+  .review-container-box {
+    box-shadow: 1px 1px 6px black;
+    width: 70%;
+    margin: 20px 0px;
+    padding: 10px 15px;
+  }
+
+  .review-container-header {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 10px;
+  }
+
+  .review-container-box p {
+    font-style: italic;
+  }
+
+  #review-counter {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: 15px 0px;
+  }
+
+  #input-field-review {
+    width: 50%;
+    padding: 5px 5px;
+    margin: 2px 0px 15px 0px;
+  }
+
+  .review-rating {
+    width: 30%;
+    margin-bottom: 10px;
+  }
+
+  .font-star {
+    color: grey;
+    cursor: pointer;
+  }
+
+  .checked {
+    color: orange;
+  }
+
+  #textarea-review {
+    margin-bottom: 15px;
+    margin-top: 2px;
+    width: 75%;
+    height: 100px;
+  }
+
+  #apply-review-btn {
+    width: 100px;
+    border: none;
+    box-shadow: 1px 1px 6px black;
+    background-color: #579d5d;
+    padding: 5px;
+  }
+
+  #apply-review-btn:hover {
+    background-color: #45804a;
+  }
+
   .product-return-container {
     margin-top: 10px;
     display: grid;
@@ -779,6 +963,9 @@
   }
   .otherInformation {
     display: grid;
+    border-top: 1px solid black;
+    padding: 10px 0px;
+    margin-top: 20px;
   }
 
   .home-direction {
@@ -810,6 +997,28 @@
     }
     .product-img {
       width: 100%;
+      height: 100%;
+    }
+  }
+  @media (max-width: 760px) {
+    #input-field-review {
+      width: 70%;
+    }
+    #textarea-review {
+      width: 100%;
+    }
+    .review-rating {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .review-container-box {
+      width: 90%;
+      margin-bottom: 0px;
+    }
+    #review-counter {
+      width: 90%;
     }
   }
 </style>
