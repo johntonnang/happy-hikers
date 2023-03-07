@@ -4,7 +4,9 @@
       <ul>
         <li class="bold-footer-text"><a href="#">Customer service</a></li>
         <li><a href="mailto:happyhikers@iths.se">Contact us</a></li>
-        <li><a href="#">Common questions</a></li>
+        <router-link to="/CommonQuestionsView"
+          ><li><a href="#">Common questions</a></li></router-link
+        >
         <li><a href="#">Purchase conditions</a></li>
       </ul>
       <ul>
