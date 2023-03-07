@@ -88,8 +88,9 @@
     border: none;
     font-size: large;
     font-weight: bold;
-    padding-top: 10px;
-    padding-right: 80%;
+    margin-top: 10px;
+    /* padding-right: 80%; */
+    margin-right: 80%;
   }
   h1 {
     color: rgba(4, 92, 4, 0.716);
@@ -129,7 +130,7 @@
     color: rgb(234, 232, 232);
     background-color: rgb(34, 34, 34);
     border: 1px solid black;
-    border-radius: 3px;
+    border-radius: 5px;
   }
 
   .submit-btn:hover {
