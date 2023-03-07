@@ -3,7 +3,32 @@
   import ChildComponent from '../components/SliderDoubleThumbs.vue'
   import 'vue3-carousel/dist/carousel.css'
   import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
+  import { initializeApp } from 'firebase/app'
+  import {
+    getFirestore,
+    onSnapshot,
+    collection,
+    // doc,
+    // deleteDoc,
+    // setDoc,
+    // addDoc,
+    orderBy,
+    query
+  } from 'firebase/firestore'
+  import { onUnmounted, ref } from 'vue'
 
+  const firebaseConfig = {
+    apiKey: 'AIzaSyAGJoAN08CeHsyoibMdRQVpegwPibf1ANk',
+    authDomain: 'happy-hikers-1a875.firebaseapp.com',
+    projectId: 'happy-hikers-1a875',
+    storageBucket: 'happy-hikers-1a875.appspot.com',
+    messagingSenderId: '434497193720',
+    appId: '1:434497193720:web:5893a8bd2905affdaedd0d',
+    measurementId: 'G-QW50PLVBTN'
+  }
+  const app = initializeApp(firebaseConfig)
+
+  const db = getFirestore(app)
   export default {
     mounted() {
       window.addEventListener('resize', () => {
@@ -22,7 +47,7 @@
           brown: false
         },
         colorFilter: ['showAll'],
-        products: null,
+        products: ref([]),
         showProducts: [],
         category: this.$route.params.category,
         id: this.$route.params.id,
@@ -52,13 +77,29 @@
       }
     },
     created() {
-      fetch('/assets/api.JSON')
-        .then((response) => response.json())
-        .then((result) => {
-          this.products = result
-          this.showProducts = this.products
-          console.log(result)
+      // fetch('/assets/api.JSON')
+      //   .then((response) => response.json())
+      //   .then((result) => {
+      //     this.products = result
+      //     this.showProducts = this.products
+      //     console.log(result)
+      //   })
+      const latestQuery = query(collection(db, 'products'), orderBy('price'))
+      const liveProducts = onSnapshot(latestQuery, (snapshot) => {
+        this.products = snapshot.docs.map((doc) => {
+          return {
+            id: doc.data().id,
+            name: doc.data().name,
+            price: doc.data().price,
+            image: doc.data().img,
+            description: doc.data().description,
+            colors: doc.data().colors,
+            category: doc.data().category
+          }
         })
+        this.showProducts = this.products
+      })
+      onUnmounted(liveProducts)
     },
     methods: {
       openProduct(id) {

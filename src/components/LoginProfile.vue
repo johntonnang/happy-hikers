@@ -1,6 +1,31 @@
 <script>
   import BecomeMember from '../components/BecomeMember.vue'
+  import { initializeApp } from 'firebase/app'
+  import {
+    getFirestore,
+    onSnapshot,
+    collection,
+    doc,
+    deleteDoc,
+    setDoc,
+    addDoc,
+    orderBy,
+    query
+  } from 'firebase/firestore'
+  import { onUnmounted, ref } from 'vue'
 
+  const firebaseConfig = {
+    apiKey: 'AIzaSyAGJoAN08CeHsyoibMdRQVpegwPibf1ANk',
+    authDomain: 'happy-hikers-1a875.firebaseapp.com',
+    projectId: 'happy-hikers-1a875',
+    storageBucket: 'happy-hikers-1a875.appspot.com',
+    messagingSenderId: '434497193720',
+    appId: '1:434497193720:web:5893a8bd2905affdaedd0d',
+    measurementId: 'G-QW50PLVBTN'
+  }
+  const app = initializeApp(firebaseConfig)
+
+  const db = getFirestore(app)
   export default {
     components: {
       BecomeMember
@@ -28,23 +53,30 @@
         this.failedInput = false
         this.errorInput = false
         setTimeout(() => {
-          const email = localStorage.getItem('username')
-          const password = localStorage.getItem('password')
-
-          if (email === this.EmailInput && password === this.passwordInput) {
-            this.loginProfileAccepted()
-            this.failedInput = false
-            this.errorInput = false
-          } else {
-            this.loadingIcon = false
-            this.errorInput = true
+          for (let accountIndex in this.accounts) {
+            // console.log(this.accounts[accountIndex].password.toString());
+            console.log(this.accounts[accountIndex].email)
+            console.log(this.EmailInput)
+            if (
+              this.accounts[accountIndex].email === this.EmailInput &&
+              this.accounts[accountIndex].password.toString() ===
+                this.passwordInput
+            ) {
+              this.loginProfileAccepted(this.accounts[accountIndex].email)
+              this.failedInput = false
+              this.errorInput = false
+            } else {
+              this.loadingIcon = false
+              this.errorInput = true
+            }
           }
         }, 1500)
       },
-      loginProfileAccepted() {
+      loginProfileAccepted(email) {
         this.loginSuccesfull = true
         this.loginAccepted = true
         this.failedInput = true
+        localStorage.setItem('email', email)
         setTimeout(() => {
           this.$emit('login-success', this.loginSuccesfull)
           localStorage.setItem('existing-user', this.existingUser)
@@ -54,6 +86,18 @@
     },
     emits: ['login-success'],
     created() {
+      const latestQuery = query(collection(db, 'konto'))
+      const liveProducts = onSnapshot(latestQuery, (snapshot) => {
+        this.accounts = snapshot.docs.map((doc) => {
+          return {
+            email: doc.data().username,
+            password: doc.data().password
+          }
+        })
+        this.showProducts = this.products
+      })
+      onUnmounted(liveProducts)
+
       const alreadyUser = localStorage.getItem('existing-user')
       if (alreadyUser) {
         this.$emit('login-success', this.loginSuccesfull)
