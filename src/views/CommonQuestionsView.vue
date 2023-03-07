@@ -1,6 +1,16 @@
+<script>
+  import CommonQuestion from '../components/CommonQuestion.vue'
+
+  export default {
+    components: {
+      CommonQuestion
+    }
+  }
+</script>
+
 <template>
   <main>
-    <h1>hei</h1>
+    <common-question />
   </main>
 </template>
 

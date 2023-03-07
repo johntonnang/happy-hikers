@@ -1,0 +1,172 @@
+<script>
+  export default {
+    data() {
+      //Add new questions
+      return {
+        questions: [],
+        newQuestion: ''
+      }
+    },
+    methods: {
+      addQuestion() {
+        if (this.newQuestion) {
+          this.questions.push(this.newQuestion)
+          this.newQuestion = ''
+        }
+      }
+    }
+    // Add new questions ^^^
+    /*
+
+    SEARCHBAR
+
+    props: ['questions'],
+    data() {
+      return {
+        newQuestion: '' // Store the new question input value
+      }
+    },
+    methods: {
+      addQuestion() {
+        // Emit the new question to the parent component
+        this.$emit('questionAdded', this.newQuestion)
+        // Clear the input field
+        this.newQuestion = ''
+      }
+    }*/
+  }
+</script>
+
+<template>
+  <!--
+    SEARCHBAR
+  <div>
+    <ul>
+      <li v-for="(question, index) in questions" :key="index">
+        {{ question }}
+      </li>
+    </ul>
+    <form @submit.prevent="addQuestion">
+      <label for="new-question">New Question:</label>
+      <input id="new-question" v-model="newQuestion" />
+      <button type="submit">Add Question</button>
+    </form>
+  </div>
+-->
+  <div class="container">
+    <div class="question1 question">
+      <p class="questionTitel">
+        <strong> 1. Q: How can I order?</strong>
+      </p>
+      <p>
+        You can order easily using our online platform. When you find a product
+        you need, you can add it to cart, login and go through the ordering
+        process. After the order is ready, you will receive order summary to
+        your email. Order summary will also be stored to your account. You can
+        also easily make reorders afterwards by clicking the “reorder” button on
+        any of your previously made orders. After clicking the “reorder” button
+        the cart will open and you can change quantities or products.
+      </p>
+    </div>
+    <div class="question2 question">
+      <p class="questionTitel">
+        <strong> 2. Q: Why should I buy online?</strong>
+      </p>
+      <p>
+        Speeding up the process. By ordering online you will you will get prices
+        faster and you will be able to go through order confirmation and payment
+        process much faster. This could save days of your time. Traceability:
+        You will have easy access to all of your previous orders any time you
+        want. Reordering: you can make a re-order anytime based on your previous
+        orders by only couple of clicks. This will save time and effort as you
+        don’t need to go through all the documents and emails from the past.
+      </p>
+    </div>
+    <div class="question3 question">
+      <p class="questionTitel">
+        <strong> 3. Q: What information should I input when ordering?</strong>
+      </p>
+      <p>
+        our online ordering system will ask for all the important information
+        you should submit. If you have a VAT number, please remember to submit
+        it. This will make sure the shipment is not delayed because of the lack
+        of VAT number
+      </p>
+    </div>
+    <div class="question4 question">
+      <p class="questionTitel">
+        <strong> 4. Q: What payment methods can I use? </strong>
+      </p>
+      <p>You can use all the major credit cards.</p>
+    </div>
+    <div class="question5 question">
+      <p class="questionTitel">
+        <strong>
+          5. Q: What should I do if the payment is not accepted?
+        </strong>
+      </p>
+      <p>
+        A: Please try again in a little while. If the payment is still not
+        accepted, please verify your account balance. If everything is as it
+        should, but you still can't make the payment, please contact
+        happy@hikers.se notify us about the problem. We can manage the order
+        manually.
+      </p>
+    </div>
+    <div class="question6 question">
+      <p class="questionTitel">
+        <strong>6. How can I change delivery address? </strong>
+      </p>
+      <p>
+        A: Sign in to your account and go to “my account”. On “my account” you
+        can change all your contact information.
+      </p>
+    </div>
+    <div class="question7 question">
+      <p class="questionTitel">
+        <strong>7. What are the delivery charges?</strong>
+      </p>
+      <p>
+        Delivery charges are dependent on the shipment requirements. If the
+        products on your order are due to special requirements (for example dry
+        ice) extra fee will be added to the shipment charges. You can see the
+        shipping fees on the checkout process before the payment is made.
+      </p>
+    </div>
+  </div>
+
+  <!--Add new questions-->
+  <div class="addQuestions">
+    <h2>Add new Questions</h2>
+    <p>We will answer them as soon as we here opportunity</p>
+    <ul>
+      <li v-for="question in questions" :key="question">{{ question }}</li>
+    </ul>
+    <div>
+      <input type="text" v-model="newQuestion" @keydown.enter="addQuestion" />
+      <button @click="addQuestion">Add Question</button>
+    </div>
+  </div>
+</template>
+
+<style scoped>
+  .container {
+    padding: 2rem;
+    padding-top: 5rem;
+    padding-left: 8rem;
+    padding-right: 8rem;
+  }
+  .questionTitel {
+    margin: 0;
+  }
+  .question {
+    padding: 1rem;
+  }
+  .addQuestions {
+    padding-top: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+</style>
