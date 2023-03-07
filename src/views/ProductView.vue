@@ -21,7 +21,8 @@
         reviewName: '',
         reviewStars: [],
         reviewComment: '',
-        allReviews: []
+        allReviews: [],
+        noReviews: true
       }
     },
     computed: {
@@ -298,7 +299,7 @@
           comment: this.reviewComment
         }
         this.allReviews.push(newReview)
-        console.log(this.allReviews)
+        this.noReviews = false
       }
     }
   }
@@ -334,6 +335,7 @@
           </div>
         </div>
       </div>
+
       <div class="total">
         <h2 style="margin-right: 10px">Total:</h2>
         <h2 id="discount-active" v-if="discountActive">{{ totalValue }} :-</h2>
@@ -416,7 +418,9 @@
         </div>
         <div id="review-container">
           <h2>Reviews</h2>
+          <p v-if="noReviews">No reviews.</p>
           <div
+            v-else
             class="review-container-box"
             :key="review"
             v-for="review in allReviews"
@@ -482,6 +486,7 @@
       />
       <button id="apply-review-btn" @click="addReviewSubmit">Add Review</button>
     </section>
+
     <section class="otherInformation">
       <h2>Similar products</h2>
       <!-- <div class="similairProducts"> -->
@@ -524,7 +529,6 @@
   }
   h3 {
     display: flex;
-    justify-content: center;
     align-items: center;
     margin: 1rem;
   }
@@ -585,6 +589,17 @@
     align-items: flex-end;
     margin: 2rem 2rem 0rem 2rem;
   }
+
+  .color-circle-one,
+  .color-circle-two,
+  .color-circle-three,
+  .color-circle-four {
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50px;
+    margin-right: 8px;
+  }
   .productImg {
     max-width: 150px;
     max-height: 150px;
@@ -604,6 +619,7 @@
   }
   .product-img {
     width: 50%;
+    height: 50%;
     object-fit: cover;
   }
   section {
@@ -671,9 +687,10 @@
   }
 
   #review-container {
-    margin-top: 30px;
     border-top: 1px solid rgb(80, 80, 80);
     padding: 10px 0px;
+    width: 100%;
+    margin-top: 30px;
   }
 
   #review-container h2 {
@@ -823,6 +840,28 @@
     }
     .product-img {
       width: 100%;
+      height: 100%;
+    }
+  }
+  @media (max-width: 760px) {
+    #input-field-review {
+      width: 70%;
+    }
+    #textarea-review {
+      width: 100%;
+    }
+    .review-rating {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .review-container-box {
+      width: 90%;
+      margin-bottom: 0px;
+    }
+    #review-counter {
+      width: 90%;
     }
   }
 </style>
