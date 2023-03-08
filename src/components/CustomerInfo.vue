@@ -23,6 +23,31 @@
         saveData: false
       }
     },
+    created() {
+      const data = localStorage.getItem('data')
+
+      if (data) {
+        const savedData = JSON.parse(data)
+        this.firstName = savedData.firstName
+        this.lastName = savedData.lastName
+        this.email = savedData.email
+        this.phone = savedData.phone
+        this.address = savedData.address
+        this.address2 = savedData.address2
+        this.country = savedData.country
+        this.state = savedData.state
+        this.zip = savedData.zip
+        this.sameaddress = savedData.sameaddress
+        this.saveInfo = savedData.saveInfo
+        this.credit = savedData.credit
+        this.debit = savedData.debit
+        this.paypal = savedData.paypal
+        this.ccNumber = savedData.ccNumber
+        this.ccExpiration = savedData.ccExpiration
+        this.ccCvv = savedData.ccCvv
+        this.saveData = savedData.saveData
+      }
+    },
     methods: {
       ...mapActions(['setEmail', 'setName']),
       sendData() {
@@ -45,22 +70,23 @@
           paypal: this.paypal,
           ccNumber: this.ccNumber,
           ccExpiration: this.ccExpiration,
-          ccCvv: this.ccCvv
+          ccCvv: this.ccCvv,
+          saveData: this.saveData
         }
-        console.log(data)
+
         if (this.saveData) {
           localStorage.setItem('data', JSON.stringify(data))
         } else {
           localStorage.removeItem('data')
         }
-      },
-      submitForm(event) {
+      }
+      /* submitForm(event) {
         if (event.target.checkValidity() === false) {
           event.preventDefault()
           event.stopPropagation()
         }
         event.target.classList.add('was-validated')
-      }
+      }*/
     }
   }
 </script>
@@ -79,6 +105,7 @@
           <div class="row">
             <div class="col-md-6 mb-3">
               <label for="firstName">First name</label>
+
               <input
                 v-model="firstName"
                 type="text"
@@ -92,11 +119,11 @@
             <div class="col-md-6 mb-3">
               <label for="lastName">Last name</label>
               <input
+                v-model="lastName"
                 type="text"
                 class="form-control"
                 id="lastName"
                 placeholder=""
-                value=""
                 required=""
               />
               <div class="invalid-feedback">Valid last name is required.</div>
@@ -121,6 +148,7 @@
           <div class="mb-3">
             <label for="address">Address</label>
             <input
+              v-model="address"
               type="text"
               class="form-control"
               id="address"
@@ -136,6 +164,7 @@
               >Address 2 <span class="text-muted">(Optional)</span></label
             >
             <input
+              v-model="address2"
               type="text"
               class="form-control"
               id="address2"
@@ -146,6 +175,7 @@
             <div class="col-md-5 mb-3">
               <label for="country">Country</label>
               <select
+                v-model="country"
                 class="custom-select d-block w-100"
                 id="country"
                 required=""
@@ -161,6 +191,7 @@
             <div class="col-md-4 mb-3">
               <label for="state">State</label>
               <input
+                v-model="state"
                 type="text"
                 class="form-control"
                 id="state"
@@ -172,6 +203,7 @@
             <div class="col-md-3 mb-3">
               <label for="zip">Zip</label>
               <input
+                v-model="zip"
                 type="text"
                 class="form-control"
                 id="zip"
@@ -208,6 +240,7 @@
           <div class="d-block my-3">
             <div class="custom-control custom-radio">
               <input
+                v-model="saveInfo"
                 id="credit"
                 name="paymentMethod"
                 type="radio"
@@ -221,6 +254,7 @@
             </div>
             <div class="custom-control custom-radio">
               <input
+                v-model="credit"
                 id="debit"
                 name="paymentMethod"
                 type="radio"
@@ -231,6 +265,7 @@
             </div>
             <div class="custom-control custom-radio">
               <input
+                v-model="debit"
                 id="paypal"
                 name="paymentMethod"
                 type="radio"
@@ -244,6 +279,7 @@
             <div class="col-md-6 mb-3">
               <label for="cc-name">Name on card</label>
               <input
+                v-model="paypal"
                 type="text"
                 class="form-control"
                 id="cc-name"
@@ -256,6 +292,7 @@
             <div class="col-md-6 mb-3">
               <label for="ccNumber">Credit card number</label>
               <input
+                v-model="ccNumber"
                 type="text"
                 class="form-control"
                 id="ccNumber"
@@ -269,6 +306,7 @@
             <div class="col-md-3 mb-3">
               <label for="ccExpiration">Expiration</label>
               <input
+                v-model="ccExpiration"
                 type="text"
                 class="form-control"
                 id="ccExpiration"
@@ -280,6 +318,7 @@
             <div class="col-md-3 mb-3">
               <label for="ccCvv">CVV</label>
               <input
+                v-model="ccCvv"
                 type="text"
                 class="form-control"
                 id="ccCvv"
