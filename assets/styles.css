@@ -2,6 +2,14 @@
   display: none !important;
 }
 
+#_proprofs_trk_main_header_ {
+  transition: all 0.35s;
+}
+
+#_proprofs_trk_main_header_:hover {
+  scale: 1.1;
+}
+
 #_proprofs_trk_main_body_ {
   box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.202) !important;
   border-radius: 15px !important;
@@ -12,4 +20,8 @@
 #ProProfs_greeting_div {
   box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.202) !important;
   border-radius: 5px !important;
+}
+
+._proprofs_trk_main_div_bubble_ {
+  box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.702) !important;
 }
