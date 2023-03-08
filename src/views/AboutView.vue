@@ -1,4 +1,13 @@
-<script></script>
+<script>
+  import AboutSection from '../components/AboutSection.vue'
+
+  export default {
+    components: {
+      AboutSection
+    }
+  }
+</script>
+
 <template>
-  <h1>hello world</h1>
+  <AboutSection />
 </template>
