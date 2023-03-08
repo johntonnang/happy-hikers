@@ -70,8 +70,8 @@
             <input type="checkbox" name="" id="checkbox" />
             <div id="label-div">
               <label for="checkbox"
-                >Agree to receive regular information about Happy Hiker's via
-                e-mail. You can unsubscribe at any time.</label
+                >Agree to receive information about Happy Hiker's via e-mail.
+                You can unsubscribe at any time.</label
               >
             </div>
           </div>
