@@ -430,19 +430,14 @@
     }
   }
   @media (max-width: 1100px) {
-    .shoppingcartPreview {
-      width: 60%;
-      margin: 2rem;
-      margin-top: 7rem;
-    }
     .mainContainer {
       display: flex;
-      flex-direction: column-reverse;
       justify-content: space-between;
     }
+
     .componentDiv {
       display: flex;
-      flex-direction: column;
+      flex-direction: column-reverse;
     }
     .customerInfo {
       width: 90%;
@@ -458,7 +453,7 @@
     .checkoutcontainer {
       display: flex;
       flex-direction: column;
-      width: 90%;
+      width: 100%;
       margin-left: 2rem;
     }
 
