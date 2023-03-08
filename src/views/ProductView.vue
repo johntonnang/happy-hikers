@@ -52,7 +52,8 @@
         reviewStars: [],
         reviewComment: '',
         allReviews: [],
-        noReviews: true
+        noReviews: true,
+        test: 5
       }
     },
     computed: {
@@ -65,6 +66,12 @@
       },
       starArray() {
         return Array.from({ length: this.review.stars }, (_, index) => index)
+      },
+      filteredReviews() {
+        return this.allReviews.slice(0, 4)
+      },
+      similarProductsCap() {
+        return this.similarProducts.slice(0, 4)
       }
     },
 
@@ -119,6 +126,7 @@
       //     }
       //   })
       const latestQuery = query(collection(db, 'products'), orderBy('price'))
+
       const liveProducts = onSnapshot(latestQuery, (snapshot) => {
         this.products = snapshot.docs.map((doc) => {
           return {
@@ -175,8 +183,8 @@
     methods: {
       //Älskar ChatGPT
       addReviewSubmit() {
+        console.log(this.similarProducts)
         this.productRef = doc(db, 'products', this.product.id.toString())
-
         if (this.reviewName === '' || this.reviewStars.length === 0) {
           this.SizeError = true
           return
@@ -642,10 +650,9 @@
           <h2>Reviews</h2>
           <p v-if="noReviews">No reviews.</p>
           <div
-            v-else
+            v-for="review in filteredReviews"
             class="review-container-box"
             :key="review"
-            v-for="review in allReviews"
           >
             <div class="review-container-header">
               <h4>{{ review.name }},</h4>
@@ -717,7 +724,7 @@
       <div class="product-container">
         <div
           :key="similarProduct.id"
-          v-for="similarProduct in similarProducts"
+          v-for="similarProduct in similarProductsCap"
           class="product-box"
           @click="openProduct(similarProduct.id)"
         >
@@ -979,7 +986,7 @@
     box-shadow: 0px 0px 6px black;
     background-color: #579d5d;
     padding: 5px;
-    color: rgb(223, 222, 222);
+    color: rgb(245, 244, 244);
   }
 
   #apply-review-btn:hover {
