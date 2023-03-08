@@ -1,4 +1,31 @@
 <script>
+  // import { async } from '@firebase/util'
+  import { initializeApp } from 'firebase/app'
+  import {
+    getFirestore,
+    // onSnapshot,
+    collection,
+    // doc,
+    // deleteDoc,
+    // setDoc,
+    addDoc
+    // orderBy,
+    // query
+  } from 'firebase/firestore'
+  // import { onUnmounted, ref } from 'vue'
+
+  const firebaseConfig = {
+    apiKey: 'AIzaSyAGJoAN08CeHsyoibMdRQVpegwPibf1ANk',
+    authDomain: 'happy-hikers-1a875.firebaseapp.com',
+    projectId: 'happy-hikers-1a875',
+    storageBucket: 'happy-hikers-1a875.appspot.com',
+    messagingSenderId: '434497193720',
+    appId: '1:434497193720:web:5893a8bd2905affdaedd0d',
+    measurementId: 'G-QW50PLVBTN'
+  }
+  const app = initializeApp(firebaseConfig)
+
+  const db = getFirestore(app)
   export default {
     data() {
       return {
@@ -19,36 +46,45 @@
       reloadPage() {
         window.location.reload()
       },
+
       saveInput() {
         this.loadingIcon = true
         this.correctName = true
         this.correctUsername = true
         this.correctPassword = true
-        setTimeout(() => {
-          if (this.memberNameInput === '') {
-            this.correctName = false
-            this.loadingIcon = false
-            return
-          } else if (
-            this.memberUsernameInput === '' ||
-            !this.memberUsernameInput.includes('@')
-          ) {
-            this.correctUsername = false
-            this.loadingIcon = false
-            return
-          } else if (this.memberPasswordInput === '') {
-            this.correctPassword = false
-            this.loadingIcon = false
-            return
+        if (this.memberNameInput === '') {
+          this.correctName = false
+          this.loadingIcon = false
+          return
+        } else if (
+          this.memberUsernameInput === '' ||
+          !this.memberUsernameInput.includes('@')
+        ) {
+          this.correctUsername = false
+          this.loadingIcon = false
+          return
+        } else if (this.memberPasswordInput === '') {
+          this.correctPassword = false
+          this.loadingIcon = false
+          return
+        } else {
+          let wish = null
+          if (localStorage.getItem('Wish')) {
+            wish = localStorage.getItem('Wish')
           } else {
-            localStorage.setItem('name', this.memberNameInput)
-            localStorage.setItem('username', this.memberUsernameInput)
-            localStorage.setItem('password', this.memberPasswordInput)
-            localStorage.setItem('phone', this.memberPhoneInput)
-            localStorage.setItem('registred-user', this.registredUser)
-            localStorage.setItem('discountActive', this.discountActive)
-            this.reloadPage()
+            wish = []
           }
+          addDoc(collection(db, 'konto'), {
+            name: this.memberNameInput,
+            username: this.memberUsernameInput,
+            password: this.memberPasswordInput,
+            phone: this.memberPhoneInput,
+            registredUser: this.registredUser,
+            wishlist: wish
+          })
+        }
+        setTimeout(() => {
+          this.reloadPage()
         }, 1500)
       }
     }

@@ -1,9 +1,37 @@
 <script>
+  import { initializeApp } from 'firebase/app'
+  import {
+    getFirestore,
+    onSnapshot,
+    collection,
+    doc,
+    // deleteDoc,
+    setDoc,
+    // addDoc,
+    orderBy,
+    query
+  } from 'firebase/firestore'
+  import { onUnmounted, ref } from 'vue'
+
+  const firebaseConfig = {
+    apiKey: 'AIzaSyAGJoAN08CeHsyoibMdRQVpegwPibf1ANk',
+    authDomain: 'happy-hikers-1a875.firebaseapp.com',
+    projectId: 'happy-hikers-1a875',
+    storageBucket: 'happy-hikers-1a875.appspot.com',
+    messagingSenderId: '434497193720',
+    appId: '1:434497193720:web:5893a8bd2905affdaedd0d',
+    measurementId: 'G-QW50PLVBTN'
+  }
+  const app = initializeApp(firebaseConfig)
+
+  const db = getFirestore(app)
   export default {
     data() {
       return {
         product: '',
-        products: '',
+        products: ref([]),
+        account: null,
+        accounts: null,
         similarProducts: [],
         CartText: '+  Add to cart   ',
         WishText: '+  Add to wishlist   ',
@@ -72,22 +100,73 @@
       //     console.log(params)
       //   }
       // )
-      fetch('/assets/api.JSON')
-        .then((response) => response.json())
-        .then((result) => {
-          this.products = result
-          for (let i = 0; i < this.products.length; i++) {
-            if (this.products[i].id === Number(this.$route.params.id)) {
-              this.product = this.products[i]
-            }
+      // fetch('/assets/api.JSON')
+      //   .then((response) => response.json())
+      //   .then((result) => {
+      //     this.products = result
+      //     for (let i = 0; i < this.products.length; i++) {
+      //       if (this.products[i].id === Number(this.$route.params.id)) {
+      //         this.product = this.products[i]
+      //       }
+      //     }
+      //     for (let i = 0; i < this.products.length; i++) {
+      //       if (this.products[i].category === this.product.category) {
+      //         if (this.products[i].id !== this.product.id)
+      //           this.similarProducts.unshift(this.products[i])
+      //       }
+      //     }
+      //   })
+      const latestQuery = query(collection(db, 'products'), orderBy('price'))
+      const liveProducts = onSnapshot(latestQuery, (snapshot) => {
+        this.products = snapshot.docs.map((doc) => {
+          return {
+            id: doc.data().id,
+            name: doc.data().name,
+            price: doc.data().price,
+            image: doc.data().img,
+            description: doc.data().description,
+            colors: doc.data().colors,
+            category: doc.data().category
           }
-          for (let i = 0; i < this.products.length; i++) {
-            if (this.products[i].category === this.product.category) {
-              if (this.products[i].id !== this.product.id)
-                this.similarProducts.unshift(this.products[i])
+        })
+
+        for (let i = 0; i < this.products.length; i++) {
+          if (this.products[i].id === this.$route.params.id) {
+            this.product = this.products[i]
+          }
+        }
+        for (let i = 0; i < this.products.length; i++) {
+          if (this.products[i].category === this.product.category) {
+            if (this.products[i].id !== this.product.id)
+              this.similarProducts.unshift(this.products[i])
+          }
+        }
+        this.showProducts = this.products
+      })
+      const kontoQuery = query(collection(db, 'konto'))
+      const liveKonto = onSnapshot(kontoQuery, (snapshot) => {
+        this.accounts = snapshot.docs.map((doc) => {
+          if (localStorage.getItem('email') === doc.data().username) {
+            return {
+              id: doc.id,
+              email: doc.data().username,
+              password: doc.data().password,
+              wish: JSON.parse(doc.data().wishlist)
             }
           }
         })
+        this.showProducts = this.products
+        console.log(this.accounts)
+        for (let i = 0; i < this.accounts.length; i++) {
+          if (this.accounts[i]) {
+            this.account = this.accounts[i]
+          }
+        }
+      })
+
+      onUnmounted(liveProducts)
+
+      onUnmounted(liveKonto)
     },
 
     methods: {
@@ -207,19 +286,96 @@
           replace: true
         })
       },
+      // addToWish(id) {
+      //   this.$store.commit('addToWish')
+      //   if (localStorage.getItem('Wish') !== null) {
+      //     if (this.WishText === '+  Add to wishlist   ') {
+      //       console.log('Hej!')
+      //       let wish = JSON.parse(localStorage.getItem('Wish'))
+
+      //       wish.unshift({
+      //         id: this.product.id,
+      //         name: this.product.name,
+      //         price: this.product.price,
+      //         image: this.product.image,
+      //         description: this.product.description
+      //       })
+      //       localStorage.setItem('Wish', JSON.stringify(wish))
+      //       this.WishColor = 'rgba(0,0,0,0)'
+      //       setTimeout(() => (this.WishText = '✓'), 350)
+      //       setTimeout(() => (this.WishColor = 'rgba(0,0,0)'), 350)
+
+      //       setTimeout(() => (this.WishColor = 'rgba(0,0,0,0)'), 3000)
+      //       setTimeout(() => (this.WishColor = 'rgba(0,0,0,1)'), 3350)
+      //       setTimeout(() => (this.WishText = 'Remove from Wishlist'), 3350)
+      //       setTimeout(() => console.log('1'), 3350)
+      //     } else if (this.WishText === 'Remove from Wishlist') {
+      //       let wish = JSON.parse(localStorage.getItem('Wish'))
+      //       console.log(wish)
+      //       let i = 0
+      //       for (let product of wish) {
+      //         console.log(product)
+      //         console.log(product.id + '   ' + id)
+
+      //         if (product.id === id) {
+      //           wish.splice(i, 1)
+      //           localStorage.setItem('Wish', JSON.stringify(wish))
+      //         }
+      //         i++
+      //       }
+      //       this.WishColor = 'rgba(0,0,0,0)'
+      //       setTimeout(() => (this.WishText = '✓'), 350)
+      //       setTimeout(() => (this.WishColor = 'rgba(0,0,0)'), 350)
+
+      //       setTimeout(() => (this.WishColor = 'rgba(0,0,0,0)'), 3000)
+      //       setTimeout(() => (this.WishColor = 'rgba(0,0,0,1)'), 3350)
+      //       setTimeout(() => (this.WishText = '+  Add to wishlist   '), 3350)
+      //     }
+      //   } else {
+      //     let wish = null
+      //     if (this.WishText === '+  Add to wishlist   ') {
+      //       console.log('hej')
+      //       console.log('Wish 3')
+      //       wish = [
+      //         {
+      //           id: this.product.id,
+      //           name: this.product.name,
+      //           price: this.product.price,
+      //           image: this.product.image,
+      //           description: this.product.description
+      //         }
+      //       ]
+      //       localStorage.setItem('Wish', JSON.stringify(wish))
+      //       this.WishColor = 'rgba(0,0,0,0)'
+      //       setTimeout(() => (this.WishText = '✓'), 350)
+      //       setTimeout(() => (this.WishColor = 'rgba(0,0,0)'), 350)
+
+      //       setTimeout(() => (this.WishColor = 'rgba(0,0,0,0)'), 3000)
+      //       setTimeout(() => (this.WishColor = 'rgba(0,0,0,1)'), 3350)
+      //       setTimeout(() => (this.WishText = '+  Add to wishlist   '), 3350)
+      //     }
+      //   }
+      // },
       addToWish(id) {
         this.$store.commit('addToWish')
-        if (localStorage.getItem('Wish') !== null) {
+        let emptyArray = []
+        console.log(this.account.wish)
+        console.log()
+        if (this.account.wish != emptyArray) {
+          console.log('hej')
           if (this.WishText === '+  Add to wishlist   ') {
-            console.log('Hej!')
-            let wish = JSON.parse(localStorage.getItem('Wish'))
-
+            let wish = this.account.wish
+            console.log(this.account.wish)
             wish.unshift({
               id: this.product.id,
               name: this.product.name,
               price: this.product.price,
-              image: this.product.image,
+              image: this.product.img,
               description: this.product.description
+            })
+            JSON.stringify(wish)
+            setDoc(doc(db, 'konto', this.account.id), {
+              wishlist: JSON.stringify(wish)
             })
             localStorage.setItem('Wish', JSON.stringify(wish))
             this.WishColor = 'rgba(0,0,0,0)'
@@ -262,7 +418,7 @@
                 id: this.product.id,
                 name: this.product.name,
                 price: this.product.price,
-                image: this.product.image,
+                image: this.product.img,
                 description: this.product.description
               }
             ]
@@ -277,6 +433,7 @@
           }
         }
       },
+
       sizeSelected() {
         this.ChooseSize = true
       },
