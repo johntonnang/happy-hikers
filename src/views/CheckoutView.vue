@@ -243,7 +243,7 @@
     margin: 1rem;
     display: flex;
     justify-content: flex-start;
-    width: 50%;
+    width: 65%;
   }
   .main-login-active {
     opacity: 0.4;
@@ -430,24 +430,14 @@
     }
   }
   @media (max-width: 1100px) {
-    .shoppingcartPreview {
-      width: 40%;
-      margin: 2rem;
-      margin-top: 7rem;
-    }
-    .login-container svg {
-      left: 65%;
-    }
-  }
-  @media (max-width: 760px) {
     .mainContainer {
       display: flex;
-      flex-direction: column-reverse;
       justify-content: space-between;
     }
+
     .componentDiv {
       display: flex;
-      flex-direction: column;
+      flex-direction: column-reverse;
     }
     .customerInfo {
       width: 90%;
@@ -463,9 +453,15 @@
     .checkoutcontainer {
       display: flex;
       flex-direction: column;
-      width: 90%;
+      width: 100%;
       margin-left: 2rem;
     }
+
+    .login-container svg {
+      left: 65%;
+    }
+  }
+  @media (max-width: 760px) {
     .login-container svg {
       left: 85%;
     }
