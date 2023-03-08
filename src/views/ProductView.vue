@@ -5,6 +5,8 @@
     onSnapshot,
     collection,
     doc,
+    getDoc,
+    updateDoc,
     // deleteDoc,
     setDoc,
     // addDoc,
@@ -45,7 +47,13 @@
         showCart: false,
         isHoveringCartPreview: false,
         totalValue: 0,
-        discountActive: false
+        discountActive: false,
+        reviewName: '',
+        reviewStars: [],
+        reviewComment: '',
+        allReviews: [],
+        noReviews: true,
+        test: 5
       }
     },
     computed: {
@@ -55,6 +63,15 @@
         } else {
           return this.cartItems.reduce((x, item) => x + item.price, 0)
         }
+      },
+      starArray() {
+        return Array.from({ length: this.review.stars }, (_, index) => index)
+      },
+      filteredReviews() {
+        return this.allReviews.slice(0, 4)
+      },
+      similarProductsCap() {
+        return this.similarProducts.slice(0, 4)
       }
     },
 
@@ -83,6 +100,7 @@
     created() {
       this.renderDate()
       const latestQuery = query(collection(db, 'products'), orderBy('price'))
+
       const liveProducts = onSnapshot(latestQuery, (snapshot) => {
         this.products = snapshot.docs.map((doc) => {
           return {
@@ -92,7 +110,9 @@
             image: doc.data().img,
             description: doc.data().description,
             colors: doc.data().colors,
-            category: doc.data().category
+            category: doc.data().category,
+            rating: doc.data().rating,
+            ratingcount: doc.data().ratingcount
           }
         })
         for (let i = 0; i < this.products.length; i++) {
@@ -139,6 +159,61 @@
     },
 
     methods: {
+      //Älskar ChatGPT
+      addReviewSubmit() {
+        console.log(this.similarProducts)
+        this.productRef = doc(db, 'products', this.product.id.toString())
+        if (this.reviewName === '' || this.reviewStars.length === 0) {
+          this.SizeError = true
+          return
+        }
+        this.SizeError = false
+        const newReview = {
+          name: this.reviewName,
+          stars: this.reviewStars,
+          comment: this.reviewComment,
+          date: this.currentDate
+        }
+        this.allReviews.push(newReview)
+        this.noReviews = false
+        const newRating = this.reviewStars.length
+        getDoc(this.productRef).then((doc) => {
+          if (doc.exists()) {
+            const currentRating = doc.data().rating || 0
+            const currentRatingCount = doc.data().ratingcount || 0
+            const newRatingCount = currentRatingCount + 1
+            const newAverageRating =
+              (currentRating * currentRatingCount + newRating) / newRatingCount
+            updateDoc(this.productRef, {
+              rating: newAverageRating,
+              ratingcount: newRatingCount
+            })
+          } else {
+            setDoc(this.productRef, {
+              rating: newRating,
+              ratingcount: 1
+            })
+          }
+        })
+        this.reviewName = ''
+        this.reviewStars = []
+        this.reviewComment = ''
+        this.renderDate()
+      },
+
+      toggleChecked(starIndex) {
+        this.reviewStars = []
+        for (let i = 1; i <= 5; i++) {
+          const starIcon = document.getElementById(`star-${i}`)
+          if (i <= starIndex) {
+            starIcon.classList.add('checked')
+            this.reviewStars.push('starIndex')
+          } else {
+            starIcon.classList.remove('checked')
+          }
+        }
+      },
+
       renderDate() {
         const currentDate = new Date()
         const day = String(currentDate.getDate()).padStart(2, '0')
@@ -418,6 +493,34 @@
         <p class="product-description">
           {{ product.description }}
         </p>
+        <div class="review-rating">
+          <font-awesome-icon
+            :class="{ checked: product.rating >= 1 }"
+            class="font-star"
+            icon="fa-solid fa-star"
+          />
+          <font-awesome-icon
+            :class="{ checked: product.rating >= 2 }"
+            class="font-star"
+            icon="fa-solid fa-star"
+          />
+          <font-awesome-icon
+            :class="{ checked: product.rating >= 3 }"
+            class="font-star"
+            icon="fa-solid fa-star"
+          />
+          <font-awesome-icon
+            :class="{ checked: product.rating >= 4 }"
+            class="font-star"
+            icon="fa-solid fa-star"
+          />
+          <font-awesome-icon
+            :class="{ checked: product.rating >= 5 }"
+            class="font-star"
+            icon="fa-solid fa-star"
+          />
+          <p>({{ product.ratingcount }})</p>
+        </div>
         <select class="product-size" type="option" @change="sizeSelected">
           <option value="" disabled selected hidden>Choose a size</option>
           <option value="XS">XS</option>
@@ -468,15 +571,92 @@
             <p class="product-return-text"><b>365</b> days open purchase</p>
           </div>
         </div>
+        <!-- <<<<<<< HEAD -->
       </div>
     </section>
+    <!-- ======= -->
+    <section>
+      <div>
+        <div id="review-container">
+          <h2>Reviews</h2>
+          <p v-if="noReviews">No reviews.</p>
+          <div
+            v-for="review in filteredReviews"
+            class="review-container-box"
+            :key="review"
+          >
+            <div class="review-container-header">
+              <h4>{{ review.name }},</h4>
+              <div :key="star" v-for="star in review.stars">
+                <font-awesome-icon class="checked" icon="fa-solid fa-star" />
+              </div>
+            </div>
+            <p>"{{ review.comment }}"</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="review-counter">
+      <label for="name-input" /> Name *
+      <input
+        id="input-field-review"
+        v-model="reviewName"
+        placeholder="e.g John Doe.."
+        name="name-input"
+      />
+      <label>Rating:</label>
+      <div class="review-rating second-star-container">
+        <font-awesome-icon
+          id="star-1"
+          class="font-star"
+          icon="fa-solid fa-star"
+          @click="toggleChecked(1)"
+        />
+        <font-awesome-icon
+          id="star-2"
+          class="font-star"
+          icon="fa-solid fa-star"
+          @click="toggleChecked(2)"
+        />
+        <font-awesome-icon
+          id="star-3"
+          class="font-star"
+          icon="fa-solid fa-star"
+          @click="toggleChecked(3)"
+        />
+        <font-awesome-icon
+          id="star-4"
+          class="font-star"
+          icon="fa-solid fa-star"
+          @click="toggleChecked(4)"
+        />
+        <font-awesome-icon
+          id="star-5"
+          class="font-star"
+          icon="fa-solid fa-star"
+          @click="toggleChecked(5)"
+        />
+      </div>
+      <label for="textarea-input" /> Add text *
+      <textarea
+        id="textarea-review"
+        v-model="reviewComment"
+        name="textarea-input"
+        placeholder="Review text.."
+      />
+      <button id="apply-review-btn" @click="addReviewSubmit(), starsRated()">
+        Add Review
+      </button>
+    </section>
+
+    <!-- >>>>>>> 07b22a2ba142feff11db84733ed4c7cad73f8740 -->
     <section class="otherInformation">
       <h2>Similar products</h2>
       <!-- <div class="similairProducts"> -->
       <div class="product-container">
         <div
           :key="similarProduct.id"
-          v-for="similarProduct in similarProducts"
+          v-for="similarProduct in similarProductsCap"
           class="product-box"
           @click="openProduct(similarProduct.id)"
         >
@@ -658,6 +838,85 @@
     line-height: 1;
   }
 
+  /* <<<<<<< HEAD
+======= */
+  #review-container {
+    border-top: 1px solid rgb(80, 80, 80);
+    padding: 10px 0px;
+    width: 100%;
+    margin-top: 30px;
+  }
+
+  #review-container h2 {
+    text-decoration: underline;
+  }
+
+  .review-container-box {
+    box-shadow: 1px 1px 6px black;
+    width: 70%;
+    margin: 20px 0px;
+    padding: 10px 15px;
+  }
+
+  .review-container-header {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 10px;
+  }
+
+  .review-container-box p {
+    font-style: italic;
+  }
+
+  #review-counter {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: 15px 0px;
+  }
+
+  #input-field-review {
+    width: 50%;
+    padding: 5px 5px;
+    margin: 2px 0px 15px 0px;
+  }
+
+  .review-rating {
+    width: 30%;
+    display: flex;
+  }
+
+  .review-rating p {
+    margin-left: 5px;
+    margin-top: -4px;
+    padding-top: 0px;
+  }
+
+  .second-star-container {
+    margin-bottom: 10px;
+  }
+
+  #textarea-review {
+    margin-bottom: 15px;
+    margin-top: 2px;
+    width: 75%;
+    height: 100px;
+  }
+
+  #apply-review-btn {
+    width: 100px;
+    border: none;
+    box-shadow: 0px 0px 6px black;
+    background-color: #579d5d;
+    padding: 5px;
+    color: rgb(245, 244, 244);
+  }
+
+  #apply-review-btn:hover {
+    background-color: #45804a;
+  }
+
+  /* >>>>>>> 07b22a2ba142feff11db84733ed4c7cad73f8740 */
   .product-return-container {
     margin-top: 10px;
     display: grid;
@@ -697,6 +956,14 @@
     margin: 4px 0px 0px auto;
     width: 80px;
     height: 20px;
+  }
+  .font-star {
+    color: grey;
+    cursor: pointer;
+  }
+
+  .checked {
+    color: orange;
   }
   .product-box h2 {
     font-size: 2.2rem;

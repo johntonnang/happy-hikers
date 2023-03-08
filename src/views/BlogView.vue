@@ -1,105 +1,3 @@
-<template>
-  <main>
-    <div class="blog-container">
-      <div class="blog-row">
-        <div class="blog-item">
-          <h1>Boots</h1>
-          <p class="short-text">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-            ultricies nunc ac velit faucibus ultrices. Curabitur sit amet sapien
-            quis mauris laoreet feugiat non et lectus. Nam eget nunc sed risus
-            mollis volutpat. Donec eget magna sodales, venenatis ipsum in,
-            facilisis lectus. Vestibulum ante ipsum primis in faucibus orci
-            luctus et ultrices posuere cubilia Curae; Proin sed placerat sapien.
-            Ut sagittis vehicula dolor eu venenatis. Sed mollis sapien in quam
-            laoreet euismod. Nunc ullamcorper, enim ac vestibulum interdum,
-            tortor velit aliquam elit, quis bibendum odio nunc ac lorem. Sed
-            tempor felis a lacinia maximus.
-          </p>
-          <p v-if="showText" class="long-text">
-            Nulla facilisi. In hac habitasse platea dictumst. Duis vel quam
-            lobortis, viverra nunc ut, pellentesque augue. Fusce semper justo
-            purus, ac porttitor risus blandit at. Morbi pellentesque leo vitae
-            mauris suscipit dapibus. Nunc rhoncus ligula id ligula interdum, at
-            feugiat nulla ultricies. Proin dictum magna nec mauris pulvinar
-            pharetra. Fusce malesuada felis augue, quis feugiat sapien malesuada
-            eget. Praesent sollicitudin laoreet augue, in ullamcorper felis
-            lobortis sed. Nulla congue tristique ante, id eleifend elit
-            efficitur quis. Nullam vel fringilla elit, ut dapibus nunc. Integer
-            hendrerit, lorem ut maximus euismod, lorem augue auctor elit, quis
-            viverra elit elit nec lacus.
-          </p>
-          <button class="read-more-btn" @click="showText = !showText">
-            {{ showText ? 'Read Less' : 'Read More' }}
-          </button>
-        </div>
-        <div class="blog-item">
-          <h1>Boots</h1>
-          <p class="short-text">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-            ultricies nunc ac velit faucibus ultrices. Curabitur sit amet sapien
-            quis mauris laoreet feugiat non et lectus. Nam eget nunc sed risus
-            mollis volutpat. Donec eget magna sodales, venenatis ipsum in,
-            facilisis lectus. Vestibulum ante ipsum primis in faucibus orci
-            luctus et ultrices posuere cubilia Curae; Proin sed placerat sapien.
-            Ut sagittis vehicula dolor eu venenatis. Sed mollis sapien in quam
-            laoreet euismod. Nunc ullamcorper, enim ac vestibulum interdum,
-            tortor velit aliquam elit, quis bibendum odio nunc ac lorem. Sed
-            tempor felis a lacinia maximus.
-          </p>
-          <p v-if="showText" class="long-text">
-            Nulla facilisi. In hac habitasse platea dictumst. Duis vel quam
-            lobortis, viverra nunc ut, pellentesque augue. Fusce semper justo
-            purus, ac porttitor risus blandit at. Morbi pellentesque leo vitae
-            mauris suscipit dapibus. Nunc rhoncus ligula id ligula interdum, at
-            feugiat nulla ultricies. Proin dictum magna nec mauris pulvinar
-            pharetra. Fusce malesuada felis augue, quis feugiat sapien malesuada
-            eget. Praesent sollicitudin laoreet augue, in ullamcorper felis
-            lobortis sed. Nulla congue tristique ante, id eleifend elit
-            efficitur quis. Nullam vel fringilla elit, ut dapibus nunc. Integer
-            hendrerit, lorem ut maximus euismod, lorem augue auctor elit, quis
-            viverra elit elit nec lacus.
-          </p>
-          <button class="read-more-btn" @click="showText = !showText">
-            {{ showText ? 'Read Less' : 'Read More' }}
-          </button>
-        </div>
-        <div class="blog-item">
-          <h1>Boots</h1>
-          <p class="short-text">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-            ultricies nunc ac velit faucibus ultrices. Curabitur sit amet sapien
-            quis mauris laoreet feugiat non et lectus. Nam eget nunc sed risus
-            mollis volutpat. Donec eget magna sodales, venenatis ipsum in,
-            facilisis lectus. Vestibulum ante ipsum primis in faucibus orci
-            luctus et ultrices posuere cubilia Curae; Proin sed placerat sapien.
-            Ut sagittis vehicula dolor eu venenatis. Sed mollis sapien in quam
-            laoreet euismod. Nunc ullamcorper, enim ac vestibulum interdum,
-            tortor velit aliquam elit, quis bibendum odio nunc ac lorem. Sed
-            tempor felis a lacinia maximus.
-          </p>
-          <p v-if="showText" class="long-text">
-            Nulla facilisi. In hac habitasse platea dictumst. Duis vel quam
-            lobortis, viverra nunc ut, pellentesque augue. Fusce semper justo
-            purus, ac porttitor risus blandit at. Morbi pellentesque leo vitae
-            mauris suscipit dapibus. Nunc rhoncus ligula id ligula interdum, at
-            feugiat nulla ultricies. Proin dictum magna nec mauris pulvinar
-            pharetra. Fusce malesuada felis augue, quis feugiat sapien malesuada
-            eget. Praesent sollicitudin laoreet augue, in ullamcorper felis
-            lobortis sed. Nulla congue tristique ante, id eleifend elit
-            efficitur quis. Nullam vel fringilla elit, ut dapibus nunc. Integer
-            hendrerit, lorem ut maximus euismod, lorem augue auctor elit, quis
-            viverra elit elit nec lacus.
-          </p>
-          <button class="read-more-btn" @click="showText = !showText">
-            {{ showText ? 'Read Less' : 'Read More' }}
-          </button>
-        </div>
-      </div>
-    </div>
-  </main>
-</template>
-
 <script>
   export default {
     data() {
@@ -110,10 +8,191 @@
   }
 </script>
 
+<template>
+  <main>
+    <div class="blog-container">
+      <div class="blog-row">
+        <div class="blog-item">
+          <div class="blog-item-image">
+            <img
+              src="https://images.unsplash.com/photo-1487730116645-74489c95b41b?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjEyMDd9"
+              alt="Mountain Hiking"
+              class="blog-image"
+            />
+          </div>
+          <div class="blog-item-text">
+            <h1>Hiking Trip to the Mountains</h1>
+            <p class="short-text">
+              Last weekend, I went on a hiking trip to the mountains with my
+              friends. We woke up early in the morning, eager to begin our
+              adventure. As we started our hike, we were greeted with stunning
+              views of the surrounding nature. The sun was shining, and the air
+              was crisp and fresh. We hiked through dense forests, crossed
+              streams, and climbed steep cliffs. It was an amazing experience
+              that I will never forget, and it left me feeling energized and
+              inspired.
+            </p>
+            <div v-if="showText" class="long-text">
+              <p>
+                If you're planning a hiking trip, here are five things you
+                should consider:
+              </p>
+              <ol>
+                <li>
+                  Choose a trail that matches your skill level and fitness
+                </li>
+                <li>Check the weather forecast and prepare accordingly</li>
+                <li>
+                  Bring enough water and snacks to keep you energized throughout
+                  the hike
+                </li>
+                <li>
+                  Wear comfortable and sturdy shoes to protect your feet and
+                  ankles
+                </li>
+                <li>
+                  Respect nature and leave no trace by packing out all your
+                  trash
+                </li>
+              </ol>
+              <p>
+                Following these tips will help you have a safe and enjoyable
+                hiking trip!
+              </p>
+            </div>
+            <button class="read-more-btn" @click="showText = !showText">
+              {{ showText ? 'Read Less' : 'Read More' }}
+            </button>
+            <span class="date">2023-02-01</span>
+          </div>
+        </div>
+
+        <div class="blog-item">
+          <div class="blog-item-image">
+            <img
+              src="https://images.unsplash.com/photo-1455496231601-e6195da1f841?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2122&q=80"
+              alt="Hiking snow tent"
+              class="blog-image"
+            />
+          </div>
+          <div class="blog-item-text">
+            <h1>Snowy Mountain Hike</h1>
+
+            <p class="short-text">
+              Winter hiking is a unique experience that requires a little extra
+              preparation. My recent hike up a snowy mountain was both
+              challenging and rewarding. The fresh snowfall made the scenery
+              even more stunning, but it also meant we had to be extra cautious
+              with our footing.
+            </p>
+            <div v-if="showText" class="long-text">
+              <p>
+                If you're planning a winter hike, here are some things to keep
+                in mind:
+              </p>
+              <ol>
+                <li>
+                  Dress in layers: It's important to wear warm, waterproof
+                  clothing in snowy conditions. Dressing in layers allows you to
+                  adjust your clothing as you heat up during the hike.
+                </li>
+                <li>
+                  Wear appropriate footwear: Hiking boots with good traction are
+                  essential in snowy conditions. Make sure your boots are
+                  waterproof and insulated to keep your feet warm and dry.
+                </li>
+                <li>
+                  Bring plenty of water: Even though it's cold, you still need
+                  to stay hydrated during your hike. Pack enough water and bring
+                  a thermos filled with a warm beverage to help you stay warm.
+                </li>
+                <li>
+                  Be aware of avalanche danger: In snowy conditions, there is
+                  always a risk of avalanches. Check avalanche conditions before
+                  your hike and avoid areas with a high risk of avalanches.
+                </li>
+                <li>
+                  Use trekking poles: Trekking poles provide extra stability in
+                  snowy conditions and can help you maintain your balance on
+                  slippery surfaces.
+                </li>
+              </ol>
+              <p>
+                Following these tips will help you have a safe and enjoyable
+                hiking trip!
+              </p>
+            </div>
+            <button class="read-more-btn" @click="showText = !showText">
+              {{ showText ? 'Read Less' : 'Read More' }}
+            </button>
+            <span class="date">2022-12-05</span>
+          </div>
+        </div>
+
+        <div class="blog-item">
+          <div class="blog-item-image">
+            <img
+              src="https://images.unsplash.com/photo-1517701491738-81f146bae705?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
+              alt="Hiking rainforest tent campfire"
+              class="blog-image"
+            />
+          </div>
+          <div class="blog-item-text">
+            <h1>Rainforest Adventure</h1>
+
+            <p class="short-text">
+              Exploring the lush rainforest on a recent trip was a truly
+              unforgettable experience. The sights and sounds of the exotic
+              wildlife and vegetation were unlike anything I had ever seen
+              before. However, hiking in a rainforest also poses some unique
+              challenges that require careful planning and preparation.
+            </p>
+            <div v-if="showText" class="long-text">
+              <p>
+                If you're planning a rainforest hike, here are some things to
+                keep in mind:
+              </p>
+              <ol>
+                <li>
+                  Wear lightweight and breathable clothing that covers your skin
+                  to protect against insects and scratches from vegetation.
+                </li>
+                <li>
+                  Wear sturdy hiking shoes with good traction to prevent slips
+                  and falls on wet, muddy terrain.
+                </li>
+                <li>
+                  Carry plenty of water and snacks, as the high humidity and
+                  heat can quickly deplete your energy.
+                </li>
+                <li>
+                  Be aware of dangerous wildlife in the area and follow local
+                  guidelines for safety.
+                </li>
+                <li>
+                  Take breaks often and enjoy the beautiful scenery around you.
+                </li>
+              </ol>
+              <p>
+                Following these tips will help you have a safe and enjoyable
+                hiking trip!
+              </p>
+            </div>
+            <button class="read-more-btn" @click="showText = !showText">
+              {{ showText ? 'Read Less' : 'Read More' }}
+            </button>
+            <span class="date">2022-08-15</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</template>
+
 <style scoped>
   main {
     position: relative;
-    top: 100px;
+    top: 150px;
     width: 100%;
     margin-bottom: 8rem;
   }
@@ -130,12 +209,31 @@
   }
 
   .blog-item {
+    display: flex;
     width: 100%;
     margin-bottom: 2rem;
-    padding: 1rem;
+    padding: 2rem;
     background-color: #f5f5f5;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.202);
+    flex-direction: column;
+  }
+
+  .blog-item-image {
+    width: 100%;
+    padding: 2rem;
+    box-sizing: border-box;
+  }
+
+  .blog-item-text {
+    width: 100%;
+    padding: 2rem;
+    box-sizing: border-box;
+  }
+
+  .blog-image {
+    width: 100%;
+    border-radius: 5px;
   }
 
   h1 {
@@ -144,12 +242,23 @@
     color: #333;
   }
 
-  p.short-text {
-    font-size: 1;
+  ol {
+    margin: 1rem;
   }
 
   .read-more-btn {
     border-radius: 5px;
     border: 1px solid black;
+    padding: 0.3rem;
+    transition: all 0.35s;
+  }
+
+  .read-more-btn:hover {
+    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.202);
+  }
+
+  .date {
+    float: right;
+    opacity: 0.5;
   }
 </style>

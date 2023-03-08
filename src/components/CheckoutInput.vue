@@ -408,14 +408,6 @@
     .login-container svg {
       left: 66%;
     }
-  }
-
-  @media (max-width: 1100px) {
-    .shoppingcartPreview {
-      width: 40%;
-      margin: 2rem;
-      margin-top: 7rem;
-    }
     .login-container svg {
       left: 65%;
     }

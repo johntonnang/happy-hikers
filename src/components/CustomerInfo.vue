@@ -1,4 +1,6 @@
 <script>
+  import { mapActions } from 'vuex'
+
   export default {
     data() {
       return {
@@ -21,8 +23,36 @@
         saveData: false
       }
     },
+    created() {
+      const data = localStorage.getItem('data')
+
+      if (data) {
+        const savedData = JSON.parse(data)
+        this.firstName = savedData.firstName
+        this.lastName = savedData.lastName
+        this.email = savedData.email
+        this.phone = savedData.phone
+        this.address = savedData.address
+        this.address2 = savedData.address2
+        this.country = savedData.country
+        this.state = savedData.state
+        this.zip = savedData.zip
+        this.sameaddress = savedData.sameaddress
+        this.saveInfo = savedData.saveInfo
+        this.credit = savedData.credit
+        this.debit = savedData.debit
+        this.paypal = savedData.paypal
+        this.ccNumber = savedData.ccNumber
+        this.ccExpiration = savedData.ccExpiration
+        this.ccCvv = savedData.ccCvv
+        this.saveData = savedData.saveData
+      }
+    },
     methods: {
+      ...mapActions(['setEmail', 'setName']),
       sendData() {
+        this.$store.commit('setEmail', this.email)
+        this.$store.commit('setName', this.firstName)
         const data = {
           firstName: this.firstName,
           lastName: this.lastName,
@@ -40,21 +70,23 @@
           paypal: this.paypal,
           ccNumber: this.ccNumber,
           ccExpiration: this.ccExpiration,
-          ccCvv: this.ccCvv
+          ccCvv: this.ccCvv,
+          saveData: this.saveData
         }
+
         if (this.saveData) {
           localStorage.setItem('data', JSON.stringify(data))
         } else {
           localStorage.removeItem('data')
         }
-      },
-      submitForm(event) {
+      }
+      /* submitForm(event) {
         if (event.target.checkValidity() === false) {
           event.preventDefault()
           event.stopPropagation()
         }
         event.target.classList.add('was-validated')
-      }
+      }*/
     }
   }
 </script>
@@ -68,17 +100,18 @@
     <div class="row">
       <div class="col-md-10 order-md-1">
         <h2>Checkout</h2>
-        <h4 class="mb-3">Billing address</h4>
+        <h4 class="mb-3">Customer information</h4>
         <form class="needs-validation" novalidate="">
           <div class="row">
             <div class="col-md-6 mb-3">
               <label for="firstName">First name</label>
+
               <input
+                v-model="firstName"
                 type="text"
                 class="form-control"
                 id="firstName"
                 placeholder=""
-                value=""
                 required=""
               />
               <div class="invalid-feedback">Valid first name is required.</div>
@@ -86,11 +119,11 @@
             <div class="col-md-6 mb-3">
               <label for="lastName">Last name</label>
               <input
+                v-model="lastName"
                 type="text"
                 class="form-control"
                 id="lastName"
                 placeholder=""
-                value=""
                 required=""
               />
               <div class="invalid-feedback">Valid last name is required.</div>
@@ -102,6 +135,7 @@
               >Email <span class="text-muted">(Optional)</span></label
             >
             <input
+              v-model="email"
               type="email"
               class="form-control"
               id="email"
@@ -114,6 +148,7 @@
           <div class="mb-3">
             <label for="address">Address</label>
             <input
+              v-model="address"
               type="text"
               class="form-control"
               id="address"
@@ -129,6 +164,7 @@
               >Address 2 <span class="text-muted">(Optional)</span></label
             >
             <input
+              v-model="address2"
               type="text"
               class="form-control"
               id="address2"
@@ -139,6 +175,7 @@
             <div class="col-md-5 mb-3">
               <label for="country">Country</label>
               <select
+                v-model="country"
                 class="custom-select d-block w-100"
                 id="country"
                 required=""
@@ -154,6 +191,7 @@
             <div class="col-md-4 mb-3">
               <label for="state">State</label>
               <input
+                v-model="state"
                 type="text"
                 class="form-control"
                 id="state"
@@ -165,6 +203,7 @@
             <div class="col-md-3 mb-3">
               <label for="zip">Zip</label>
               <input
+                v-model="zip"
                 type="text"
                 class="form-control"
                 id="zip"
@@ -201,6 +240,7 @@
           <div class="d-block my-3">
             <div class="custom-control custom-radio">
               <input
+                v-model="saveInfo"
                 id="credit"
                 name="paymentMethod"
                 type="radio"
@@ -214,6 +254,7 @@
             </div>
             <div class="custom-control custom-radio">
               <input
+                v-model="credit"
                 id="debit"
                 name="paymentMethod"
                 type="radio"
@@ -224,6 +265,7 @@
             </div>
             <div class="custom-control custom-radio">
               <input
+                v-model="debit"
                 id="paypal"
                 name="paymentMethod"
                 type="radio"
@@ -237,6 +279,7 @@
             <div class="col-md-6 mb-3">
               <label for="cc-name">Name on card</label>
               <input
+                v-model="paypal"
                 type="text"
                 class="form-control"
                 id="cc-name"
@@ -249,6 +292,7 @@
             <div class="col-md-6 mb-3">
               <label for="ccNumber">Credit card number</label>
               <input
+                v-model="ccNumber"
                 type="text"
                 class="form-control"
                 id="ccNumber"
@@ -262,6 +306,7 @@
             <div class="col-md-3 mb-3">
               <label for="ccExpiration">Expiration</label>
               <input
+                v-model="ccExpiration"
                 type="text"
                 class="form-control"
                 id="ccExpiration"
@@ -273,6 +318,7 @@
             <div class="col-md-3 mb-3">
               <label for="ccCvv">CVV</label>
               <input
+                v-model="ccCvv"
                 type="text"
                 class="form-control"
                 id="ccCvv"
@@ -322,216 +368,3 @@
     margin: 0.5rem;
   }
 </style>
-
-<!--<script>
-  export default {
-    data() {
-      return {
-        name: '',
-        email: '',
-        phone: '',
-        address: '',
-        city: '',
-        state: '',
-        zip: '',
-        card: '',
-        exp: '',
-        cvv: ''
-      }
-    },
-    watch: {
-      cartItems: {
-        handler: function (value) {
-          localStorage.setItem('Cart', JSON.stringify(value))
-        },
-        deep: true
-      }
-    },
-    methods: {
-      submitOrder() {
-        // Sende til server som vi ikke har :)
-        this.name = ''
-        this.email = ''
-        this.phone = ''
-        this.address = ''
-        this.city = ''
-        this.state = ''
-        this.zip = ''
-        this.card = ''
-        this.exp = ''
-        this.cvv = ''
-      },
-
-      sendData() {
-        const data = {
-          name: this.name,
-          email: this.email,
-          phone: this.phone,
-          address: this.address,
-          city: this.city,
-          state: this.state,
-          zip: this.zip,
-          card: this.card,
-          exp: this.exp,
-          cvv: this.cvv
-        }
-        if (this.saveData) {
-          localStorage.setItem('data', JSON.stringify(data))
-        } else {
-          localStorage.removeItem('data')
-        }
-      }
-    }
-  }
-</script>
-
-<template>
-  <form class="formContainer" @submit.prevent="submitOrder">
-    <fieldset class="custom">
-      <legend>Custom Information</legend>
-      <label for="name">Name:</label>
-      <input type="text" id="name" v-model="profileName" required />
-
-      <label for="email">Email:</label>
-      <input type="email" id="email" v-model="profileEmail" required />
-
-      <label for="phone">Phone:</label>
-      <input type="tel" id="phone" v-model="profilePhone" required />
-    </fieldset>
-
-    <fieldset class="shipping">
-      <legend>Shipping Details</legend>
-      <label for="address">Address:</label>
-      <textarea id="address" v-model="address" required />
-
-      <label for="city">City:</label>
-      <input type="text" id="city" v-model="city" required />
-
-      <label for="state">State:</label>
-      <input type="text" id="state" v-model="state" required />
-
-      <label for="zip">ZIP Code:</label>
-      <input type="text" id="zip" v-model="zip" required />
-    </fieldset>
-
-    <fieldset class="payment">
-      <legend>Payment Information</legend>
-      <label for="card">Credit Card Number:</label>
-      <input type="text" id="card" v-model="card" required />
-
-      <label for="exp">Expiration Date:</label>
-      <input type="month" id="exp" v-model="exp" required />
-
-      <label for="cvv">CVV:</label>
-      <input type="text" id="cvv" v-model="cvv" required />
-      <PaymentInput />
-    </fieldset>
-
-    <div class="saveInfo">
-      <input type="checkbox" v-model="saveData" />
-      <p class="saveInfoP">Save my Information</p>
-    </div>
-    <RouterLink to="/ConfirmationView">
-      <button class="submitButton" @click="addOrderToProfile" type="submit">
-        Place Order
-      </button>
-    </RouterLink>
-  </form>
-</template>
-
-<style scoped>
-  .checkoutcontainer {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-    margin-left: 2rem;
-  }
-
-  .formContainer {
-    max-width: 90%;
-    display: flex;
-    flex-direction: column;
-  }
-  .custom {
-    margin: 1rem;
-    display: flex;
-    flex-direction: column;
-  }
-  .shipping {
-    margin: 1rem;
-    display: flex;
-    flex-direction: column;
-  }
-  .payment {
-    max-width: 70%;
-    margin: 1rem;
-    display: flex;
-    flex-direction: column;
-  }
-
-  input,
-  textarea {
-    border-width: 2px;
-    border-style: inset;
-    border-color: black;
-    border-image: initial;
-  }
-  .submitButton {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 40%;
-    margin: 2rem;
-  }
-
-  .name {
-    font-size: 1rem;
-  }
-
-  .h1Checkout {
-    margin: 1.5rem;
-  }
-  .submitButton {
-    width: 10rem;
-    color: white;
-    background-color: black;
-    border-radius: 35px;
-    border: none;
-    cursor: pointer;
-    padding: 15px 15px;
-    font-size: medium;
-    margin: 1rem;
-  }
-  .saveInfo {
-    display: flex;
-    flex-direction: row;
-    margin: 1rem;
-    align-items: center;
-  }
-  .saveInfoP {
-    margin-top: 1rem;
-    margin-left: 0.5rem;
-  }
-
-  @media (max-width: 1600px) {
-    .login-container svg {
-      left: 66%;
-    }
-  }
-
-  @media (max-width: 1100px) {
-    .shoppingcartPreview {
-      width: 40%;
-      margin: 2rem;
-      margin-top: 7rem;
-    }
-    .login-container svg {
-      left: 65%;
-    }
-  }
-</style>
-
-
-
-
--->

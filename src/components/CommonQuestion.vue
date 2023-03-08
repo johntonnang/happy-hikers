@@ -38,8 +38,8 @@
 </script>
 
 <template>
-  <!--
-    SEARCHBAR
+  <!---
+  SEARCHBAR
   <div>
     <ul>
       <li v-for="(question, index) in questions" :key="index">
@@ -54,6 +54,7 @@
   </div>
 -->
   <div class="container">
+    <h2>Common Questions</h2>
     <div class="question1 question">
       <p class="questionTitel">
         <strong> 1. Q: How can I order?</strong>
@@ -156,6 +157,9 @@
     padding-left: 8rem;
     padding-right: 8rem;
   }
+  h2 {
+    padding: 2rem;
+  }
   .questionTitel {
     margin: 0;
   }
@@ -168,5 +172,13 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+  }
+  @media screen and (max-width: 700px) {
+    .container {
+      padding: 2rem;
+      padding-top: 3rem;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
   }
 </style>

@@ -2,8 +2,8 @@
   export default {
     data() {
       return {
-        minValue: 2500,
-        maxValue: 7500
+        minValue: 0,
+        maxValue: 750
       }
     },
 
@@ -11,6 +11,8 @@
       minValue() {
         if (this.minValue > this.maxValue) {
           this.minValue = this.maxValue
+        } else if (this.minValue < 0) {
+          this.minValue = 0
         }
       },
       maxValue() {
@@ -40,14 +42,14 @@
         type="range"
         class="range-min"
         min="0"
-        max="10000"
+        max="5000"
         v-model="minValue"
       />
       <input
         type="range"
         class="range-max"
         min="0"
-        max="10000"
+        max="5000"
         v-model="maxValue"
       />
     </div>
