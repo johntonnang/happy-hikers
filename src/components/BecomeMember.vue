@@ -70,17 +70,24 @@
         } else {
           let wish = null
           if (localStorage.getItem('Wish')) {
-            wish = localStorage.getItem('Wish')
+            wish = JSON.parse(localStorage.getItem('Wish'))
           } else {
             wish = []
           }
+          let cart = null
+          if (localStorage.getItem('Cart')) {
+            cart = JSON.parse(localStorage.getItem('Cart'))
+          } else {
+            cart = []
+          }
           addDoc(collection(db, 'konto'), {
             name: this.memberNameInput,
-            username: this.memberUsernameInput,
-            password: this.memberPasswordInput,
+            email: this.memberUsernameInput,
             phone: this.memberPhoneInput,
             registredUser: this.registredUser,
-            wishlist: wish
+            password: this.memberPasswordInput,
+            wishlist: wish,
+            cart: cart
           })
         }
         setTimeout(() => {

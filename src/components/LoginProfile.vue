@@ -41,7 +41,8 @@
         failedInput: false,
         loadingIcon: false,
         loginAccepted: false,
-        errorInput: false
+        errorInput: false,
+        accounts: null
       }
     },
     methods: {
@@ -90,7 +91,7 @@
       const liveProducts = onSnapshot(latestQuery, (snapshot) => {
         this.accounts = snapshot.docs.map((doc) => {
           return {
-            email: doc.data().username,
+            email: doc.data().email,
             password: doc.data().password
           }
         })

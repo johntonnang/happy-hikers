@@ -4,11 +4,39 @@
 <!-- https://paulund.co.uk/vuejs-crud-delete-product-page -->
 
 <script>
+  import { initializeApp } from 'firebase/app'
+  import {
+    getFirestore,
+    onSnapshot,
+    collection,
+    doc,
+    // deleteDoc,
+    setDoc,
+    // addDoc,
+    // orderBy,
+    query
+  } from 'firebase/firestore'
+  import { onUnmounted } from 'vue'
+
+  const firebaseConfig = {
+    apiKey: 'AIzaSyAGJoAN08CeHsyoibMdRQVpegwPibf1ANk',
+    authDomain: 'happy-hikers-1a875.firebaseapp.com',
+    projectId: 'happy-hikers-1a875',
+    storageBucket: 'happy-hikers-1a875.appspot.com',
+    messagingSenderId: '434497193720',
+    appId: '1:434497193720:web:5893a8bd2905affdaedd0d',
+    measurementId: 'G-QW50PLVBTN'
+  }
+  const app = initializeApp(firebaseConfig)
+
+  const db = getFirestore(app)
   export default {
     data() {
       return {
         cartItems: [],
         wishItems: [],
+        accounts: [],
+        account: [],
         id: this.$route.params.id,
         CartText: '+  Add to cart   ',
         product: null,
@@ -18,10 +46,40 @@
     },
 
     mounted() {
-      let wish = localStorage.getItem('Wish')
-      if (wish !== null) {
-        this.wishItems = JSON.parse(wish)
-      }
+      const kontoQuery = query(collection(db, 'konto'))
+      const liveKonto = onSnapshot(kontoQuery, (snapshot) => {
+        this.accounts = snapshot.docs.map((doc) => {
+          console.log(localStorage.getItem('email'))
+          console.log(doc.data().email)
+          if (localStorage.getItem('email') === doc.data().email) {
+            return {
+              id: doc.id,
+              email: doc.data().email,
+              password: doc.data().password,
+              wish: doc.data().wishlist
+            }
+          }
+        })
+        for (let i = 0; i < this.accounts.length; i++) {
+          console.log(1)
+          if (this.accounts[i]) {
+            this.account = this.accounts[i]
+          }
+        }
+        this.showProducts = this.products
+        console.log(this.accounts)
+        for (let i = 0; i < this.accounts.length; i++) {
+          if (this.accounts[i]) {
+            this.wishItems = this.accounts[i].wish
+            console.log(this.accounts[i].wish)
+          }
+        }
+      })
+      onUnmounted(liveKonto)
+      // let wish = localStorage.getItem('Wish')
+      // if (wish !== null) {
+      //   this.wishItems = JSON.parse(wish)
+      // }
       let cart = localStorage.getItem('Cart')
       if (cart !== null) {
         this.cartItems = JSON.parse(cart)
@@ -57,6 +115,12 @@
       removeFromWishlist(index) {
         console.log(index)
         this.wishItems.splice(index, 1)
+        setDoc(doc(db, 'konto', this.account.id), {
+          id: this.account.id,
+          email: this.account.email,
+          password: this.account.password,
+          wishlist: JSON.stringify(this.wishItems)
+        })
         localStorage.setItem('Wish', JSON.stringify(this.wishItems))
         console.log('Remove from wishlist')
         this.$store.commit('removeWish')
@@ -81,12 +145,12 @@
             })
 
             this.removeFromWishlist(index)
-
             console.log('wishItems array: ' + this.wishItems)
             console.log('removing ' + this.product.name)
 
             /*Update cartItems shoppingcart preview */
             localStorage.setItem('Cart', JSON.stringify(cart))
+
             const currentCartItems = JSON.parse(localStorage.getItem('Cart'))
             this.cartItems = currentCartItems
 

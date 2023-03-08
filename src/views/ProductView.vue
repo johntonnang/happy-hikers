@@ -45,12 +45,7 @@
         showCart: false,
         isHoveringCartPreview: false,
         totalValue: 0,
-        discountActive: false,
-        reviewName: '',
-        reviewStars: [],
-        reviewComment: '',
-        allReviews: [],
-        noReviews: true
+        discountActive: false
       }
     },
     computed: {
@@ -60,9 +55,6 @@
         } else {
           return this.cartItems.reduce((x, item) => x + item.price, 0)
         }
-      },
-      starArray() {
-        return Array.from({ length: this.review.stars }, (_, index) => index)
       }
     },
 
@@ -74,48 +66,22 @@
 
     watch: {
       $route() {
-        fetch('/assets/api.JSON')
-          .then((response) => response.json())
-          .then((result) => {
-            this.products = result
-            this.similarProducts = []
-            for (let i = 0; i < this.products.length; i++) {
-              if (this.products[i].id === Number(this.$route.params.id)) {
-                this.product = this.products[i]
-              }
-            }
-            for (let i = 0; i < this.products.length; i++) {
-              if (this.products[i].category === this.product.category) {
-                if (this.products[i].id !== this.product.id)
-                  this.similarProducts.unshift(this.products[i])
-              }
-            }
-          })
+        this.similarProducts = []
+        for (let i = 0; i < this.products.length; i++) {
+          if (this.products[i].id === this.$route.params.id) {
+            this.product = this.products[i]
+          }
+        }
+        for (let i = 0; i < this.products.length; i++) {
+          if (this.products[i].category === this.product.category) {
+            if (this.products[i].id !== this.product.id)
+              this.similarProducts.unshift(this.products[i])
+          }
+        }
       }
     },
     created() {
       this.renderDate()
-      // this.$watch(
-      //   () = this.$route.params.id, (params) => {
-      //     console.log(params)
-      //   }
-      // )
-      // fetch('/assets/api.JSON')
-      //   .then((response) => response.json())
-      //   .then((result) => {
-      //     this.products = result
-      //     for (let i = 0; i < this.products.length; i++) {
-      //       if (this.products[i].id === Number(this.$route.params.id)) {
-      //         this.product = this.products[i]
-      //       }
-      //     }
-      //     for (let i = 0; i < this.products.length; i++) {
-      //       if (this.products[i].category === this.product.category) {
-      //         if (this.products[i].id !== this.product.id)
-      //           this.similarProducts.unshift(this.products[i])
-      //       }
-      //     }
-      //   })
       const latestQuery = query(collection(db, 'products'), orderBy('price'))
       const liveProducts = onSnapshot(latestQuery, (snapshot) => {
         this.products = snapshot.docs.map((doc) => {
@@ -129,7 +95,6 @@
             category: doc.data().category
           }
         })
-
         for (let i = 0; i < this.products.length; i++) {
           if (this.products[i].id === this.$route.params.id) {
             this.product = this.products[i]
@@ -146,17 +111,21 @@
       const kontoQuery = query(collection(db, 'konto'))
       const liveKonto = onSnapshot(kontoQuery, (snapshot) => {
         this.accounts = snapshot.docs.map((doc) => {
-          if (localStorage.getItem('email') === doc.data().username) {
+          if (localStorage.getItem('email') === doc.data().email) {
             return {
               id: doc.id,
-              email: doc.data().username,
+              email: doc.data().email,
               password: doc.data().password,
-              wish: JSON.parse(doc.data().wishlist)
+              name: doc.data().name,
+              phone: doc.data().phone,
+              registredUser: doc.data().registredUser,
+              wish: doc.data().wishlist,
+              cart: doc.data().cart
             }
           }
         })
+        // this.wish = JSON.parse(this.wish)
         this.showProducts = this.products
-        console.log(this.accounts)
         for (let i = 0; i < this.accounts.length; i++) {
           if (this.accounts[i]) {
             this.account = this.accounts[i]
@@ -185,81 +154,92 @@
           this.SizeError = false
           this.$store.commit('addToCart')
         }
-        if (localStorage.getItem('Cart') !== null) {
-          if (this.CartText === '+  Add to cart   ') {
-            let cart = JSON.parse(localStorage.getItem('Cart'))
-            console.log('Cart', cart)
-            cart.unshift({
-              id: this.product.id,
-              name: this.product.name,
-              price: this.product.price,
-              image: this.product.image,
-              description: this.product.description,
-              category: this.product.category,
-              date: this.currentDate
-            })
-            localStorage.setItem('Cart', JSON.stringify(cart))
-            this.CartColor = 'rgba(0,0,0,0)'
-            setTimeout(() => (this.CartText = '✓'), 350)
-            setTimeout(() => (this.CartColor = 'rgba(0,0,0)'), 350)
+        // if (localStorage.getItem('Cart') !== null) {
+        if (this.CartText === '+  Add to cart   ') {
+          let cart = this.account.cart
+          cart.unshift({
+            id: this.product.id,
+            name: this.product.name,
+            price: this.product.price,
+            image: this.product.image,
+            description: this.product.description,
+            category: this.product.category,
+            date: this.currentDate
+          })
+          setDoc(doc(db, 'konto', this.account.id), {
+            id: this.account.id,
+            email: this.account.email,
+            password: this.account.password,
+            name: this.account.name,
+            phone: this.account.phone,
+            registredUser: this.account.registredUser,
+            wishlist: this.account.wish,
+            cart: this.account.cart
+          })
+          localStorage.setItem('Cart', JSON.stringify(cart))
+          this.CartColor = 'rgba(0,0,0,0)'
+          setTimeout(() => (this.CartText = '✓'), 350)
+          setTimeout(() => (this.CartColor = 'rgba(0,0,0)'), 350)
 
-            setTimeout(() => (this.CartColor = 'rgba(0,0,0,0)'), 3000)
-            setTimeout(() => (this.CartColor = 'rgba(0,0,0,1)'), 3350)
-            setTimeout(() => (this.CartText = 'Remove from Cart'), 3350)
-          } else if (this.CartText === 'Remove from Cart') {
-            let cart = JSON.parse(localStorage.getItem('Cart'))
-            console.log(cart)
-            let i = 0
-            for (let product of cart) {
-              console.log(product)
-              console.log(product.id + '   ' + id)
-
-              if (product.id === id) {
-                cart.splice(i, 1)
-                localStorage.setItem('Cart', JSON.stringify(cart))
-              }
-              i++
+          setTimeout(() => (this.CartColor = 'rgba(0,0,0,0)'), 3000)
+          setTimeout(() => (this.CartColor = 'rgba(0,0,0,1)'), 3350)
+          setTimeout(() => (this.CartText = 'Remove from Cart'), 3350)
+        } else if (this.CartText === 'Remove from Cart') {
+          let cart = JSON.parse(localStorage.getItem('Cart'))
+          let i = 0
+          for (let product of cart) {
+            if (product.id === id) {
+              cart.splice(i, 1)
+              setDoc(doc(db, 'konto', this.account.id), {
+                id: this.account.id,
+                email: this.account.email,
+                password: this.account.password,
+                name: this.account.name,
+                phone: this.account.phone,
+                registredUser: this.account.registredUser,
+                wishlist: this.account.wish,
+                cart: cart
+              })
             }
-            this.CartColor = 'rgba(0,0,0,0)'
-            setTimeout(() => (this.CartText = '✓'), 350)
-            setTimeout(() => (this.CartColor = 'rgba(0,0,0)'), 350)
-
-            setTimeout(() => (this.CartColor = 'rgba(0,0,0,0)'), 3000)
-            setTimeout(() => (this.CartColor = 'rgba(0,0,0,1)'), 3350)
-            setTimeout(() => (this.CartText = '+  Add to cart   '), 3350)
+            i++
           }
-        } else {
-          let cart = null
-          if (this.CartText === '+  Add to cart   ') {
-            console.log('hej')
-            cart = [
-              {
-                id: this.product.id,
-                name: this.product.name,
-                price: this.product.price,
-                image: this.product.image,
-                description: this.product.description,
-                category: this.product.category,
-                date: this.currentDate
-              }
-            ]
-            localStorage.setItem('Cart', JSON.stringify(cart))
-            this.CartColor = 'rgba(0,0,0,0)'
-            setTimeout(() => (this.CartText = '✓'), 350)
-            setTimeout(() => (this.CartColor = 'rgba(0,0,0)'), 350)
-
-            setTimeout(() => (this.CartColor = 'rgba(0,0,0,0)'), 3000)
-            setTimeout(() => (this.CartColor = 'rgba(0,0,0,1)'), 3350)
-            setTimeout(() => (this.CartText = 'Remove from Cart'), 3350)
-          }
+          this.CartColor = 'rgba(0,0,0,0)'
+          setTimeout(() => (this.CartText = '✓'), 350)
+          setTimeout(() => (this.CartColor = 'rgba(0,0,0)'), 350)
+          setTimeout(() => (this.CartColor = 'rgba(0,0,0,0)'), 3000)
+          setTimeout(() => (this.CartColor = 'rgba(0,0,0,1)'), 3350)
+          setTimeout(() => (this.CartText = '+  Add to cart   '), 3350)
         }
+        // } else {
+        //   let cart = null
+        //   if (this.CartText === '+  Add to cart   ') {
+        //     cart = [
+        //       {
+        //         id: this.product.id,
+        //         name: this.product.name,
+        //         price: this.product.price,
+        //         image: this.product.image,
+        //         description: this.product.description,
+        //         category: this.product.category,
+        //         date: this.currentDate
+        //       }
+        //     ]
+        //     localStorage.setItem('Cart', JSON.stringify(cart))
+        //     this.CartColor = 'rgba(0,0,0,0)'
+        //     setTimeout(() => (this.CartText = '✓'), 350)
+        //     setTimeout(() => (this.CartColor = 'rgba(0,0,0)'), 350)
+
+        //     setTimeout(() => (this.CartColor = 'rgba(0,0,0,0)'), 3000)
+        //     setTimeout(() => (this.CartColor = 'rgba(0,0,0,1)'), 3350)
+        //     setTimeout(() => (this.CartText = 'Remove from Cart'), 3350)
+        //   }
+        // }
 
         const currentCartItems = JSON.parse(localStorage.getItem('Cart'))
         this.cartItems = currentCartItems
 
         this.showCartPreview()
         this.totalValue = this.cartItems.reduce((x, item) => x + item.price, 0)
-        console.log('currentCartItems', this.cartItems)
       },
 
       showCartPreview() {
@@ -286,177 +266,93 @@
           replace: true
         })
       },
-      // addToWish(id) {
-      //   this.$store.commit('addToWish')
-      //   if (localStorage.getItem('Wish') !== null) {
-      //     if (this.WishText === '+  Add to wishlist   ') {
-      //       console.log('Hej!')
-      //       let wish = JSON.parse(localStorage.getItem('Wish'))
-
-      //       wish.unshift({
-      //         id: this.product.id,
-      //         name: this.product.name,
-      //         price: this.product.price,
-      //         image: this.product.image,
-      //         description: this.product.description
-      //       })
-      //       localStorage.setItem('Wish', JSON.stringify(wish))
-      //       this.WishColor = 'rgba(0,0,0,0)'
-      //       setTimeout(() => (this.WishText = '✓'), 350)
-      //       setTimeout(() => (this.WishColor = 'rgba(0,0,0)'), 350)
-
-      //       setTimeout(() => (this.WishColor = 'rgba(0,0,0,0)'), 3000)
-      //       setTimeout(() => (this.WishColor = 'rgba(0,0,0,1)'), 3350)
-      //       setTimeout(() => (this.WishText = 'Remove from Wishlist'), 3350)
-      //       setTimeout(() => console.log('1'), 3350)
-      //     } else if (this.WishText === 'Remove from Wishlist') {
-      //       let wish = JSON.parse(localStorage.getItem('Wish'))
-      //       console.log(wish)
-      //       let i = 0
-      //       for (let product of wish) {
-      //         console.log(product)
-      //         console.log(product.id + '   ' + id)
-
-      //         if (product.id === id) {
-      //           wish.splice(i, 1)
-      //           localStorage.setItem('Wish', JSON.stringify(wish))
-      //         }
-      //         i++
-      //       }
-      //       this.WishColor = 'rgba(0,0,0,0)'
-      //       setTimeout(() => (this.WishText = '✓'), 350)
-      //       setTimeout(() => (this.WishColor = 'rgba(0,0,0)'), 350)
-
-      //       setTimeout(() => (this.WishColor = 'rgba(0,0,0,0)'), 3000)
-      //       setTimeout(() => (this.WishColor = 'rgba(0,0,0,1)'), 3350)
-      //       setTimeout(() => (this.WishText = '+  Add to wishlist   '), 3350)
-      //     }
-      //   } else {
-      //     let wish = null
-      //     if (this.WishText === '+  Add to wishlist   ') {
-      //       console.log('hej')
-      //       console.log('Wish 3')
-      //       wish = [
-      //         {
-      //           id: this.product.id,
-      //           name: this.product.name,
-      //           price: this.product.price,
-      //           image: this.product.image,
-      //           description: this.product.description
-      //         }
-      //       ]
-      //       localStorage.setItem('Wish', JSON.stringify(wish))
-      //       this.WishColor = 'rgba(0,0,0,0)'
-      //       setTimeout(() => (this.WishText = '✓'), 350)
-      //       setTimeout(() => (this.WishColor = 'rgba(0,0,0)'), 350)
-
-      //       setTimeout(() => (this.WishColor = 'rgba(0,0,0,0)'), 3000)
-      //       setTimeout(() => (this.WishColor = 'rgba(0,0,0,1)'), 3350)
-      //       setTimeout(() => (this.WishText = '+  Add to wishlist   '), 3350)
-      //     }
-      //   }
-      // },
       addToWish(id) {
         this.$store.commit('addToWish')
-        let emptyArray = []
-        console.log(this.account.wish)
-        console.log()
-        if (this.account.wish != emptyArray) {
-          console.log('hej')
-          if (this.WishText === '+  Add to wishlist   ') {
-            let wish = this.account.wish
-            console.log(this.account.wish)
-            wish.unshift({
-              id: this.product.id,
-              name: this.product.name,
-              price: this.product.price,
-              image: this.product.img,
-              description: this.product.description
-            })
-            JSON.stringify(wish)
-            setDoc(doc(db, 'konto', this.account.id), {
-              wishlist: JSON.stringify(wish)
-            })
-            localStorage.setItem('Wish', JSON.stringify(wish))
-            this.WishColor = 'rgba(0,0,0,0)'
-            setTimeout(() => (this.WishText = '✓'), 350)
-            setTimeout(() => (this.WishColor = 'rgba(0,0,0)'), 350)
+        // Om en produkt ska läggas till från wishlist så körs detta
+        if (this.WishText === '+  Add to wishlist   ') {
+          let wish = this.account.wish
+          wish.unshift({
+            id: this.product.id,
+            name: this.product.name,
+            price: this.product.price,
+            image: this.product.image,
+            description: this.product.description
+          })
+          setDoc(doc(db, 'konto', this.account.id), {
+            id: this.account.id,
+            email: this.account.email,
+            password: this.account.password,
+            name: this.account.name,
+            phone: this.account.phone,
+            registredUser: this.account.registredUser,
+            wishlist: wish,
+            cart: this.account.cart
+          })
+          this.WishColor = 'rgba(0,0,0,0)'
+          setTimeout(() => (this.WishText = '✓'), 350)
+          setTimeout(() => (this.WishColor = 'rgba(0,0,0)'), 350)
 
-            setTimeout(() => (this.WishColor = 'rgba(0,0,0,0)'), 3000)
-            setTimeout(() => (this.WishColor = 'rgba(0,0,0,1)'), 3350)
-            setTimeout(() => (this.WishText = 'Remove from Wishlist'), 3350)
-            setTimeout(() => console.log('1'), 3350)
-          } else if (this.WishText === 'Remove from Wishlist') {
-            let wish = JSON.parse(localStorage.getItem('Wish'))
-            console.log(wish)
-            let i = 0
-            for (let product of wish) {
-              console.log(product)
-              console.log(product.id + '   ' + id)
-
-              if (product.id === id) {
-                wish.splice(i, 1)
-                localStorage.setItem('Wish', JSON.stringify(wish))
-              }
-              i++
+          setTimeout(() => (this.WishColor = 'rgba(0,0,0,0)'), 3000)
+          setTimeout(() => (this.WishColor = 'rgba(0,0,0,1)'), 3350)
+          setTimeout(() => (this.WishText = 'Remove from Wishlist'), 3350)
+          // Om en produkt ska tas bort från wishlist så körs detta
+        } else if (this.WishText === 'Remove from Wishlist') {
+          let wish = this.account.wish
+          let i = 0
+          for (let product of wish) {
+            console.log(1)
+            if (product.id === id) {
+              console.log(2)
+              wish.splice(i, 1)
+              setDoc(doc(db, 'konto', this.account.id), {
+                id: this.account.id,
+                email: this.account.email,
+                password: this.account.password,
+                name: this.account.name,
+                phone: this.account.phone,
+                registredUser: this.account.registredUser,
+                wishlist: wish,
+                cart: this.account.cart
+              })
             }
-            this.WishColor = 'rgba(0,0,0,0)'
-            setTimeout(() => (this.WishText = '✓'), 350)
-            setTimeout(() => (this.WishColor = 'rgba(0,0,0)'), 350)
-
-            setTimeout(() => (this.WishColor = 'rgba(0,0,0,0)'), 3000)
-            setTimeout(() => (this.WishColor = 'rgba(0,0,0,1)'), 3350)
-            setTimeout(() => (this.WishText = '+  Add to wishlist   '), 3350)
+            i++
           }
-        } else {
-          let wish = null
-          if (this.WishText === '+  Add to wishlist   ') {
-            console.log('hej')
-            console.log('Wish 3')
-            wish = [
-              {
-                id: this.product.id,
-                name: this.product.name,
-                price: this.product.price,
-                image: this.product.img,
-                description: this.product.description
-              }
-            ]
-            localStorage.setItem('Wish', JSON.stringify(wish))
-            this.WishColor = 'rgba(0,0,0,0)'
-            setTimeout(() => (this.WishText = '✓'), 350)
-            setTimeout(() => (this.WishColor = 'rgba(0,0,0)'), 350)
+          this.WishColor = 'rgba(0,0,0,0)'
+          setTimeout(() => (this.WishText = '✓'), 350)
+          setTimeout(() => (this.WishColor = 'rgba(0,0,0)'), 350)
 
-            setTimeout(() => (this.WishColor = 'rgba(0,0,0,0)'), 3000)
-            setTimeout(() => (this.WishColor = 'rgba(0,0,0,1)'), 3350)
-            setTimeout(() => (this.WishText = '+  Add to wishlist   '), 3350)
-          }
+          setTimeout(() => (this.WishColor = 'rgba(0,0,0,0)'), 3000)
+          setTimeout(() => (this.WishColor = 'rgba(0,0,0,1)'), 3350)
+          setTimeout(() => (this.WishText = '+  Add to wishlist   '), 3350)
         }
+        // } else {
+        //   let wish = null
+        //   if (this.WishText === '+  Add to wishlist   ') {
+        //     console.log('hej')
+        //     console.log('Wish 3')
+        //     wish = [
+        //       {
+        //         id: this.product.id,
+        //         name: this.product.name,
+        //         price: this.product.price,
+        //         image: this.product.img,
+        //         description: this.product.description
+        //       }
+        //     ]
+        //     localStorage.setItem('Wish', JSON.stringify(wish))
+        //     this.WishColor = 'rgba(0,0,0,0)'
+        //     setTimeout(() => (this.WishText = '✓'), 350)
+        //     setTimeout(() => (this.WishColor = 'rgba(0,0,0)'), 350)
+
+        //     setTimeout(() => (this.WishColor = 'rgba(0,0,0,0)'), 3000)
+        //     setTimeout(() => (this.WishColor = 'rgba(0,0,0,1)'), 3350)
+        //     setTimeout(() => (this.WishText = '+  Add to wishlist   '), 3350)
+        //   }
+        // }
       },
 
       sizeSelected() {
         this.ChooseSize = true
-      },
-      toggleChecked(starIndex) {
-        this.reviewStars = []
-        for (let i = 1; i <= 5; i++) {
-          const starIcon = document.getElementById(`star-${i}`)
-          if (i <= starIndex) {
-            starIcon.classList.add('checked')
-            this.reviewStars.push('starIndex')
-          } else {
-            starIcon.classList.remove('checked')
-          }
-        }
-      },
-      addReviewSubmit() {
-        const newReview = {
-          name: this.reviewName,
-          stars: this.reviewStars,
-          comment: this.reviewComment
-        }
-        this.allReviews.push(newReview)
-        this.noReviews = false
       }
     }
   }
@@ -492,7 +388,6 @@
           </div>
         </div>
       </div>
-
       <div class="total">
         <h2 style="margin-right: 10px">Total:</h2>
         <h2 id="discount-active" v-if="discountActive">{{ totalValue }} :-</h2>
@@ -573,77 +468,8 @@
             <p class="product-return-text"><b>365</b> days open purchase</p>
           </div>
         </div>
-        <div id="review-container">
-          <h2>Reviews</h2>
-          <p v-if="noReviews">No reviews.</p>
-          <div
-            v-else
-            class="review-container-box"
-            :key="review"
-            v-for="review in allReviews"
-          >
-            <div class="review-container-header">
-              <h4>{{ review.name }},</h4>
-              <div :key="star" v-for="star in review.stars">
-                <font-awesome-icon class="checked" icon="fa-solid fa-star" />
-              </div>
-            </div>
-            <p>"{{ review.comment }}"</p>
-          </div>
-        </div>
       </div>
     </section>
-    <section id="review-counter">
-      <label for="name-input" /> Name *
-      <input
-        id="input-field-review"
-        v-model="reviewName"
-        placeholder="e.g John Doe.."
-        name="name-input"
-      />
-      <label>Rating:</label>
-      <div class="review-rating">
-        <font-awesome-icon
-          id="star-1"
-          class="font-star"
-          icon="fa-solid fa-star"
-          @click="toggleChecked(1)"
-        />
-        <font-awesome-icon
-          id="star-2"
-          class="font-star"
-          icon="fa-solid fa-star"
-          @click="toggleChecked(2)"
-        />
-        <font-awesome-icon
-          id="star-3"
-          class="font-star"
-          icon="fa-solid fa-star"
-          @click="toggleChecked(3)"
-        />
-        <font-awesome-icon
-          id="star-4"
-          class="font-star"
-          icon="fa-solid fa-star"
-          @click="toggleChecked(4)"
-        />
-        <font-awesome-icon
-          id="star-5"
-          class="font-star"
-          icon="fa-solid fa-star"
-          @click="toggleChecked(5)"
-        />
-      </div>
-      <label for="textarea-input" /> Add text *
-      <textarea
-        id="textarea-review"
-        v-model="reviewComment"
-        name="textarea-input"
-        placeholder="Review text.."
-      />
-      <button id="apply-review-btn" @click="addReviewSubmit">Add Review</button>
-    </section>
-
     <section class="otherInformation">
       <h2>Similar products</h2>
       <!-- <div class="similairProducts"> -->
@@ -686,6 +512,7 @@
   }
   h3 {
     display: flex;
+    justify-content: center;
     align-items: center;
     margin: 1rem;
   }
@@ -746,17 +573,6 @@
     align-items: flex-end;
     margin: 2rem 2rem 0rem 2rem;
   }
-
-  .color-circle-one,
-  .color-circle-two,
-  .color-circle-three,
-  .color-circle-four {
-    display: block;
-    width: 8px;
-    height: 8px;
-    border-radius: 50px;
-    margin-right: 8px;
-  }
   .productImg {
     max-width: 150px;
     max-height: 150px;
@@ -776,7 +592,6 @@
   }
   .product-img {
     width: 50%;
-    height: 50%;
     object-fit: cover;
   }
   section {
@@ -843,80 +658,6 @@
     line-height: 1;
   }
 
-  #review-container {
-    border-top: 1px solid rgb(80, 80, 80);
-    padding: 10px 0px;
-    width: 100%;
-    margin-top: 30px;
-  }
-
-  #review-container h2 {
-    text-decoration: underline;
-  }
-
-  .review-container-box {
-    box-shadow: 1px 1px 6px black;
-    width: 70%;
-    margin: 20px 0px;
-    padding: 10px 15px;
-  }
-
-  .review-container-header {
-    display: flex;
-    gap: 20px;
-    margin-bottom: 10px;
-  }
-
-  .review-container-box p {
-    font-style: italic;
-  }
-
-  #review-counter {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-    margin: 15px 0px;
-  }
-
-  #input-field-review {
-    width: 50%;
-    padding: 5px 5px;
-    margin: 2px 0px 15px 0px;
-  }
-
-  .review-rating {
-    width: 30%;
-    margin-bottom: 10px;
-  }
-
-  .font-star {
-    color: grey;
-    cursor: pointer;
-  }
-
-  .checked {
-    color: orange;
-  }
-
-  #textarea-review {
-    margin-bottom: 15px;
-    margin-top: 2px;
-    width: 75%;
-    height: 100px;
-  }
-
-  #apply-review-btn {
-    width: 100px;
-    border: none;
-    box-shadow: 1px 1px 6px black;
-    background-color: #579d5d;
-    padding: 5px;
-  }
-
-  #apply-review-btn:hover {
-    background-color: #45804a;
-  }
-
   .product-return-container {
     margin-top: 10px;
     display: grid;
@@ -963,9 +704,6 @@
   }
   .otherInformation {
     display: grid;
-    border-top: 1px solid black;
-    padding: 10px 0px;
-    margin-top: 20px;
   }
 
   .home-direction {
@@ -997,28 +735,6 @@
     }
     .product-img {
       width: 100%;
-      height: 100%;
-    }
-  }
-  @media (max-width: 760px) {
-    #input-field-review {
-      width: 70%;
-    }
-    #textarea-review {
-      width: 100%;
-    }
-    .review-rating {
-      width: 100%;
-    }
-  }
-
-  @media (max-width: 560px) {
-    .review-container-box {
-      width: 90%;
-      margin-bottom: 0px;
-    }
-    #review-counter {
-      width: 90%;
     }
   }
 </style>
