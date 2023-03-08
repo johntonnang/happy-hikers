@@ -37,6 +37,8 @@
   <div class="product-container">
     <product-card
       v-for="product in products"
+      :rating="product.rating"
+      :ratingcount="product.ratingcount"
       :key="product.id"
       :id="product.id"
       :img="product.image"

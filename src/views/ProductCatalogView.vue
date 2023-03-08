@@ -94,7 +94,9 @@
             image: doc.data().img,
             description: doc.data().description,
             colors: doc.data().colors,
-            category: doc.data().category
+            category: doc.data().category,
+            rating: doc.data().rating,
+            ratingcount: doc.data().ratingcount
           }
         })
         this.showProducts = this.products

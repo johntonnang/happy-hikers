@@ -1,14 +1,21 @@
 <script>
   export default {
+    data() {
+      return {
+        ratingStars: 0
+      }
+    },
     name: 'ProductCard',
     props: {
-      id: { type: Number, required: true },
+      id: { type: String, required: true },
       name: { type: String, required: true },
       price: { type: Number, required: true },
       img: { type: String, required: true },
       category: { type: String, required: true },
       colors: { type: Array, required: true },
-      showProducts: { type: Object, default: null }
+      showProducts: { type: Object, default: null },
+      rating: { type: Array, required: true },
+      ratingcount: { type: Number, required: true }
       // colorsFilter: { type: Object, required: true }
     },
     methods: {
@@ -17,6 +24,11 @@
           path: '/ProductView/' + id,
           replace: true
         })
+      }
+    },
+    created() {
+      if (this.rating) {
+        this.ratingStars = this.rating
       }
     }
   }
@@ -37,17 +49,50 @@
       <div class="align-content-mobile">
         <div class="product-title-rating">
           <div style="display: flex">
-            <!-- <span
-              v-for="color in product.colors"
-              :key="color"
+            <span
+              v-for="(color, index) in colors"
+              :key="index"
               class="color-circle-one"
               :style="{ backgroundColor: color }"
-            /> -->
+            />
           </div>
-          <!--<img alt="" src="/assets/rating-image.png" /> (32)-->
+          <div class="review-rating">
+            <font-awesome-icon
+              :class="{ checked: ratingStars >= 1 }"
+              id="star-1"
+              class="font-star"
+              icon="fa-solid fa-star"
+            />
+            <font-awesome-icon
+              :class="{ checked: ratingStars >= 2 }"
+              id="star-2"
+              class="font-star"
+              icon="fa-solid fa-star"
+            />
+            <font-awesome-icon
+              :class="{ checked: ratingStars >= 3 }"
+              id="star-3"
+              class="font-star"
+              icon="fa-solid fa-star"
+            />
+            <font-awesome-icon
+              :class="{ checked: ratingStars >= 4 }"
+              id="star-4"
+              class="font-star"
+              icon="fa-solid fa-star"
+            />
+            <font-awesome-icon
+              :class="{ checked: ratingStars >= 5 }"
+              id="star-5"
+              class="font-star"
+              icon="fa-solid fa-star"
+            />
+            <p>({{ ratingcount }})</p>
+          </div>
         </div>
         <h3 style="margin: 0px">{{ name }}</h3>
         <p style="margin-top: 2px">{{ category }}</p>
+
         <h2>{{ price }}:-</h2>
       </div>
     </div>
@@ -57,14 +102,14 @@
     <div class="align-content-mobile">
       <div class="product-title-rating">
         <div style="display: flex">
-          <!-- <span
-              v-for="color in product.colors"
-              :key="color"
-              class="color-circle-one"
-              :style="{ backgroundColor: color }"
-            /> -->
+          <span
+            v-for="(color, index) in colors"
+            :key="index"
+            class="color-circle-one"
+            :style="{ backgroundColor: color }"
+          />
         </div>
-        <!--<img alt="" src="/assets/rating-image.png" /> (32)-->
+        <img id="rating-image" alt="" src="/assets/rating-image.png" /> (32)
       </div>
       <h3 style="margin: 0px">{{ name }}</h3>
       <p style="margin-top: 2px">{{ category }}</p>
@@ -74,13 +119,48 @@
 </template>
 
 <style scoped>
+  .review-rating {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    height: 20px;
+  }
+
+  .review-rating p {
+    margin-top: 13px;
+    margin-left: 3px;
+  }
+
+  .color-circle-one,
+  .color-circle-two,
+  .color-circle-three,
+  .color-circle-four {
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50px;
+    margin-right: 8px;
+  }
+
+  .font-star {
+    color: grey;
+    cursor: pointer;
+    width: 15px;
+    height: 10px;
+  }
+
+  .checked {
+    color: orange;
+  }
+
   .align-content-mobile {
     padding: 5px;
-    margin: 1rem;
   }
   .product-title-rating {
     display: flex;
     align-items: center;
+    margin-bottom: 15px;
   }
   .product-title-rating img {
     margin: 4px 0px 0px auto;

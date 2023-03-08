@@ -5,6 +5,8 @@
     onSnapshot,
     collection,
     doc,
+    getDoc,
+    updateDoc,
     // deleteDoc,
     setDoc,
     // addDoc,
@@ -126,7 +128,9 @@
             image: doc.data().img,
             description: doc.data().description,
             colors: doc.data().colors,
-            category: doc.data().category
+            category: doc.data().category,
+            rating: doc.data().rating,
+            ratingcount: doc.data().ratingcount
           }
         })
 
@@ -156,7 +160,6 @@
           }
         })
         this.showProducts = this.products
-        console.log(this.accounts)
         for (let i = 0; i < this.accounts.length; i++) {
           if (this.accounts[i]) {
             this.account = this.accounts[i]
@@ -170,6 +173,61 @@
     },
 
     methods: {
+      //Älskar ChatGPT
+      addReviewSubmit() {
+        this.productRef = doc(db, 'products', this.product.id.toString())
+
+        if (this.reviewName === '' || this.reviewStars.length === 0) {
+          this.SizeError = true
+          return
+        }
+        this.SizeError = false
+        const newReview = {
+          name: this.reviewName,
+          stars: this.reviewStars,
+          comment: this.reviewComment,
+          date: this.currentDate
+        }
+        this.allReviews.push(newReview)
+        this.noReviews = false
+        const newRating = this.reviewStars.length
+        getDoc(this.productRef).then((doc) => {
+          if (doc.exists()) {
+            const currentRating = doc.data().rating || 0
+            const currentRatingCount = doc.data().ratingcount || 0
+            const newRatingCount = currentRatingCount + 1
+            const newAverageRating =
+              (currentRating * currentRatingCount + newRating) / newRatingCount
+            updateDoc(this.productRef, {
+              rating: newAverageRating,
+              ratingcount: newRatingCount
+            })
+          } else {
+            setDoc(this.productRef, {
+              rating: newRating,
+              ratingcount: 1
+            })
+          }
+        })
+        this.reviewName = ''
+        this.reviewStars = []
+        this.reviewComment = ''
+        this.renderDate()
+      },
+
+      toggleChecked(starIndex) {
+        this.reviewStars = []
+        for (let i = 1; i <= 5; i++) {
+          const starIcon = document.getElementById(`star-${i}`)
+          if (i <= starIndex) {
+            starIcon.classList.add('checked')
+            this.reviewStars.push('starIndex')
+          } else {
+            starIcon.classList.remove('checked')
+          }
+        }
+      },
+
       renderDate() {
         const currentDate = new Date()
         const day = String(currentDate.getDate()).padStart(2, '0')
@@ -436,27 +494,6 @@
 
       sizeSelected() {
         this.ChooseSize = true
-      },
-      toggleChecked(starIndex) {
-        this.reviewStars = []
-        for (let i = 1; i <= 5; i++) {
-          const starIcon = document.getElementById(`star-${i}`)
-          if (i <= starIndex) {
-            starIcon.classList.add('checked')
-            this.reviewStars.push('starIndex')
-          } else {
-            starIcon.classList.remove('checked')
-          }
-        }
-      },
-      addReviewSubmit() {
-        const newReview = {
-          name: this.reviewName,
-          stars: this.reviewStars,
-          comment: this.reviewComment
-        }
-        this.allReviews.push(newReview)
-        this.noReviews = false
       }
     }
   }
@@ -523,6 +560,34 @@
         <p class="product-description">
           {{ product.description }}
         </p>
+        <div class="review-rating">
+          <font-awesome-icon
+            :class="{ checked: product.rating >= 1 }"
+            class="font-star"
+            icon="fa-solid fa-star"
+          />
+          <font-awesome-icon
+            :class="{ checked: product.rating >= 2 }"
+            class="font-star"
+            icon="fa-solid fa-star"
+          />
+          <font-awesome-icon
+            :class="{ checked: product.rating >= 3 }"
+            class="font-star"
+            icon="fa-solid fa-star"
+          />
+          <font-awesome-icon
+            :class="{ checked: product.rating >= 4 }"
+            class="font-star"
+            icon="fa-solid fa-star"
+          />
+          <font-awesome-icon
+            :class="{ checked: product.rating >= 5 }"
+            class="font-star"
+            icon="fa-solid fa-star"
+          />
+          <p>({{ product.ratingcount }})</p>
+        </div>
         <select class="product-size" type="option" @change="sizeSelected">
           <option value="" disabled selected hidden>Choose a size</option>
           <option value="XS">XS</option>
@@ -602,7 +667,7 @@
         name="name-input"
       />
       <label>Rating:</label>
-      <div class="review-rating">
+      <div class="review-rating second-star-container">
         <font-awesome-icon
           id="star-1"
           class="font-star"
@@ -641,7 +706,9 @@
         name="textarea-input"
         placeholder="Review text.."
       />
-      <button id="apply-review-btn" @click="addReviewSubmit">Add Review</button>
+      <button id="apply-review-btn" @click="addReviewSubmit(), starsRated()">
+        Add Review
+      </button>
     </section>
 
     <section class="otherInformation">
@@ -886,16 +953,17 @@
 
   .review-rating {
     width: 30%;
+    display: flex;
+  }
+
+  .review-rating p {
+    margin-left: 5px;
+    margin-top: -4px;
+    padding-top: 0px;
+  }
+
+  .second-star-container {
     margin-bottom: 10px;
-  }
-
-  .font-star {
-    color: grey;
-    cursor: pointer;
-  }
-
-  .checked {
-    color: orange;
   }
 
   #textarea-review {
@@ -908,9 +976,10 @@
   #apply-review-btn {
     width: 100px;
     border: none;
-    box-shadow: 1px 1px 6px black;
+    box-shadow: 0px 0px 6px black;
     background-color: #579d5d;
     padding: 5px;
+    color: rgb(223, 222, 222);
   }
 
   #apply-review-btn:hover {
@@ -956,6 +1025,14 @@
     margin: 4px 0px 0px auto;
     width: 80px;
     height: 20px;
+  }
+  .font-star {
+    color: grey;
+    cursor: pointer;
+  }
+
+  .checked {
+    color: orange;
   }
   .product-box h2 {
     font-size: 2.2rem;
