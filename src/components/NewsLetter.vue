@@ -12,11 +12,11 @@
       }
     },
     mounted() {
-      // You have to delete hasClosedPopup in localstorage everytime you want the newsletter to show up again if you have closed the newsletter once.
-      const hasClosedPopup = localStorage.getItem('closedPopup')
+      // You have to delete closedNewsletter in localstorage everytime you want the newsletter to show up again if you have closed the newsletter once.
+      const hasClosedNews = localStorage.getItem('closedNewsletter')
       // if closing newsletter
-      if (hasClosedPopup) {
-        // showPopup becomes false
+      if (hasClosedNews) {
+        // hide showPopup
         this.showPopup = false
       } else {
         // if the popup has not been closed before. Show it!
@@ -29,9 +29,9 @@
       closePopup() {
         this.showPopup = false
         // set localStorage value to true. Popup has been closed
-        localStorage.setItem('closedPopup', 'true')
+        localStorage.setItem('closedNewsletter', 'true')
       },
-      // show confirmation
+
       showConfirmation() {
         // If checkbox is not checked errormessage shows. Else showConfirmationPopup shows.
         if (!document.getElementById('checkbox').checked) {
@@ -50,7 +50,7 @@
     <div id="newsletter">
       <button id="popup-close" @click="closePopup">X</button>
 
-      <!-- if showConfirmationPopup is true show this. Else show confirmationPopup -->
+      <!-- if showConfirmationPopup is false show this. Else show confirmation-popup -->
       <div v-if="!showConfirmationPopup" id="align-text">
         <h1 id="h1-news">Newsletter</h1>
         <h5>Join us</h5>
@@ -70,10 +70,8 @@
             <input type="checkbox" name="" id="checkbox" />
             <div id="label-div">
               <label for="checkbox"
-                >By checking the box, you agree to receive regular information
-                about Happy Hiker's outdoor products via e-mail. The mailings
-                are made in accordance with our privacy policy and you can
-                unsubscribe at any time.</label
+                >Agree to receive regular information about Happy Hiker's via
+                e-mail. You can unsubscribe at any time.</label
               >
             </div>
           </div>
@@ -93,6 +91,7 @@
           <button
             class="submit-btn"
             @click="
+              // if checkbox is checked show confirmation else put errormessage to true
               checkbox.checked ? showConfirmation() : (errorMessage = true)
             "
           >
@@ -140,7 +139,10 @@
     font-size: large;
     font-weight: bold;
     margin-top: 10px;
-    margin-right: 80%;
+    margin-right: 90%;
+    position: absolute;
+    top: 0;
+    right: 0%;
   }
 
   #confirmation-popup {
@@ -170,12 +172,12 @@
   #newsletter {
     background-color: rgb(34, 34, 34);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    max-width: 30%;
-    max-height: 55%;
+    /* max-width: 30%;
+    max-height: 45%; */
     position: fixed;
     z-index: 99;
     opacity: 0.9;
-    border-radius: 10%;
+    border-radius: 5px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -214,11 +216,10 @@
   #check-box-div {
     display: flex;
     flex-direction: row;
-    padding-right: 70px;
+    padding-right: 30px;
   }
 
   #checkbox {
-    margin-bottom: 90px;
     margin-left: 15%;
     border: 1px solid rgb(179, 179, 179);
   }
@@ -258,31 +259,7 @@
   @media (min-width: 1601px) and (max-width: 2000px) {
     #newsletter {
       top: 15%;
-    }
-  }
-
-  @media (min-width: 1101px) and (max-width: 1600px) {
-    #newsletter {
-      top: 15%;
-    }
-  }
-
-  @media (min-width: 801px) and (max-width: 1100px) {
-    #newsletter {
-      top: 15%;
-    }
-
-    #confirmation-popup {
-      padding-left: 25px;
-      padding-right: 25px;
-    }
-  }
-
-  @media (min-width: 551px) and (max-width: 800px) {
-    #newsletter {
-      /* width: 350px;
-      height: 350px; */
-      top: 15%;
+      max-width: 40%;
     }
     #confirmation-popup {
       padding-left: 15px;
@@ -290,16 +267,108 @@
     }
   }
 
-  @media (min-width: 375px) and (max-width: 550px) {
+  @media (min-width: 1151px) and (max-width: 1600px) {
     #newsletter {
-      /* width: 300px;
-      height: 400px; */
-      top: 10%;
-      padding-bottom: 20px;
+      top: 15%;
+      max-width: 50%;
+    }
+    #confirmation-popup {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+  }
+
+  @media (min-width: 801px) and (max-width: 1150px) {
+    #newsletter {
+      top: 15%;
+      max-width: 50%;
+    }
+
+    #confirmation-popup {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+  }
+
+  @media (min-width: 651px) and (max-width: 800px) {
+    #newsletter {
+      top: 15%;
+      max-width: 80%;
+    }
+
+    #checkbox {
+      margin-bottom: 5%;
+    }
+    #confirmation-popup {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+  }
+
+  @media (min-width: 591px) and (max-width: 650px) {
+    #newsletter {
+      top: 15%;
+      max-width: 80%;
+    }
+
+    #checkbox {
+      margin-bottom: 5%;
+    }
+    #confirmation-popup {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+  }
+
+  @media (min-width: 461px) and (max-width: 590px) {
+    #newsletter {
+      top: 15%;
+      max-width: 80%;
+    }
+
+    #checkbox {
+      margin-bottom: 10%;
+    }
+    #confirmation-popup {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+  }
+
+  @media (min-width: 451px) and (max-width: 460px) {
+    #newsletter {
+      top: 15%;
+      max-width: 80%;
+    }
+
+    #checkbox {
+      margin-bottom: 10%;
     }
 
     #popup-close {
-      margin-top: 20px;
+      margin-top: 5px;
+      margin-right: 90%;
+    }
+
+    #confirmation-popup {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+  }
+
+  @media (min-width: 375px) and (max-width: 450px) {
+    #newsletter {
+      top: 10%;
+      padding-bottom: 20px;
+      max-width: 80%;
+    }
+
+    #popup-close {
+      margin-top: 5px;
+    }
+
+    #checkbox {
+      margin-bottom: 20%;
     }
 
     #confirmation-popup {
