@@ -401,22 +401,6 @@
     width: 82.5%;
   }
 
-  .align-content-mobile {
-    padding: 5px;
-  }
-
-  .color-circle-one,
-  .color-circle-two,
-  .color-circle-three,
-  .color-circle-four {
-    display: block;
-    width: 8px;
-    height: 8px;
-    background-color: black;
-    border-radius: 50px;
-    margin-right: 8px;
-  }
-
   .color-circle-two {
     background-color: red;
   }

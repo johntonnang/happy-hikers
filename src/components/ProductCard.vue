@@ -7,7 +7,7 @@
       price: { type: Number, required: true },
       img: { type: String, required: true },
       category: { type: String, required: true },
-      colors: { type: Object, required: true },
+      colors: { type: Array, required: true },
       showProducts: { type: Object, default: null }
       // colorsFilter: { type: Object, required: true }
     },
