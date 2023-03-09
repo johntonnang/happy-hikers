@@ -2,7 +2,40 @@
   export default {
     data() {
       return {
-        showText: false
+        selectedBlog: null,
+        blogs: [
+          {
+            imageSrc:
+              'https://images.unsplash.com/photo-1487730116645-74489c95b41b?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjEyMDd9',
+            imageAlt: 'Mountain Hiking',
+            title: 'Hiking Trip to the Mountains',
+            shortText:
+              'Last weekend, I went on a hiking trip to the mountains with my friends. We woke up early in the morning, eager to begin our adventure. As we started our hike, we were greeted with stunning views of the surrounding nature. The sun was shining, and the air was crisp and fresh. We hiked through dense forests, crossed streams, and climbed steep cliffs. It was an amazing experience that I will never forget, and it left me feeling energized and inspired.',
+            longText: `Choose a trail that matches your skill level and fitness.\nCheck the weather forecast and prepare accordingly.\nBring enough water and snacks to keep you energized throughout the hike.\nWear comfortable and sturdy shoes to protect your feet and ankles.\nRespect nature and leave no trace by packing all your trash.`,
+            date: '2023-02-01'
+          },
+          {
+            imageSrc:
+              'https://images.unsplash.com/photo-1455496231601-e6195da1f841?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2122&q=80',
+            imageAlt: 'Hiking snow tent',
+            title: 'Snowy Mountain Hike',
+            shortText:
+              'Winter hiking is a unique experience that requires a   little extra preparation. My recent hike up a snowy mountain was both challenging and rewarding. The fresh snowfall made the scenery even more stunning, but it also meant we had to be extra cautious with our footing.',
+            longText:
+              "Dress in layers: It's important to wear warm, waterproof clothing in snowy conditions. Dressing in layers allows you to adjust your clothing as you heat up during the hike.\nWear appropriate footwear: Hiking boots with good traction are essential in snowy conditions. Make sure your boots are waterproof and insulated to keep your feet warm and dry.\nBring plenty of water: Even though it's cold, you still need to stay hydrated during your hike. Pack enough water and bring a thermos filled with a warm beverage to help you stay warm.\nBe aware of avalanche danger: In snowy conditions, there is always a risk of avalanches. Check avalanche conditions before your hike and avoid areas with a high risk of avalanches.\nUse trekking poles: Trekking poles provide extra stability in snowy conditions and can help you maintain your balance on slippery surfaces.",
+            date: '2022-12-05'
+          },
+          {
+            imageSrc:
+              'https://images.unsplash.com/photo-1517701491738-81f146bae705?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80',
+            imageAlt: 'Hiking rainforest tent campfire',
+            title: 'Rainforest Adventure',
+            shortText:
+              'Exploring the lush rainforest on a recent trip was a truly unforgettable experience. The sights and sounds of the exotic wildlife and vegetation were unlike anything I had ever seen before. However, hiking in a rainforest also poses some unique challenges that require careful planning and preparation.',
+            longText: `Wear lightweight and breathable clothing that covers your skin to protect against insects and scratches from vegetation.\nWear sturdy hiking shoes with good traction to prevent slips and falls on wet, muddy terrain.\nCarry plenty of water and snacks, as the high humidity and heat can quickly deplete your energy.\nBe aware of dangerous wildlife in the area and follow local guidelines for safety.\nTake breaks often and enjoy the beautiful scenery around you.`,
+            date: '2022-08-15'
+          }
+        ]
       }
     }
   }
@@ -11,177 +44,40 @@
 <template>
   <main>
     <div class="blog-container">
-      <div class="blog-row">
+      <div v-for="(blog, index) in blogs" :key="index" class="blog-row">
         <div class="blog-item">
           <div class="blog-item-image">
-            <img
-              src="https://images.unsplash.com/photo-1487730116645-74489c95b41b?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjEyMDd9"
-              alt="Mountain Hiking"
-              class="blog-image"
-            />
+            <img :src="blog.imageSrc" :alt="blog.imageAlt" class="blog-image" />
           </div>
           <div class="blog-item-text">
-            <h1>Hiking Trip to the Mountains</h1>
-            <p class="short-text">
-              Last weekend, I went on a hiking trip to the mountains with my
-              friends. We woke up early in the morning, eager to begin our
-              adventure. As we started our hike, we were greeted with stunning
-              views of the surrounding nature. The sun was shining, and the air
-              was crisp and fresh. We hiked through dense forests, crossed
-              streams, and climbed steep cliffs. It was an amazing experience
-              that I will never forget, and it left me feeling energized and
-              inspired.
-            </p>
-            <div v-if="showText" class="long-text">
+            <h1>{{ blog.title }}</h1>
+            <p class="short-text">{{ blog.shortText }}</p>
+            <div v-if="selectedBlog === index" class="long-text">
               <p>
-                If you're planning a hiking trip, here are five things you
-                should consider:
-              </p>
-              <ol>
-                <li>
-                  Choose a trail that matches your skill level and fitness
-                </li>
-                <li>Check the weather forecast and prepare accordingly</li>
-                <li>
-                  Bring enough water and snacks to keep you energized throughout
-                  the hike
-                </li>
-                <li>
-                  Wear comfortable and sturdy shoes to protect your feet and
-                  ankles
-                </li>
-                <li>
-                  Respect nature and leave no trace by packing out all your
-                  trash
-                </li>
-              </ol>
-              <p>
-                Following these tips will help you have a safe and enjoyable
-                hiking trip!
-              </p>
-            </div>
-            <button class="read-more-btn" @click="showText = !showText">
-              {{ showText ? 'Read Less' : 'Read More' }}
-            </button>
-            <span class="date">2023-02-01</span>
-          </div>
-        </div>
-
-        <div class="blog-item">
-          <div class="blog-item-image">
-            <img
-              src="https://images.unsplash.com/photo-1455496231601-e6195da1f841?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2122&q=80"
-              alt="Hiking snow tent"
-              class="blog-image"
-            />
-          </div>
-          <div class="blog-item-text">
-            <h1>Snowy Mountain Hike</h1>
-
-            <p class="short-text">
-              Winter hiking is a unique experience that requires a little extra
-              preparation. My recent hike up a snowy mountain was both
-              challenging and rewarding. The fresh snowfall made the scenery
-              even more stunning, but it also meant we had to be extra cautious
-              with our footing.
-            </p>
-            <div v-if="showText" class="long-text">
-              <p>
-                If you're planning a winter hike, here are some things to keep
+                If you're planning a similiar hike, here are some things to keep
                 in mind:
               </p>
               <ol>
-                <li>
-                  Dress in layers: It's important to wear warm, waterproof
-                  clothing in snowy conditions. Dressing in layers allows you to
-                  adjust your clothing as you heat up during the hike.
-                </li>
-                <li>
-                  Wear appropriate footwear: Hiking boots with good traction are
-                  essential in snowy conditions. Make sure your boots are
-                  waterproof and insulated to keep your feet warm and dry.
-                </li>
-                <li>
-                  Bring plenty of water: Even though it's cold, you still need
-                  to stay hydrated during your hike. Pack enough water and bring
-                  a thermos filled with a warm beverage to help you stay warm.
-                </li>
-                <li>
-                  Be aware of avalanche danger: In snowy conditions, there is
-                  always a risk of avalanches. Check avalanche conditions before
-                  your hike and avoid areas with a high risk of avalanches.
-                </li>
-                <li>
-                  Use trekking poles: Trekking poles provide extra stability in
-                  snowy conditions and can help you maintain your balance on
-                  slippery surfaces.
+                <li v-for="(item, idx) in blog.longText.split('\n')" :key="idx">
+                  {{ item }}
                 </li>
               </ol>
               <p>
                 Following these tips will help you have a safe and enjoyable
-                hiking trip!
+                hiking trip! You can check out our
+                <router-link class="product-direction" to="/ProductCatalog"
+                  >products</router-link
+                >
+                that will surely help you on your journey.
               </p>
             </div>
-            <button class="read-more-btn" @click="showText = !showText">
-              {{ showText ? 'Read Less' : 'Read More' }}
+            <button
+              class="read-more-btn"
+              @click="selectedBlog = selectedBlog === index ? null : index"
+            >
+              {{ selectedBlog === index ? 'Read Less' : 'Read More' }}
             </button>
-            <span class="date">2022-12-05</span>
-          </div>
-        </div>
-
-        <div class="blog-item">
-          <div class="blog-item-image">
-            <img
-              src="https://images.unsplash.com/photo-1517701491738-81f146bae705?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
-              alt="Hiking rainforest tent campfire"
-              class="blog-image"
-            />
-          </div>
-          <div class="blog-item-text">
-            <h1>Rainforest Adventure</h1>
-
-            <p class="short-text">
-              Exploring the lush rainforest on a recent trip was a truly
-              unforgettable experience. The sights and sounds of the exotic
-              wildlife and vegetation were unlike anything I had ever seen
-              before. However, hiking in a rainforest also poses some unique
-              challenges that require careful planning and preparation.
-            </p>
-            <div v-if="showText" class="long-text">
-              <p>
-                If you're planning a rainforest hike, here are some things to
-                keep in mind:
-              </p>
-              <ol>
-                <li>
-                  Wear lightweight and breathable clothing that covers your skin
-                  to protect against insects and scratches from vegetation.
-                </li>
-                <li>
-                  Wear sturdy hiking shoes with good traction to prevent slips
-                  and falls on wet, muddy terrain.
-                </li>
-                <li>
-                  Carry plenty of water and snacks, as the high humidity and
-                  heat can quickly deplete your energy.
-                </li>
-                <li>
-                  Be aware of dangerous wildlife in the area and follow local
-                  guidelines for safety.
-                </li>
-                <li>
-                  Take breaks often and enjoy the beautiful scenery around you.
-                </li>
-              </ol>
-              <p>
-                Following these tips will help you have a safe and enjoyable
-                hiking trip!
-              </p>
-            </div>
-            <button class="read-more-btn" @click="showText = !showText">
-              {{ showText ? 'Read Less' : 'Read More' }}
-            </button>
-            <span class="date">2022-08-15</span>
+            <span class="date">{{ blog.date }}</span>
           </div>
         </div>
       </div>
@@ -260,5 +156,21 @@
   .date {
     float: right;
     opacity: 0.5;
+  }
+
+  .product-direction {
+    color: #333;
+  }
+
+  @media screen and (max-width: 768px) {
+    .blog-container {
+      max-width: 600px;
+    }
+  }
+
+  @media screen and (max-width: 400px) {
+    .blog-container {
+      max-width: 350px;
+    }
   }
 </style>

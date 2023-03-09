@@ -52,8 +52,7 @@
         reviewStars: [],
         reviewComment: '',
         allReviews: [],
-        noReviews: true,
-        test: 5
+        noReviews: true
       }
     },
     computed: {
@@ -64,14 +63,9 @@
           return this.cartItems.reduce((x, item) => x + item.price, 0)
         }
       },
-      starArray() {
-        return Array.from({ length: this.review.stars }, (_, index) => index)
-      },
+
       filteredReviews() {
-        return this.allReviews.slice(0, 4)
-      },
-      similarProductsCap() {
-        return this.similarProducts.slice(0, 4)
+        return this.allReviews.slice(0, 3)
       }
     },
 
@@ -112,7 +106,8 @@
             colors: doc.data().colors,
             category: doc.data().category,
             rating: doc.data().rating,
-            ratingcount: doc.data().ratingcount
+            ratingcount: doc.data().ratingcount,
+            allreviews: doc.data().allreviews
           }
         })
         for (let i = 0; i < this.products.length; i++) {
@@ -160,21 +155,41 @@
 
     methods: {
       //Älskar ChatGPT
-      addReviewSubmit() {
-        console.log(this.similarProducts)
-        this.productRef = doc(db, 'products', this.product.id.toString())
+      applyReviewOnPage() {
         if (this.reviewName === '' || this.reviewStars.length === 0) {
           this.SizeError = true
           return
         }
         this.SizeError = false
+
         const newReview = {
           name: this.reviewName,
-          stars: this.reviewStars,
+          stars: this.reviewStars.length,
           comment: this.reviewComment,
           date: this.currentDate
         }
-        this.allReviews.push(newReview)
+
+        const productDoc = doc(db, 'products', this.product.id)
+        getDoc(productDoc).then((doc) => {
+          if (doc.exists()) {
+            const allReviews = doc.data().allreviews || []
+
+            allReviews.push(newReview)
+
+            setDoc(productDoc, { allreviews: allReviews }, { merge: true })
+          }
+        })
+      },
+
+      addReviewSubmit() {
+        this.productRef = doc(db, 'products', this.product.id.toString())
+        this.similarProducts = []
+        if (this.reviewName === '' || this.reviewStars.length === 0) {
+          this.SizeError = true
+          return
+        }
+        this.SizeError = false
+
         this.noReviews = false
         const newRating = this.reviewStars.length
         getDoc(this.productRef).then((doc) => {
@@ -195,11 +210,12 @@
             })
           }
         })
-        this.reviewName = ''
-        this.reviewStars = []
-        this.reviewComment = ''
-        this.renderDate()
       },
+
+      // this.reviewName = ''
+      //   this.reviewStars = []
+      //   this.reviewComment = ''
+      //   this.renderDate()
 
       toggleChecked(starIndex) {
         this.reviewStars = []
@@ -547,31 +563,65 @@
             <p class="product-return-text"><b>365</b> days open purchase</p>
           </div>
         </div>
-        <!-- <<<<<<< HEAD -->
-      </div>
-    </section>
-    <!-- ======= -->
-    <section>
-      <div>
-        <div id="review-container">
-          <h2>Reviews</h2>
-          <p v-if="noReviews">No reviews.</p>
-          <div
-            v-for="review in filteredReviews"
-            class="review-container-box"
-            :key="review"
-          >
-            <div class="review-container-header">
-              <h4>{{ review.name }},</h4>
-              <div :key="star" v-for="star in review.stars">
-                <font-awesome-icon class="checked" icon="fa-solid fa-star" />
+        <section id="review-section">
+          <div>
+            <div id="review-container">
+              <h2>Reviews</h2>
+              <p v-if="!product.allreviews">No reviews.</p>
+              <div
+                v-else
+                class="review-container-box"
+                :key="review"
+                v-for="(review, index) in product.allreviews.slice(0, 3)"
+              >
+                <div class="review-container-header">
+                  <h4>{{ product.allreviews[index].name }},</h4>
+                  <div>
+                    <font-awesome-icon
+                      :class="{
+                        checked: product.allreviews[index].stars > 0
+                      }"
+                      class="font-star"
+                      icon="fa-solid fa-star"
+                    />
+                    <font-awesome-icon
+                      :class="{
+                        checked: product.allreviews[index].stars > 1
+                      }"
+                      class="font-star"
+                      icon="fa-solid fa-star"
+                    />
+                    <font-awesome-icon
+                      :class="{
+                        checked: product.allreviews[index].stars > 2
+                      }"
+                      class="font-star"
+                      icon="fa-solid fa-star"
+                    />
+                    <font-awesome-icon
+                      :class="{
+                        checked: product.allreviews[index].stars > 3
+                      }"
+                      class="font-star"
+                      icon="fa-solid fa-star"
+                    />
+                    <font-awesome-icon
+                      :class="{
+                        checked: product.allreviews[index].stars > 4
+                      }"
+                      class="font-star"
+                      icon="fa-solid fa-star"
+                    />
+                  </div>
+                </div>
+                <p>"{{ product.allreviews[index].comment }}"</p>
               </div>
             </div>
-            <p>"{{ review.comment }}"</p>
           </div>
-        </div>
+        </section>
       </div>
     </section>
+
     <section id="review-counter">
       <label for="name-input" /> Name *
       <input
@@ -620,19 +670,21 @@
         name="textarea-input"
         placeholder="Review text.."
       />
-      <button id="apply-review-btn" @click="addReviewSubmit(), starsRated()">
+      <button
+        id="apply-review-btn"
+        @click="addReviewSubmit(), applyReviewOnPage()"
+      >
         Add Review
       </button>
     </section>
 
-    <!-- >>>>>>> 07b22a2ba142feff11db84733ed4c7cad73f8740 -->
     <section class="otherInformation">
       <h2>Similar products</h2>
       <!-- <div class="similairProducts"> -->
       <div class="product-container">
         <div
           :key="similarProduct.id"
-          v-for="similarProduct in similarProductsCap"
+          v-for="similarProduct in similarProducts"
           class="product-box"
           @click="openProduct(similarProduct.id)"
         >
@@ -814,12 +866,15 @@
     line-height: 1;
   }
 
-  /* <<<<<<< HEAD
-======= */
+  #review-section {
+    width: 100%;
+    display: block;
+  }
+
   #review-container {
     border-top: 1px solid rgb(80, 80, 80);
     padding: 10px 0px;
-    width: 100%;
+    width: 70%;
     margin-top: 30px;
   }
 
@@ -829,7 +884,7 @@
 
   .review-container-box {
     box-shadow: 1px 1px 6px black;
-    width: 70%;
+    width: 100%;
     margin: 20px 0px;
     padding: 10px 15px;
   }

@@ -11,7 +11,7 @@
       </ul>
       <ul>
         <li class="bold-footer-text"><a href="#">Company</a></li>
-        <li><a href="#">About Happy Hikers</a></li>
+        <li><router-link to="/AboutView">About Happy Hikers</router-link></li>
         <li><a href="#">Stores</a></li>
         <li><a href="#">Partners</a></li>
         <li><a href="#">Sustainability</a></li>
