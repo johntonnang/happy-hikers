@@ -64,7 +64,9 @@
               </ol>
               <p>
                 Following these tips will help you have a safe and enjoyable
-                hiking trip! You can check out our
+                hiking trip!
+                <br />
+                You can check out our
                 <router-link class="product-direction" to="/ProductCatalog"
                   >products</router-link
                 >
