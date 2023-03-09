@@ -109,7 +109,39 @@
             :style="{ backgroundColor: color }"
           />
         </div>
-        <img id="rating-image" alt="" src="/assets/rating-image.png" /> (32)
+        <div class="review-rating">
+          <font-awesome-icon
+            :class="{ checked: ratingStars >= 1 }"
+            id="star-1"
+            class="font-star"
+            icon="fa-solid fa-star"
+          />
+          <font-awesome-icon
+            :class="{ checked: ratingStars >= 2 }"
+            id="star-2"
+            class="font-star"
+            icon="fa-solid fa-star"
+          />
+          <font-awesome-icon
+            :class="{ checked: ratingStars >= 3 }"
+            id="star-3"
+            class="font-star"
+            icon="fa-solid fa-star"
+          />
+          <font-awesome-icon
+            :class="{ checked: ratingStars >= 4 }"
+            id="star-4"
+            class="font-star"
+            icon="fa-solid fa-star"
+          />
+          <font-awesome-icon
+            :class="{ checked: ratingStars >= 5 }"
+            id="star-5"
+            class="font-star"
+            icon="fa-solid fa-star"
+          />
+          <p>({{ ratingcount }})</p>
+        </div>
       </div>
       <h3 style="margin: 0px">{{ name }}</h3>
       <p style="margin-top: 2px">{{ category }}</p>

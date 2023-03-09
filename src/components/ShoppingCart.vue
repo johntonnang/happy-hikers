@@ -1,10 +1,38 @@
 <script>
+  import { initializeApp } from 'firebase/app'
+  import {
+    getFirestore,
+    onSnapshot,
+    collection,
+    doc,
+    // deleteDoc,
+    setDoc,
+    // addDoc,
+    // orderBy,
+    query
+  } from 'firebase/firestore'
+  import { onUnmounted } from 'vue'
+
+  const firebaseConfig = {
+    apiKey: 'AIzaSyAGJoAN08CeHsyoibMdRQVpegwPibf1ANk',
+    authDomain: 'happy-hikers-1a875.firebaseapp.com',
+    projectId: 'happy-hikers-1a875',
+    storageBucket: 'happy-hikers-1a875.appspot.com',
+    messagingSenderId: '434497193720',
+    appId: '1:434497193720:web:5893a8bd2905affdaedd0d',
+    measurementId: 'G-QW50PLVBTN'
+  }
+  const app = initializeApp(firebaseConfig)
+
+  const db = getFirestore(app)
   export default {
     data() {
       return {
         cartItems: [],
         totalValue: 0,
-        discountActive: false
+        discountActive: false,
+        accounts: [],
+        account: []
       }
     },
     computed: {
@@ -17,14 +45,49 @@
       }
     },
     mounted() {
-      let cart = localStorage.getItem('Cart')
-      if (cart !== null) {
-        this.cartItems = JSON.parse(cart)
-      }
-      if (localStorage.getItem('discountActive')) {
-        this.discountActive = true
-      }
-      this.totalValue = this.cartItems.reduce((x, item) => x + item.price, 0)
+      // let cart = localStorage.getItem('Cart')
+      // if (cart !== null) {
+      //   this.cartItems = JSON.parse(cart)
+      // }
+      // if (localStorage.getItem('discountActive')) {
+      //   this.discountActive = true
+      // }
+      // this.totalValue = this.cartItems.reduce((x, item) => x + item.price, 0)
+
+      const kontoQuery = query(collection(db, 'konto'))
+      const liveKonto = onSnapshot(kontoQuery, (snapshot) => {
+        this.accounts = snapshot.docs.map((doc) => {
+          console.log(localStorage.getItem('email'))
+          console.log(doc.data().email)
+          if (localStorage.getItem('email') === doc.data().email) {
+            return {
+              id: doc.id,
+              email: doc.data().email,
+              password: doc.data().password,
+              name: doc.data().name,
+              phone: doc.data().phone,
+              registredUser: doc.data().registredUser,
+              wish: doc.data().wishlist,
+              cart: doc.data().cart
+            }
+          }
+        })
+        for (let i = 0; i < this.accounts.length; i++) {
+          console.log(1)
+          if (this.accounts[i]) {
+            this.account = this.accounts[i]
+          }
+        }
+        this.showProducts = this.products
+        console.log(this.accounts)
+        for (let i = 0; i < this.accounts.length; i++) {
+          if (this.accounts[i]) {
+            this.cartItems = this.accounts[i].cart
+            console.log(this.accounts[i].wish)
+          }
+        }
+      })
+      onUnmounted(liveKonto)
     },
     watch: {
       cartItems: {
@@ -37,7 +100,17 @@
     methods: {
       removeItem(index) {
         this.cartItems.splice(index, 1)
-        localStorage.setItem('Cart', JSON.stringify(this.cartItems))
+        setDoc(doc(db, 'konto', this.account.id), {
+          id: this.account.id,
+          email: this.account.email,
+          password: this.account.password,
+          name: this.account.name,
+          phone: this.account.phone,
+          registredUser: this.account.registredUser,
+          wishlist: this.account.wish,
+          cart: this.cartItems
+        })
+        // localStorage.setItem('Cart', JSON.stringify(this.cartItems))
       }
     }
   }

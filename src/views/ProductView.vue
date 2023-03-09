@@ -260,7 +260,7 @@
           setTimeout(() => (this.CartColor = 'rgba(0,0,0,1)'), 3350)
           setTimeout(() => (this.CartText = 'Remove from Cart'), 3350)
         } else if (this.CartText === 'Remove from Cart') {
-          let cart = JSON.parse(localStorage.getItem('Cart'))
+          let cart = this.account.cart
           let i = 0
           for (let product of cart) {
             if (product.id === id) {
@@ -285,32 +285,8 @@
           setTimeout(() => (this.CartColor = 'rgba(0,0,0,1)'), 3350)
           setTimeout(() => (this.CartText = '+  Add to cart   '), 3350)
         }
-        // } else {
-        //   let cart = null
-        //   if (this.CartText === '+  Add to cart   ') {
-        //     cart = [
-        //       {
-        //         id: this.product.id,
-        //         name: this.product.name,
-        //         price: this.product.price,
-        //         image: this.product.image,
-        //         description: this.product.description,
-        //         category: this.product.category,
-        //         date: this.currentDate
-        //       }
-        //     ]
-        //     localStorage.setItem('Cart', JSON.stringify(cart))
-        //     this.CartColor = 'rgba(0,0,0,0)'
-        //     setTimeout(() => (this.CartText = '✓'), 350)
-        //     setTimeout(() => (this.CartColor = 'rgba(0,0,0)'), 350)
 
-        //     setTimeout(() => (this.CartColor = 'rgba(0,0,0,0)'), 3000)
-        //     setTimeout(() => (this.CartColor = 'rgba(0,0,0,1)'), 3350)
-        //     setTimeout(() => (this.CartText = 'Remove from Cart'), 3350)
-        //   }
-        // }
-
-        const currentCartItems = JSON.parse(localStorage.getItem('Cart'))
+        const currentCartItems = this.account.cart
         this.cartItems = currentCartItems
 
         this.showCartPreview()

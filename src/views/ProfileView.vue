@@ -3,11 +3,39 @@
   import ProfileMenu from '../components/ProfileMenu.vue'
   import ProfilePoints from '../components/ProfilePoints.vue'
   import LoginProfile from '../components/LoginProfile.vue'
+  import { initializeApp } from 'firebase/app'
+  import {
+    getFirestore,
+    onSnapshot,
+    collection,
+    // doc,
+    // deleteDoc,
+    // setDoc,
+    // addDoc,
+    // orderBy,
+    query
+  } from 'firebase/firestore'
+  import { onUnmounted } from 'vue'
+
+  const firebaseConfig = {
+    apiKey: 'AIzaSyAGJoAN08CeHsyoibMdRQVpegwPibf1ANk',
+    authDomain: 'happy-hikers-1a875.firebaseapp.com',
+    projectId: 'happy-hikers-1a875',
+    storageBucket: 'happy-hikers-1a875.appspot.com',
+    messagingSenderId: '434497193720',
+    appId: '1:434497193720:web:5893a8bd2905affdaedd0d',
+    measurementId: 'G-QW50PLVBTN'
+  }
+  const app = initializeApp(firebaseConfig)
+
+  const db = getFirestore(app)
   export default {
     data() {
       return {
         loginSuccesfull: false,
-        userName: ''
+        userName: '',
+        accounts: [],
+        account: []
       }
     },
     components: {
@@ -17,7 +45,28 @@
       LoginProfile
     },
     created() {
-      this.userName = localStorage.getItem('name')
+      const kontoQuery = query(collection(db, 'konto'))
+      const liveKonto = onSnapshot(kontoQuery, (snapshot) => {
+        this.accounts = snapshot.docs.map((doc) => {
+          if (localStorage.getItem('email') === doc.data().email) {
+            return {
+              id: doc.id,
+              email: doc.data().email,
+              password: doc.data().password,
+              wish: doc.data().wishlist,
+              userName: doc.data().name
+            }
+          }
+        })
+        for (let i = 0; i < this.accounts.length; i++) {
+          if (this.accounts[i]) {
+            this.account = this.accounts[i]
+            this.userName = this.account.userName
+          }
+        }
+        this.showProducts = this.products
+      })
+      onUnmounted(liveKonto)
     }
   }
 </script>

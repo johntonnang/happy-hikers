@@ -54,6 +54,7 @@
         this.failedInput = false
         this.errorInput = false
         setTimeout(() => {
+          let logedIn = false
           for (let accountIndex in this.accounts) {
             // console.log(this.accounts[accountIndex].password.toString());
             console.log(this.accounts[accountIndex].email)
@@ -66,10 +67,15 @@
               this.loginProfileAccepted(this.accounts[accountIndex].email)
               this.failedInput = false
               this.errorInput = false
+              logedIn = true
+              break
             } else {
-              this.loadingIcon = false
-              this.errorInput = true
+              console.log('rrr')
             }
+          }
+          if (logedIn === false) {
+            this.loadingIcon = false
+            this.errorInput = true
           }
         }, 1500)
       },
