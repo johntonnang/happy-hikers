@@ -16,9 +16,41 @@ const mutations = {
   setEmail(state, email) {
     state.email = email
   },
+  setAddress(state, address) {
+    state.address = address
+  },
+  setCountry(state, country) {
+    state.country = country
+  },
   setName(state, firstName) {
-    console.log('setName', state, firstName)
     state.firstName = firstName
+  },
+  setorderId(state, orderId) {
+    state.orderId = orderId
+  },
+  setCredit(state, credit) {
+    state.credit = credit
+  },
+  setDebit(state, debit) {
+    state.debit = debit
+  },
+  setLastName(state, lastName) {
+    state.lastName = lastName
+  },
+  setPhone(state, phone) {
+    state.phone = phone
+  },
+  setCcNumber(state, ccNumber) {
+    state.ccNumber = ccNumber
+  },
+  setAddress2(state, address2) {
+    state.address2 = address2
+  },
+  setStatee(state, statee) {
+    state.statee = statee
+  },
+  setZip(state, zip) {
+    state.zip = zip
   }
 }
 const actions = {},
@@ -28,7 +60,19 @@ const actions = {},
     currentWish: 0,
     cart: [],
     email: '',
-    firstName: ''
+    firstName: '',
+    address: '',
+    country: '',
+    statee: '',
+    credit: '',
+    debit: '',
+    paypal: '',
+    lastName: '',
+    phone: '',
+    ccNumber: '',
+    address2: '',
+    zip: '',
+    orderId: null
   }
 
 export default createStore({ mutations, state, strict: true, actions })

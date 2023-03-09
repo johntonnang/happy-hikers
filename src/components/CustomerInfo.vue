@@ -10,8 +10,9 @@
         address: '',
         address2: '',
         country: '',
-        state: '',
+        statee: '',
         zip: '',
+        phone: '',
         sameaddress: '',
         saveInfo: '',
         credit: '',
@@ -35,7 +36,7 @@
         this.address = savedData.address
         this.address2 = savedData.address2
         this.country = savedData.country
-        this.state = savedData.state
+        this.statee = savedData.statee
         this.zip = savedData.zip
         this.sameaddress = savedData.sameaddress
         this.saveInfo = savedData.saveInfo
@@ -49,10 +50,36 @@
       }
     },
     methods: {
-      ...mapActions(['setEmail', 'setName']),
+      ...mapActions([
+        'setEmail',
+        'setName',
+        'setAddress',
+        'setCountry',
+        'setStatee',
+        'setCredit',
+        'setDebit',
+        'setPaypal',
+        'setLastName',
+        'setPhone',
+        'setCcNumber',
+        'setAddress2',
+        'setZip'
+      ]),
       sendData() {
         this.$store.commit('setEmail', this.email)
         this.$store.commit('setName', this.firstName)
+        this.$store.commit('setAddress', this.address)
+        this.$store.commit('setCountry', this.country)
+        this.$store.commit('setStatee', this.statee)
+        this.$store.commit('setCredit', this.credit)
+        this.$store.commit('setDebit', this.debit)
+        this.$store.commit('setPaypal', this.paypal)
+        this.$store.commit('setLastName', this.lastName)
+        this.$store.commit('setPaypal', this.paypal)
+        this.$store.commit('setPhone', this.phone)
+        this.$store.commit('setCcNumber', this.ccNumber)
+        this.$store.commit('setAddress2', this.address2)
+        this.$store.commit('setZip', this.zip)
         const data = {
           firstName: this.firstName,
           lastName: this.lastName,
@@ -61,7 +88,7 @@
           address: this.address,
           address2: this.address2,
           country: this.country,
-          state: this.state,
+          statee: this.statee,
           zip: this.zip,
           sameaddress: this.sameaddress,
           saveInfo: this.saveInfo,
@@ -189,12 +216,12 @@
             </div>
 
             <div class="col-md-4 mb-3">
-              <label for="state">State</label>
+              <label for="statee">State</label>
               <input
-                v-model="state"
+                v-model="statee"
                 type="text"
                 class="form-control"
-                id="state"
+                id="statee"
                 placeholder=""
                 required=""
               />
@@ -277,12 +304,12 @@
           </div>
           <div class="row">
             <div class="col-md-6 mb-3">
-              <label for="cc-name">Name on card</label>
+              <label for="ccName">Name on card</label>
               <input
                 v-model="paypal"
                 type="text"
                 class="form-control"
-                id="cc-name"
+                id="ccName"
                 placeholder=""
                 required=""
               />

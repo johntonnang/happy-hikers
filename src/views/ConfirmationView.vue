@@ -1,5 +1,6 @@
 <script>
   import OrderConfirmation from '../components/OrderConfirmation.vue'
+  //import OrderDetails from '../components/OrderDetails.vue'
 
   export default {
     data() {
@@ -7,13 +8,17 @@
     },
     components: {
       OrderConfirmation
+      // OrderDetails
     }
   }
 </script>
 
 <template>
   <main>
-    <order-confirmation class="orderConformation" />
+    <div class="container">
+      <order-confirmation class="orderConformation" />
+      <!-- <order-details class="orderDetails" />-->
+    </div>
   </main>
 </template>
 
@@ -31,7 +36,14 @@
   }
   .orderConformation {
     margin-top: 5rem;
-    margin-bottom: 15rem;
+    margin-bottom: 5rem;
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+  .orderDetails {
+    margin-bottom: 5rem;
   }
   .loginProfile {
     display: none;
