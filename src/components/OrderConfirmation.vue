@@ -4,7 +4,8 @@
   export default {
     data() {
       return {
-        orderId: ''
+        orderId: '',
+        show: false
       }
     },
     created() {
@@ -14,6 +15,9 @@
       generateOrderId() {
         const id = Math.random().toString(36).substr(2, 9)
         this.orderId = id
+      },
+      showDiv() {
+        this.show = !this.show
       }
     },
     computed: {
@@ -50,7 +54,15 @@
       order confirmation shortly to your email {{ email }}.
     </p>
   </div>
-  <div class="OrderDetailsContainer">
+  <div class="buttonDiv">
+    <button
+      class="buttonShow btn btn-dark btn-lg btn-block submitButton"
+      @click="showDiv"
+    >
+      SEE ORDER DETAILS
+    </button>
+  </div>
+  <div v-if="show" class="OrderDetailsContainer">
     <div class="line" />
     <div class="orderIdInfoBox">
       <h5 class="h5Title">Order Details:</h5>
@@ -77,7 +89,7 @@
       <div class="boxRight">
         <div class="Box">
           <p>PAYMENT METHOD</p>
-          <p>Nr. {{ ccNumber }}</p>
+          <p>Card nr. {{ ccNumber }}</p>
         </div>
         <div class="Box">
           <p>DELIVERY OPTION</p>
@@ -122,7 +134,7 @@
   .OrderDetailsContainer {
     display: flex;
     flex-direction: column;
-    margin: 5rem;
+    margin-bottom: 10rem;
   }
   .h5Title {
     display: flex;
@@ -139,6 +151,15 @@
 
   p {
     margin: 0;
+  }
+  .buttonShow {
+    margin: 5rem;
+    font-size: 1rem;
+  }
+  .buttonDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .Box {
