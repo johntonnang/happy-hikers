@@ -2,7 +2,7 @@
   <footer class="footer">
     <div class="footer-container">
       <ul>
-        <li class="bold-footer-text"><a href="#">Customer service</a></li>
+        <li class="bold-footer-text">Customer service</li>
         <li><a href="mailto:happyhikers@iths.se">Contact us</a></li>
         <router-link to="/CommonQuestionsView"
           ><li><a href="#">Common questions</a></li></router-link
@@ -10,21 +10,21 @@
         <li><a href="#">Purchase conditions</a></li>
       </ul>
       <ul>
-        <li class="bold-footer-text"><a href="#">Company</a></li>
+        <li class="bold-footer-text">Company</li>
         <li><router-link to="/AboutView">About Happy Hikers</router-link></li>
-        <li><a href="#">Stores</a></li>
+        <li><router-link to="/StoreView">Stores</router-link></li>
         <li><a href="#">Partners</a></li>
         <li><a href="#">Sustainability</a></li>
       </ul>
       <ul>
-        <li class="bold-footer-text"><a href="#">Resources</a></li>
+        <li class="bold-footer-text">Resources</li>
         <li><router-link to="/BlogView">Blog</router-link></li>
         <li><a href="#">Newsletter</a></li>
         <li><a href="#">Events</a></li>
         <li><a href="#">Tutorials</a></li>
       </ul>
       <ul>
-        <li class="bold-footer-text"><a href="">Legal</a></li>
+        <li class="bold-footer-text">Legal</li>
         <li><a href="">Privacy</a></li>
         <li><a href="">Cookies</a></li>
         <li><a href="">Terms of service</a></li>
@@ -70,6 +70,7 @@
     background-color: rgba(2, 70, 2, 0.716);
     max-width: 100%;
     max-height: 100%;
+    color: #e6e6e6;
   }
 
   .footer-container {
