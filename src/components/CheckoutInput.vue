@@ -66,7 +66,8 @@
           zip,
           card,
           exp,
-          cvv
+          cvv,
+          ccName
         } = JSON.parse(savedData)
         this.name = name
         this.email = email
@@ -78,6 +79,7 @@
         this.card = card
         this.exp = exp
         this.cvv = cvv
+        this.ccName = ccName
         this.number = number
         this.saveData = true
       }

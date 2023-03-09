@@ -51,6 +51,9 @@ const mutations = {
   },
   setZip(state, zip) {
     state.zip = zip
+  },
+  setCcName(state, ccName) {
+    state.ccName = ccName
   }
 }
 const actions = {},
@@ -72,6 +75,7 @@ const actions = {},
     ccNumber: '',
     address2: '',
     zip: '',
+    ccName: '',
     orderId: null
   }
 

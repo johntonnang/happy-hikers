@@ -154,12 +154,14 @@
   }
   .buttonShow {
     margin: 5rem;
+
     font-size: 1rem;
   }
   .buttonDiv {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 2rem;
   }
 
   .Box {
