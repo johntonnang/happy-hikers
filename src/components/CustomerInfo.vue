@@ -1,7 +1,15 @@
 <script>
   import { mapActions } from 'vuex'
   import { useVuelidate } from '@vuelidate/core'
-  import { required, email, maxLength, minLength } from '@vuelidate/validators'
+  import {
+    required,
+    email,
+    maxLength,
+    minLength,
+    alpha,
+    alphaNum,
+    numeric
+  } from '@vuelidate/validators'
 
   export default {
     setup() {
@@ -9,21 +17,27 @@
     },
     validations() {
       return {
-        firstName: { required },
-        lastName: { required },
+        firstName: { required, alpha },
+        lastName: { required, alpha },
         email: { required, email },
-        address: { required },
+        address: { required, alphaNum },
         country: { required },
-        statee: { required },
-        zip: { required, minLength: minLength(4) },
+        statee: { required, alpha },
+        zip: { required, minLength: minLength(4), numeric },
         ccNumber: {
           required,
           maxLength: maxLength(16),
-          minLength: minLength(16)
+          minLength: minLength(16),
+          numeric
         },
-        ccName: { required, minLength: minLength(3) },
-        ccExpiration: { required },
-        ccCvv: { required, minLength: minLength(3), maxLength: maxLength(3) }
+        ccName: { required, minLength: minLength(3), alpha },
+        ccExpiration: { required, numeric },
+        ccCvv: {
+          required,
+          minLength: minLength(3),
+          maxLength: maxLength(3),
+          numeric
+        }
       }
     },
     data() {
@@ -411,7 +425,7 @@
                 v-if="v$.ccNumber.$dirty && v$.ccNumber.$invalid"
                 class="error"
               >
-                Credit card number is required
+                Credit card number consisting og 16 nr. is required
               </div>
             </div>
           </div>
