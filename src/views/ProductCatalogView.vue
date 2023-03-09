@@ -100,7 +100,8 @@
             colors: doc.data().colors,
             category: doc.data().category,
             rating: doc.data().rating,
-            ratingcount: doc.data().ratingcount
+            ratingcount: doc.data().ratingcount,
+            allreviews: doc.data().allreviews
           }
         })
         this.showProducts = this.products
