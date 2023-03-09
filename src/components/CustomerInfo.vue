@@ -7,7 +7,6 @@
     maxLength,
     minLength,
     alpha,
-    alphaNum,
     numeric
   } from '@vuelidate/validators'
 
@@ -20,9 +19,9 @@
         firstName: { required, alpha },
         lastName: { required, alpha },
         email: { required, email },
-        address: { required, alphaNum },
+        address: { required },
         country: { required },
-        statee: { required, alpha },
+        statee: { required },
         zip: { required, minLength: minLength(4), numeric },
         ccNumber: {
           required,
@@ -30,8 +29,8 @@
           minLength: minLength(16),
           numeric
         },
-        ccName: { required, minLength: minLength(3), alpha },
-        ccExpiration: { required, numeric },
+        ccName: { required, minLength: minLength(3) },
+        ccExpiration: { required },
         ccCvv: {
           required,
           minLength: minLength(3),
