@@ -128,7 +128,7 @@
         this.showProducts = this.products
       })
       const kontoQuery = query(collection(db, 'konto'))
-      // const livekonto = onSnapshot(kontoQuery, (snapshot) => {
+      onSnapshot(kontoQuery, (snapshot) => {
         this.accounts = snapshot.docs.map((doc) => {
           if (localStorage.getItem('email') === doc.data().email) {
             return {
