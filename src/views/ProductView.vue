@@ -115,6 +115,7 @@
             this.product = this.products[i]
           }
         }
+        this.similarProduct = []
         for (let i = 0; i < this.products.length; i++) {
           if (this.products[i].category === this.product.category) {
             if (this.products[i].id !== this.product.id)
@@ -147,9 +148,7 @@
           }
         }
       })
-
       onUnmounted(liveProducts)
-
       onUnmounted(liveKonto)
     },
 
