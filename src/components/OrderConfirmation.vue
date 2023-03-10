@@ -33,9 +33,11 @@
         orderId: '',
         show: false,
         cartItems: [],
-        totalValue: 0
+        totalValue: 0,
+        deliveryCost: 49
       }
     },
+
     mounted() {
       // let cart = localStorage.getItem('Cart')
       // if (cart !== null) {
@@ -95,6 +97,16 @@
       }
     },
     computed: {
+      total() {
+        if (localStorage.getItem('discountActive')) {
+          return this.cartItems.reduce((x, item) => x + item.price, 0) * 0.85
+        } else {
+          return this.cartItems.reduce((x, item) => x + item.price, 0)
+        }
+      },
+      delvPlussTotal() {
+        return this.total + this.deliveryCost // calculate the total
+      },
       ...mapState([
         'email',
         'firstName',
@@ -173,7 +185,7 @@
     </div>
     <div class="line" />
 
-    <h5 class="h5Title orderSummeryh5">ORDER SUMMERY:</h5>
+    <h5 class="h5Title orderSummeryh5">ORDER SUMMARY:</h5>
     <div class="orderSummeryContainer">
       <div class="cartContainer">
         <div class="cartItems" v-for="(item, index) in cartItems" :key="index">
@@ -190,46 +202,84 @@
       </div>
       <div class="totalContainer">
         <div class="total">
-          <h5>Total:</h5>
-          <h5 id="discount-active" v-if="discountActive">
-            {{ totalValue }} :-
-          </h5>
-          <h5 v-else>{{ totalValue }} :-</h5>
-          <h5 v-if="discountActive" class="total-discount">{{ total }} :-</h5>
+          <p class="font">Total:</p>
+          <p class="font" id="discount-active" v-if="discountActive">
+            {{ total }} :-
+          </p>
+          <p class="font" v-else>{{ total }} :-</p>
+          <p v-if="discountActive" class="font total-discount">
+            {{ total }} :-
+          </p>
         </div>
       </div>
     </div>
     <div class="line" />
-    <!--   <div class="totalSum">
+    <div class="totalSum">
       <div class="totals">
-        <h5>Total:</h5>
-        <h5 id="discount-active" v-if="discountActive">{{ totalValue }} :-</h5>
-        <h5 v-else>{{ totalValue }} :-</h5>
-        <h5 v-if="discountActive" class="total-discount">{{ total }} :-</h5>
+        <p class="totalsumdeliv totalp">Total:</p>
+        <div class="nr">
+          <p id="discount-active" v-if="discountActive">{{ total }} :-</p>
+          <p v-else>{{ total }} :-</p>
+          <p v-if="discountActive" class="total-discount">{{ total }} :-</p>
+        </div>
       </div>
-      <div class="delivery"><h5>Delivery</h5></div>
-    </div> -->
+
+      <div class="delivery">
+        <p class="totalsumdeliv delvp">Delivery:</p>
+        <div class="nr">
+          <p>{{ deliveryCost }};-</p>
+        </div>
+      </div>
+      <div class="totalplussdeliv">
+        <p class="totalsumdeliv">TOTAL:</p>
+        <div class="nr">
+          <p>{{ delvPlussTotal }};-</p>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <style scoped>
+  .delvp {
+    padding-right: 5px;
+  }
+  .totalp {
+    padding-right: 30px;
+  }
+  .nr {
+    display: flex;
+    justify-content: end;
+    align-items: flex-end;
+    width: 8rem;
+  }
+  .font {
+    padding: 0.5rem;
+    font-size: 1.25rem;
+  }
   .delivery {
-    width: 30%;
+    display: flex;
+    flex-direction: row;
   }
 
   .totalSum {
     padding: 2rem;
+    padding-right: 10rem;
     flex-direction: column;
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
   }
+  .totalplussdeliv {
+    display: flex;
+    padding-top: 0.75rem;
+    font-weight: 700;
+  }
   .totals {
     display: flex;
-    width: 30%;
   }
-  h5 {
-    font-weight: 600;
+  p {
+    margin-right: 1rem;
   }
   .total {
     display: flex;
@@ -238,7 +288,7 @@
     margin: 2rem 6rem 2rem 0rem;
   }
   .totalContainer {
-    padding-right: 20%;
+    padding-right: 10%;
   }
 
   .total-discount {
