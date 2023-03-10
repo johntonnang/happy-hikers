@@ -53,11 +53,11 @@
     </form>
   </div>
 -->
-  <div class="container">
+  <ol class="container">
     <h2>Common Questions</h2>
-    <div class="question1 question">
+    <li class="question1 question">
       <p class="questionTitel">
-        <strong> 1. Q: How can I order?</strong>
+        <strong> How can I order?</strong>
       </p>
       <p>
         You can order easily using our online platform. When you find a product
@@ -68,10 +68,10 @@
         any of your previously made orders. After clicking the “reorder” button
         the cart will open and you can change quantities or products.
       </p>
-    </div>
-    <div class="question2 question">
+    </li>
+    <li class="question2 question">
       <p class="questionTitel">
-        <strong> 2. Q: Why should I buy online?</strong>
+        <strong> Why should I buy online?</strong>
       </p>
       <p>
         Speeding up the process. By ordering online you will you will get prices
@@ -82,10 +82,10 @@
         orders by only couple of clicks. This will save time and effort as you
         don’t need to go through all the documents and emails from the past.
       </p>
-    </div>
-    <div class="question3 question">
+    </li>
+    <li class="question3 question">
       <p class="questionTitel">
-        <strong> 3. Q: What information should I input when ordering?</strong>
+        <strong> What information should I input when ordering?</strong>
       </p>
       <p>
         our online ordering system will ask for all the important information
@@ -93,18 +93,16 @@
         it. This will make sure the shipment is not delayed because of the lack
         of VAT number
       </p>
-    </div>
-    <div class="question4 question">
+    </li>
+    <li class="question4 question">
       <p class="questionTitel">
-        <strong> 4. Q: What payment methods can I use? </strong>
+        <strong> What payment methods can I use? </strong>
       </p>
       <p>You can use all the major credit cards.</p>
-    </div>
-    <div class="question5 question">
+    </li>
+    <li class="question5 question">
       <p class="questionTitel">
-        <strong>
-          5. Q: What should I do if the payment is not accepted?
-        </strong>
+        <strong> What should I do if the payment is not accepted? </strong>
       </p>
       <p>
         A: Please try again in a little while. If the payment is still not
@@ -113,19 +111,19 @@
         happy@hikers.se notify us about the problem. We can manage the order
         manually.
       </p>
-    </div>
-    <div class="question6 question">
+    </li>
+    <li class="question6 question">
       <p class="questionTitel">
-        <strong>6. How can I change delivery address? </strong>
+        <strong>How can I change delivery address? </strong>
       </p>
       <p>
         A: Sign in to your account and go to “my account”. On “my account” you
         can change all your contact information.
       </p>
-    </div>
-    <div class="question7 question">
+    </li>
+    <li class="question7 question">
       <p class="questionTitel">
-        <strong>7. What are the delivery charges?</strong>
+        <strong>What are the delivery charges?</strong>
       </p>
       <p>
         Delivery charges are dependent on the shipment requirements. If the
@@ -133,16 +131,20 @@
         ice) extra fee will be added to the shipment charges. You can see the
         shipping fees on the checkout process before the payment is made.
       </p>
-    </div>
-  </div>
+    </li>
+    <li
+      v-for="question in questions"
+      :key="question"
+      class="question7 question"
+    >
+      <strong>{{ question }}</strong>
+    </li>
+  </ol>
 
   <!--Add new questions-->
   <div class="addQuestions">
     <h2>Add new Questions</h2>
-    <p>We will answer them as soon as we here opportunity</p>
-    <ul>
-      <li v-for="question in questions" :key="question">{{ question }}</li>
-    </ul>
+    <p>We will answer them as soon as we have the opportunity</p>
     <div>
       <input type="text" v-model="newQuestion" @keydown.enter="addQuestion" />
       <button @click="addQuestion">Add Question</button>
@@ -158,7 +160,7 @@
     padding-right: 8rem;
   }
   h2 {
-    padding: 2rem;
+    padding: 1rem;
   }
   .questionTitel {
     margin: 0;

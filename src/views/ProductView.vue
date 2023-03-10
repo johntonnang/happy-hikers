@@ -123,7 +123,7 @@
             this.product = this.products[i]
           }
         }
-        this.similarProducts = []
+        this.similarProduct = []
         for (let i = 0; i < this.products.length; i++) {
           if (this.products[i].category === this.product.category) {
             if (this.products[i].id !== this.product.id)
@@ -134,7 +134,7 @@
         this.showProducts = this.products
       })
       const kontoQuery = query(collection(db, 'konto'))
-      const livekonto = onSnapshot(kontoQuery, (snapshot) => {
+      onSnapshot(kontoQuery, (snapshot) => {
         this.accounts = snapshot.docs.map((doc) => {
           if (localStorage.getItem('email') === doc.data().email) {
             return {
@@ -149,15 +149,19 @@
             }
           }
         })
-        livekonto.unsubscribe()
+        // livekonto.unsubscribe()
         // this.wish = JSON.parse(this.wish)
         this.showProducts = this.products
         for (let i = 0; i < this.accounts.length; i++) {
+          console.log(this.accounts[i])
           if (this.accounts[i]) {
+            console.log('hej')
             this.account = this.accounts[i]
           }
         }
       })
+      // onUnmounted(liveProducts)
+      // onUnmounted(liveKonto)
     },
 
     methods: {
