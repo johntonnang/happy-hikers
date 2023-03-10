@@ -225,32 +225,12 @@
   }
 
   #container {
-    /* display: flex;
-    flex-direction: column;
-    justify-content: center; */
-    /* text-align: center; */
     padding-top: 15%;
   }
 
-  /* #align-p {
-    position: absolute;
-    left: 25%;
-  } */
-
   #p-header {
     color: #ffffffdc;
-    /* margin-top: 300px;
-    opacity: 1;
-    font-weight: bold;
-    font-size: 3rem; */
   }
-
-  /* #align-h1 {
-    position: absolute;
-    display: flex;
-    top: 25%;
-    left: 40%;
-  } */
 
   h1 {
     color: #ffffffdc;
@@ -264,25 +244,10 @@
     margin-bottom: 0;
   }
 
-  #section-div {
-    /* margin-top: 50px; */
-
-    /* padding-top: 3rem; */
-    /* display: grid; */
-    /* grid-template-columns: 0.5fr 1fr; */
-  }
-
-  section {
-    /* padding-right: 40px; */
-    /* margin-top: 20px; */
-  }
-
   #line {
     margin-top: 0;
     margin-bottom: 50px;
     border-bottom: 2px solid #ddd;
-    /* width: 95%; */
-    /* margin-left: 45px; */
   }
 
   #pic-sustainability {
@@ -296,30 +261,18 @@
     margin-top: 20px;
   }
   .card {
-    /* box-shadow: 0 4px 8px 0 rgba(169, 166, 166, 0.2); */
     transition: 0.3s;
     margin-bottom: 40px;
-    /* max-width: 90%;
-    max-height: 100%; */
-    /* display: flex;
-    flex-direction: columns; */
-    /* display: grid;
-    grid-template-columns: 1fr 1fr; */
 
     margin-left: 5%;
 
     border-radius: 0;
-    /* border-style: none; */
+    border-style: none;
   }
 
   .card:hover {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   }
-
-  /* #container {
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-  } */
 
   .align-card-txt {
     margin-top: 30px;
@@ -368,6 +321,346 @@
     padding-bottom: 20px;
   }
 
+  @media (min-width: 1501px) and (max-width: 2000px) {
+    #align-header-text {
+      position: absolute;
+      display: flex;
+      top: 50%;
+      left: 33%;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    #p-header {
+      opacity: 1;
+      font-weight: bold;
+      font-size: 2rem;
+    }
+
+    h1 {
+      color: #ffffffdc;
+      margin-top: 20%;
+      opacity: 1;
+      font-weight: bold;
+      font-size: 5rem;
+    }
+
+    #section-div {
+      padding-top: 3rem;
+      display: grid;
+      grid-template-columns: 0.5fr 1fr;
+    }
+
+    section {
+      padding-right: 40px;
+    }
+
+    #links-div {
+      padding-right: 30px;
+    }
+
+    #line {
+      border-bottom: 2px solid #ddd;
+      width: 90%;
+      margin-left: 75px;
+    }
+
+    #pic-sustainability {
+      width: 90%;
+      margin-left: 5%;
+    }
+
+    /* CARD */
+
+    #card1 {
+      margin-top: 20px;
+    }
+    .card {
+      transition: 0.3s;
+      margin-bottom: 40px;
+      max-width: 90%;
+      max-height: 100%;
+
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+
+      border-radius: 0;
+    }
+  }
+
+  @media (min-width: 1401px) and (max-width: 1500px) {
+    #align-header-text {
+      position: absolute;
+      display: flex;
+      top: 40%;
+      left: 30%;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    #p-header {
+      opacity: 1;
+      font-weight: bold;
+      font-size: 2rem;
+    }
+
+    h1 {
+      color: #ffffffdc;
+      margin-top: 20%;
+      opacity: 1;
+      font-weight: bold;
+      font-size: 5rem;
+    }
+
+    #section-div {
+      padding-top: 3rem;
+      display: grid;
+      grid-template-columns: 0.5fr 1fr;
+    }
+
+    section {
+      padding-right: 40px;
+    }
+
+    #links-div {
+      padding-right: 30px;
+    }
+
+    #line {
+      border-bottom: 2px solid #ddd;
+      width: 90%;
+      margin-left: 65px;
+    }
+
+    #pic-sustainability {
+      width: 90%;
+      margin-left: 5%;
+    }
+
+    /* CARD */
+
+    #card1 {
+      margin-top: 20px;
+    }
+    .card {
+      transition: 0.3s;
+      margin-bottom: 40px;
+      max-width: 90%;
+      max-height: 100%;
+
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+
+      border-radius: 0;
+    }
+  }
+
+  @media (min-width: 1301px) and (max-width: 1400px) {
+    #align-header-text {
+      position: absolute;
+      display: flex;
+      top: 35%;
+      left: 30%;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    #p-header {
+      opacity: 1;
+      font-weight: bold;
+      font-size: 2rem;
+    }
+
+    h1 {
+      color: #ffffffdc;
+      margin-top: 20%;
+      opacity: 1;
+      font-weight: bold;
+      font-size: 5rem;
+    }
+
+    #section-div {
+      padding-top: 3rem;
+      display: grid;
+      grid-template-columns: 0.5fr 1fr;
+    }
+
+    section {
+      padding-right: 40px;
+    }
+
+    #links-div {
+      padding-right: 20px;
+    }
+
+    #line {
+      border-bottom: 2px solid #ddd;
+      width: 90%;
+      margin-left: 60px;
+    }
+
+    #pic-sustainability {
+      width: 90%;
+      margin-left: 5%;
+    }
+
+    /* CARD */
+
+    #card1 {
+      margin-top: 20px;
+    }
+    .card {
+      transition: 0.3s;
+      margin-bottom: 40px;
+      max-width: 90%;
+      max-height: 100%;
+
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+
+      border-radius: 0;
+    }
+  }
+
+  @media (min-width: 1251px) and (max-width: 1300px) {
+    #align-header-text {
+      position: absolute;
+      display: flex;
+      top: 35%;
+      left: 30%;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    #p-header {
+      opacity: 1;
+      font-weight: bold;
+      font-size: 2rem;
+    }
+
+    h1 {
+      color: #ffffffdc;
+      margin-top: 20%;
+      opacity: 1;
+      font-weight: bold;
+      font-size: 5rem;
+    }
+
+    #section-div {
+      padding-top: 3rem;
+      display: grid;
+      grid-template-columns: 0.5fr 1fr;
+    }
+
+    section {
+      padding-right: 40px;
+    }
+
+    #links-div {
+      padding-right: 20px;
+    }
+
+    #line {
+      border-bottom: 2px solid #ddd;
+      width: 90%;
+      margin-left: 55px;
+    }
+
+    #pic-sustainability {
+      width: 90%;
+      margin-left: 5%;
+    }
+
+    /* CARD */
+
+    #card1 {
+      margin-top: 20px;
+    }
+    .card {
+      transition: 0.3s;
+      margin-bottom: 40px;
+      max-width: 90%;
+      max-height: 100%;
+
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+
+      border-radius: 0;
+    }
+  }
+
+  @media (min-width: 1101px) and (max-width: 1250px) {
+    #align-header-text {
+      position: absolute;
+      display: flex;
+      top: 30%;
+      left: 30%;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    #p-header {
+      opacity: 1;
+      font-weight: bold;
+      font-size: 2rem;
+    }
+
+    h1 {
+      color: #ffffffdc;
+      margin-top: 20%;
+      opacity: 1;
+      font-weight: bold;
+      font-size: 5rem;
+    }
+
+    #section-div {
+      padding-top: 3rem;
+      display: grid;
+      grid-template-columns: 0.5fr 1fr;
+    }
+
+    section {
+      padding-right: 40px;
+    }
+
+    #links-div {
+      padding-right: 20px;
+    }
+
+    #line {
+      border-bottom: 2px solid #ddd;
+      width: 90%;
+      margin-left: 50px;
+    }
+
+    #pic-sustainability {
+      width: 90%;
+      margin-left: 5%;
+    }
+
+    /* CARD */
+
+    #card1 {
+      margin-top: 20px;
+    }
+    .card {
+      transition: 0.3s;
+      margin-bottom: 40px;
+      max-width: 90%;
+      max-height: 100%;
+
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+
+      border-radius: 0;
+    }
+  }
+
   @media (min-width: 901px) and (max-width: 1100px) {
     #align-header-text {
       position: absolute;
@@ -394,7 +687,6 @@
     }
 
     #section-div {
-      /* margin-top: 50px; */
       padding-top: 3rem;
       display: grid;
       grid-template-columns: 0.5fr 1fr;
@@ -402,7 +694,10 @@
 
     section {
       padding-right: 40px;
-      /* margin-top: 20px; */
+    }
+
+    #links-div {
+      padding-right: 20px;
     }
 
     #line {
@@ -432,27 +727,22 @@
 
       border-radius: 0;
     }
-
-    .card:hover {
-      box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-    }
   }
 
   @media (min-width: 751px) and (max-width: 900px) {
+    #align-header-text {
+      position: absolute;
+      display: flex;
+      top: 25%;
+      margin-left: 35%;
+    }
+
     #align-p {
       position: absolute;
-      /* left: 25%; */
     }
 
     #p-header {
       display: none;
-    }
-
-    #align-h1 {
-      position: absolute;
-      display: flex;
-      top: 25%;
-      margin-left: 30%;
     }
 
     h1 {
@@ -478,12 +768,19 @@
       padding-left: 10%;
     }
 
-    #lines {
+    #line {
       display: none;
     }
   }
 
   @media (min-width: 601px) and (max-width: 750px) {
+    #align-header-text {
+      position: absolute;
+      display: flex;
+      top: 20%;
+      margin-left: 35%;
+    }
+
     #p-header {
       display: none;
     }

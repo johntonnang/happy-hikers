@@ -259,10 +259,10 @@
           return
         } else {
           this.SizeError = false
-          this.$store.commit('addToCart')
         }
         // if (localStorage.getItem('Cart') !== null) {
         if (this.CartText === '+  Add to cart   ') {
+          this.$store.commit('addToCart')
           let cart = this.account.cart
           cart.unshift({
             id: this.product.id,
@@ -292,6 +292,7 @@
           setTimeout(() => (this.CartColor = 'rgba(0,0,0,1)'), 3350)
           setTimeout(() => (this.CartText = 'Remove from Cart'), 3350)
         } else if (this.CartText === 'Remove from Cart') {
+          this.$store.commit('removeCart')
           let cart = this.account.cart
           let i = 0
           for (let product of cart) {
@@ -350,9 +351,9 @@
         })
       },
       addToWish(id) {
-        this.$store.commit('addToWish')
         // Om en produkt ska läggas till från wishlist så körs detta
         if (this.WishText === '+  Add to wishlist   ') {
+          this.$store.commit('addToWish')
           let wish = this.account.wish
           wish.unshift({
             id: this.product.id,
@@ -380,6 +381,7 @@
           setTimeout(() => (this.WishText = 'Remove from Wishlist'), 3350)
           // Om en produkt ska tas bort från wishlist så körs detta
         } else if (this.WishText === 'Remove from Wishlist') {
+          this.$store.commit('removeWish')
           let wish = this.account.wish
           let i = 0
           for (let product of wish) {

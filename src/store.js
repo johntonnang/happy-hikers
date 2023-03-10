@@ -4,6 +4,9 @@ const mutations = {
   addToCart(state) {
     state.currentCart += 1
   },
+  removeCart(state) {
+    state.currentCart -= 1
+  },
   addToWish(state) {
     state.currentWish += 1
   },

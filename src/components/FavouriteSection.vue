@@ -56,7 +56,11 @@
               id: doc.id,
               email: doc.data().email,
               password: doc.data().password,
-              wish: doc.data().wishlist
+              name: doc.data().name,
+              phone: doc.data().phone,
+              wish: doc.data().wishlist,
+              cart: doc.data().cart,
+              registredUser: doc.data().registredUser
             }
           }
         })
@@ -117,9 +121,13 @@
         this.wishItems.splice(index, 1)
         setDoc(doc(db, 'konto', this.account.id), {
           id: this.account.id,
+          name: this.account.name,
+          phone: this.account.phone,
           email: this.account.email,
           password: this.account.password,
-          wishlist: JSON.stringify(this.wishItems)
+          wishlist: this.wishItems,
+          cart: this.account.cart,
+          registredUser: this.account.registredUser
         })
         localStorage.setItem('Wish', JSON.stringify(this.wishItems))
         console.log('Remove from wishlist')
@@ -133,8 +141,8 @@
           }
         }
         if (localStorage.getItem('Cart') !== null) {
+          this.$store.commit('addToCart')
           if (this.CartText === '+  Add to cart   ') {
-            console.log('hej')
             let cart = JSON.parse(localStorage.getItem('Cart'))
             cart.unshift({
               id: this.product.id,
@@ -145,18 +153,24 @@
             })
 
             this.removeFromWishlist(index)
-            console.log('wishItems array: ' + this.wishItems)
-            console.log('removing ' + this.product.name)
 
             /*Update cartItems shoppingcart preview */
+            setDoc(doc(db, 'konto', this.account.id), {
+              id: this.account.id,
+              name: this.account.name,
+              phone: this.account.phone,
+              email: this.account.email,
+              password: this.account.password,
+              wishlist: this.account.wish,
+              cart: cart,
+              registredUser: this.account.registredUser
+            })
             localStorage.setItem('Cart', JSON.stringify(cart))
 
             const currentCartItems = JSON.parse(localStorage.getItem('Cart'))
             this.cartItems = currentCartItems
 
             this.showCartPreview()
-
-            console.log('currentCartItems', this.cartItems)
 
             // console.log('hej 1')
             // } else if (this.CartText === 'Remove from Cart') {
