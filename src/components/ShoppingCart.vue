@@ -99,6 +99,7 @@
     },
     methods: {
       removeItem(index) {
+        this.$store.commit('removeCart')
         this.cartItems.splice(index, 1)
         setDoc(doc(db, 'konto', this.account.id), {
           id: this.account.id,
@@ -146,10 +147,8 @@
           </div>
           <div class="total">
             <h2 style="margin-right: 10px">Total:</h2>
-            <h2 id="discount-active" v-if="discountActive">
-              {{ totalValue }} :-
-            </h2>
-            <h2 v-else>{{ totalValue }} :-</h2>
+            <h2 id="discount-active" v-if="discountActive">{{ total }} :-</h2>
+            <h2 v-else>{{ total }} :-</h2>
             <h2 v-if="discountActive" class="total-discount">{{ total }} :-</h2>
           </div>
           <p id="member-active-text" v-if="discountActive">

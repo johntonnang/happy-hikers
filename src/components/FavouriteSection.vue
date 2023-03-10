@@ -141,6 +141,7 @@
           }
         }
         if (localStorage.getItem('Cart') !== null) {
+          this.$store.commit('addToCart')
           if (this.CartText === '+  Add to cart   ') {
             let cart = JSON.parse(localStorage.getItem('Cart'))
             cart.unshift({
