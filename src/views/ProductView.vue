@@ -13,7 +13,7 @@
     orderBy,
     query
   } from 'firebase/firestore'
-  import { onUnmounted, ref } from 'vue'
+  import { ref } from 'vue'
 
   const firebaseConfig = {
     apiKey: 'AIzaSyAGJoAN08CeHsyoibMdRQVpegwPibf1ANk',
@@ -75,27 +75,28 @@
       }
     },
 
-    watch: {
-      $route() {
-        this.similarProducts = []
-        for (let i = 0; i < this.products.length; i++) {
-          if (this.products[i].id === this.$route.params.id) {
-            this.product = this.products[i]
-          }
-        }
-        for (let i = 0; i < this.products.length; i++) {
-          if (this.products[i].category === this.product.category) {
-            if (this.products[i].id !== this.product.id)
-              this.similarProducts.unshift(this.products[i])
-          }
-        }
-      }
-    },
+    // watch: {
+    //   $route() {
+    //     this.similarProducts = []
+    //     for (let i = 0; i < this.products.length; i++) {
+    //       if (this.products[i].id === this.$route.params.id) {
+    //         this.product = this.products[i]
+    //       }
+    //     }
+    //     for (let i = 0; i < this.products.length; i++) {
+    //       if (this.products[i].category === this.product.category) {
+    //         if (this.products[i].id !== this.product.id)
+    //           this.similarProducts.unshift(this.products[i])
+    //       }
+    //     }
+    //   }
+    // },
+
     created() {
       this.renderDate()
       const latestQuery = query(collection(db, 'products'), orderBy('price'))
 
-      const liveProducts = onSnapshot(latestQuery, (snapshot) => {
+      onSnapshot(latestQuery, (snapshot) => {
         this.products = snapshot.docs.map((doc) => {
           return {
             id: doc.data().id,
@@ -110,6 +111,7 @@
             allreviews: doc.data().allreviews
           }
         })
+
         for (let i = 0; i < this.products.length; i++) {
           if (this.products[i].id === this.$route.params.id) {
             this.product = this.products[i]
@@ -122,10 +124,11 @@
               this.similarProducts.unshift(this.products[i])
           }
         }
+
         this.showProducts = this.products
       })
       const kontoQuery = query(collection(db, 'konto'))
-      const liveKonto = onSnapshot(kontoQuery, (snapshot) => {
+      const livekonto = onSnapshot(kontoQuery, (snapshot) => {
         this.accounts = snapshot.docs.map((doc) => {
           if (localStorage.getItem('email') === doc.data().email) {
             return {
@@ -140,6 +143,7 @@
             }
           }
         })
+        livekonto.unsubscribe()
         // this.wish = JSON.parse(this.wish)
         this.showProducts = this.products
         for (let i = 0; i < this.accounts.length; i++) {
@@ -148,13 +152,14 @@
           }
         }
       })
-      onUnmounted(liveProducts)
-      onUnmounted(liveKonto)
+      // onUnmounted(liveProducts)
+      // onUnmounted(liveKonto)
     },
 
     methods: {
       //Älskar ChatGPT
       applyReviewOnPage() {
+        console.log(this.similarProducts)
         if (this.reviewName === '' || this.reviewStars.length === 0) {
           this.SizeError = true
           return
@@ -169,6 +174,7 @@
         }
 
         const productDoc = doc(db, 'products', this.product.id)
+
         getDoc(productDoc).then((doc) => {
           if (doc.exists()) {
             const allReviews = doc.data().allreviews || []
@@ -210,11 +216,6 @@
           }
         })
       },
-
-      // this.reviewName = ''
-      //   this.reviewStars = []
-      //   this.reviewComment = ''
-      //   this.renderDate()
 
       toggleChecked(starIndex) {
         this.reviewStars = []
@@ -698,9 +699,36 @@
                   :style="{ backgroundColor: color }"
                 />
               </div>
-              <img alt="" src="/assets/rating-image.png" /> (32)
+              <div class="review-rating-similar">
+                <font-awesome-icon
+                  :class="{ checked: similarProduct.rating >= 1 }"
+                  class="font-star-similar"
+                  icon="fa-solid fa-star"
+                />
+                <font-awesome-icon
+                  :class="{ checked: similarProduct.rating >= 2 }"
+                  class="font-star-similar"
+                  icon="fa-solid fa-star"
+                />
+                <font-awesome-icon
+                  :class="{ checked: similarProduct.rating >= 3 }"
+                  class="font-star-similar"
+                  icon="fa-solid fa-star"
+                />
+                <font-awesome-icon
+                  :class="{ checked: similarProduct.rating >= 4 }"
+                  class="font-star-similar"
+                  icon="fa-solid fa-star"
+                />
+                <font-awesome-icon
+                  :class="{ checked: similarProduct.rating >= 5 }"
+                  class="font-star-similar"
+                  icon="fa-solid fa-star"
+                />
+                <p>({{ similarProduct.ratingcount }})</p>
+              </div>
             </div>
-            <h3 style="margin: 0px">{{ similarProduct.name }}</h3>
+            <h3 id="similar-heading">{{ similarProduct.name }}</h3>
             <p style="margin-top: 2px">{{ similarProduct.category }}</p>
             <h2>{{ similarProduct.price }}:-</h2>
           </div>
@@ -829,6 +857,16 @@
     /* background-color: rgb(44, 44, 44); */
     background-color: #d6d6d6;
     color: #000;
+  }
+  .color-circle-one,
+  .color-circle-two,
+  .color-circle-three,
+  .color-circle-four {
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50px;
+    margin-right: 8px;
   }
   .product-btn {
     width: 45%;
@@ -964,6 +1002,7 @@
   .product-box:hover {
     box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.202);
     border-radius: 5px;
+    cursor: pointer;
   }
   .product-box img {
     max-width: 300px;
@@ -1016,6 +1055,33 @@
     font-size: 1.1rem;
     font-weight: 600;
     color: #424242;
+  }
+  #similar-heading {
+    display: flex;
+    justify-content: left;
+    margin: 10px -2px 0px -2px;
+  }
+  .font-star-similar {
+    color: grey;
+    cursor: pointer;
+    width: 15px;
+    height: 10px;
+  }
+  .checked {
+    color: orange;
+  }
+
+  .review-rating-similar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    height: 20px;
+  }
+
+  .review-rating-similar p {
+    margin-top: 15px;
+    margin-left: 3px;
   }
 
   @media (max-width: 900px) {

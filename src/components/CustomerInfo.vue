@@ -1,7 +1,44 @@
 <script>
   import { mapActions } from 'vuex'
+  import { useVuelidate } from '@vuelidate/core'
+  import {
+    required,
+    email,
+    maxLength,
+    minLength,
+    alpha,
+    numeric
+  } from '@vuelidate/validators'
 
   export default {
+    setup() {
+      return { v$: useVuelidate() }
+    },
+    validations() {
+      return {
+        firstName: { required, alpha },
+        lastName: { required, alpha },
+        email: { required, email },
+        address: { required },
+        country: { required },
+        statee: { required },
+        zip: { required, minLength: minLength(4), numeric },
+        ccNumber: {
+          required,
+          maxLength: maxLength(16),
+          minLength: minLength(16),
+          numeric
+        },
+        ccName: { required, minLength: minLength(3) },
+        ccExpiration: { required },
+        ccCvv: {
+          required,
+          minLength: minLength(3),
+          maxLength: maxLength(3),
+          numeric
+        }
+      }
+    },
     data() {
       return {
         firstName: '',
@@ -19,6 +56,7 @@
         debit: '',
         paypal: '',
         ccNumber: '',
+        ccName: '',
         ccExpiration: '',
         ccCvv: '',
         saveData: false
@@ -41,6 +79,7 @@
         this.sameaddress = savedData.sameaddress
         this.saveInfo = savedData.saveInfo
         this.credit = savedData.credit
+        this.ccName = savedData.ccName
         this.debit = savedData.debit
         this.paypal = savedData.paypal
         this.ccNumber = savedData.ccNumber
@@ -61,11 +100,18 @@
         'setPaypal',
         'setLastName',
         'setPhone',
+        'setCcName',
         'setCcNumber',
         'setAddress2',
         'setZip'
       ]),
-      sendData() {
+      async sendData() {
+        console.log('v', this.v$)
+        // Validate before submitting to vuex store + local storage.
+        const result = await this.v$.$validate()
+        if (!result) {
+          return
+        }
         this.$store.commit('setEmail', this.email)
         this.$store.commit('setName', this.firstName)
         this.$store.commit('setAddress', this.address)
@@ -80,6 +126,7 @@
         this.$store.commit('setCcNumber', this.ccNumber)
         this.$store.commit('setAddress2', this.address2)
         this.$store.commit('setZip', this.zip)
+        this.$store.commit('setCcname', this.ccName)
         const data = {
           firstName: this.firstName,
           lastName: this.lastName,
@@ -93,6 +140,7 @@
           sameaddress: this.sameaddress,
           saveInfo: this.saveInfo,
           credit: this.credit,
+          ccName: this.ccName,
           debit: this.debit,
           paypal: this.paypal,
           ccNumber: this.ccNumber,
@@ -106,14 +154,9 @@
         } else {
           localStorage.removeItem('data')
         }
+
+        this.$router.push('/ConfirmationView')
       }
-      /* submitForm(event) {
-        if (event.target.checkValidity() === false) {
-          event.preventDefault()
-          event.stopPropagation()
-        }
-        event.target.classList.add('was-validated')
-      }*/
     }
   }
 </script>
@@ -137,11 +180,20 @@
                 v-model="firstName"
                 type="text"
                 class="form-control"
+                :class="{
+                  invalid: v$.firstName.$dirty && v$.firstName.$invalid
+                }"
                 id="firstName"
                 placeholder=""
                 required=""
               />
-              <div class="invalid-feedback">Valid first name is required.</div>
+
+              <div
+                v-if="v$.firstName.$dirty && v$.firstName.$invalid"
+                class="error"
+              >
+                Valid first name is required.
+              </div>
             </div>
             <div class="col-md-6 mb-3">
               <label for="lastName">Last name</label>
@@ -149,26 +201,36 @@
                 v-model="lastName"
                 type="text"
                 class="form-control"
+                :class="{
+                  invalid: v$.lastName.$dirty && v$.lastName.$invalid
+                }"
                 id="lastName"
                 placeholder=""
                 required=""
               />
-              <div class="invalid-feedback">Valid last name is required.</div>
+              <div
+                v-if="v$.lastName.$dirty && v$.lastName.$invalid"
+                class="error"
+              >
+                Valid last name is required.
+              </div>
             </div>
           </div>
 
           <div class="mb-3">
-            <label for="email"
-              >Email <span class="text-muted">(Optional)</span></label
-            >
+            <label for="email">Email <span class="text-muted" /></label>
             <input
               v-model="email"
               type="email"
               class="form-control"
+              :class="{
+                invalid: v$.email.$dirty && v$.email.$invalid
+              }"
               id="email"
               placeholder="you@example.com"
+              required=""
             />
-            <div class="invalid-feedback">
+            <div v-if="v$.email.$dirty && v$.email.$invalid" class="error">
               Please enter a valid email address for shipping updates.
             </div>
           </div>
@@ -178,11 +240,14 @@
               v-model="address"
               type="text"
               class="form-control"
+              :class="{
+                invalid: v$.address.$dirty && v$.address.$invalid
+              }"
               id="address"
               placeholder="1234 Main St"
               required=""
             />
-            <div class="invalid-feedback">
+            <div v-if="v$.address.$dirty && v$.address.$invalid" class="error">
               Please enter your shipping address.
             </div>
           </div>
@@ -204,6 +269,9 @@
               <select
                 v-model="country"
                 class="custom-select d-block w-100"
+                :class="{
+                  invalid: v$.country.$dirty && v$.country.$invalid
+                }"
                 id="country"
                 required=""
               >
@@ -212,7 +280,12 @@
                 <option>Norway</option>
                 <option>France</option>
               </select>
-              <div class="invalid-feedback">Please select a valid country.</div>
+              <div
+                v-if="v$.country.$dirty && v$.country.$invalid"
+                class="error"
+              >
+                Please select a country.
+              </div>
             </div>
 
             <div class="col-md-4 mb-3">
@@ -221,11 +294,16 @@
                 v-model="statee"
                 type="text"
                 class="form-control"
+                :class="{
+                  invalid: v$.statee.$dirty && v$.statee.$invalid
+                }"
                 id="statee"
                 placeholder=""
                 required=""
               />
-              <div class="invalid-feedback">Zip code required.</div>
+              <div v-if="v$.statee.$dirty && v$.statee.$invalid" class="error">
+                State is required.
+              </div>
             </div>
             <div class="col-md-3 mb-3">
               <label for="zip">Zip</label>
@@ -233,11 +311,16 @@
                 v-model="zip"
                 type="text"
                 class="form-control"
+                :class="{
+                  invalid: v$.zip.$dirty && v$.zip.$invalid
+                }"
                 id="zip"
                 placeholder=""
                 required=""
               />
-              <div class="invalid-feedback">Zip code required.</div>
+              <div v-if="v$.zip.$dirty && v$.zip.$invalid" class="error">
+                Zip code required.
+              </div>
             </div>
           </div>
           <hr class="mb-4" />
@@ -251,6 +334,7 @@
               >Shipping address is the same as my billing address</label
             >
           </div>
+
           <div class="custom-control custom-checkbox">
             <input
               type="checkbox"
@@ -267,7 +351,7 @@
           <div class="d-block my-3">
             <div class="custom-control custom-radio">
               <input
-                v-model="saveInfo"
+                v-model="credit"
                 id="credit"
                 name="paymentMethod"
                 type="radio"
@@ -279,9 +363,10 @@
                 >Credit card</label
               >
             </div>
+
             <div class="custom-control custom-radio">
               <input
-                v-model="credit"
+                v-model="debit"
                 id="debit"
                 name="paymentMethod"
                 type="radio"
@@ -290,9 +375,10 @@
               />
               <label class="custom-control-label" for="debit">Debit card</label>
             </div>
+
             <div class="custom-control custom-radio">
               <input
-                v-model="debit"
+                v-model="paypal"
                 id="paypal"
                 name="paymentMethod"
                 type="radio"
@@ -306,15 +392,20 @@
             <div class="col-md-6 mb-3">
               <label for="ccName">Name on card</label>
               <input
-                v-model="paypal"
+                v-model="ccName"
                 type="text"
                 class="form-control"
+                :class="{
+                  invalid: v$.ccName.$dirty && v$.ccName.$invalid
+                }"
                 id="ccName"
                 placeholder=""
                 required=""
               />
               <small class="text-muted">Full name as displayed on card</small>
-              <div class="invalid-feedback">Name on card is required</div>
+              <div v-if="v$.ccName.$dirty && v$.ccName.$invalid" class="error">
+                Name on card is required
+              </div>
             </div>
             <div class="col-md-6 mb-3">
               <label for="ccNumber">Credit card number</label>
@@ -322,11 +413,19 @@
                 v-model="ccNumber"
                 type="text"
                 class="form-control"
+                :class="{
+                  invalid: v$.ccNumber.$dirty && v$.ccNumber.$invalid
+                }"
                 id="ccNumber"
                 placeholder=""
                 required=""
               />
-              <div class="invalid-feedback">Credit card number is required</div>
+              <div
+                v-if="v$.ccNumber.$dirty && v$.ccNumber.$invalid"
+                class="error"
+              >
+                Credit card number consisting og 16 nr. is required
+              </div>
             </div>
           </div>
           <div class="row">
@@ -336,11 +435,19 @@
                 v-model="ccExpiration"
                 type="text"
                 class="form-control"
+                :class="{
+                  invalid: v$.ccExpiration.$dirty && v$.ccExpiration.$invalid
+                }"
                 id="ccExpiration"
                 placeholder=""
                 required=""
               />
-              <div class="invalid-feedback">Expiration date required</div>
+              <div
+                v-if="v$.ccExpiration.$dirty && v$.ccExpiration.$invalid"
+                class="error"
+              >
+                Expiration date required
+              </div>
             </div>
             <div class="col-md-3 mb-3">
               <label for="ccCvv">CVV</label>
@@ -348,23 +455,27 @@
                 v-model="ccCvv"
                 type="text"
                 class="form-control"
+                :class="{
+                  invalid: v$.ccCvv.$dirty && v$.ccCvv.$invalid
+                }"
                 id="ccCvv"
                 placeholder=""
                 required=""
               />
-              <div class="invalid-feedback">Security code required</div>
+              <div v-if="v$.ccCvv.$dirty && v$.ccCvv.$invalid" class="error">
+                Security code required
+              </div>
             </div>
           </div>
           <hr class="mb-4" />
-          <RouterLink to="/ConfirmationView">
-            <button
-              @click="sendData"
-              class="btn btn-dark btn-lg btn-block submitButton"
-              type="submit"
-            >
-              Continue to checkout
-            </button>
-          </RouterLink>
+
+          <button
+            @click.prevent="sendData"
+            class="btn btn-dark btn-lg btn-block submitButton"
+            type="submit"
+          >
+            Continue to checkout
+          </button>
         </form>
       </div>
     </div>
@@ -393,5 +504,14 @@
   }
   .custom-control-label {
     margin: 0.5rem;
+  }
+  .invalid {
+    border: none;
+    outline: 1px solid red;
+    border-radius: 5px;
+  }
+  .error {
+    font-size: 0.8rem;
+    color: red;
   }
 </style>
