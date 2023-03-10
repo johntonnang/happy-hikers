@@ -1,35 +1,49 @@
 <template>
   <footer class="footer">
     <div class="footer-container">
-      <ul>
-        <li class="bold-footer-text">Customer service</li>
-        <li><a href="mailto:happyhikers@iths.se">Contact us</a></li>
-        <router-link to="/CommonQuestionsView"
-          ><li><a href="#">Common questions</a></li></router-link
-        >
-        <li><a href="#">Purchase conditions</a></li>
-      </ul>
-      <ul>
-        <li class="bold-footer-text">Company</li>
-        <li><router-link to="/AboutView">About Happy Hikers</router-link></li>
-        <li><router-link to="/StoreView">Stores</router-link></li>
-        <li><a href="#">Partners</a></li>
-        <li><a href="#">Sustainability</a></li>
-      </ul>
-      <ul>
-        <li class="bold-footer-text">Resources</li>
-        <li><router-link to="/BlogView">Blog</router-link></li>
-        <li><router-link to="/NewsletterView">Newsletter</router-link></li>
-        <li><a href="#">Events</a></li>
-        <li><router-link to="/TutorialsView">Tutorials</router-link></li>
-      </ul>
-      <ul>
-        <li class="bold-footer-text">Legal</li>
-        <li><a href="">Privacy</a></li>
-        <li><a href="">Cookies</a></li>
-        <li><a href="">Terms of service</a></li>
-        <li><a href="">Licenses</a></li>
-      </ul>
+      <div class="smallbox">
+        <div class="box">
+          <ul>
+            <li class="bold-footer-text">Customer service</li>
+            <li><a href="mailto:happyhikers@iths.se">Contact us</a></li>
+            <router-link to="/CommonQuestionsView"
+              ><li><a href="#">Common questions</a></li></router-link
+            >
+            <li><a href="#">Purchase conditions</a></li>
+          </ul>
+        </div>
+        <div class="box">
+          <ul>
+            <li class="bold-footer-text">Company</li>
+            <li>
+              <router-link to="/AboutView">About Happy Hikers</router-link>
+            </li>
+            <li><router-link to="/StoreView">Stores</router-link></li>
+            <li><a href="#">Partners</a></li>
+            <li><a href="#">Sustainability</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="smallbox">
+        <div class="box">
+          <ul>
+            <li class="bold-footer-text">Resources</li>
+            <li><router-link to="/BlogView">Blog</router-link></li>
+            <li><router-link to="/NewsletterView">Newsletter</router-link></li>
+            <li><a href="#">Events</a></li>
+            <li><router-link to="/TutorialsView">Tutorials</router-link></li>
+          </ul>
+        </div>
+        <div class="box">
+          <ul>
+            <li class="bold-footer-text">Legal</li>
+            <li><a href="">Privacy</a></li>
+            <li><a href="">Cookies</a></li>
+            <li><a href="">Terms of service</a></li>
+            <li><a href="">Licenses</a></li>
+          </ul>
+        </div>
+      </div>
       <div class="links-container">
         <a
           href="https://www.facebook.com/groups/663870405804535/"
@@ -62,9 +76,9 @@
 
 <style scoped>
   .footer {
+    margin-top: 5rem;
     position: relative;
-    top: 100px;
-    height: 45vh;
+    height: 50vh;
     bottom: 0;
     left: 0;
     background-color: rgba(2, 70, 2, 0.716);
@@ -74,21 +88,26 @@
   }
 
   .footer-container {
-    justify-content: space-around;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
     display: flex;
-    width: 100vw;
-    padding: 2rem;
   }
 
   .footer-container ul {
-    width: 30px;
-    padding: 0px;
-    margin-right: 40px;
+    margin: 1rem;
     list-style: none;
   }
 
   .social-media-icon {
     margin: 2rem;
+  }
+  .smallbox {
+    display: flex;
+    width: 50%;
+    flex-direction: row;
+  }
+  .box {
+    width: 100%;
   }
 
   /* .footer-container {
@@ -110,6 +129,8 @@
     position: absolute;
     top: 70%;
     margin: 1rem;
+    justify-content: center;
+    align-items: center;
   }
 
   /* .social-media-icon {
@@ -134,59 +155,40 @@
   img {
     width: 30px;
   }
-  @media (max-width: 600px) {
-    .footer {
+  @media (max-width: 850px) {
+    .smallbox {
       display: flex;
-    }
-  }
-
-  @media (min-width: 801px) and (max-width: 1500px) {
-    .footer {
-      padding-top: 40px;
-      height: 70vh;
-    }
-  }
-
-  @media (min-width: 601px) and (max-width: 800px) {
-    .footer {
-      padding-top: 40px;
-      height: 70vh;
-    }
-  }
-
-  @media (min-width: 501px) and (max-width: 600px) {
-    .footer {
-      padding-top: 40px;
-      height: 70vh;
-    }
-
-    .social-media-icon {
-      margin: 2rem;
-    }
-
-    .footer-container ul {
-      width: 50px;
-      margin-right: 40px;
-    }
-  }
-
-  @media (min-width: 360px) and (max-width: 500px) {
-    #links-container {
-      top: 40px;
-    }
-
-    footer {
-      margin-top: 30px;
+      width: 50%;
+      flex-direction: column;
     }
     .footer {
-      padding-top: 40px;
-      height: 70vh;
+      height: 80vh;
     }
-
-    .footer-container ul {
-      width: 50px;
-      margin-right: 13%;
-      /* padding-right: 20%; */
+    .links-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  @media (max-width: 450px) {
+    .footer-container {
+      display: flex;
+      width: 100%;
+      flex-direction: column;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .smallbox {
+      display: flex;
+      width: 100%;
+    }
+    .footer {
+      height: 120vh;
+    }
+    .links-container {
+      margin-top: 10rem;
     }
   }
 </style>
