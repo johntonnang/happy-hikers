@@ -204,12 +204,10 @@
         <div class="total">
           <p class="font">Total:</p>
           <p class="font" id="discount-active" v-if="discountActive">
-            {{ total }} :-
+            {{ total }};-
           </p>
-          <p class="font" v-else>{{ total }} :-</p>
-          <p v-if="discountActive" class="font total-discount">
-            {{ total }} :-
-          </p>
+          <p class="font" v-else>{{ total }};-</p>
+          <p v-if="discountActive" class="font total-discount">{{ total }};-</p>
         </div>
       </div>
     </div>
@@ -219,7 +217,7 @@
         <p class="totalsumdeliv totalp">Total:</p>
         <div class="nr">
           <p id="discount-active" v-if="discountActive">{{ total }} :-</p>
-          <p v-else>{{ total }} :-</p>
+          <p v-else>{{ total }};-</p>
           <p v-if="discountActive" class="total-discount">{{ total }} :-</p>
         </div>
       </div>
@@ -247,11 +245,12 @@
   .totalp {
     padding-right: 30px;
   }
+
   .nr {
     display: flex;
     justify-content: end;
     align-items: flex-end;
-    width: 8rem;
+    width: 10rem;
   }
   .font {
     padding: 0.5rem;
@@ -264,7 +263,7 @@
 
   .totalSum {
     padding: 2rem;
-    padding-right: 10rem;
+    padding-right: 5rem;
     flex-direction: column;
     display: flex;
     justify-content: flex-end;
@@ -414,13 +413,37 @@
       margin-top: 0.5rem;
     }
 
-    @media screen and (max-width: 750px) {
+    @media screen and (max-width: 769px) {
       .summaryBox {
         display: flex;
         flex-direction: column;
       }
       .buttonShow {
         margin: 3rem;
+      }
+      .orderSummeryContainer {
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+      }
+      .totalContainer {
+        padding-top: 1rem;
+        margin: 0;
+        display: flex;
+        justify-content: end;
+        justify-items: end;
+      }
+      .productImg {
+        max-width: 100px;
+        max-height: 100px;
+
+        object-fit: cover;
+        transition: all 0.4;
+        border-top-right-radius: 5px;
+        border-top-left-radius: 5px;
+      }
+      .totalSum {
+        padding-right: 1rem;
       }
     }
   }
