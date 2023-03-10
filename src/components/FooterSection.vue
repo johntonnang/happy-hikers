@@ -78,7 +78,7 @@
   .footer {
     margin-top: 5rem;
     position: relative;
-    height: 50vh;
+    height: 60vh;
     bottom: 0;
     left: 0;
     background-color: rgba(2, 70, 2, 0.716);

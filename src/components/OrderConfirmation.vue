@@ -393,6 +393,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 5rem;
   }
   .ordeIDp {
     padding-bottom: 1rem;
