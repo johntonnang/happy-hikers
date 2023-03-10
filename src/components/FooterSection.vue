@@ -21,7 +21,7 @@
         <li><router-link to="/BlogView">Blog</router-link></li>
         <li><a href="#">Newsletter</a></li>
         <li><a href="#">Events</a></li>
-        <li><a href="#">Tutorials</a></li>
+        <li><router-link to="/TutorialsView">Tutorials</router-link></li>
       </ul>
       <ul>
         <li class="bold-footer-text">Legal</li>
