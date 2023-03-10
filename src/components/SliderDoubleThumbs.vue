@@ -1,26 +1,23 @@
 <script>
   export default {
+    emits: ['values-updated'],
     data() {
       return {
         minValue: 0,
-        maxValue: 750
+        maxValue: 1750
       }
     },
-
+    methods: {
+      updateValues() {
+        this.$emit('values-updated', this.minValue, this.maxValue)
+      }
+    },
     watch: {
       minValue() {
-        if (this.minValue > this.maxValue) {
-          this.minValue = this.maxValue
-        } else if (this.minValue < 0) {
-          this.minValue = 0
-        }
+        this.updateValues()
       },
       maxValue() {
-        if (this.maxValue < this.minValue) {
-          this.maxValue = this.minValue
-        } else if (this.maxValue >= 10000) {
-          this.maxValue = 10000
-        }
+        this.updateValues()
       }
     }
   }
@@ -42,14 +39,14 @@
         type="range"
         class="range-min"
         min="0"
-        max="5000"
+        max="2500"
         v-model="minValue"
       />
       <input
         type="range"
         class="range-max"
         min="0"
-        max="5000"
+        max="2500"
         v-model="maxValue"
       />
     </div>

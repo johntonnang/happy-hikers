@@ -79,7 +79,6 @@
 
     watch: {
       $route() {
-        this.similarProducts = []
         this.formError = false
         this.reviewApplied = false
         this.reviewName = ''
@@ -89,6 +88,7 @@
             this.product = this.products[i]
           }
         }
+        this.similarProducts = []
         for (let i = 0; i < this.products.length; i++) {
           if (this.products[i].category === this.product.category) {
             if (this.products[i].id !== this.product.id)
@@ -117,13 +117,12 @@
             allreviews: doc.data().allreviews
           }
         })
-
         for (let i = 0; i < this.products.length; i++) {
           if (this.products[i].id === this.$route.params.id) {
             this.product = this.products[i]
           }
         }
-        this.similarProduct = []
+        this.similarProducts = []
         for (let i = 0; i < this.products.length; i++) {
           if (this.products[i].category === this.product.category) {
             if (this.products[i].id !== this.product.id)
@@ -201,7 +200,6 @@
 
       addReviewSubmit() {
         this.productRef = doc(db, 'products', this.product.id.toString())
-
         if (
           this.reviewName === '' ||
           this.reviewStars.length === 0 ||
@@ -531,7 +529,42 @@
           />
           <p>({{ product.ratingcount }})</p>
         </div>
-        <select class="product-size" type="option" @change="sizeSelected">
+
+        <select
+          v-if="product.category === 'Shoes'"
+          class="product-size"
+          type="option"
+          @change="sizeSelected"
+        >
+          <option value="" disabled selected hidden>Choose a size</option>
+          <option value="36">36</option>
+          <option value="37">37</option>
+          <option value="38">38</option>
+          <option value="39">39</option>
+          <option value="40">40</option>
+          <option value="41">41</option>
+          <option value="42">42</option>
+          <option value="43">43</option>
+          <option value="44">44</option>
+        </select>
+        <select
+          v-else-if="product.category === 'Backpack'"
+          class="product-size"
+          type="option"
+          @change="sizeSelected"
+        >
+          <option value="" disabled selected hidden>Choose a size</option>
+          <option value="Small">Small</option>
+          <option value="Medium">Medium</option>
+          <option value="Large">Large</option>
+          <option value="Extra Large">Extra Large</option>
+        </select>
+        <select
+          v-else
+          class="product-size"
+          type="option"
+          @change="sizeSelected"
+        >
           <option value="" disabled selected hidden>Choose a size</option>
           <option value="XS">XS</option>
           <option value="S">S</option>
