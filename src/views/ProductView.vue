@@ -52,7 +52,9 @@
         reviewStars: [],
         reviewComment: '',
         allReviews: [],
-        noReviews: true
+        noReviews: true,
+        reviewApplied: false,
+        formError: false
       }
     },
     computed: {
@@ -75,22 +77,26 @@
       }
     },
 
-    // watch: {
-    //   $route() {
-    //     this.similarProducts = []
-    //     for (let i = 0; i < this.products.length; i++) {
-    //       if (this.products[i].id === this.$route.params.id) {
-    //         this.product = this.products[i]
-    //       }
-    //     }
-    //     for (let i = 0; i < this.products.length; i++) {
-    //       if (this.products[i].category === this.product.category) {
-    //         if (this.products[i].id !== this.product.id)
-    //           this.similarProducts.unshift(this.products[i])
-    //       }
-    //     }
-    //   }
-    // },
+    watch: {
+      $route() {
+        this.similarProducts = []
+        this.formError = false
+        this.reviewApplied = false
+        this.reviewName = ''
+        this.reviewComment = ''
+        for (let i = 0; i < this.products.length; i++) {
+          if (this.products[i].id === this.$route.params.id) {
+            this.product = this.products[i]
+          }
+        }
+        for (let i = 0; i < this.products.length; i++) {
+          if (this.products[i].category === this.product.category) {
+            if (this.products[i].id !== this.product.id)
+              this.similarProducts.unshift(this.products[i])
+          }
+        }
+      }
+    },
 
     created() {
       this.renderDate()
@@ -157,12 +163,17 @@
     methods: {
       //Älskar ChatGPT
       applyReviewOnPage() {
-        console.log(this.similarProducts)
-        if (this.reviewName === '' || this.reviewStars.length === 0) {
-          this.SizeError = true
+        if (
+          this.reviewName === '' ||
+          this.reviewStars.length === 0 ||
+          this.reviewComment === ''
+        ) {
+          this.formError = true
           return
         }
-        this.SizeError = false
+
+        this.formError = false
+        this.reviewApplied = true
 
         const newReview = {
           name: this.reviewName,
@@ -186,12 +197,17 @@
 
       addReviewSubmit() {
         this.productRef = doc(db, 'products', this.product.id.toString())
-        this.similarProducts = []
-        if (this.reviewName === '' || this.reviewStars.length === 0) {
-          this.SizeError = true
+
+        if (
+          this.reviewName === '' ||
+          this.reviewStars.length === 0 ||
+          this.reviewComment === ''
+        ) {
+          this.formError = true
           return
         }
-        this.SizeError = false
+
+        this.formError = false
 
         this.noReviews = false
         const newRating = this.reviewStars.length
@@ -574,7 +590,7 @@
               >
                 <div class="review-container-header">
                   <h4>{{ product.allreviews[index].name }},</h4>
-                  <div>
+                  <div style="margin-top: 2px">
                     <font-awesome-icon
                       :class="{
                         checked: product.allreviews[index].stars > 0
@@ -612,15 +628,20 @@
                     />
                   </div>
                 </div>
-                <p>"{{ product.allreviews[index].comment }}"</p>
+                <div id="review-date-container">
+                  <p>"{{ product.allreviews[index].comment }}"</p>
+                  <p id="date-text">{{ product.allreviews[index].date }}</p>
+                </div>
               </div>
             </div>
           </div>
         </section>
       </div>
     </section>
-
-    <section id="review-counter">
+    <h2 id="review-applied-text" v-if="reviewApplied">
+      Thank you for your review! 🌟
+    </h2>
+    <section v-else id="review-counter">
       <label for="name-input" /> Name *
       <input
         id="input-field-review"
@@ -674,6 +695,7 @@
       >
         Add Review
       </button>
+      <p v-if="formError">Please fill out all the required fields.</p>
     </section>
 
     <section class="otherInformation">
@@ -909,7 +931,7 @@
   #review-container {
     border-top: 1px solid rgb(80, 80, 80);
     padding: 10px 0px;
-    width: 70%;
+    width: 100%;
     margin-top: 30px;
   }
 
@@ -918,8 +940,8 @@
   }
 
   .review-container-box {
-    box-shadow: 1px 1px 6px black;
-    width: 100%;
+    box-shadow: 1px 3px 8px rgb(87, 87, 87);
+    width: 70%;
     margin: 20px 0px;
     padding: 10px 15px;
   }
@@ -939,6 +961,12 @@
     flex-direction: column;
     width: 50%;
     margin: 15px 0px;
+    border-bottom: 1px solid black;
+  }
+
+  #review-counter p {
+    margin-top: -15px;
+    color: red;
   }
 
   #input-field-review {
@@ -958,6 +986,14 @@
     padding-top: 0px;
   }
 
+  #date-text {
+    position: relative;
+    top: 15px;
+    display: flex;
+    justify-content: end;
+    font-size: 0.8rem;
+    color: #000000;
+  }
   .second-star-container {
     margin-bottom: 10px;
   }
@@ -975,6 +1011,7 @@
     box-shadow: 0px 0px 6px black;
     background-color: #579d5d;
     padding: 5px;
+    margin-bottom: 20px;
     color: rgb(245, 244, 244);
   }
 
@@ -982,7 +1019,6 @@
     background-color: #45804a;
   }
 
-  /* >>>>>>> 07b22a2ba142feff11db84733ed4c7cad73f8740 */
   .product-return-container {
     margin-top: 10px;
     display: grid;
@@ -1082,6 +1118,12 @@
     margin-left: 3px;
   }
 
+  #review-applied-text {
+    padding: 50px 0px;
+    width: 50%;
+    border-bottom: 1px solid black;
+  }
+
   @media (max-width: 900px) {
     section {
       display: grid;
@@ -1095,6 +1137,26 @@
       margin-left: 0px;
     }
     .product-img {
+      width: 100%;
+    }
+  }
+  @media (max-width: 760px) {
+    #textarea-review {
+      width: 100%;
+    }
+  }
+  @media (max-width: 560px) {
+    .review-container-box {
+      width: 90%;
+    }
+    #review-counter {
+      margin-top: 0px;
+      width: 75%;
+    }
+    #input-field-review {
+      width: 100%;
+    }
+    #textarea-review {
       width: 100%;
     }
   }
