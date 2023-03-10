@@ -143,11 +143,13 @@
             }
           }
         })
-        livekonto.unsubscribe()
+        // livekonto.unsubscribe()
         // this.wish = JSON.parse(this.wish)
         this.showProducts = this.products
         for (let i = 0; i < this.accounts.length; i++) {
+          console.log(this.accounts[i])
           if (this.accounts[i]) {
+            console.log('hej')
             this.account = this.accounts[i]
           }
         }
