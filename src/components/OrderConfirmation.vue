@@ -283,12 +283,12 @@
   p {
     margin-right: 1rem;
   }
-  .total {
+  /*  .total {
     display: flex;
     justify-content: end;
     align-items: flex-end;
     margin: 2rem 6rem 2rem 0rem;
-  }
+  } */
   .totalContainer {
     padding-right: 10%;
   }
@@ -347,9 +347,6 @@
     margin-top: 4rem;
   }
 
-  .boxRight {
-    padding-right: 12rem;
-  }
   .summaryBox {
     display: flex;
     flex-direction: row;
@@ -370,6 +367,8 @@
     display: flex;
     flex-direction: column;
     margin-bottom: 10rem;
+    padding-left: 12rem;
+    padding-right: 12rem;
   }
   .h5Title {
     display: flex;
@@ -416,6 +415,10 @@
       padding: 2rem;
       margin-top: 0.5rem;
     }
+    .OrderDetailsContainer {
+      padding-left: 5rem;
+      padding-right: 5rem;
+    }
 
     @media screen and (max-width: 769px) {
       .summaryBox {
@@ -436,6 +439,10 @@
         display: flex;
         justify-content: end;
         justify-items: end;
+      }
+      .OrderDetailsContainer {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
       }
       .productImg {
         max-width: 100px;
