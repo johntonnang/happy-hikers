@@ -128,7 +128,7 @@
             :key="index"
           >
             <div class="itemRow">
-              <div>
+              <div class="imageContainer">
                 <img class="productImg" :src="item.image" :alt="item.name" />
               </div>
               <div class="productInfo">
@@ -146,10 +146,10 @@
             </div>
           </div>
           <div class="total">
-            <h2 style="margin-right: 10px">Total:</h2>
-            <h2 id="discount-active" v-if="discountActive">{{ total }} :-</h2>
-            <h2 v-else>{{ total }} :-</h2>
-            <h2 v-if="discountActive" class="total-discount">{{ total }} :-</h2>
+            <p style="margin-right: 10px">Total:</p>
+            <p id="discount-active" v-if="discountActive">{{ total }} :-</p>
+            <p v-else>{{ total }} :-</p>
+            <p v-if="discountActive" class="total-discount">{{ total }} :-</p>
           </div>
           <p id="member-active-text" v-if="discountActive">
             Membership discount of 15% is active.
@@ -169,7 +169,7 @@
 <style scoped>
   .cartBox {
     background-color: rgba(238, 238, 238, 0.4);
-    padding: 4rem;
+    padding: 1rem;
     margin: 2rem;
     display: flex;
     justify-content: center;
@@ -179,9 +179,8 @@
   }
   .shoppingh1 {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 2rem;
+    text-align: center;
+    margin-top: 4rem;
   }
   main {
     position: relative;
@@ -197,9 +196,13 @@
     display: flex;
     justify-content: end;
     align-items: flex-end;
-    margin: 2rem 6rem 2rem 0rem;
+    margin: 1rem 6rem 1rem 0rem;
   }
-
+  .imageContainer {
+    display: flex;
+    align-items: center;
+    margin: 1rem;
+  }
   .total-discount {
     color: rgb(245, 8, 8);
     margin-left: 10px;
@@ -261,6 +264,9 @@
     transition: all 0.4;
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .cartItems button {
     width: 7rem;
@@ -296,22 +302,21 @@
   @media (max-width: 600px) {
     .shoppingh1 {
       padding-top: 5rem;
-      margin-left: 7rem;
     }
     .productImg {
-      width: 125px;
-      height: 125px;
+      width: 100px;
+      height: 100px;
       object-fit: cover;
       transition: all 0.4;
       border-top-right-radius: 5px;
       border-top-left-radius: 5px;
     }
-    .shoppingh1 {
+    /*  .shoppingh1 {
       display: flex;
       justify-content: flex-start;
       align-items: flex-start;
       margin-right: 0rem;
-    }
+    } */
 
     .total {
       font-size: 1.5rem;
@@ -321,7 +326,6 @@
     }
     .cartItems {
       display: flex;
-      min-width: 300px;
     }
     .itemRow {
       display: flex;
@@ -338,6 +342,10 @@
     .description {
       display: none;
     }
+    .cartBox {
+      width: auto;
+      margin: 1rem;
+    }
   }
   @media (max-width: 760px) {
     .productImg {
@@ -350,9 +358,20 @@
       display: flex;
       min-width: 400px;
     }
-
+    .total {
+      font-size: 3px;
+    }
     .description {
       font-size: 12px;
+    }
+    .cartBox {
+      padding: 1rem;
+    }
+    .total {
+      margin: 1rem;
+    }
+    .shoppingh1 {
+      padding-top: 1rem;
     }
   }
   @media (max-width: 980px) {
@@ -362,6 +381,10 @@
       background-color: rgb(246, 245, 245);
       max-width: 100%;
       position: relative;
+    }
+    .cartItems {
+      display: flex;
+      min-width: 300px;
     }
     .container {
       margin: none;
