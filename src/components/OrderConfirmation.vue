@@ -94,6 +94,9 @@
       },
       showDiv() {
         this.show = !this.show
+        if (this.showDiv) {
+          window.scrollBy(0, 1000)
+        }
       }
     },
     computed: {
