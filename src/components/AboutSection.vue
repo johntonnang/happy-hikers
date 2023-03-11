@@ -250,6 +250,12 @@
     border-bottom: 2px solid #ddd;
   }
 
+  #img-our-fabric,
+  #img-responsability {
+    width: 100%;
+    height: 100%;
+  }
+
   #pic-sustainability {
     width: 90%;
     margin-left: 5%;
@@ -366,11 +372,6 @@
       margin-left: 75px;
     }
 
-    #pic-sustainability {
-      width: 90%;
-      margin-left: 5%;
-    }
-
     /* CARD */
 
     #card1 {
@@ -381,10 +382,8 @@
       margin-bottom: 40px;
       max-width: 90%;
       max-height: 100%;
-
       display: grid;
       grid-template-columns: 1fr 1fr;
-
       border-radius: 0;
     }
   }
@@ -432,11 +431,6 @@
       border-bottom: 2px solid #ddd;
       width: 90%;
       margin-left: 65px;
-    }
-
-    #pic-sustainability {
-      width: 90%;
-      margin-left: 5%;
     }
 
     /* CARD */
@@ -500,11 +494,6 @@
       border-bottom: 2px solid #ddd;
       width: 90%;
       margin-left: 60px;
-    }
-
-    #pic-sustainability {
-      width: 90%;
-      margin-left: 5%;
     }
 
     /* CARD */
