@@ -83,7 +83,7 @@
     left: 0;
     background-color: rgba(2, 70, 2, 0.716);
     color: #e6e6e6;
-    margin-top: 5rem;
+    margin-top: 15rem;
   }
 
   .footer-container {
