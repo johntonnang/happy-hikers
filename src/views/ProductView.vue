@@ -353,8 +353,6 @@
           wishlist: this.account.wish,
           cart: this.cartItems
         })
-        this.cartItems.splice(index, 1)
-        localStorage.setItem('Cart', JSON.stringify(this.cartItems))
       },
       openProduct(id) {
         this.WishText = '+  Add to wishlist   '
