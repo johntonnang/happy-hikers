@@ -103,6 +103,7 @@
       removeItem(index) {
         this.$store.commit('removeCart')
         this.cartItems.splice(index, 1)
+        console.log(this.cartItems)
         setDoc(doc(db, 'konto', this.account.id), {
           id: this.account.id,
           email: this.account.email,

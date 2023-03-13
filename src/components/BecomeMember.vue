@@ -88,7 +88,7 @@
             password: this.memberPasswordInput,
             wishlist: wish,
             cart: cart,
-            orders: [],
+            orders: '[]',
             profilePoints: 0
           })
         }

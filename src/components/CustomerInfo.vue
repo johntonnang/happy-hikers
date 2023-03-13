@@ -84,7 +84,9 @@
         ccName: '',
         ccExpiration: '',
         ccCvv: '',
-        saveData: false
+        saveData: false,
+        account: null,
+        accounts: null
       }
     },
     created() {
