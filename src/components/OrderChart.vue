@@ -18,12 +18,18 @@
         backgroundColors: ['#012107', '#023B0D', '#036716', '#049220']
       }
     },
+    props: {
+      orders: { type: Object, required: true }
+      // colorsFilter: { type: Object, required: true }
+    },
     mounted() {
-      let orders = []
-      if (localStorage.getItem('Orders')) {
-        orders = JSON.parse(localStorage.getItem('Orders'))
-      }
-      const products = orders.flat()
+      // let orders = []
+      // if (this.products) {
+      //   this.orders = JSON.parse(localStorage.getItem('Orders'))
+      // }
+      // setTimeout(() => {
+      const products = this.orders
+      console.log(this.orders.flat())
       products.forEach((product) => {
         switch (product.category) {
           case 'Shoes':
@@ -42,6 +48,26 @@
             break
         }
       })
+      // }, 2000)
+
+      // products.forEach((product) => {
+      //   switch (product.category) {
+      //     case 'Shoes':
+      //       this.Shoes.push(product)
+      //       break
+      //     case 'Backpack':
+      //       this.Backpacks.push(product)
+      //       break
+      //     case "Men's jacket":
+      //       this.jacketsMan.push(product)
+      //       break
+      //     case "Women's jacket":
+      //       this.jacketsWoman.push(product)
+      //       break
+      //     default:
+      //       break
+      //   }
+      // })
 
       const chartData = {
         labels: ['Shoes', 'Backpacks', "Men's jacket", "Women's jacket"],

@@ -56,7 +56,7 @@
       return {
         openOrderIndex: null,
         products: null,
-        orders: JSON.parse(localStorage.getItem('Orders')),
+        orders: null,
         firstDiscount: true,
         firstDiscountDisplay: 0,
         totalValue: 0
@@ -122,7 +122,7 @@
         </div>
       </div>
     </div>
-    <OrderChart />
+    <OrderChart v-if="this.orders" :orders="this.orders.flat()" />
   </div>
 </template>
 
