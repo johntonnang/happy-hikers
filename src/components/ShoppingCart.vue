@@ -304,6 +304,18 @@
     .shoppingh1 {
       padding-top: 5rem;
     }
+    .trashImg {
+      width: 15px;
+      top: 0.5rem;
+      right: 0.5rem;
+    }
+    .productInfo {
+      margin-top: 1.5rem;
+      margin-left: 0rem;
+    }
+    .shoppingh1 {
+      margin-top: 0rem;
+    }
     .productImg {
       width: 100px;
       height: 100px;

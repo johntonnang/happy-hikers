@@ -203,7 +203,7 @@
     }
     .smallbox {
       display: flex;
-      margin-left: 0.5rem;
+
       width: 90%;
 
       flex-direction: column;
