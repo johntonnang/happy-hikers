@@ -9,7 +9,32 @@
     alpha,
     numeric
   } from '@vuelidate/validators'
+  import { initializeApp } from 'firebase/app'
+  import {
+    getFirestore,
+    onSnapshot,
+    collection,
+    doc,
+    // deleteDoc,
+    setDoc,
+    // addDoc
+    // orderBy,
+    query
+  } from 'firebase/firestore'
+  // import { onUnmounted, ref } from 'vue'
 
+  const firebaseConfig = {
+    apiKey: 'AIzaSyAGJoAN08CeHsyoibMdRQVpegwPibf1ANk',
+    authDomain: 'happy-hikers-1a875.firebaseapp.com',
+    projectId: 'happy-hikers-1a875',
+    storageBucket: 'happy-hikers-1a875.appspot.com',
+    messagingSenderId: '434497193720',
+    appId: '1:434497193720:web:5893a8bd2905affdaedd0d',
+    measurementId: 'G-QW50PLVBTN'
+  }
+  const app = initializeApp(firebaseConfig)
+
+  const db = getFirestore(app)
   export default {
     setup() {
       return { v$: useVuelidate() }
@@ -63,6 +88,31 @@
       }
     },
     created() {
+      const kontoQuery = query(collection(db, 'konto'))
+      onSnapshot(kontoQuery, (snapshot) => {
+        this.accounts = snapshot.docs.map((doc) => {
+          if (localStorage.getItem('email') === doc.data().email) {
+            return {
+              id: doc.id,
+              email: doc.data().email,
+              password: doc.data().password,
+              name: doc.data().name,
+              phone: doc.data().phone,
+              registredUser: doc.data().registredUser,
+              wish: doc.data().wishlist,
+              cart: doc.data().cart,
+              orders: JSON.parse(doc.data().orders),
+              profilePoints: doc.data().profilePoints
+            }
+          }
+        })
+        this.showProducts = this.products
+        for (let i = 0; i < this.accounts.length; i++) {
+          if (this.accounts[i]) {
+            this.account = this.accounts[i]
+          }
+        }
+      })
       const data = localStorage.getItem('data')
 
       if (data) {
@@ -154,7 +204,26 @@
         } else {
           localStorage.removeItem('data')
         }
-
+        this.order = this.account.cart
+        this.orders = this.account.orders
+        this.orders.push(this.order)
+        let profilePoints = Number(this.account.profilePoints)
+        for (let i = 0; i < this.order.length; i++) {
+          profilePoints += 197
+        }
+        setDoc(doc(db, 'konto', this.account.id), {
+          id: this.account.id,
+          email: this.account.email,
+          password: this.account.password,
+          name: this.account.name,
+          phone: this.account.phone,
+          registredUser: this.account.registredUser,
+          wishlist: this.account.wish,
+          cart: [],
+          orders: JSON.stringify(this.orders),
+          profilePoints: profilePoints
+        })
+        localStorage.setItem('ProfilePoints', profilePoints)
         this.$router.push('/ConfirmationView')
       }
     }

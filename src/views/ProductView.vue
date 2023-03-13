@@ -144,7 +144,9 @@
               phone: doc.data().phone,
               registredUser: doc.data().registredUser,
               wish: doc.data().wishlist,
-              cart: doc.data().cart
+              cart: doc.data().cart,
+              orders: doc.data().orders,
+              profilePoints: doc.data().profilePoints
             }
           }
         })
@@ -280,7 +282,9 @@
               phone: this.account.phone,
               registredUser: this.account.registredUser,
               wishlist: this.account.wish,
-              cart: cart
+              cart: cart,
+              orders: this.account.orders,
+              profilePoints: this.account.profilePoints
             })
             this.CartColor = 'rgba(0,0,0,0)'
             setTimeout(() => (this.CartText = '✓'), 350)
@@ -305,7 +309,9 @@
                   phone: this.account.phone,
                   registredUser: this.account.registredUser,
                   wishlist: this.account.wish,
-                  cart: cart
+                  cart: cart,
+                  orders: this.account.orders,
+                  profilePoints: this.account.profilePoints
                 })
               }
               i++
@@ -351,7 +357,9 @@
           phone: this.account.phone,
           registredUser: this.account.registredUser,
           wishlist: this.account.wish,
-          cart: this.cartItems
+          cart: this.cartItems,
+          orders: this.account.orders,
+          profilePoints: this.account.profilePoints
         })
         this.cartItems.splice(index, 1)
         localStorage.setItem('Cart', JSON.stringify(this.cartItems))
@@ -386,7 +394,9 @@
               phone: this.account.phone,
               registredUser: this.account.registredUser,
               wishlist: wish,
-              cart: this.account.cart
+              cart: this.account.cart,
+              orders: this.account.orders,
+              profilePoints: this.account.profilePoints
             })
 
             this.WishColor = 'rgba(0,0,0,0)'
@@ -414,7 +424,9 @@
                   phone: this.account.phone,
                   registredUser: this.account.registredUser,
                   wishlist: wish,
-                  cart: this.account.cart
+                  cart: this.account.cart,
+                  orders: this.account.orders,
+                  profilePoints: this.account.profilePoints
                 })
               }
               i++

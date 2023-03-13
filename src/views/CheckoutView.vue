@@ -2,7 +2,6 @@
   import LoginProfile from '../components/LoginProfile.vue'
   import CheckoutInput from '../components/CheckoutInput.vue'
   import CustomerInfo from '../components/CustomerInfo.vue'
-
   export default {
     components: {
       LoginProfile,
@@ -106,61 +105,72 @@
         } else {
           this.loginTrue = false
         }
-      },
-      addOrderToProfile() {
-        if (
-          this.address &&
-          this.city &&
-          this.state &&
-          this.zip &&
-          this.card &&
-          this.exp &&
-          this.cvv
-        ) {
-          if (localStorage.getItem('Orders')) {
-            this.order = JSON.parse(localStorage.getItem('Cart'))
-            this.orders = JSON.parse(localStorage.getItem('Orders'))
-            let profilePoints = Number(localStorage.getItem('ProfilePoints'))
-            for (let i = 0; i < this.order.length; i++) {
-              profilePoints += 197
-            }
-            localStorage.setItem('ProfilePoints', profilePoints)
-            this.orders.push(this.order)
-            localStorage.setItem('Orders', JSON.stringify(this.orders))
-            localStorage.removeItem('Cart')
-            localStorage.removeItem('discountActive')
-            this.$store.commit('resetCart')
-          } else {
-            this.order = JSON.parse(localStorage.getItem('Cart'))
-            for (let i = 0; i < this.order.length; i++) {
-              this.addPoints += 197
-            }
-            localStorage.setItem('ProfilePoints', this.addPoints)
-            this.orders.unshift(this.order)
-            localStorage.setItem('Orders', JSON.stringify(this.orders))
-            localStorage.removeItem('Cart')
-            localStorage.removeItem('discountActive')
-            this.$store.commit('resetCart')
-          }
-        }
-        const data = {
-          name: this.name,
-          email: this.email,
-          phone: this.phone,
-          address: this.address,
-          city: this.city,
-          state: this.state,
-          zip: this.zip,
-          card: this.card,
-          exp: this.exp,
-          cvv: this.cvv
-        }
-        if (this.saveData) {
-          localStorage.setItem('data', JSON.stringify(data))
-        } else {
-          localStorage.removeItem('data')
-        }
       }
+      // addOrderToProfile() {
+      //   if (
+      //     this.address &&
+      //     this.city &&
+      //     this.state &&
+      //     this.zip &&
+      //     this.card &&
+      //     this.exp &&
+      //     this.cvv
+      //   ) {
+      //     this.order = this.account.cart
+      //     this.orders = this.account.orders
+      //     this.orders.push(this.order)
+      //     let profilePoints = Number(this.account.profilePoints)
+      //     for (let i = 0; i < this.order.length; i++) {
+      //       profilePoints += 197
+      //     }
+      //     setDoc(doc(db, 'konto', this.account.id), {
+      //       id: this.account.id,
+      //       email: this.account.email,
+      //       password: this.account.password,
+      //       name: this.account.name,
+      //       phone: this.account.phone,
+      //       registredUser: this.account.registredUser,
+      //       wishlist: this.account.wish,
+      //       cart: [],
+      //       orders: this.orders,
+      //       profilePoints: profilePoints
+      //     })
+      //     localStorage.setItem('ProfilePoints', profilePoints)
+
+      //     // localStorage.setItem('Orders', JSON.stringify(this.orders))
+      //     // localStorage.removeItem('Cart')
+      //     localStorage.removeItem('discountActive')
+      //     this.$store.commit('resetCart')
+      //   } else {
+      //     this.order = JSON.parse(localStorage.getItem('Cart'))
+      //     for (let i = 0; i < this.order.length; i++) {
+      //       this.addPoints += 197
+      //     }
+      //     localStorage.setItem('ProfilePoints', this.addPoints)
+      //     this.orders.unshift(this.order)
+      //     localStorage.setItem('Orders', JSON.stringify(this.orders))
+      //     localStorage.removeItem('Cart')
+      //     localStorage.removeItem('discountActive')
+      //     this.$store.commit('resetCart')
+      //   }
+      //   const data = {
+      //     name: this.name,
+      //     email: this.email,
+      //     phone: this.phone,
+      //     address: this.address,
+      //     city: this.city,
+      //     state: this.state,
+      //     zip: this.zip,
+      //     card: this.card,
+      //     exp: this.exp,
+      //     cvv: this.cvv
+      //   }
+      //   if (this.saveData) {
+      //     localStorage.setItem('data', JSON.stringify(data))
+      //   } else {
+      //     localStorage.removeItem('data')
+      //   }
+      // }
     }
   }
 </script>
