@@ -504,10 +504,10 @@
         </div>
       </div>
       <div class="total">
-        <h2 style="margin-right: 10px">Total:</h2>
-        <h2 id="discount-active" v-if="discountActive">{{ total }} :-</h2>
-        <h2 v-else>{{ total }} :-</h2>
-        <h2 v-if="discountActive" class="total-discount">{{ total }} :-</h2>
+        <p style="margin-right: 10px">Total:</p>
+        <p id="discount-active" v-if="discountActive">{{ total }} :-</p>
+        <p v-else>{{ total }} :-</p>
+        <p v-if="discountActive" class="total-discount">{{ total }} :-</p>
       </div>
       <p id="member-active-text" v-if="discountActive">
         Membership discount of 15% is active.
@@ -847,7 +847,7 @@
     position: fixed;
     top: 0.5rem;
     right: 0.5rem;
-    width: 25rem;
+    width: 20rem;
     background-color: white;
     /* border: 1px solid black; */
     border: 1px solid rgb(179, 179, 179);
@@ -859,9 +859,9 @@
   }
   .trashImg {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
-    width: 1rem;
+    top: 0.5rem;
+    right: 0.5rem;
+    width: 0.75rem;
   }
 
   .trashImg:hover {
@@ -881,7 +881,7 @@
     box-shadow: 0px 46px 130px rgba(0, 25, 64, 0.142);
   }
   .total {
-    font-size: 2rem;
+    font-size: 1.5rem;
     display: flex;
     justify-content: end;
     align-items: flex-end;
@@ -905,8 +905,8 @@
     margin: 2rem 2rem 0rem 2rem;
   }
   .productImg {
-    max-width: 150px;
-    max-height: 150px;
+    max-width: 100px;
+    max-height: 100px;
     width: 250px;
     height: 250px;
     object-fit: cover;

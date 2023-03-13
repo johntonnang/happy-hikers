@@ -5,7 +5,7 @@
     getFirestore,
     onSnapshot,
     collection,
-    //doc,
+    // doc,
     // deleteDoc,
     //setDoc,
     // addDoc,
@@ -39,6 +39,41 @@
     },
 
     mounted() {
+      const kontoQuery = query(collection(db, 'konto'))
+      const liveKonto = onSnapshot(kontoQuery, (snapshot) => {
+        this.accounts = snapshot.docs.map((doc) => {
+          console.log(localStorage.getItem('email'))
+          console.log(doc.data().email)
+          if (localStorage.getItem('email') === doc.data().email) {
+            return {
+              id: doc.id,
+              email: doc.data().email,
+              password: doc.data().password,
+              name: doc.data().name,
+              phone: doc.data().phone,
+              wish: doc.data().wishlist,
+              cart: doc.data().cart,
+              registredUser: doc.data().registredUser,
+              orders: doc.data().orders,
+              profilePoints: doc.data().profilePoints
+            }
+          }
+        })
+        for (let i = 0; i < this.accounts.length; i++) {
+          console.log(1)
+          if (this.accounts[i]) {
+            this.account = this.accounts[i]
+          }
+        }
+        this.showProducts = this.products
+        console.log(this.accounts)
+        for (let i = 0; i < this.accounts.length; i++) {
+          if (this.accounts[i]) {
+            this.wishItems = this.accounts[i].wish
+            console.log(this.accounts[i].wish)
+          }
+        }
+      })
       // let cart = localStorage.getItem('Cart')
       // if (cart !== null) {
       //   this.cartItems = JSON.parse(cart)
@@ -48,7 +83,7 @@
       // }
       // this.totalValue = this.cartItems.reduce((x, item) => x + item.price, 0)
 
-      const kontoQuery = query(collection(db, 'konto'))
+      /* const kontoQuery = query(collection(db, 'konto'))
       const liveKonto = onSnapshot(kontoQuery, (snapshot) => {
         this.accounts = snapshot.docs.map((doc) => {
           console.log(localStorage.getItem('email'))
@@ -80,10 +115,28 @@
             console.log(this.accounts[i].wish)
           }
         }
-      })
+      }) */
       onUnmounted(liveKonto)
+      let cart = localStorage.getItem('Cart')
+      if (cart !== null) {
+        this.cartItems = JSON.parse(cart)
+      }
     },
+    watch: {
+      wishItems: {
+        handler: function (value) {
+          localStorage.setItem('Wish', JSON.stringify(value))
+        },
+        deep: true
+      },
+      cartItems: {
+        handler: function (value) {
+          localStorage.setItem('Cart', JSON.stringify(value))
+        },
 
+        deep: true
+      }
+    },
     created() {
       this.generateOrderId()
     },

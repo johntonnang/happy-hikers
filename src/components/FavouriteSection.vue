@@ -306,7 +306,7 @@
     position: fixed;
     top: 0.5rem;
     right: 0.5rem;
-    width: 25rem;
+    width: 20rem;
     background-color: white;
     /* border: 1px solid black; */
     border: 1px solid rgb(179, 179, 179);
@@ -318,9 +318,9 @@
   }
   .trashImg {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
-    width: 1rem;
+    top: 0.5rem;
+    right: 0.5rem;
+    width: 0.75rem;
   }
   .productInfo {
     display: flex;
@@ -343,8 +343,8 @@
     margin: 2rem;
   }
   .productImg {
-    max-width: 150px;
-    max-height: 150px;
+    max-width: 100px;
+    max-height: 100px;
     width: 250px;
     height: 250px;
     object-fit: cover;
