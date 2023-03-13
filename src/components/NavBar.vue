@@ -1,17 +1,65 @@
 <script>
+  import { initializeApp } from 'firebase/app'
+  import {
+    getFirestore,
+    onSnapshot,
+    collection,
+    query
+  } from 'firebase/firestore'
+  import { onUnmounted, ref } from 'vue'
+
+  const firebaseConfig = {
+    apiKey: 'AIzaSyAGJoAN08CeHsyoibMdRQVpegwPibf1ANk',
+    authDomain: 'happy-hikers-1a875.firebaseapp.com',
+    projectId: 'happy-hikers-1a875',
+    storageBucket: 'happy-hikers-1a875.appspot.com',
+    messagingSenderId: '434497193720',
+    appId: '1:434497193720:web:5893a8bd2905affdaedd0d',
+    measurementId: 'G-QW50PLVBTN'
+  }
+  const app = initializeApp(firebaseConfig)
+
+  const db = getFirestore(app)
+
   export default {
     data() {
       return {
+        products: ref([]),
         isActive: true,
         searchID: '',
-        products: [],
         productsSearch: [],
         id: this.$route.params.id,
+        emailStorage: '',
         storageCart: 0,
-        storageWish: 0
+        storageWish: 0,
+        wishlistLength: 0,
+        cartLength: 0
       }
     },
     created() {
+      if (localStorage.getItem('email')) {
+        this.emailStorage = localStorage.getItem('email')
+      }
+
+      const latestQuery = query(collection(db, 'konto'))
+      const liveProducts = onSnapshot(latestQuery, (snapshot) => {
+        this.accounts = snapshot.docs.map((doc) => {
+          return {
+            cart: doc.data().cart,
+            wishlist: doc.data().wishlist,
+            email: doc.data().email
+          }
+        })
+        for (let i = 0; i < this.accounts.length; i++) {
+          if (this.accounts[i].email === this.emailStorage) {
+            this.storageCart = this.accounts[i].cart.length
+            this.storageWish = this.accounts[i].wishlist.length
+          }
+        }
+
+      })
+      onUnmounted(liveProducts)
+
       fetch('/assets/api.json')
         .then((response) => response.json())
         .then((response) => {
@@ -19,14 +67,10 @@
           this.products = response
         })
 
-      if (JSON.parse(localStorage.getItem('Cart'))) {
-        const cart = JSON.parse(localStorage.getItem('Cart'))
-        this.storageCart = cart.length
-      }
-      if (JSON.parse(localStorage.getItem('Wish'))) {
-        const wish = JSON.parse(localStorage.getItem('Wish'))
-        this.storageWish = wish.length
-      }
+      // if (JSON.parse(localStorage.getItem('Wish'))) {
+      //   const wish = JSON.parse(localStorage.getItem('Wish'))
+      //   this.storageWish = wish.length
+      // }
     },
 
     methods: {

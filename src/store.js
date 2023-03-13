@@ -1,20 +1,8 @@
 import { createStore } from 'vuex'
 
 const mutations = {
-  addToCart(state) {
-    state.currentCart += 1
-  },
-  removeCart(state) {
-    state.currentCart -= 1
-  },
-  addToWish(state) {
-    state.currentWish += 1
-  },
   resetCart(state) {
     state.currentCart = 0
-  },
-  removeWish(state) {
-    state.currentWish -= 1
   },
   setEmail(state, email) {
     state.email = email
