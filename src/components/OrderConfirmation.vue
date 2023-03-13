@@ -99,6 +99,7 @@
         }
       }
     },
+
     computed: {
       total() {
         if (localStorage.getItem('discountActive')) {
