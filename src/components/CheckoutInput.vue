@@ -187,12 +187,10 @@
           </div>
         </div>
         <div class="total">
-          <h2 style="margin-right: 10px">Total:</h2>
-          <h2 id="discount-active" v-if="discountActive">
-            {{ totalValue }} :-
-          </h2>
-          <h2 v-else>{{ totalValue }} :-</h2>
-          <h2 v-if="discountActive" class="total-discount">{{ total }} :-</h2>
+          <p style="margin-right: 10px">Total:</p>
+          <p id="discount-active" v-if="discountActive">{{ totalValue }} :-</p>
+          <p v-else>{{ totalValue }} :-</p>
+          <p v-if="discountActive" class="total-discount">{{ total }} :-</p>
         </div>
         <p id="member-active-text" v-if="discountActive">
           Membership discount of 15% is active.
@@ -380,6 +378,7 @@
   .container {
     box-shadow: 0px 46px 130px rgba(0, 25, 64, 0.142);
     border-radius: 5px;
+    padding-top: 0;
   }
   .h1Checkout {
     margin: 1.5rem;
@@ -414,6 +413,19 @@
       left: 65%;
     }
   }
+  @media (max-width: 1100px) {
+    .productImg {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      transition: all 0.4;
+      border-top-right-radius: 5px;
+      border-top-left-radius: 5px;
+    }
+    .previewh {
+      padding: 0;
+    }
+  }
 
   @media (max-width: 760px) {
     .mainContainer {
@@ -422,9 +434,8 @@
       justify-content: space-between;
     }
     .shoppingcartPreview {
-      width: 90%;
       margin-top: 2rem;
-      margin-left: 1rem;
+      margin: 0;
     }
     .checkoutcontainer {
       display: flex;
@@ -434,6 +445,21 @@
     }
     .login-container svg {
       left: 85%;
+    }
+    .productImg {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      transition: all 0.4;
+      border-top-right-radius: 5px;
+      border-top-left-radius: 5px;
+    }
+    .total {
+      font-size: 1rem;
+    }
+    .previewh {
+      margin: 1rem;
+      font-size: 1rem;
     }
   }
   @media (max-width: 530px) {
