@@ -230,7 +230,6 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding-right: 2rem;
   }
 
   .checkoutInput {
@@ -454,7 +453,7 @@
     .checkoutcontainer {
       display: flex;
       flex-direction: column;
-      margin-left: 2rem;
+      margin-left: 0.5rem;
     }
 
     .login-container svg {
