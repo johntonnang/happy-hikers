@@ -103,7 +103,7 @@
             wants to be caught on the trails without a trusty water source.
             Plus, with our new bottles, you'll have a reason to stop and take a
             sip every few minutes, just to show off your cool new accessory.
-            Happy hiking, and cheers to hydration! Regenerate response
+            Happy hiking, and cheers to hydration!
           </p>
           <div class="align-btn-date">
             <button
