@@ -5,16 +5,16 @@
     getFirestore,
     onSnapshot,
     collection,
-    doc,
-    getDoc,
-    updateDoc,
+    // doc,
+    // getDoc,
+    // updateDoc,
     // deleteDoc,
-    setDoc,
+    // setDoc,
     // addDoc,
-    orderBy,
+    // orderBy,
     query
   } from 'firebase/firestore'
-  import { ref } from 'vue'
+  // import { ref } from 'vue'
 
   const firebaseConfig = {
     apiKey: 'AIzaSyAGJoAN08CeHsyoibMdRQVpegwPibf1ANk',
