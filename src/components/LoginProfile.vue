@@ -5,6 +5,7 @@
     getFirestore,
     onSnapshot,
     collection,
+    // updateDoc,
     // doc,
     // deleteDoc,
     // setDoc,
@@ -12,7 +13,7 @@
     // orderBy,
     query
   } from 'firebase/firestore'
-  import { onUnmounted } from 'vue'
+  // import { onUnmounted } from 'vue'
 
   const firebaseConfig = {
     apiKey: 'AIzaSyAGJoAN08CeHsyoibMdRQVpegwPibf1ANk',
@@ -42,7 +43,8 @@
         loadingIcon: false,
         loginAccepted: false,
         errorInput: false,
-        accounts: null
+        accounts: null,
+        accountRef: null
       }
     },
     methods: {
@@ -53,24 +55,83 @@
         this.loadingIcon = true
         this.failedInput = false
         this.errorInput = false
+        const kontoQuery = query(collection(db, 'konto'))
+        onSnapshot(kontoQuery, (snapshot) => {
+          this.accounts = snapshot.docs.map((doc) => {
+            if (this.EmailInput === doc.data().email) {
+              return {
+                id: doc.id,
+                email: doc.data().email,
+                password: doc.data().password,
+                name: doc.data().name,
+                phone: doc.data().phone,
+                registredUser: doc.data().registredUser,
+                wish: doc.data().wishlist,
+                cart: doc.data().cart
+              }
+            }
+          })
+          this.showProducts = this.products
+          for (let i = 0; i < this.accounts.length; i++) {
+            console.log(this.accounts[i])
+            if (this.accounts[i]) {
+              this.account = this.accounts[i]
+            }
+          }
+        })
         setTimeout(() => {
           let logedIn = false
           for (let accountIndex in this.accounts) {
             // console.log(this.accounts[accountIndex].password.toString());
-            console.log(this.accounts[accountIndex].email)
-            console.log(this.EmailInput)
-            if (
-              this.accounts[accountIndex].email === this.EmailInput &&
-              this.accounts[accountIndex].password.toString() ===
-                this.passwordInput
-            ) {
-              this.loginProfileAccepted(this.accounts[accountIndex].email)
-              this.failedInput = false
-              this.errorInput = false
-              logedIn = true
-              break
-            } else {
-              console.log('rrr')
+            if (this.accounts[accountIndex]) {
+              if (
+                this.accounts[accountIndex].email === this.EmailInput &&
+                this.accounts[accountIndex].password.toString() ===
+                  this.passwordInput
+              ) {
+                this.loginProfileAccepted(this.accounts[accountIndex].email)
+                this.failedInput = false
+                this.errorInput = false
+                logedIn = true
+                localStorage.setItem('email', this.accounts[accountIndex].email)
+                // let wish = ''
+                // let cart = ''
+                // let changed = false
+                // if (
+                //   this.accounts[accountIndex].wish.length === 0 &&
+                //   localStorage.getItem('wish')
+                // ) {
+                //   changed = true
+                //   wish = JSON.parse(localStorage.getItem('Wish'))
+                // } else {
+                // let wish = this.accounts[accountIndex].wish
+                // }
+
+                // if (
+                //   this.accounts[accountIndex].cart.length === 0 &&
+                //   localStorage.getItem('Cart')
+                // ) {
+                //   changed = true
+                //   cart = JSON.parse(localStorage.getItem('Cart'))
+                // } else {
+                // let cart = this.accounts[accountIndex].cart
+                // }
+                // if()
+                // if (changed === true) {
+                //   setDoc(doc(db, 'konto', this.account.id), {
+                //     id: this.account.id,
+                //     email: this.account.email,
+                //     password: this.account.password,
+                //     name: this.account.name,
+                //     phone: this.account.phone,
+                //     registredUser: this.account.registredUser,
+                //     wishlist: wish,
+                //     cart: cart
+                //   })
+                // }
+
+                break
+              }
             }
           }
           if (logedIn === false) {
@@ -93,17 +154,30 @@
     },
     emits: ['login-success'],
     created() {
-      const latestQuery = query(collection(db, 'konto'))
-      const liveProducts = onSnapshot(latestQuery, (snapshot) => {
-        this.accounts = snapshot.docs.map((doc) => {
-          return {
-            email: doc.data().email,
-            password: doc.data().password
-          }
-        })
-        this.showProducts = this.products
-      })
-      onUnmounted(liveProducts)
+      // const kontoQuery = query(collection(db, 'konto'))
+      // onSnapshot(kontoQuery, (snapshot) => {
+      //   this.accounts = snapshot.docs.map((doc) => {
+      //     if (localStorage.getItem('email') === doc.data().email) {
+      //       return {
+      //         id: doc.id,
+      //         email: doc.data().email,
+      //         password: doc.data().password,
+      //         name: doc.data().name,
+      //         phone: doc.data().phone,
+      //         registredUser: doc.data().registredUser,
+      //         wish: doc.data().wishlist,
+      //         cart: doc.data().cart
+      //       }
+      //     }
+      //   })
+      //   this.showProducts = this.products
+      //   for (let i = 0; i < this.accounts.length; i++) {
+      //     console.log(this.accounts[i])
+      //     if (this.accounts[i]) {
+      //       this.account = this.accounts[i]
+      //     }
+      //   }
+      // })
 
       const alreadyUser = localStorage.getItem('existing-user')
       if (alreadyUser) {
@@ -175,6 +249,11 @@
     width: 30px;
   }
   #login-container {
+    /* position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto; */
     display: flex;
     flex-direction: column;
     margin: 0 auto;

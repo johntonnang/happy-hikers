@@ -153,9 +153,7 @@
         // this.wish = JSON.parse(this.wish)
         this.showProducts = this.products
         for (let i = 0; i < this.accounts.length; i++) {
-          console.log(this.accounts[i])
           if (this.accounts[i]) {
-            console.log('hej')
             this.account = this.accounts[i]
           }
         }
@@ -262,70 +260,74 @@
         } else {
           this.SizeError = false
         }
-        // if (localStorage.getItem('Cart') !== null) {
-        if (this.CartText === '+  Add to cart   ') {
-          this.$store.commit('addToCart')
-          let cart = this.account.cart
-          cart.unshift({
-            id: this.product.id,
-            name: this.product.name,
-            price: this.product.price,
-            image: this.product.image,
-            description: this.product.description,
-            category: this.product.category,
-            date: this.currentDate
-          })
-          setDoc(doc(db, 'konto', this.account.id), {
-            id: this.account.id,
-            email: this.account.email,
-            password: this.account.password,
-            name: this.account.name,
-            phone: this.account.phone,
-            registredUser: this.account.registredUser,
-            wishlist: this.account.wish,
-            cart: this.account.cart
-          })
-          localStorage.setItem('Cart', JSON.stringify(cart))
-          this.CartColor = 'rgba(0,0,0,0)'
-          setTimeout(() => (this.CartText = '✓'), 350)
-          setTimeout(() => (this.CartColor = 'rgba(0,0,0)'), 350)
+        if (localStorage.getItem('email')) {
+          // if (localStorage.getItem('Cart') !== null) {
+          if (this.CartText === '+  Add to cart   ') {
+            this.$store.commit('addToCart')
+            let cart = this.account.cart
+            cart.unshift({
+              id: this.product.id,
+              name: this.product.name,
+              price: this.product.price,
+              image: this.product.image,
+              description: this.product.description,
+              category: this.product.category,
+              date: this.currentDate
+            })
+            setDoc(doc(db, 'konto', this.account.id), {
+              id: this.account.id,
+              email: this.account.email,
+              password: this.account.password,
+              name: this.account.name,
+              phone: this.account.phone,
+              registredUser: this.account.registredUser,
+              wishlist: this.account.wish,
+              cart: cart
+            })
+            this.CartColor = 'rgba(0,0,0,0)'
+            setTimeout(() => (this.CartText = '✓'), 350)
+            setTimeout(() => (this.CartColor = 'rgba(0,0,0)'), 350)
+            setTimeout(() => (this.CartColor = 'rgba(0,0,0,0)'), 3000)
+            setTimeout(() => (this.CartColor = 'rgba(0,0,0,1)'), 3350)
+            setTimeout(() => (this.CartText = 'Remove from Cart'), 3350)
+          } else if (this.CartText === 'Remove from Cart') {
+            this.$store.commit('removeCart')
+            let cart = this.account.cart
 
-          setTimeout(() => (this.CartColor = 'rgba(0,0,0,0)'), 3000)
-          setTimeout(() => (this.CartColor = 'rgba(0,0,0,1)'), 3350)
-          setTimeout(() => (this.CartText = 'Remove from Cart'), 3350)
-        } else if (this.CartText === 'Remove from Cart') {
-          this.$store.commit('removeCart')
-          let cart = this.account.cart
-          let i = 0
-          for (let product of cart) {
-            if (product.id === id) {
-              cart.splice(i, 1)
-              setDoc(doc(db, 'konto', this.account.id), {
-                id: this.account.id,
-                email: this.account.email,
-                password: this.account.password,
-                name: this.account.name,
-                phone: this.account.phone,
-                registredUser: this.account.registredUser,
-                wishlist: this.account.wish,
-                cart: cart
-              })
+            let i = 0
+            for (let product of cart) {
+              if (product.id === id) {
+                cart.splice(i, 1)
+                console.log('1')
+                setDoc(doc(db, 'konto', this.account.id), {
+                  id: this.account.id,
+                  email: this.account.email,
+                  password: this.account.password,
+                  name: this.account.name,
+                  phone: this.account.phone,
+                  registredUser: this.account.registredUser,
+                  wishlist: this.account.wish,
+                  cart: cart
+                })
+              }
+              i++
             }
-            i++
+            this.CartColor = 'rgba(0,0,0,0)'
+            setTimeout(() => (this.CartText = '✓'), 350)
+            setTimeout(() => (this.CartColor = 'rgba(0,0,0)'), 350)
+            setTimeout(() => (this.CartColor = 'rgba(0,0,0,0)'), 3000)
+            setTimeout(() => (this.CartColor = 'rgba(0,0,0,1)'), 3350)
+            setTimeout(() => (this.CartText = '+  Add to cart   '), 3350)
           }
-          this.CartColor = 'rgba(0,0,0,0)'
-          setTimeout(() => (this.CartText = '✓'), 350)
-          setTimeout(() => (this.CartColor = 'rgba(0,0,0)'), 350)
-          setTimeout(() => (this.CartColor = 'rgba(0,0,0,0)'), 3000)
-          setTimeout(() => (this.CartColor = 'rgba(0,0,0,1)'), 3350)
-          setTimeout(() => (this.CartText = '+  Add to cart   '), 3350)
+          this.showCartPreview()
+          this.cartItems = this.account.cart
+          this.totalValue = this.cartItems.reduce(
+            (x, item) => x + item.price,
+            0
+          )
+        } else {
+          this.$router.push('/Profile')
         }
-
-        const currentCartItems = this.account.cart
-        this.cartItems = currentCartItems
-
-        this.showCartPreview()
-        this.totalValue = this.cartItems.reduce((x, item) => x + item.price, 0)
       },
 
       showCartPreview() {
@@ -353,64 +355,70 @@
         })
       },
       addToWish(id) {
-        // Om en produkt ska läggas till från wishlist så körs detta
-        if (this.WishText === '+  Add to wishlist   ') {
-          this.$store.commit('addToWish')
-          let wish = this.account.wish
-          wish.unshift({
-            id: this.product.id,
-            name: this.product.name,
-            price: this.product.price,
-            image: this.product.image,
-            description: this.product.description
-          })
-          setDoc(doc(db, 'konto', this.account.id), {
-            id: this.account.id,
-            email: this.account.email,
-            password: this.account.password,
-            name: this.account.name,
-            phone: this.account.phone,
-            registredUser: this.account.registredUser,
-            wishlist: wish,
-            cart: this.account.cart
-          })
-          this.WishColor = 'rgba(0,0,0,0)'
-          setTimeout(() => (this.WishText = '✓'), 350)
-          setTimeout(() => (this.WishColor = 'rgba(0,0,0)'), 350)
+        if (localStorage.getItem('email')) {
+          // Om en produkt ska läggas till från wishlist så körs detta
+          if (this.WishText === '+  Add to wishlist   ') {
+            this.$store.commit('addToWish')
+            let wish = this.account.wish
 
-          setTimeout(() => (this.WishColor = 'rgba(0,0,0,0)'), 3000)
-          setTimeout(() => (this.WishColor = 'rgba(0,0,0,1)'), 3350)
-          setTimeout(() => (this.WishText = 'Remove from Wishlist'), 3350)
-          // Om en produkt ska tas bort från wishlist så körs detta
-        } else if (this.WishText === 'Remove from Wishlist') {
-          this.$store.commit('removeWish')
-          let wish = this.account.wish
-          let i = 0
-          for (let product of wish) {
-            console.log(1)
-            if (product.id === id) {
-              console.log(2)
-              wish.splice(i, 1)
-              setDoc(doc(db, 'konto', this.account.id), {
-                id: this.account.id,
-                email: this.account.email,
-                password: this.account.password,
-                name: this.account.name,
-                phone: this.account.phone,
-                registredUser: this.account.registredUser,
-                wishlist: wish,
-                cart: this.account.cart
-              })
+            wish.unshift({
+              id: this.product.id,
+              name: this.product.name,
+              price: this.product.price,
+              image: this.product.image,
+              description: this.product.description
+            })
+            setDoc(doc(db, 'konto', this.account.id), {
+              id: this.account.id,
+              email: this.account.email,
+              password: this.account.password,
+              name: this.account.name,
+              phone: this.account.phone,
+              registredUser: this.account.registredUser,
+              wishlist: wish,
+              cart: this.account.cart
+            })
+
+            this.WishColor = 'rgba(0,0,0,0)'
+            setTimeout(() => (this.WishText = '✓'), 350)
+            setTimeout(() => (this.WishColor = 'rgba(0,0,0)'), 350)
+
+            setTimeout(() => (this.WishColor = 'rgba(0,0,0,0)'), 3000)
+            setTimeout(() => (this.WishColor = 'rgba(0,0,0,1)'), 3350)
+            setTimeout(() => (this.WishText = 'Remove from Wishlist'), 3350)
+            // Om en produkt ska tas bort från wishlist så körs detta
+          } else if (this.WishText === 'Remove from Wishlist') {
+            this.$store.commit('removeWish')
+            let wish = this.account.wish
+            let i = 0
+            for (let product of wish) {
+              console.log(1)
+              if (product.id === id) {
+                console.log(2)
+                wish.splice(i, 1)
+                setDoc(doc(db, 'konto', this.account.id), {
+                  id: this.account.id,
+                  email: this.account.email,
+                  password: this.account.password,
+                  name: this.account.name,
+                  phone: this.account.phone,
+                  registredUser: this.account.registredUser,
+                  wishlist: wish,
+                  cart: this.account.cart
+                })
+              }
+              i++
             }
-            i++
-          }
-          this.WishColor = 'rgba(0,0,0,0)'
-          setTimeout(() => (this.WishText = '✓'), 350)
-          setTimeout(() => (this.WishColor = 'rgba(0,0,0)'), 350)
+            this.WishColor = 'rgba(0,0,0,0)'
+            setTimeout(() => (this.WishText = '✓'), 350)
+            setTimeout(() => (this.WishColor = 'rgba(0,0,0)'), 350)
 
-          setTimeout(() => (this.WishColor = 'rgba(0,0,0,0)'), 3000)
-          setTimeout(() => (this.WishColor = 'rgba(0,0,0,1)'), 3350)
-          setTimeout(() => (this.WishText = '+  Add to wishlist   '), 3350)
+            setTimeout(() => (this.WishColor = 'rgba(0,0,0,0)'), 3000)
+            setTimeout(() => (this.WishColor = 'rgba(0,0,0,1)'), 3350)
+            setTimeout(() => (this.WishText = '+  Add to wishlist   '), 3350)
+          }
+        } else {
+          this.$router.push('/Profile')
         }
         // } else {
         //   let wish = null
@@ -766,6 +774,9 @@
 </template>
 
 <style scoped>
+  LoginProfile {
+    position: absolute;
+  }
   .close-button {
     position: absolute;
     top: 1rem;

@@ -36,6 +36,7 @@
       profileLogOut() {
         localStorage.removeItem('existing-user')
         localStorage.removeItem('registred-user')
+        localStorage.removeItem('email')
       }
     }
   }

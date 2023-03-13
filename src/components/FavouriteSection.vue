@@ -129,7 +129,6 @@
           cart: this.account.cart,
           registredUser: this.account.registredUser
         })
-        localStorage.setItem('Wish', JSON.stringify(this.wishItems))
         console.log('Remove from wishlist')
         this.$store.commit('removeWish')
       },
@@ -140,70 +139,35 @@
             this.product = this.wishItems[product]
           }
         }
-        if (localStorage.getItem('Cart') !== null) {
-          this.$store.commit('addToCart')
-          if (this.CartText === '+  Add to cart   ') {
-            let cart = JSON.parse(localStorage.getItem('Cart'))
-            cart.unshift({
-              id: this.product.id,
-              name: this.product.name,
-              price: this.product.price,
-              image: this.product.image,
-              description: this.product.description
-            })
+        this.$store.commit('addToCart')
+        if (this.CartText === '+  Add to cart   ') {
+          let cart = this.account.cart
+          cart.unshift({
+            id: this.product.id,
+            name: this.product.name,
+            price: this.product.price,
+            image: this.product.image,
+            description: this.product.description
+          })
 
-            this.removeFromWishlist(index)
+          this.removeFromWishlist(index)
 
-            /*Update cartItems shoppingcart preview */
-            setDoc(doc(db, 'konto', this.account.id), {
-              id: this.account.id,
-              name: this.account.name,
-              phone: this.account.phone,
-              email: this.account.email,
-              password: this.account.password,
-              wishlist: this.account.wish,
-              cart: cart,
-              registredUser: this.account.registredUser
-            })
-            localStorage.setItem('Cart', JSON.stringify(cart))
+          /*Update cartItems shoppingcart preview */
+          setDoc(doc(db, 'konto', this.account.id), {
+            id: this.account.id,
+            name: this.account.name,
+            phone: this.account.phone,
+            email: this.account.email,
+            password: this.account.password,
+            wishlist: this.account.wish,
+            cart: cart,
+            registredUser: this.account.registredUser
+          })
 
-            const currentCartItems = JSON.parse(localStorage.getItem('Cart'))
-            this.cartItems = currentCartItems
+          const currentCartItems = JSON.parse(localStorage.getItem('Cart'))
+          this.cartItems = currentCartItems
 
-            this.showCartPreview()
-
-            // console.log('hej 1')
-            // } else if (this.CartText === 'Remove from Cart') {
-            //   let cart = JSON.parse(localStorage.getItem('Cart'))
-            //   console.log(cart)
-            //   let i = 0
-            //   for (let product of cart) {
-            //     console.log(product)
-            //     console.log(product.id + '   ' + id)
-
-            //     if (product.id === id) {
-            //       cart.splice(i, 1)
-            //       localStorage.setItem('Cart', JSON.stringify(cart))
-            //     }
-            //     i++
-            //   }
-          }
-        } else {
-          let cart = null
-          if (this.CartText === '+  Add to cart   ') {
-            console.log('hej 3')
-            cart = [
-              {
-                id: this.product.id,
-                name: this.product.name,
-                price: this.product.price,
-                image: this.product.image,
-                description: this.product.description
-              }
-            ]
-            this.removeFromWishlist(index)
-            localStorage.setItem('Cart', JSON.stringify(cart))
-          }
+          this.showCartPreview()
         }
       },
       /*Shopping cart preview*/
