@@ -56,7 +56,6 @@
             this.storageWish = this.accounts[i].wishlist.length
           }
         }
-
       })
       onUnmounted(liveProducts)
 
