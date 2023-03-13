@@ -170,8 +170,11 @@
             profilePoints: this.account.profilePoints
           })
 
-          const currentCartItems = JSON.parse(localStorage.getItem('Cart'))
-          this.cartItems = currentCartItems
+          this.cartItems = this.account.cart
+          this.totalValue = this.cartItems.reduce(
+            (x, item) => x + item.price,
+            0
+          )
 
           this.showCartPreview()
         }
