@@ -149,6 +149,8 @@
 
   a:hover {
     color: #d6d6d6;
+    font-weight: bold;
+    transition: 0.6s;
   }
 
   img {
