@@ -1,6 +1,6 @@
 <script>
   import ProductList from '../components/ProductList.vue'
-  import ChildComponent from '../components/SliderDoubleThumbs.vue'
+  import Pricerange from '../components/SliderDoubleThumbs.vue'
   import 'vue3-carousel/dist/carousel.css'
   import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
   import { initializeApp } from 'firebase/app'
@@ -55,11 +55,13 @@
         carouselImg: [
           '/assets/apiImg/Mountaineer.png',
           '/assets/apiImg/Roamer.png'
-        ]
+        ],
+        minValue: 0,
+        maxValue: 1750
       }
     },
     components: {
-      ChildComponent,
+      Pricerange,
       Carousel,
       Slide,
       ProductList,
@@ -109,6 +111,10 @@
       onUnmounted(liveProducts)
     },
     methods: {
+      handleValuesUpdated(minValue, maxValue) {
+        this.minValue = minValue
+        this.maxValue = maxValue
+      },
       openProduct(id) {
         this.$router.push({
           path: '/ProductView/' + id,
@@ -182,6 +188,13 @@
       }
     },
     computed: {
+      filteredProducts() {
+        return this.showProducts.filter((product) => {
+          return (
+            product.price >= this.minValue && product.price <= this.maxValue
+          )
+        })
+      },
       itemsToShow() {
         return window.innerWidth < 760 ? 1 : 3
       }
@@ -204,9 +217,8 @@
     />
     <div id="main-products-container">
       <div id="product-selection-container">
-        <div class="filter-container">
+        <div v-if="category !== 'shoes'" class="filter-container">
           <h3 style="margin-top: 0px">Size</h3>
-
           <div class="checkbox-container">
             <input type="checkbox" value="XS" name="size" />
             <label for="sizeXSmall" /> XS
@@ -230,6 +242,58 @@
           <div class="checkbox-container">
             <input type="checkbox" value="XXL" name="size" />
             <label for="sizeXXLarge" /> XXL
+          </div>
+        </div>
+        <div
+          v-if="category === 'shoes' || category === undefined"
+          class="filter-container filter-container-shoes"
+        >
+          <h3 style="margin-top: 0px">Shoe Size</h3>
+          <div class="shoe-box-container">
+            <div>
+              <div class="checkbox-container">
+                <input type="checkbox" value="XS" name="size" />
+                <label for="sizeXSmall" /> 36
+              </div>
+              <div class="checkbox-container">
+                <input type="checkbox" value="S" name="size" />
+                <label for="sizeSmall" /> 37
+              </div>
+              <div class="checkbox-container">
+                <input type="checkbox" value="M" name="size" />
+                <label for="sizeMedium" /> 38
+              </div>
+              <div class="checkbox-container">
+                <input type="checkbox" value="L" name="size" />
+                <label for="sizeLarge" /> 39
+              </div>
+              <div class="checkbox-container">
+                <input type="checkbox" value="XL" name="size" />
+                <label for="sizeXLarge" /> 40
+              </div>
+            </div>
+            <div>
+              <div class="checkbox-container">
+                <input type="checkbox" value="XXL" name="size" />
+                <label for="sizeXXLarge" /> 41
+              </div>
+              <div class="checkbox-container">
+                <input type="checkbox" value="XXL" name="size" />
+                <label for="sizeXXLarge" /> 42
+              </div>
+              <div class="checkbox-container">
+                <input type="checkbox" value="XXL" name="size" />
+                <label for="sizeXXLarge" /> 43
+              </div>
+              <div class="checkbox-container">
+                <input type="checkbox" value="XXL" name="size" />
+                <label for="sizeXXLarge" /> 44
+              </div>
+              <div class="checkbox-container">
+                <input type="checkbox" value="XXL" name="size" />
+                <label for="sizeXXLarge" /> 45
+              </div>
+            </div>
           </div>
         </div>
         <div class="filter-container">
@@ -310,14 +374,14 @@
           style="margin-bottom: 20px"
         >
           <h3>Price</h3>
-          <ChildComponent />
+          <Pricerange @values-updated="handleValuesUpdated" />
         </div>
       </div>
-
+      <!-- :products="this.showProducts" -->
       <product-list
-        :products="this.showProducts"
         :colors-filter="this.colorFilter"
         :show-products="this.showProducts"
+        :products="this.filteredProducts"
       />
     </div>
     <h4 id="carousel-intro-text">YOU MAY ALSO LIKE</h4>
@@ -427,6 +491,11 @@
     margin-bottom: 5px;
     display: flex;
     gap: 3px;
+  }
+
+  .shoe-box-container {
+    display: flex;
+    gap: 20px;
   }
 
   .filter-container {

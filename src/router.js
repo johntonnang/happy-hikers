@@ -13,6 +13,8 @@ import CommonQuestionView from './views/CommonQuestionsView.vue'
 import AboutView from './views/AboutView.vue'
 import BlogView from './views/BlogView.vue'
 import StoreView from './views/StoreView.vue'
+import TutorialsView from './views/TutorialsView.vue'
+import NewsletterView from './views/NewsletterView.vue'
 
 export default createRouter({
   history: createWebHashHistory(),
@@ -72,6 +74,14 @@ export default createRouter({
     {
       component: StoreView,
       path: '/StoreView'
+    },
+    {
+      component: TutorialsView,
+      path: '/TutorialsView'
+    },
+    {
+      component: NewsletterView,
+      path: '/NewsletterView'
     }
   ]
 })

@@ -48,4 +48,7 @@
   .loginProfile {
     display: none;
   }
+  main {
+    margin-bottom: 4rem;
+  }
 </style>

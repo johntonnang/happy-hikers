@@ -491,6 +491,7 @@
   }
   .container {
     width: 100%;
+    padding-bottom: 3rem;
   }
   .row {
     width: 100%;
@@ -513,5 +514,10 @@
   .error {
     font-size: 0.8rem;
     color: red;
+  }
+  @media screen and (max-width: 750px) {
+    .container {
+      width: 100%;
+    }
   }
 </style>
