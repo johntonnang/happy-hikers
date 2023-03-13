@@ -234,7 +234,7 @@
   }
 
   .checkoutInput {
-    padding-bottom: 5rem;
+    padding-bottom: 1rem;
     display: flex;
     justify-content: flex-end;
     width: 30%;
@@ -251,7 +251,6 @@
   .checkoutcontainer {
     display: flex;
     flex-direction: column;
-    width: 100%;
     margin-left: 2rem;
   }
   .login-container {
@@ -392,6 +391,7 @@
     margin: 1rem;
   }
   .container {
+    padding-top: 2rem;
     box-shadow: 0px 46px 130px rgba(0, 25, 64, 0.142);
     border-radius: 5px;
   }
@@ -441,6 +441,7 @@
     }
     .customerInfo {
       width: 90%;
+      margin-bottom: 5rem;
     }
     .checkoutInput {
       width: 90%;
@@ -453,7 +454,6 @@
     .checkoutcontainer {
       display: flex;
       flex-direction: column;
-      width: 100%;
       margin-left: 2rem;
     }
 
