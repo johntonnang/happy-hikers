@@ -339,6 +339,18 @@
       },
 
       removeItem(index) {
+        this.$store.commit('removeCart')
+        this.cartItems.splice(index, 1)
+        setDoc(doc(db, 'konto', this.account.id), {
+          id: this.account.id,
+          email: this.account.email,
+          password: this.account.password,
+          name: this.account.name,
+          phone: this.account.phone,
+          registredUser: this.account.registredUser,
+          wishlist: this.account.wish,
+          cart: this.cartItems
+        })
         this.cartItems.splice(index, 1)
         localStorage.setItem('Cart', JSON.stringify(this.cartItems))
       },
@@ -475,8 +487,8 @@
       </div>
       <div class="total">
         <h2 style="margin-right: 10px">Total:</h2>
-        <h2 id="discount-active" v-if="discountActive">{{ totalValue }} :-</h2>
-        <h2 v-else>{{ totalValue }} :-</h2>
+        <h2 id="discount-active" v-if="discountActive">{{ total }} :-</h2>
+        <h2 v-else>{{ total }} :-</h2>
         <h2 v-if="discountActive" class="total-discount">{{ total }} :-</h2>
       </div>
       <p id="member-active-text" v-if="discountActive">
@@ -829,6 +841,10 @@
     top: 1rem;
     right: 1rem;
     width: 1rem;
+  }
+
+  .trashImg:hover {
+    cursor: pointer;
   }
   .productInfo {
     display: flex;
