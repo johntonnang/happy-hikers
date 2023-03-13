@@ -1,9 +1,56 @@
 <script>
   import OrderChart from './OrderChart.vue'
+  import { initializeApp } from 'firebase/app'
+  import {
+    getFirestore,
+    onSnapshot,
+    collection,
+    // doc,
+    // getDoc,
+    // updateDoc,
+    // deleteDoc,
+    // setDoc,
+    // addDoc,
+    // orderBy,
+    query
+  } from 'firebase/firestore'
+  // import { ref } from 'vue'
 
+  const firebaseConfig = {
+    apiKey: 'AIzaSyAGJoAN08CeHsyoibMdRQVpegwPibf1ANk',
+    authDomain: 'happy-hikers-1a875.firebaseapp.com',
+    projectId: 'happy-hikers-1a875',
+    storageBucket: 'happy-hikers-1a875.appspot.com',
+    messagingSenderId: '434497193720',
+    appId: '1:434497193720:web:5893a8bd2905affdaedd0d',
+    measurementId: 'G-QW50PLVBTN'
+  }
+  const app = initializeApp(firebaseConfig)
+
+  const db = getFirestore(app)
   export default {
     components: {
       OrderChart
+    },
+    created() {
+      const kontoQuery = query(collection(db, 'konto'))
+      onSnapshot(kontoQuery, (snapshot) => {
+        this.accounts = snapshot.docs.map((doc) => {
+          if (localStorage.getItem('email') === doc.data().email) {
+            return {
+              order: doc.data().cart,
+              orders: JSON.parse(doc.data().orders)
+            }
+          }
+        })
+        this.showProducts = this.products
+        for (let i = 0; i < this.accounts.length; i++) {
+          if (this.accounts[i]) {
+            this.account = this.accounts[i]
+          }
+        }
+        this.orders = this.account.orders
+      })
     },
     data() {
       return {

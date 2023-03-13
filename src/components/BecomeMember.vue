@@ -87,7 +87,9 @@
             registredUser: this.registredUser,
             password: this.memberPasswordInput,
             wishlist: wish,
-            cart: cart
+            cart: cart,
+            orders: [],
+            profilePoints: 0
           })
         }
         setTimeout(() => {

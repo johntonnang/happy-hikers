@@ -109,9 +109,10 @@
           phone: this.account.phone,
           registredUser: this.account.registredUser,
           wishlist: this.account.wish,
-          cart: this.cartItems
+          cart: this.cartItems,
+          orders: this.account.orders,
+          profilePoints: this.account.profilePoints
         })
-        // localStorage.setItem('Cart', JSON.stringify(this.cartItems))
       }
     }
   }

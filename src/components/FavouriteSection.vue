@@ -60,7 +60,9 @@
               phone: doc.data().phone,
               wish: doc.data().wishlist,
               cart: doc.data().cart,
-              registredUser: doc.data().registredUser
+              registredUser: doc.data().registredUser,
+              orders: doc.data().orders,
+              profilePoints: doc.data().profilePoints
             }
           }
         })
@@ -127,7 +129,9 @@
           password: this.account.password,
           wishlist: this.wishItems,
           cart: this.account.cart,
-          registredUser: this.account.registredUser
+          registredUser: this.account.registredUser,
+          orders: this.account.orders,
+          profilePoints: this.account.profilePoints
         })
         console.log('Remove from wishlist')
         this.$store.commit('removeWish')
@@ -161,7 +165,9 @@
             password: this.account.password,
             wishlist: this.account.wish,
             cart: cart,
-            registredUser: this.account.registredUser
+            registredUser: this.account.registredUser,
+            orders: this.account.orders,
+            profilePoints: this.account.profilePoints
           })
 
           const currentCartItems = JSON.parse(localStorage.getItem('Cart'))
