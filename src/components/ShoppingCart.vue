@@ -68,7 +68,9 @@
               phone: doc.data().phone,
               registredUser: doc.data().registredUser,
               wish: doc.data().wishlist,
-              cart: doc.data().cart
+              cart: doc.data().cart,
+              orders: doc.data().orders,
+              profilePoints: doc.data().profilePoints
             }
           }
         })
