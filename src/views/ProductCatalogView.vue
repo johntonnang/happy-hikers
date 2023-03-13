@@ -586,7 +586,6 @@
     padding: 8px 25px;
     font-weight: 600;
     font-size: 15px;
-    border-radius: 2px;
   }
   .explore-btn:hover {
     cursor: pointer;
@@ -646,10 +645,6 @@
     }
     .filter-container h3 {
       margin-top: 0px;
-    }
-
-    .carousel {
-      margin-bottom: 40px;
     }
     .explore-btn {
       display: none;

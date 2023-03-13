@@ -6,9 +6,13 @@
           <ul>
             <li class="bold-footer-text">Customer service</li>
             <li><a href="mailto:happyhikers@iths.se">Contact us</a></li>
-            <router-link to="/CommonQuestionsView"
-              ><li><a href="#">Common questions</a></li></router-link
-            >
+
+            <li>
+              <router-link to="/CommonQuestionsView"
+                >Common questions</router-link
+              >
+            </li>
+
             <li><a href="#">Purchase conditions</a></li>
           </ul>
         </div>
@@ -76,26 +80,28 @@
 
 <style scoped>
   .footer {
-    margin-top: 5rem;
     position: relative;
     height: 60vh;
     bottom: 0;
     left: 0;
     background-color: rgba(2, 70, 2, 0.716);
     color: #e6e6e6;
-    margin-top: 15rem;
+    margin-top: 2rem;
+    font-size: 1.2rem;
   }
 
   .footer-container {
     padding-top: 3rem;
-    padding-bottom: 3rem;
     display: flex;
-    margin-top: 5rem;
   }
 
   .footer-container ul {
     margin: 1rem;
     list-style: none;
+  }
+
+  ul {
+    padding: 0;
   }
 
   .social-media-icon {
@@ -110,103 +116,56 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    margin-left: 2rem;
   }
 
-  /* .footer-container {
-    justify-content: space-around;
-    display: flex;
-    width: 100vw;
-    padding: 2rem;
-  } */
-
-  /* .footer-container ul {
-    width: 140px;
-    padding: 0px;
-    margin-right: 30px;
-    list-style: none;
-  } */
-
   .links-container {
-    display: flex;
     position: absolute;
     top: 70%;
-    /* margin: 1rem;
-    margin-left: 35%; */
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 95%;
+    width: 100%;
   }
-
-  /* .social-media-icon {
-    margin: 1rem;
-  } */
 
   .bold-footer-text {
     font-weight: bold;
-    margin-bottom: 10px;
+    margin-bottom: 1rem;
   }
   a,
   router-link {
     text-decoration: none;
     color: #e6e6e6;
-    transition: all 0.35s ease-in-out;
+    transition: all 0.35s;
   }
 
   a:hover {
     color: #d6d6d6;
-    font-weight: bold;
-    transition: 0.6s;
   }
 
   img {
     width: 30px;
   }
-  @media (max-width: 850px) {
-    .footer-container {
-      margin: 0;
-      padding-bottom: 1rem;
-      padding-left: 1rem;
-    }
-    .footer-container ul {
-      margin: 0;
-    }
-    .smallbox {
-      display: flex;
-      /*   width: 50%;
-      flex-direction: column;
-      margin-left: 2rem; */
-      font-size: 0.8rem;
-      max-height: 10rem;
-    }
-    .box {
-      min-height: 10rem;
-    }
+
+  @media screen and (max-width: 768px) {
     .footer {
-      height: 60vh;
-    }
-    .links-container {
-      position: absolute;
+      font-size: 1rem;
     }
   }
 
   @media (max-width: 590px) {
     .footer-container {
-      display: flex;
-      /*  width: 100% */
-      /* flex-direction: column; */
-      font-size: 0.75rem;
+      display: grid;
     }
     .box {
-      min-height: 8rem;
+      width: 100%;
+      justify-content: flex-start;
     }
     .smallbox {
       display: flex;
-
-      width: 90%;
-
-      flex-direction: column;
+      width: 100%;
+      justify-content: center;
     }
     .footer {
       height: 65vh;
