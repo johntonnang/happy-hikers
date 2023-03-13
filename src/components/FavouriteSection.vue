@@ -179,7 +179,19 @@
       /*Shopping cart preview*/
       removeItem(index) {
         this.cartItems.splice(index, 1)
-        localStorage.setItem('Cart', JSON.stringify(this.cartItems))
+        setDoc(doc(db, 'konto', this.account.id), {
+          id: this.account.id,
+          email: this.account.email,
+          password: this.account.password,
+          name: this.account.name,
+          phone: this.account.phone,
+          registredUser: this.account.registredUser,
+          wishlist: this.account.wish,
+          cart: this.cartItems,
+          orders: this.account.orders,
+          profilePoints: this.account.profilePoints
+        })
+        // localStorage.setItem('Cart', JSON.stringify(this.cartItems))
       },
       showCartPreview() {
         this.showCart = true
