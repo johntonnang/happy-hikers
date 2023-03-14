@@ -260,4 +260,9 @@
       border-top-right-radius: 5px;
     }
   }
+  @media (max-width: 560px) {
+    .product-box {
+      margin: 0px 0px 25px 0px;
+    }
+  }
 </style>
