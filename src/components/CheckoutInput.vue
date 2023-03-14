@@ -18,7 +18,7 @@
 
     computed: {
       total() {
-        if (localStorage.getItem('discountActive')) {
+        if (localStorage.getItem('discount-active')) {
           return this.cartItems.reduce((x, item) => x + item.price, 0) * 0.85
         } else {
           return this.cartItems.reduce((x, item) => x + item.price, 0)
@@ -29,7 +29,7 @@
       const existingUser = localStorage.getItem('existing-user')
       const registredUser = localStorage.getItem('registred-user')
 
-      if (localStorage.getItem('discountActive')) {
+      if (localStorage.getItem('discount-active')) {
         this.discountActive = true
       }
 
@@ -314,7 +314,6 @@
     justify-content: end;
     align-items: flex-end;
     font-size: 1.5rem;
-    margin-left: 4rem;
     padding: 1.5rem;
   }
 

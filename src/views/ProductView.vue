@@ -59,7 +59,7 @@
     },
     computed: {
       total() {
-        if (localStorage.getItem('discountActive')) {
+        if (localStorage.getItem('discount-active')) {
           return this.cartItems.reduce((x, item) => x + item.price, 0) * 0.85
         } else {
           return this.cartItems.reduce((x, item) => x + item.price, 0)
@@ -72,7 +72,12 @@
     },
 
     mounted() {
-      if (localStorage.getItem('discountActive')) {
+      let cart = localStorage.getItem('Cart')
+      if (cart !== null) {
+        this.cartItems = JSON.parse(cart)
+        this.totalValue = this.cartItems.reduce((x, item) => x + item.price, 0)
+      }
+      if (localStorage.getItem('discount-active')) {
         this.discountActive = true
       }
     },
@@ -129,7 +134,6 @@
               this.similarProducts.unshift(this.products[i])
           }
         }
-
         this.showProducts = this.products
       })
       const kontoQuery = query(collection(db, 'konto'))
@@ -361,6 +365,7 @@
           orders: this.account.orders,
           profilePoints: this.account.profilePoints
         })
+        this.totalValue = this.cartItems.reduce((x, item) => x + item.price, 0)
       },
       openProduct(id) {
         this.WishText = '+  Add to wishlist   '
@@ -505,8 +510,8 @@
       </div>
       <div class="total">
         <p style="margin-right: 10px">Total:</p>
-        <p id="discount-active" v-if="discountActive">{{ total }} :-</p>
-        <p v-else>{{ total }} :-</p>
+        <p id="discount-active" v-if="discountActive">{{ totalValue }} :-</p>
+        <p v-else>{{ totalValue }} :-</p>
         <p v-if="discountActive" class="total-discount">{{ total }} :-</p>
       </div>
       <p id="member-active-text" v-if="discountActive">
