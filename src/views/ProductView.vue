@@ -387,7 +387,8 @@
               name: this.product.name,
               price: this.product.price,
               image: this.product.image,
-              description: this.product.description
+              description: this.product.description,
+              category: this.product.category
             })
             setDoc(doc(db, 'konto', this.account.id), {
               id: this.account.id,

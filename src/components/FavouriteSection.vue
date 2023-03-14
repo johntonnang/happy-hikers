@@ -144,6 +144,7 @@
           }
         }
         this.$store.commit('addToCart')
+        console.log(this.product)
         if (this.CartText === '+  Add to cart   ') {
           let cart = this.account.cart
           cart.unshift({
@@ -151,7 +152,8 @@
             name: this.product.name,
             price: this.product.price,
             image: this.product.image,
-            description: this.product.description
+            description: this.product.description,
+            category: this.product.category
           })
 
           this.removeFromWishlist(index)
