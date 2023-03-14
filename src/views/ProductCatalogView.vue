@@ -57,7 +57,8 @@
           '/assets/apiImg/Roamer.png'
         ],
         minValue: 0,
-        maxValue: 1750
+        maxValue: 1750,
+        availableColors: []
       }
     },
     components: {
@@ -107,6 +108,37 @@
           }
         })
         this.showProducts = this.products
+        if (this.$route.params.category != null) {
+          for (let i in this.showProducts) {
+            if (
+              this.showProducts[i].category
+                .toLowerCase()
+                .includes(this.$route.params.category.toLowerCase())
+            ) {
+              for (let x in this.showProducts[i].colors) {
+                if (
+                  this.availableColors.includes(
+                    this.showProducts[i].colors[x]
+                  ) === false
+                ) {
+                  this.availableColors.push(this.showProducts[i].colors[x])
+                }
+              }
+            }
+          }
+        } else {
+          for (let i in this.showProducts) {
+            for (let x in this.showProducts[i].colors) {
+              if (
+                this.availableColors.includes(
+                  this.showProducts[i].colors[x]
+                ) === false
+              ) {
+                this.availableColors.push(this.showProducts[i].colors[x])
+              }
+            }
+          }
+        }
       })
       onUnmounted(liveProducts)
     },
@@ -298,7 +330,21 @@
         </div>
         <div class="filter-container">
           <h3>Color</h3>
-          <div class="checkbox-container">
+          <div
+            v-for="color in availableColors"
+            :key="color"
+            class="checkbox-container"
+          >
+            <input
+              type="checkbox"
+              value="blue"
+              v-model="colors[color]"
+              name="color"
+              @click="addColor(color)"
+            />
+            <label for="sizeXSmall" /> {{ color }}
+          </div>
+          <!-- <div class="checkbox-container">
             <input
               type="checkbox"
               value="blue"
@@ -367,7 +413,7 @@
               @click="addColor('brown')"
             />
             <label for="sizeXXLarge" /> Brown
-          </div>
+          </div> -->
         </div>
         <div
           class="filter-container filter-container-mobile"

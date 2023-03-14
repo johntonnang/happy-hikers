@@ -68,18 +68,8 @@
           this.loadingIcon = false
           return
         } else {
-          let wish = null
-          if (localStorage.getItem('Wish')) {
-            wish = JSON.parse(localStorage.getItem('Wish'))
-          } else {
-            wish = []
-          }
-          let cart = null
-          if (localStorage.getItem('Cart')) {
-            cart = JSON.parse(localStorage.getItem('Cart'))
-          } else {
-            cart = []
-          }
+          let wish = []
+          let cart = []
           addDoc(collection(db, 'konto'), {
             name: this.memberNameInput,
             email: this.memberUsernameInput,

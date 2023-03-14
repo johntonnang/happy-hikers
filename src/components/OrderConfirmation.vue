@@ -42,8 +42,6 @@
       const kontoQuery = query(collection(db, 'konto'))
       const liveKonto = onSnapshot(kontoQuery, (snapshot) => {
         this.accounts = snapshot.docs.map((doc) => {
-          console.log(localStorage.getItem('email'))
-          console.log(doc.data().email)
           if (localStorage.getItem('email') === doc.data().email) {
             return {
               id: doc.id,
@@ -60,17 +58,14 @@
           }
         })
         for (let i = 0; i < this.accounts.length; i++) {
-          console.log(1)
           if (this.accounts[i]) {
             this.account = this.accounts[i]
           }
         }
         this.showProducts = this.products
-        console.log(this.accounts)
         for (let i = 0; i < this.accounts.length; i++) {
           if (this.accounts[i]) {
             this.wishItems = this.accounts[i].wish
-            console.log(this.accounts[i].wish)
           }
         }
       })

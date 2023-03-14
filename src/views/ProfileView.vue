@@ -54,7 +54,8 @@
               email: doc.data().email,
               password: doc.data().password,
               wish: doc.data().wishlist,
-              userName: doc.data().name
+              userName: doc.data().name,
+              points: doc.data().profilePoints
             }
           }
         })
@@ -79,7 +80,7 @@
     />
     <div v-if="loginSuccesfull" id="main-container">
       <div ref="content" id="menu-container">
-        <ProfilePoints />
+        <ProfilePoints :points="this.account.points" />
         <div id="discount-container">
           <div class="discount-container-box">
             <img src="/assets/starbucks-discount.jpg" alt="" />

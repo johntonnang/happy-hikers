@@ -26,7 +26,7 @@
       </button>
     </div>
     <div class="carousel-inner">
-      <div class="carousel-item active">
+      <div class="carousel-item active" data-bs-interval="4000">
         <img
           src="/assets/kalen-emsley-fUNTOGILNa0-unsplash.jpg"
           class="d-block w-100 d-flex justify-content-center align-middle"
