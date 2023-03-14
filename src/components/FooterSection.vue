@@ -168,7 +168,7 @@
       justify-content: center;
     }
     .footer {
-      height: 65vh;
+      height: 95vh;
     }
     .links-container {
       margin-top: 1rem;
