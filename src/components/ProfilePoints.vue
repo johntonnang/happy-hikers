@@ -2,7 +2,6 @@
   export default {
     data() {
       return {
-        profilePoints: 0,
         bonusUpgrade: 2500,
         plusMember: 5000,
         nextBonus: 0,
@@ -10,21 +9,21 @@
       }
     },
     created() {
-      this.profilePoints = localStorage.getItem('ProfilePoints')
       // Calculate next bonus
-      this.nextBonus = this.bonusUpgrade - this.profilePoints
-      //Calculate till plus-member
-      this.plusMemberLeft = this.plusMember - this.profilePoints
+      this.nextBonus = this.bonusUpgrade - this.points
+      // Calculate till plus-member
+      this.plusMemberLeft = this.plusMember - this.points
+    },
+    props: {
+      points: { type: Object, required: true, default: null }
     }
   }
 </script>
 <template>
   <div id="points-container">
-    <h2 style="font-size: 3rem; font-weight: 700">
-      Points: {{ this.profilePoints }}
-    </h2>
+    <h2 style="font-size: 3rem; font-weight: 700">Points: {{ this.points }}</h2>
     <div id="points-bar-container">
-      <div class="bar-profile-row" v-if="this.profilePoints >= 500">
+      <div class="bar-profile-row" v-if="this.points >= 500">
         <span class="bar-profile-active" />
         <span class="circle-active" />
       </div>
@@ -32,7 +31,7 @@
         <span class="bar-profile-unactive" />
         <span class="circle" />
       </div>
-      <div class="bar-profile-row" v-if="this.profilePoints >= 1000">
+      <div class="bar-profile-row" v-if="this.points >= 1000">
         <span class="bar-profile-active" />
         <span class="circle-active" />
       </div>
@@ -40,7 +39,7 @@
         <span class="bar-profile-unactive" />
         <span class="circle" />
       </div>
-      <div class="bar-profile-row" v-if="this.profilePoints >= 1500">
+      <div class="bar-profile-row" v-if="this.points >= 1500">
         <span class="bar-profile-active" />
         <span class="circle-active" />
       </div>
@@ -48,7 +47,7 @@
         <span class="bar-profile-unactive" />
         <span class="circle" />
       </div>
-      <div class="bar-profile-row" v-if="this.profilePoints >= 2000">
+      <div class="bar-profile-row" v-if="this.points >= 2000">
         <span class="bar-profile-active" />
         <span class="circle-active" />
       </div>
@@ -56,7 +55,7 @@
         <span class="bar-profile-unactive" />
         <span class="circle" />
       </div>
-      <div class="bar-profile-row" v-if="this.profilePoints >= 2500">
+      <div class="bar-profile-row" v-if="this.points >= 2500">
         <span class="bar-profile-active" />
         <span class="circle-active" />
       </div>
