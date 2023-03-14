@@ -119,7 +119,6 @@
       />
     </div>
 
-    <!-- aside? -->
     <div id="card1" class="card">
       <div class="align-card-txt">
         <h5 style="font-weight: bold">Our responsability</h5>
@@ -173,6 +172,7 @@
           Functional, sustainable, timeless and created based on nature´s own
           terms.
         </p>
+
         <p id="fabric-long" style="display: none">
           Happy Hikers is a company that truly understands the importance of
           sustainable and eco-friendly products. From their hiking gear to their
@@ -237,6 +237,8 @@
     margin-top: 200px;
     opacity: 1;
     font-weight: bold;
+    display: flex;
+    justify-content: center;
     /* font-size: 7rem; */
   }
 
@@ -250,11 +252,11 @@
     border-bottom: 2px solid #ddd;
   }
 
-  #img-our-fabric,
+  /* #img-our-fabric,
   #img-responsability {
     width: 100%;
     height: 100%;
-  }
+  } */
 
   #pic-sustainability {
     width: 90%;
@@ -642,15 +644,84 @@
       margin-bottom: 40px;
       max-width: 90%;
       max-height: 100%;
-
       display: grid;
       grid-template-columns: 1fr 1fr;
-
       border-radius: 0;
     }
   }
 
-  @media (min-width: 901px) and (max-width: 1100px) {
+  @media (min-width: 1050px) and (max-width: 1100px) {
+    #align-header-text {
+      position: absolute;
+      display: flex;
+      top: 25%;
+      left: 30%;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    #p-header {
+      opacity: 1;
+      font-weight: bold;
+      font-size: 2rem;
+    }
+
+    h1 {
+      color: #ffffffdc;
+      margin-top: 20%;
+      opacity: 1;
+      font-weight: bold;
+      font-size: 5rem;
+    }
+
+    #section-div {
+      padding-top: 3rem;
+      display: grid;
+      grid-template-columns: 0.5fr 1fr;
+    }
+
+    section {
+      padding-right: 40px;
+    }
+
+    #links-div {
+      padding-right: 20px;
+    }
+
+    #line {
+      border-bottom: 2px solid #ddd;
+      width: 90%;
+      margin-left: 45px;
+    }
+
+    #pic-sustainability {
+      width: 90%;
+      margin-left: 5%;
+    }
+
+    /* CARD */
+
+    #card1 {
+      margin-top: 20px;
+    }
+    .card {
+      transition: 0.3s;
+      margin-bottom: 40px;
+      max-width: 90%;
+      max-height: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-radius: 0;
+    }
+
+    img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+
+  @media (min-width: 901px) and (max-width: 1049px) {
     #align-header-text {
       position: absolute;
       display: flex;
@@ -710,15 +781,63 @@
       margin-bottom: 40px;
       max-width: 90%;
       max-height: 100%;
-
       display: grid;
       grid-template-columns: 1fr 1fr;
-
       border-radius: 0;
+    }
+
+    img {
+      max-width: 100%;
+      max-height: 100%;
     }
   }
 
-  @media (min-width: 751px) and (max-width: 900px) {
+  @media (min-width: 801px) and (max-width: 900px) {
+    #align-header-text {
+      position: absolute;
+      display: flex;
+      top: 25%;
+      margin-left: 35%;
+    }
+
+    #align-p {
+      position: absolute;
+    }
+
+    #p-header {
+      display: none;
+    }
+
+    h1 {
+      margin-top: 50px;
+      font-size: 5rem;
+      margin-left: 10%;
+    }
+
+    #links-div {
+      display: none;
+    }
+
+    .card {
+      max-width: 90%;
+    }
+
+    #section-div {
+      margin-top: 20px;
+      margin-left: 30px;
+      margin-right: 25px;
+    }
+
+    #This-is-happy-hikers-div {
+      padding-left: 10%;
+    }
+
+    #line {
+      display: none;
+    }
+  }
+
+  @media (min-width: 751px) and (max-width: 800px) {
     #align-header-text {
       position: absolute;
       display: flex;
@@ -777,8 +896,9 @@
     #align-h1 {
       position: absolute;
       display: flex;
+      justify-content: center;
       top: 25%;
-      margin-left: 30%;
+      /* margin-left: 30%; */
     }
 
     h1 {
@@ -834,10 +954,10 @@
       margin-left: 20px;
       margin-right: 20px;
     }
-
+    /*
     #This-is-happy-hikers-div {
       padding-left: 10%;
-    }
+    } */
 
     #line {
       display: none;
