@@ -458,6 +458,7 @@
       font-size: 1rem;
     }
     .previewh {
+      padding-top: 1rem;
       margin: 1rem;
       font-size: 1rem;
     }

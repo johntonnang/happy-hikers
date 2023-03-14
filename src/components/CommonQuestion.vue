@@ -153,6 +153,9 @@
 </template>
 
 <style scoped>
+  main {
+    padding-left: 2rem;
+  }
   .container {
     padding: 2rem;
     padding-top: 5rem;
