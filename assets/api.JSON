@@ -56,7 +56,7 @@
     "name": "Roamer",
     "price": 1500,
     "description": "The Wildfire Roamer Trail Shoe is a durable hiking shoe with a breathable mesh upper, rubber outsole for traction, EVA midsole for support and comfort, and reinforced toe cap for protection. Ideal for off-road adventures.",
-    "colors": ["blue"],
+    "colors": ["black"],
     "category": "Shoes",
     "image": "/assets/apiImg/Roamer.png",
     "rating": {
