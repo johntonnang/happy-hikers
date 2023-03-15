@@ -164,6 +164,9 @@
         if (!result) {
           return
         }
+        if (localStorage.getItem('discount-active')) {
+          localStorage.removeItem('discount-active')
+        }
         this.$store.commit('setEmail', this.email)
         this.$store.commit('setName', this.firstName)
         this.$store.commit('setAddress', this.address)

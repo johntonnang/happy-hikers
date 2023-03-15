@@ -148,6 +148,7 @@
         setTimeout(() => {
           this.$emit('login-success', this.loginSuccesfull)
           localStorage.setItem('existing-user', this.existingUser)
+          localStorage.setItem('discount-active', true)
           window.location.reload()
         }, 3000)
       }

@@ -102,6 +102,7 @@
     left: -5px;
     width: 104%;
     -webkit-appearance: none;
+    -moz-appearance: none;
     pointer-events: none;
     background: none;
     outline: none;
@@ -117,7 +118,21 @@
     border-radius: 50px;
   }
 
+  .container .range-slider input::-moz-slider-thumb {
+    pointer-events: auto;
+    -moz-appearance: none;
+    width: 20px;
+    height: 20px;
+    background: rgb(0, 0, 0);
+    border-radius: 50px;
+  }
+
   input::-webkit-slider-thumb:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 10px black;
+  }
+
+  input::-moz-slider-thumb:hover {
     cursor: pointer;
     box-shadow: 0px 0px 10px black;
   }

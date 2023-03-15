@@ -29,7 +29,7 @@
     data() {
       return {
         cartItems: [],
-        totalValue: 0,
+        totalValue: 10,
         discountActive: false,
         accounts: [],
         account: []
@@ -37,7 +37,7 @@
     },
     computed: {
       total() {
-        if (localStorage.getItem('discountActive')) {
+        if (localStorage.getItem('discount-active')) {
           return this.cartItems.reduce((x, item) => x + item.price, 0) * 0.85
         } else {
           return this.cartItems.reduce((x, item) => x + item.price, 0)
@@ -48,11 +48,11 @@
       // let cart = localStorage.getItem('Cart')
       // if (cart !== null) {
       //   this.cartItems = JSON.parse(cart)
+      //   this.totalValue = this.cartItems.reduce((x, item) => x + item.price, 0)
       // }
-      // if (localStorage.getItem('discountActive')) {
-      //   this.discountActive = true
-      // }
-      // this.totalValue = this.cartItems.reduce((x, item) => x + item.price, 0)
+      if (localStorage.getItem('discount-active')) {
+        this.discountActive = true
+      }
 
       const kontoQuery = query(collection(db, 'konto'))
       const liveKonto = onSnapshot(kontoQuery, (snapshot) => {
@@ -81,6 +81,7 @@
           }
         }
         this.showProducts = this.products
+
         console.log(this.accounts)
         for (let i = 0; i < this.accounts.length; i++) {
           if (this.accounts[i]) {
@@ -88,7 +89,9 @@
             console.log(this.accounts[i].wish)
           }
         }
+        this.totalValue = this.cartItems.reduce((x, item) => x + item.price, 0)
       })
+
       onUnmounted(liveKonto)
     },
     watch: {
@@ -151,8 +154,10 @@
           </div>
           <div class="total">
             <p style="margin-right: 10px">Total:</p>
-            <p id="discount-active" v-if="discountActive">{{ total }} :-</p>
-            <p v-else>{{ total }} :-</p>
+            <p id="discount-active" v-if="discountActive">
+              {{ totalValue }} :-
+            </p>
+            <p v-else>{{ totalValue }} :-</p>
             <p v-if="discountActive" class="total-discount">{{ total }} :-</p>
           </div>
           <p id="member-active-text" v-if="discountActive">

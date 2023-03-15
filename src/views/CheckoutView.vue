@@ -47,7 +47,7 @@
       }
       let cart = localStorage.getItem('Cart')
       const existingUsername = localStorage.getItem('name')
-      const existingEmail = localStorage.getItem('username')
+      const existingEmail = localStorage.getItem('email')
       const existingPhone = localStorage.getItem('phone')
       if (existingUser) {
         this.existingUser = true
@@ -208,7 +208,7 @@
         <div class="login-check-container" v-if="existingUser">
           <h2>Logged in as</h2>
           <span>
-            <RouterLink to="/Profile">{{ profileName }}</RouterLink>
+            <RouterLink to="/Profile">{{ this.profileEmail }}</RouterLink>
           </span>
         </div>
 
