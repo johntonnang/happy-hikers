@@ -159,16 +159,20 @@
     margin: 15px 0;
     border-radius: 5px;
     /* background-color: rgb(241, 241, 241); */
-    background-color: #e6e6e6;
+    /* background-color: #e6e6e6; */
+    background-color: rgba(var(--bg-primary), 0.7);
     font-size: 0.5rem;
+    color: var(--text-primary-light);
+    box-shadow: 2px 2px 40px rgba(0, 0, 0, 0.2);
   }
 
   .option-container:hover {
     cursor: pointer;
     /* background-color: black; */
     /* color: white; */
-    transition: 0.35s ease-in-out;
-    background-color: #d6d6d6;
+    transition: 0.35s;
+    /* background-color: #d6d6d6; */
+    filter: brightness(140%);
   }
 
   .option-container h4 {

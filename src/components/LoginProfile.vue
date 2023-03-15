@@ -211,7 +211,7 @@
           name="password"
         />
       </div>
-      <p style="color: rgb(219, 15, 15)" v-if="errorInput">
+      <p style="color: #db0f0f" v-if="errorInput">
         Wrong email address or password, please try again.
       </p>
       <div class="checkbox-container">
@@ -225,7 +225,7 @@
         </button>
         <button
           v-if="loginAccepted"
-          style="background-color: rgba(2, 70, 2, 0.716)"
+          style="background-color: rgba(2, 70, 2, 0.7)"
           id="login-btn"
           @click="loginProfile"
         >
@@ -259,11 +259,11 @@
     margin: 0 auto;
     width: 25%;
     /* border: 1px solid black; */
-    border: 1px solid rgb(179, 179, 179);
+    border: 1px solid rgb(var(--border-color));
     padding: 20px;
     margin-bottom: 100px; /* Ska tas bort? */
     /* box-shadow: 0px 0px 8px black; */
-    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.202);
+    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.2);
     background-color: rgb(250, 250, 250);
     border-radius: 5px;
   }
@@ -298,7 +298,7 @@
 
   .input-container > .input-field {
     padding: 12px;
-    border: 1px solid rgb(179, 179, 179);
+    border: 1px solid rgb(var(--border-color));
     border-radius: 5px;
     outline: none;
   }
@@ -312,12 +312,12 @@
 
   #login-btn {
     /* background-color: #58aa5f; */
-    background-color: rgba(2, 70, 2, 0.716);
+    background-color: rgba(var(--bg-primary), 0.7);
     /* background-color: #579d5d; */
     /* border: 1.5px solid black; */
     /* color: #222; */
     border: none;
-    color: #eee;
+    color: var(--text-primary-light);
     padding: 14px 0;
     font-weight: 600;
     font-size: 1.2rem;
@@ -330,7 +330,7 @@
   #login-btn:hover {
     cursor: pointer;
     /* background-color: #8fee97; */
-    background-color: rgb(2, 40, 2, 0.716);
+    filter: brightness(140%);
   }
 
   .loader {
@@ -353,8 +353,10 @@
   }
 
   #member-btn {
-    background-color: #e6e6e6;
-    color: #222;
+    /* background-color: #e6e6e6; */
+    background-color: var(--bg-secondary);
+    /* color: #222; */
+    color: var(--text-primary-light);
     padding: 12px 0;
     font-weight: 600;
     font-size: 1.1rem;
@@ -366,7 +368,8 @@
 
   #member-btn:hover {
     cursor: pointer;
-    background-color: #d6d6d6;
+    /* background-color: #d6d6d6; */
+    filter: brightness(140%);
   }
 
   @media (max-width: 1600px) {

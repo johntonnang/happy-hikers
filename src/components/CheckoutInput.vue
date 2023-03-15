@@ -305,7 +305,7 @@
     width: 150px;
     height: 150px;
     object-fit: cover;
-    transition: all 0.4;
+    transition: all 0.35s;
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
   }
@@ -319,14 +319,16 @@
   }
 
   .total-discount {
-    color: rgb(245, 8, 8);
+    /* color: rgb(245, 8, 8); */
+    color: var(--error);
     margin-left: 10px;
   }
   #discount-active {
     text-decoration: line-through;
   }
   #member-active-text {
-    color: rgb(228, 13, 13);
+    /* color: rgb(228, 13, 13); */
+    color: var(--error);
     display: flex;
     justify-content: end;
     align-items: flex-end;
@@ -348,6 +350,8 @@
     width: 95%;
     position: relative;
     margin: 0.5rem;
+    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
   }
 
   .description {
@@ -376,7 +380,8 @@
     margin: 1rem;
   }
   .container {
-    box-shadow: 0px 46px 130px rgba(0, 25, 64, 0.142);
+    /* box-shadow: 0px 46px 130px rgba(0, 25, 64, 0.142); */
+    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
     padding-top: 0;
   }
@@ -386,7 +391,8 @@
   .submitButton {
     width: 10rem;
     color: white;
-    background-color: black;
+    /* background-color: black; */
+    background-color: rgba(var(--bg-primary), 0.7);
     border-radius: 35px;
     border: none;
     cursor: pointer;
@@ -423,7 +429,7 @@
       border-top-left-radius: 5px;
     }
     .previewh {
-      padding: 0;
+      padding-top: 1rem;
     }
   }
 

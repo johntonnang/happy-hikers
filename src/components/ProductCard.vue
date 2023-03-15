@@ -143,9 +143,9 @@
           <p>({{ ratingcount }})</p>
         </div>
       </div>
-      <h3 style="margin: 0px">{{ name }}</h3>
-      <p style="margin-top: 2px">{{ category }}</p>
-      <h2>{{ price }}:-</h2>
+      <h3 style="margin: 0px; padding-left: 0.5rem">{{ name }}</h3>
+      <p style="margin-top: 2px; padding-left: 0.5rem">{{ category }}</p>
+      <h2 style="padding-left: 0.5rem">{{ price }}:-</h2>
     </div>
   </div>
 </template>

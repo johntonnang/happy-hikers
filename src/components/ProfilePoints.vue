@@ -97,6 +97,7 @@
     width: 80px;
     height: 7px;
     background-color: rgb(202, 202, 202);
+    /* background-color: rgb(var(--border-color)); */
   }
 
   .circle {
@@ -113,7 +114,7 @@
     width: 80px;
     height: 7px;
     /* background-color: #4ea055; */
-    background-color: rgba(2, 70, 2, 0.716);
+    background-color: rgba(var(--bg-primary), 0.7);
   }
 
   .circle-active {
@@ -121,7 +122,7 @@
     width: 18px;
     height: 18px;
     /* background-color: #4ea055; */
-    background-color: rgba(2, 70, 2, 0.716);
+    background-color: rgba(var(--bg-primary), 0.7);
     border-radius: 50px;
     margin-right: 0px;
   }

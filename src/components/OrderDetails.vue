@@ -13,7 +13,8 @@
 
 <style scoped>
   .line {
-    border-bottom: 2px solid rgba(0, 0, 0, 0.334);
+    /* border-bottom: 2px solid rgba(0, 0, 0, 0.334); */
+    border-bottom: 1px solid rgb(var(--border-color));
     margin-top: 5px;
     width: 95%;
     display: flex;

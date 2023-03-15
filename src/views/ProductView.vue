@@ -38,8 +38,8 @@
         CartText: '+  Add to cart   ',
         WishText: '+  Add to wishlist   ',
         id: this.$route.params.id,
-        CartColor: 'rgba(0, 0, 0)',
-        WishColor: 'rgba(0, 0, 0)',
+        CartColor: 'rgba(255, 255, 255)',
+        WishColor: 'rgba(255, 255, 255)',
         ChooseSize: false,
         SizeError: false,
         currentDate: '',
@@ -286,11 +286,11 @@
               orders: this.account.orders,
               profilePoints: this.account.profilePoints
             })
-            this.CartColor = 'rgba(0,0,0,0)'
+            this.CartColor = 'rgba(255, 255, 255, 0)'
             setTimeout(() => (this.CartText = '✓'), 350)
-            setTimeout(() => (this.CartColor = 'rgba(0,0,0)'), 350)
-            setTimeout(() => (this.CartColor = 'rgba(0,0,0,0)'), 3000)
-            setTimeout(() => (this.CartColor = 'rgba(0,0,0,1)'), 3350)
+            setTimeout(() => (this.CartColor = 'rgba(255, 255, 255)'), 350)
+            setTimeout(() => (this.CartColor = 'rgba(255, 255, 255, 0)'), 3000)
+            setTimeout(() => (this.CartColor = 'rgba(255, 255, 255, 1)'), 3350)
             setTimeout(() => (this.CartText = 'Remove from Cart'), 3350)
           } else if (this.CartText === 'Remove from Cart') {
             this.$store.commit('removeCart')
@@ -316,11 +316,11 @@
               }
               i++
             }
-            this.CartColor = 'rgba(0,0,0,0)'
+            this.CartColor = 'rgba(255, 255, 255, 0)'
             setTimeout(() => (this.CartText = '✓'), 350)
-            setTimeout(() => (this.CartColor = 'rgba(0,0,0)'), 350)
-            setTimeout(() => (this.CartColor = 'rgba(0,0,0,0)'), 3000)
-            setTimeout(() => (this.CartColor = 'rgba(0,0,0,1)'), 3350)
+            setTimeout(() => (this.CartColor = 'rgba(255, 255, 255)'), 350)
+            setTimeout(() => (this.CartColor = 'rgba(255, 255, 255, 0)'), 3000)
+            setTimeout(() => (this.CartColor = 'rgba(255, 255, 255, 1)'), 3350)
             setTimeout(() => (this.CartText = '+  Add to cart   '), 3350)
           }
           this.showCartPreview()
@@ -397,12 +397,12 @@
               profilePoints: this.account.profilePoints
             })
 
-            this.WishColor = 'rgba(0,0,0,0)'
+            this.WishColor = 'rgba(255, 255, 255, 0)'
             setTimeout(() => (this.WishText = '✓'), 350)
-            setTimeout(() => (this.WishColor = 'rgba(0,0,0)'), 350)
+            setTimeout(() => (this.WishColor = 'rgba(255, 255, 255)'), 350)
 
-            setTimeout(() => (this.WishColor = 'rgba(0,0,0,0)'), 3000)
-            setTimeout(() => (this.WishColor = 'rgba(0,0,0,1)'), 3350)
+            setTimeout(() => (this.WishColor = 'rgba(255, 255, 255, 0)'), 3000)
+            setTimeout(() => (this.WishColor = 'rgba(255, 255, 255, 1)'), 3350)
             setTimeout(() => (this.WishText = 'Remove from Wishlist'), 3350)
             // Om en produkt ska tas bort från wishlist så körs detta
           } else if (this.WishText === 'Remove from Wishlist') {
@@ -429,12 +429,12 @@
               }
               i++
             }
-            this.WishColor = 'rgba(0,0,0,0)'
+            this.WishColor = 'rgba(255, 255, 255, 0)'
             setTimeout(() => (this.WishText = '✓'), 350)
-            setTimeout(() => (this.WishColor = 'rgba(0,0,0)'), 350)
+            setTimeout(() => (this.WishColor = 'rgba(255, 255, 255)'), 350)
 
-            setTimeout(() => (this.WishColor = 'rgba(0,0,0,0)'), 3000)
-            setTimeout(() => (this.WishColor = 'rgba(0,0,0,1)'), 3350)
+            setTimeout(() => (this.WishColor = 'rgba(255, 255, 255, 0)'), 3000)
+            setTimeout(() => (this.WishColor = 'rgba(255, 255, 255, 1)'), 3350)
             setTimeout(() => (this.WishText = '+  Add to wishlist   '), 3350)
           }
         } else {
@@ -605,7 +605,7 @@
           <option value="XL">XL</option>
           <option value="XXl">XXL</option>
         </select>
-        <p v-if="this.SizeError" style="color: red">
+        <p v-if="this.SizeError" style="color: #db0f0f">
           You need to choose a size.
         </p>
         <div class="product-btns">
@@ -638,7 +638,7 @@
           <div class="product-return">
             <img src="/assets/check.svg" alt="" />
             <p class="product-return-text">
-              <b>Free shipping</b> on orders over 399:-
+              <b>Free shipping</b> on orders over 399 :-
             </p>
           </div>
           <div class="product-return">
@@ -818,8 +818,10 @@
               </div>
             </div>
             <h3 id="similar-heading">{{ similarProduct.name }}</h3>
-            <p style="margin-top: 2px">{{ similarProduct.category }}</p>
-            <h2>{{ similarProduct.price }}:-</h2>
+            <p style="margin-top: 2px; padding-left: 0.5rem">
+              {{ similarProduct.category }}
+            </p>
+            <h2 style="padding-left: 0.5rem">{{ similarProduct.price }} :-</h2>
           </div>
         </div>
       </div>
@@ -836,6 +838,7 @@
     position: absolute;
     top: 1rem;
     right: 1rem;
+    cursor: pointer;
   }
   h3 {
     display: flex;
@@ -850,7 +853,7 @@
     width: 20rem;
     background-color: white;
     /* border: 1px solid black; */
-    border: 1px solid rgb(179, 179, 179);
+    border: 1px solid rgb(var(--border-color));
     padding: 1rem;
     z-index: 999;
     max-height: 40rem;
@@ -873,12 +876,14 @@
     margin: 1rem;
   }
   .itemRow {
+    border-radius: 5px;
     display: flex;
     flex-direction: row;
     max-width: 90%;
     position: relative;
     margin-top: 1rem;
-    box-shadow: 0px 46px 130px rgba(0, 25, 64, 0.142);
+    /* box-shadow: 0px 46px 130px rgba(0, 25, 64, 0.142); */
+    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.2);
   }
   .total {
     font-size: 1.5rem;
@@ -924,6 +929,7 @@
   .product-img {
     width: 50%;
     object-fit: cover;
+    border-radius: 5px;
   }
   section {
     display: flex;
@@ -942,7 +948,7 @@
     /* background-color: rgba(255, 255, 255, 0); */
     background-color: #e6e6e6;
     /* border: 1px solid; */
-    border: 1px solid rgb(179, 179, 179);
+    border: 1px solid rgb(var(--border-color));
     border-radius: 5px;
     padding: 0.7rem;
     transition: all 0.35s;
@@ -954,38 +960,36 @@
     background-color: #d6d6d6;
     color: #000;
   }
-  .color-circle-one,
-  .color-circle-two,
-  .color-circle-three,
-  .color-circle-four {
-    display: block;
-    width: 8px;
-    height: 8px;
-    border-radius: 50px;
-    margin-right: 8px;
-  }
+
   .product-btn {
     width: 45%;
     margin-right: 5%;
     margin-top: 20px;
     /* padding: 1rem; */
     height: 50px;
-    background-color: #579d5d;
+    /* background-color: #579d5d; */
+    background-color: rgba(var(--bg-primary), 0.7);
     border-radius: 3px;
     border: 0px solid;
     font-weight: 400;
     transition: all 0.35s;
+    color: var(--text-primary-light);
+    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.2);
   }
   .product-btn:hover {
-    background-color: #45804a;
+    /* background-color: #45804a; */
     /* color: #579d5d; */
+    filter: brightness(140%);
   }
   .product-wishlist {
-    background-color: #b1ea38;
+    /* background-color: #b1ea38; */
+    background-color: var(--bg-secondary);
+    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.2);
   }
   .product-wishlist:hover {
-    background-color: #8ab72a;
+    /* background-color: #8ab72a; */
     /* color: #b1ea38; */
+    filter: brightness(140%);
   }
   .product-return {
     display: flex;
@@ -1005,7 +1009,8 @@
   }
 
   #review-container {
-    border-top: 1px solid rgb(80, 80, 80);
+    /* border-top: 1px solid rgb(80, 80, 80); */
+    border-top: 1px solid rgb(var(--border-color));
     padding: 10px 0px;
     width: 100%;
     margin-top: 30px;
@@ -1016,10 +1021,12 @@
   }
 
   .review-container-box {
-    box-shadow: 1px 3px 8px rgb(87, 87, 87);
+    /* box-shadow: 1px 3px 8px rgb(87, 87, 87); */
+    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.2);
     width: 70%;
     margin: 20px 0px;
     padding: 10px 15px;
+    border-radius: 5px;
   }
 
   .review-container-header {
@@ -1037,18 +1044,22 @@
     flex-direction: column;
     width: 50%;
     margin: 15px 0px;
-    border-bottom: 1px solid black;
+    /* border-bottom: 1px solid black; */
+    border-bottom: 1px solid rgb(var(--border-color));
   }
 
   #review-counter p {
     margin-top: -15px;
-    color: red;
+    color: var(--error);
   }
 
   #input-field-review {
     width: 50%;
     padding: 5px 5px;
     margin: 2px 0px 15px 0px;
+    border: 1px solid rgb(var(--border-color));
+    border-radius: 5px;
+    outline: none;
   }
 
   .review-rating {
@@ -1068,7 +1079,7 @@
     display: flex;
     justify-content: end;
     font-size: 0.8rem;
-    color: #000000;
+    opacity: 0.5;
   }
   .second-star-container {
     margin-bottom: 10px;
@@ -1079,20 +1090,27 @@
     margin-top: 2px;
     width: 75%;
     height: 100px;
+    border: 1px solid rgb(var(--border-color));
+    border-radius: 5px;
+    outline: none;
   }
 
   #apply-review-btn {
     width: 100px;
     border: none;
-    box-shadow: 0px 0px 6px black;
-    background-color: #579d5d;
+    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.2);
+    /* background-color: #579d5d; */
+    background-color: rgba(var(--bg-primary), 0.7);
     padding: 5px;
     margin-bottom: 20px;
-    color: rgb(245, 244, 244);
+    color: rgb(245, 245, 245);
+    transition: all 0.35s;
+    border-radius: 5px;
   }
 
   #apply-review-btn:hover {
-    background-color: #45804a;
+    /* background-color: #45804a; */
+    filter: brightness(140%);
   }
 
   .product-return-container {
@@ -1154,7 +1172,7 @@
 
   .home-direction {
     text-decoration: none;
-    color: #424242;
+    color: var(--text-primary-dark);
     transition: all 0.35s ease-in-out;
   }
   .home-direction:hover {
@@ -1164,12 +1182,13 @@
   #page-direction {
     font-size: 1.1rem;
     font-weight: 600;
-    color: #424242;
+    color: var(--text-primary-dark);
   }
   #similar-heading {
     display: flex;
     justify-content: left;
     margin: 10px -2px 0px -2px;
+    padding-left: 0.5rem;
   }
   .font-star-similar {
     color: grey;

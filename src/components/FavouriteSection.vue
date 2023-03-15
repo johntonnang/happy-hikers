@@ -361,16 +361,18 @@
 
   #card {
     padding-top: 5%;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); */
+    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.2);
     align-items: center;
     text-align: center;
     margin-bottom: 5%;
     border-radius: 5px;
     margin: 5%;
+    transition: all 0.35s;
   }
 
   #card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 2px 2px 40px rgba(0, 0, 0, 0.2);
   }
   #position-text {
     padding-bottom: 90px;
@@ -390,15 +392,18 @@
     margin-right: 5%;
     margin-top: 20px;
     height: 50px;
-    background-color: #b1ea38;
-    border-radius: 3px;
-    border: 0px solid;
+    /* background-color: #b1ea38; */
+    background-color: rgba(var(--bg-primary), 0.7);
+    border-radius: 5px;
+    border: none;
     font-weight: 400;
     transition: all 0.35s;
+    color: #fff;
   }
 
   .favourite-btn:hover {
-    background-color: #8ab72a;
+    /* background-color: #8ab72a; */
+    filter: brightness(140%);
   }
 
   #icon {

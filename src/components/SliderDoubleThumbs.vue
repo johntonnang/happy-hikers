@@ -59,7 +59,7 @@
     font-size: 1.1em;
     font-weight: 600;
     margin-top: 20px;
-    color: rgb(73, 73, 73);
+    color: var(--text-primary-dark);
   }
 
   .max-value {
@@ -79,7 +79,8 @@
     position: relative;
     width: 100%;
     height: 5px;
-    background: rgb(0, 0, 0);
+    /* background: rgb(0, 0, 0); */
+    background: var(--text-primary-dark);
     outline: none;
     top: 1px;
     margin: 10px;
@@ -89,7 +90,8 @@
     left: 25%;
     right: 25%;
     height: 100%;
-    background: rgb(0, 0, 0);
+    /* background: rgb(0, 0, 0); */
+    background: var(--text-primary-dark);
     border-radius: 50px;
     position: absolute;
   }
@@ -110,7 +112,8 @@
     -webkit-appearance: none;
     width: 20px;
     height: 20px;
-    background: rgb(0, 0, 0);
+    /* background: rgb(0, 0, 0); */
+    background: var(--text-primary-dark);
     border-radius: 50px;
   }
 

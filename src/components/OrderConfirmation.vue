@@ -194,7 +194,7 @@
   </div>
   <div class="buttonDiv">
     <button
-      class="buttonShow btn btn-dark btn-lg btn-block submitButton"
+      class="buttonShow btn-dark btn-lg btn-block submitButton"
       @click="showDiv"
     >
       SEE ORDER DETAILS
@@ -256,10 +256,12 @@
         <div class="total">
           <p class="font">Total:</p>
           <p class="font" id="discount-active" v-if="discountActive">
-            {{ total }};-
+            {{ total }} :-
           </p>
-          <p class="font" v-else>{{ total }};-</p>
-          <p v-if="discountActive" class="font total-discount">{{ total }};-</p>
+          <p class="font" v-else>{{ total }} :-</p>
+          <p v-if="discountActive" class="font total-discount">
+            {{ total }} :-
+          </p>
         </div>
       </div>
     </div>
@@ -269,7 +271,7 @@
         <p class="totalsumdeliv totalp">Total:</p>
         <div class="nr">
           <p id="discount-active" v-if="discountActive">{{ total }} :-</p>
-          <p v-else>{{ total }};-</p>
+          <p v-else>{{ total }} :-</p>
           <p v-if="discountActive" class="total-discount">{{ total }} :-</p>
         </div>
       </div>
@@ -277,13 +279,13 @@
       <div class="delivery">
         <p class="totalsumdeliv delvp">Delivery:</p>
         <div class="nr">
-          <p>{{ deliveryCost }};-</p>
+          <p>{{ deliveryCost }} :-</p>
         </div>
       </div>
       <div class="totalplussdeliv">
         <p class="totalsumdeliv">TOTAL:</p>
         <div class="nr">
-          <p>{{ delvPlussTotal }};-</p>
+          <p>{{ delvPlussTotal }} :-</p>
         </div>
       </div>
     </div>
@@ -391,9 +393,29 @@
     flex-direction: column;
     align-items: center;
     background-color: rgb(250, 245, 239);
+    color: var(--text-primary-dark);
     width: 100%;
     padding: 4rem;
     margin-top: 4rem;
+    border-radius: 5px;
+  }
+
+  .btn-dark {
+    margin: 1rem;
+    background-color: rgba(var(--bg-primary), 0.7);
+    border: none;
+    border-radius: 35px;
+    color: var(--text-primary-light);
+    transition: all 0.35s;
+    padding: 14px 0;
+    font-weight: 600;
+    font-size: 1.2rem;
+    width: 50%;
+  }
+
+  .btn-dark:hover {
+    filter: brightness(140%);
+    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.2);
   }
 
   .summaryBox {

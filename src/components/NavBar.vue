@@ -103,6 +103,7 @@
           <img
             id="navbar-logo"
             src="/assets/happy-hikers-logo-removebg-preview.svg"
+            alt="happy hikers logo"
           />
         </router-link>
       </div>

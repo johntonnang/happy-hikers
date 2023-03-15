@@ -342,6 +342,10 @@
     width: 40%;
     margin: 2rem;
   }
+
+  .btn {
+    background-color: rgba(var(--bg-primary), 0.7);
+  }
   .productImg {
     width: 150px;
     height: 150px;
@@ -401,7 +405,8 @@
   }
   .container {
     padding-top: 2rem;
-    box-shadow: 0px 46px 130px rgba(0, 25, 64, 0.142);
+    /* box-shadow: 0px 46px 130px rgba(0, 25, 64, 0.142); */
+    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
   }
   .h1Checkout {

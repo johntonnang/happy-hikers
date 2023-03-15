@@ -88,7 +88,7 @@
           <p>{{ order.length }} items</p>
         </div>
         <div class="order-content">
-          <p v-if="index === 0" style="color: #f00706">
+          <p v-if="index === 0" style="color: #db0f0f">
             {{ order.reduce((x, item) => x + item.price, 0) * 0.85 }} :-
           </p>
           <p v-else>{{ order.reduce((x, item) => x + item.price, 0) }} :-</p>
@@ -114,7 +114,7 @@
           <div class="item-content-info first-info">
             <img :src="item.image" alt="" />
             <h5>{{ item.name }}</h5>
-            <p v-if="index === 0" style="color: red">
+            <p v-if="index === 0" style="color: #db0f0f">
               {{ item.price * 0.85 }} :-
             </p>
             <p v-else>{{ item.price }}</p>
@@ -131,20 +131,21 @@
     transform: rotate(90deg);
   }
   #order-container {
-    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.202);
+    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.2);
     /* box-shadow: 1px 1px 8px black; */
     width: 85%;
     margin: 40px 0px 40px 0px;
     /* background: linear-gradient(0.25turn, #fcfcfc, #f9faf9, #f3f2f0); */
     border-radius: 5px;
     /* border: 1px solid rgb(179, 179, 179); */
-    transition: all 0.35s ease-in-out;
+    transition: all 0.35s;
   }
 
   #order-container:hover {
     cursor: pointer;
-    background: #e6e6e6;
+    /* background: #e6e6e6; */
     /* opacity: 0.8; */
+    box-shadow: 2px 2px 40px rgba(0, 0, 0, 0.2);
   }
   .prev-order-container {
     display: flex;
@@ -155,7 +156,7 @@
     /* background: linear-gradient(0.25turn, #fcfcfc, #f9faf9, #f3f2f0); */
     /* background: #fcfcfc; */
     border-radius: 5px;
-    transition: all 0.4s;
+    transition: all 0.35s;
   }
 
   .order-content h4 {
@@ -165,6 +166,7 @@
 
   .order-content p {
     color: #5a5a5a;
+
     margin-top: 10px;
   }
 
@@ -189,7 +191,8 @@
   }
 
   .first-info {
-    border-top: 1px solid black;
+    /* border-top: 1px solid black; */
+    border-top: 1px solid rgb(var(--border-color));
   }
 
   .item-content-info h6,

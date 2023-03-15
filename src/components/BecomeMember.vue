@@ -162,11 +162,11 @@
     margin: 0 auto;
     width: 25%;
     /* border: 1px solid black; */
-    border: 1px solid rgb(179, 179, 179);
+    border: 1px solid rgb(var(--border-color));
     padding: 20px;
     margin-bottom: 100px; /* Ska tas bort? */
     /* box-shadow: 0px 0px 8px black; */
-    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.202);
+    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.2);
     background-color: rgb(250, 250, 250);
     border-radius: 5px;
   }
@@ -201,7 +201,7 @@
 
   .input-container > .input-field {
     padding: 12px;
-    border: 1px solid rgb(179, 179, 179);
+    border: 1px solid rgb(var(--border-color));
     border-radius: 5px;
     outline: none;
   }
@@ -210,10 +210,9 @@
     width: 100%;
     display: flex;
     margin-bottom: 15px;
-    border-top: 1px solid rgb(179, 179, 179);
-    border-bottom: 1px solid rgb(179, 179, 179);
-    border-left: 1px solid rgb(179, 179, 179);
-    border-radius: 5px;
+    border-top: 1px solid rgb(var(--border-color));
+    border-bottom: 1px solid rgb(var(--border-color));
+    border-left: 1px solid rgb(var(--border-color));
   }
 
   .input-field-date {
@@ -221,7 +220,7 @@
     text-align: center;
     border: none;
     width: 100%;
-    border-right: 1px solid rgb(179, 179, 179);
+    border-right: 1px solid rgb(var(--border-color));
   }
 
   #profile-btn-container {
@@ -233,9 +232,9 @@
 
   #become-member-btn {
     /* background-color: #58aa5f; */
-    background-color: rgba(2, 70, 2, 0.716);
+    background-color: rgba(var(--bg-primary), 0.7);
     border: none;
-    color: #eee;
+    color: var(--text-primary-light);
     padding: 14px 0;
     font-weight: 600;
     font-size: 1.1rem;
@@ -247,7 +246,8 @@
 
   #become-member-btn:hover {
     cursor: pointer;
-    background-color: rgb(2, 40, 2, 0.716);
+    /* background-color: rgb(2, 40, 2, 0.716); */
+    filter: brightness(140%);
   }
 
   .loader {
@@ -270,12 +270,14 @@
   }
 
   .error {
-    color: rgb(219, 15, 15);
+    color: var(--error);
   }
 
   #return-login-btn {
-    background-color: #e6e6e6;
-    color: #222;
+    /* background-color: #e6e6e6; */
+    background-color: var(--bg-secondary);
+    /* color: #222; */
+    color: var(--text-primary-light);
     padding: 12px 0;
     font-weight: 600;
     font-size: 1.1rem;
@@ -286,7 +288,8 @@
 
   #return-login-btn:hover {
     cursor: pointer;
-    background-color: #d6d6d6;
+    /* background-color: #d6d6d6; */
+    filter: brightness(140%);
   }
 
   @media (max-width: 1600px) {

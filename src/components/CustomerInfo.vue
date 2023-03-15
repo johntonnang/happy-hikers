@@ -555,6 +555,20 @@
 <style scoped>
   .btn-dark {
     margin: 1rem;
+    background-color: rgba(var(--bg-primary), 0.7);
+    border: none;
+    border-radius: 35px;
+    color: var(--text-primary-light);
+    transition: all 0.35s;
+    padding: 14px 0;
+    font-weight: 600;
+    font-size: 1.2rem;
+    width: 50%;
+  }
+
+  .btn-dark:hover {
+    filter: brightness(140%);
+    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.2);
   }
   h2 {
     margin-top: 2rem;
@@ -584,11 +598,15 @@
   }
   .error {
     font-size: 0.8rem;
-    color: red;
+    color: var(--error);
   }
-  @media screen and (max-width: 750px) {
+  @media screen and (max-width: 768px) {
     .container {
       width: 100%;
+    }
+
+    .btn-dark {
+      width: 80%;
     }
   }
 </style>

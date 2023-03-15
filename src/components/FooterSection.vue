@@ -84,7 +84,8 @@
     height: 60vh;
     bottom: 0;
     left: 0;
-    background-color: rgba(2, 70, 2, 0.716);
+    /* background-color: rgba(2, 70, 2, 0.716); */
+    background-color: rgba(var(--bg-primary), 0.7);
     color: #e6e6e6;
     margin-top: 2rem;
     font-size: 1.2rem;

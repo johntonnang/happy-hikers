@@ -113,7 +113,7 @@
     padding: 2rem;
     background-color: #f5f5f5;
     border-radius: 5px;
-    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.202);
+    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.2);
     flex-direction: column;
   }
 
@@ -152,7 +152,7 @@
   }
 
   .read-more-btn:hover {
-    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.202);
+    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.2);
   }
 
   .date {

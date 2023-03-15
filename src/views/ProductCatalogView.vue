@@ -456,7 +456,7 @@
       </slide>
       <slide @click="openProduct(products[15].id)" :key="104">
         <div class="explore-container">
-          <img src="'/assets/apiImg/Roamer.png'" alt="" />
+          <img src="/assets/apiImg/Roamer.png" alt="" />
           <button class="explore-btn">Explore</button>
         </div>
       </slide>
@@ -498,12 +498,12 @@
   #page-direction {
     font-size: 1.1rem;
     font-weight: 600;
-    color: #424242;
+    color: var(--text-primary-dark);
   }
 
   .home-direction {
     text-decoration: none;
-    color: #424242;
+    color: var(--text-primary-dark);
     transition: all 0.35s ease-in-out;
   }
   .home-direction:hover {
@@ -532,7 +532,7 @@
   }
 
   .checkbox-container {
-    color: #424242;
+    color: var(--text-primary-dark);
     font-weight: 600;
     margin-bottom: 5px;
     display: flex;
@@ -549,50 +549,39 @@
   }
 
   .filter-container h3 {
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid rgb(var(--border-color));
     padding-bottom: 5px;
     font-weight: 600;
   }
 
-  .filter-selection {
+  /* .filter-selection {
     color: #424242;
     font-weight: 400;
-  }
-  .product-container {
+  } */
+  /* .product-container {
     display: flex;
     flex-wrap: wrap;
     width: 82.5%;
-  }
-
-  .color-circle-two {
-    background-color: red;
-  }
-
-  .color-circle-three {
-    background-color: rgb(33, 248, 13);
-  }
-  .color-circle-four {
-    background-color: rgb(13, 17, 248);
-  }
-  .product-title-rating img {
+  } */
+  /* .product-title-rating img {
     margin: 4px 0px 0px auto;
     width: 80px;
     height: 20px;
-  }
+  } */
 
-  .product-box h2 {
+  /* .product-box h2 {
     font-size: 2.2rem;
     margin-bottom: 0px;
-  }
+  } */
 
   #carousel-intro-text {
     text-align: center;
-    color: rgb(85, 85, 85);
+    color: var(--text-primary-dark);
     font-weight: 400;
     margin: 25px auto 0 auto;
     width: 85%;
     padding: 20px;
-    border-bottom: 1px solid rgb(114, 114, 114);
+    border-bottom: 1px solid rgb(var(--border-color));
     font-size: 1.7rem;
   }
   .carousel-container {
@@ -606,6 +595,7 @@
     top: 0;
     left: 0;
     transition: box-shadow 0.2s ease-in-out;
+    border-radius: 5px;
   }
 
   .explore-container {
@@ -617,7 +607,7 @@
   }
 
   .explore-container:hover {
-    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.7);
+    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.2);
     cursor: pointer;
     opacity: 1;
   }
@@ -627,11 +617,12 @@
     top: 1;
     left: 1;
     background-color: rgb(255, 255, 255);
-    color: black;
+    color: var(--text-primary-dark);
     border: none;
     padding: 8px 25px;
     font-weight: 600;
     font-size: 15px;
+    border-radius: 5px;
   }
   .explore-btn:hover {
     cursor: pointer;

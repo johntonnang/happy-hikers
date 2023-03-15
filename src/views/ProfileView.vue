@@ -153,15 +153,8 @@
     margin-bottom: 25px;
   }
 
-  .discount-container-box:hover {
-    cursor: pointer;
-    /* opacity: 0.6; */
-    /* box-shadow: 0px 0px 20px black; */
-    filter: brightness(90%);
-    background: #e6e6e6;
-  }
   .discount-container-box {
-    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.202);
+    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.2);
     transition: all 0.35s;
     /* background-color: #f3f3f3; */
     width: 200px;
@@ -190,6 +183,10 @@
     padding: 0 10px;
   }
 
+  .discount-container-box:hover {
+    cursor: pointer;
+    box-shadow: 2px 2px 40px rgb(var(--border-color));
+  }
   #order-container {
     width: 70%;
     margin-left: 7%;
@@ -200,7 +197,7 @@
     font-size: 1.3rem;
     font-weight: 600;
     margin-top: 25px;
-    color: rgb(46, 46, 46);
+    color: var(--text-primary-dark);
   }
 
   @media (max-width: 1600px) {
