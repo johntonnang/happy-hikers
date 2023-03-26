@@ -12,7 +12,7 @@
         )
         if (responsibilityTxt.style.display === 'none') {
           responsibilityTxt.style.display = 'block'
-          // change button text when the longer text appear
+          // change button text when the longer text displays
           responsabilityButton.innerText = 'Read less'
         } else {
           responsibilityTxt.style.display = 'none'
