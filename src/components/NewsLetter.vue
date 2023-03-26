@@ -103,7 +103,7 @@
       <div v-else id="confirmation-popup">
         <h1>Thank you for subscribing</h1>
         <div id="check-icon">
-          <img src="assets/output-onlinegiftools.gif" alt="Checkmark" />
+          <img src="/assets/output-onlinegiftools.gif" alt="Checkmark" />
           <span>Redirecting...</span>
         </div>
         <p>We´ll send you uppdates and exclusive deals to: {{ email }}.</p>

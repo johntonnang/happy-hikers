@@ -124,6 +124,7 @@
           class="input-field"
           v-model="memberPasswordInput"
           name="password"
+          placeholder="Don't use your usual password"
         />
         <span class="error" v-if="!correctPassword"
           >The password field cannot be left empty.</span

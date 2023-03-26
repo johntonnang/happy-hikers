@@ -230,7 +230,7 @@
           id="login-btn"
           @click="loginProfile"
         >
-          <img src="assets/output-onlinegiftools.gif" alt="Checkmark" />
+          <img src="/assets/output-onlinegiftools.gif" alt="Checkmark" />
           <span style="margin-left: 5px">Redirecting...</span>
         </button>
         <button
